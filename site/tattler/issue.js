@@ -38,6 +38,7 @@
       ["08", "Opp of the day", "The company that had a very bad day", "opp-i"],
       ["09", "Stockscopes", "What the stars say about your sector", "scopes-i"],
       ["10", "The cast list", "Villains, underdogs and fan favourites", "cast-i"],
+      ["11", "Who's the Snake?", "Today's game: find the worst week at the table", "snake-i"],
     ];
 
     // cover chart: the S&P 500 over the last few months
@@ -144,6 +145,7 @@
     ${oppHtml}
     ${scopesHtml}
     ${castHtml}
+    <section class="sec snakebox" id="snake-i"><p class="kick">11 · TODAY'S GAME</p><div id="snake-box"></div></section>
 
     <section class="desk">
       <div class="desk-head"><div><p class="kick">THE DATA DESK</p><h2>Whistle Street, <span class="gt">dressed to match</span></h2></div>
@@ -158,6 +160,8 @@
       <p class="gt glow bye">Until next issue, stay liquid.</p>
       <p class="note small">The gossip is for fun. The data is real and updates every 30 minutes in market hours. Insiders are named by role only, and nothing here says anyone broke the law. Not financial advice. Data updated ${esc(d.updated)}.</p>
     </footer>`;
+
+    window.renderSnake?.(document.getElementById("snake-box"), { stocks: raw.prices?.stocks || [], signals: raw.insiders?.signals, shocks: raw.shocks?.shocks, news: raw.news, day: spy.date }, { logo });
 
     function day(s) { return new Date(s.slice(0, 10) + "T12:00:00Z").toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" }); }
   };

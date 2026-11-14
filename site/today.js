@@ -18,6 +18,12 @@
 
   window.renderToday = function () {
     if (!window.DATA_READY || !STOCKS.length) return;
+    // daily game: Who's the Snake? (only drawn once; it keeps its own state)
+    const sn = $("#t-snake");
+    if (sn && !sn.dataset.done) {
+      sn.dataset.done = 1;
+      load("news.json").catch(() => ({})).then((news) => window.renderSnake?.(sn, { stocks: [...STOCKS, window.SPY].filter(Boolean), signals: INS?.signals, shocks: SH?.shocks, news, day: STOCKS[0]?.date }));
+    }
     const spy = window.SPY || { chg_1d: 0 }, up = STOCKS.filter((s) => s.chg_1d > 0).length, n = STOCKS.length;
     const sorted = [...STOCKS].sort((a, b) => b.chg_1d - a.chg_1d);
     const best = sorted[0], worst = sorted[n - 1];
