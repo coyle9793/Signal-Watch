@@ -318,9 +318,13 @@ function alarm() {
   $("#alarm-x").onclick = () => { $("#alarm").hidden = true; try { sessionStorage.setItem("alarm-off", SH.meta.updated); } catch (e) {} };
 }
 
+let SH_ALL = false;
 function renderShocks() {
   const only = $("#sh-only").checked;
-  $("#sh-list").innerHTML = SH.shocks.filter((s) => !only || !s.explained).map((s) => {
+  // biggest unexplained-by-market moves first; show the top 5 until the viewer asks for more
+  const all = SH.shocks.filter((s) => !only || !s.explained).sort((a, b) => Math.abs(b.abnormal) - Math.abs(a.abnormal));
+  const shown = SH_ALL ? all : all.slice(0, 5);
+  $("#sh-list").innerHTML = shown.map((s) => {
     const why = s.explained ? `Likely reason: ${s.reasons.map(esc).join("; ")}.`
       : s.news_checked ? `<b class="down">No clear reason found</b>: no news coverage and no insider filings.`
       : `No insider filings around this day. News for this day isn't loaded yet.`;
@@ -334,6 +338,8 @@ function renderShocks() {
       ${s.unplanned_insider_sells ? `<div class="row"><span class="tag warn">${s.unplanned_insider_sells} unplanned insider sale(s) nearby</span></div>` : ""}
       <div class="why">${why}<br><span class="meta">${hist}</span></div></div>`;
   }).join("") || `<div class="placeholder">No shocks match.</div>`;
+  if (all.length > 5) $("#sh-list").insertAdjacentHTML("beforeend", `<button class="btn showmore" id="sh-more">${SH_ALL ? "Show only the top 5" : `Show ${all.length - 5} more shocks`}</button>`);
+  $("#sh-more")?.addEventListener("click", () => { SH_ALL = !SH_ALL; renderShocks(); if (!SH_ALL) $("#shocks").scrollIntoView(); });
   document.querySelectorAll("#sh-list .card").forEach((c) => c.onclick = () => openStock(c.dataset.t));
 }
 
