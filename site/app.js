@@ -106,6 +106,7 @@ async function world() {
   $("#world-spots").innerHTML = top.map(([c, v]) => `<div class="spot"><b>${esc(names[c] || c)}</b><span class="meta">risk ${Math.round(v)}</span><div class="bar"><i style="width:${(100 * v) / mx}%"></i></div></div>`).join("");
   $("#world-kind").onchange = renderWorld;
   renderWorld();
+  drawMap();
   if (w) $("#world-history").innerHTML = w.lessons.map((l) => `<div class="card">
     <h3>${esc(l.title)}</h3><div class="meta">${esc(l.date)}</div>
     <div class="row"><span>Market on the day</span><b class="${cls(l.market_day1)}">${pct(l.market_day1)}</b></div>
@@ -114,6 +115,33 @@ async function world() {
     ${[...l.sectors.slice(0, 2), ...l.sectors.slice(-2)].map((s) => `<div class="secrow"><span>${esc(s.sector)}</span><span class="${cls(s.day1)}">${pct(s.day1)}</span><span class="${cls(s.day20)}">${pct(s.day20)}</span></div>`).join("")}
     <div class="meta" style="margin-top:6px">Hit hardest: ${l.worst.map(([t, v]) => `<span class="tk">${t}</span> ${pct(v)}`).join(", ")}</div></div></div>`).join("");
 }
+let MAP;
+function drawMap() {
+  if (!window.L || MAP) return;
+  const { ev, w } = WORLD;
+  MAP = L.map("map", { worldCopyJump: true, minZoom: 1, zoomSnap: 0.5 }).setView([28, 15], 1.5);
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+    subdomains: "abcd", maxZoom: 8, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+  }).addTo(MAP);
+  const max = Math.max(...ev.events.map((e) => e.risk));
+  ev.events.forEach((e, i) => {
+    if (e.lat == null) return;
+    const sz = Math.round(12 + 26 * (e.risk / max));
+    const icon = L.divIcon({ className: `pulse ${e.kind}`, html: "<i></i><i></i><i></i>", iconSize: [sz, sz] });
+    const imp = w?.impacts?.[i];
+    const rows = e.tickers.slice(0, 6).map((t) => {
+      const s = STOCKS.find((x) => x.ticker === t);
+      return `<div class="ptk"><span class="tk">${esc(t)}</span><span class="${cls(s?.chg_1d)}">${s ? pct(s.chg_1d, 2) + " today" : ""}</span></div>`;
+    }).join("");
+    L.marker([e.lat, e.lon], { icon, riseOnHover: true, title: e.title }).addTo(MAP).bindPopup(`<h4>${esc(e.title)}</h4>
+      <div class="meta">${esc(e.place)} · ${e.articles} articles · tone ${e.tone}</div>
+      <div style="margin:8px 0 4px"><b>Stocks it could move</b></div>${rows}
+      ${imp != null ? `<div class="ptk" style="margin-top:6px;border-top:1px solid var(--line);padding-top:6px"><span>Those stocks since, vs market</span><b class="${cls(imp)}">${pct(imp)}</b></div>` : ""}
+      <div style="margin-top:6px"><a href="${esc(e.url)}" target="_blank" rel="noopener">Read the source</a></div>`);
+  });
+}
+document.querySelector('#tabs [data-tab="world"]').addEventListener("click", () => setTimeout(() => MAP?.invalidateSize(), 50));
+
 function renderWorld() {
   const { ev, w } = WORLD, k = $("#world-kind").value;
   const list = ev.events.map((e, i) => ({ ...e, impact: w?.impacts?.[i] })).filter((e) => !k || e.kind === k);
@@ -154,7 +182,44 @@ async function insiders() {
     <div>${g.insider_sellers} insider${g.insider_sellers === 1 ? "" : "s"} sold ${g.insider_sell_value ? money(g.insider_sell_value) : ""}${g.unplanned_sell_value ? ` <span class="tag warn">${money(g.unplanned_sell_value)} unplanned</span>` : ""}</div>
     ${meta.congress_source ? `<div>Congress: <span class="up">${g.congress_buys} buys</span>, <span class="down">${g.congress_sells} sells</span></div>` : ""}</div>`).join("");
   $("#ins-q").oninput = renderIns;
+  $("#spy-only").onchange = renderSpy;
   renderIns();
+  renderSpy();
+}
+const days = (a, b) => Math.round((new Date(b) - new Date(a)) / 864e5);
+function caseFile(x, i) {
+  const ev = [];
+  let pts = 0;
+  const shocks = (window.SH?.shocks || []).filter((s) => s.ticker === x.ticker);
+  const after = shocks.filter((s) => { const d = days(x.date, s.date); return d > 0 && d <= 14; });
+  const drop = after.find((s) => s.ret < 0), jump = after.find((s) => s.ret > 0);
+  if (x.type === "Sell" && drop) { pts += 3; ev.push(`Sold ${days(x.date, drop.date)} days before a ${pct(drop.ret)} drop`); }
+  if (x.type === "Buy" && jump) { pts += 3; ev.push(`Bought ${days(x.date, jump.date)} days before a ${pct(jump.ret)} jump`); }
+  const senior = /\b(CEO|CFO|COO|Pres|Chair|Chief)/i.test(x.role || "");
+  if (x.type === "Sell" && x.value >= 5e6) { pts += 1; ev.push(`Large sale: ${money(x.value)}`); }
+  if (senior && x.value >= 1e6) { pts += 1; ev.push(`Trade by a top boss (${esc(x.role)})`); }
+  if (x.type === "Buy") { pts += 1; ev.push("Bought with their own money (insiders rarely do)"); }
+  const pack = INS.form4.filter((y) => y.ticker === x.ticker && y.type === x.type && y.who !== x.who && Math.abs(days(x.date, y.date)) <= 14);
+  const crowd = new Set(pack.map((y) => y.who)).size;
+  if (crowd >= 2) { pts += 1; ev.push(`${crowd} other insiders ${x.type === "Buy" ? "bought" : "sold"} within two weeks`); }
+  if (x.planned === true) { pts -= 3; ev.push("Pre-planned sale (10b5-1 schedule)"); }
+  if (!ev.length) ev.push("Nothing out of the ordinary");
+  return { x, pts, unusual: pts >= 3, ev, id: `SW-${String(i + 1).padStart(4, "0")}` };
+}
+function renderSpy() {
+  const files = INS.form4.map(caseFile).sort((a, b) => b.pts - a.pts || b.x.value - a.x.value);
+  const only = $("#spy-only").checked, n = files.filter((f) => f.unusual).length;
+  $("#spy-count").textContent = `${n} unusual of ${files.length} trades`;
+  $("#spy").innerHTML = files.filter((f) => !only || f.unusual).slice(0, 24).map((f) => `<div class="file">
+    <div class="stamp ${f.unusual ? "unusual" : "routine"}">${f.unusual ? "UNUSUAL" : "ROUTINE"}</div>
+    <div class="case">CASE FILE ${f.id}</div>
+    <div class="subj">${esc(f.x.who)}</div><div>${esc(f.x.role)}</div>
+    <div class="line" style="margin-top:8px"><span>Stock</span><b>${esc(f.x.ticker)}</b></div>
+    <div class="line"><span>Action</span><b>${f.x.type === "Buy" ? "BOUGHT" : "SOLD"} ${f.x.shares.toLocaleString()} sh</b></div>
+    <div class="line"><span>Value</span><b>${money(f.x.value)}</b></div>
+    <div class="line"><span>Date</span><span>${esc(f.x.date)}</span></div>
+    <ul>${f.ev.map((e) => `<li>${e}</li>`).join("")}</ul>
+    <div style="margin-top:8px;font-size:11px"><a href="${esc(f.x.url)}" target="_blank" rel="noopener">Source filing</a></div></div>`).join("") || `<div class="placeholder">No unusual trades right now.</div>`;
 }
 function renderIns() {
   const q = $("#ins-q").value.trim().toLowerCase();
@@ -169,7 +234,7 @@ function renderIns() {
     <td class="r">${esc(x.amount || "")}</td></tr>`).join("") || `<tr><td colspan="5" class="meta">${INS.meta.congress_source ? "No matching trades." : "Congress trades feed coming soon."}</td></tr>`;
 }
 
-let SH;
+var SH;
 async function shocks() {
   SH = await load("shocks.json");
   const m = SH.meta, list = SH.shocks;
@@ -181,7 +246,25 @@ async function shocks() {
   ].map(([l, v]) => `<div class="kpi"><div class="l">${l}</div><div class="v">${v}</div></div>`).join("");
   $("#sh-only").onchange = renderShocks;
   renderShocks();
+  alarm();
 }
+const isMajor = (s) => !s.explained && s.news_checked && (Math.abs(s.abnormal) >= 0.04 || s.vol_ratio >= 4 || Math.abs(s.z) >= 3);
+function alarm() {
+  const recent = [...new Set(SH.shocks.map((s) => s.date))].sort().slice(-3);
+  const major = SH.shocks.filter((s) => isMajor(s) && recent.includes(s.date)).sort((a, b) => b.severity - a.severity);
+  let dismissed = null;
+  try { dismissed = sessionStorage.getItem("alarm-off"); } catch (e) {}
+  if (!major.length || dismissed === SH.meta.updated) return;
+  const s = major[0];
+  const what = s.abnormal < 0 ? `dropped ${pct(s.ret)}` : `jumped ${pct(s.ret)}`;
+  $("#alarm-msg").innerHTML = `<b>${esc(s.ticker)}</b> ${what} on ${esc(s.date)} (${Math.abs(s.z).toFixed(1)}× its normal swing, ${s.vol_ratio}× normal volume) with <u>no news and no insider filings</u>.${major.length > 1 ? ` Plus ${major.length - 1} more.` : ""}`;
+  $("#alarm").hidden = false;
+  document.body.classList.add("shake");
+  setTimeout(() => document.body.classList.remove("shake"), 1400);
+  $("#alarm-go").onclick = () => { document.querySelector('#tabs [data-tab="shocks"]').click(); $("#sh-only").checked = true; renderShocks(); window.scrollTo(0, 0); };
+  $("#alarm-x").onclick = () => { $("#alarm").hidden = true; try { sessionStorage.setItem("alarm-off", SH.meta.updated); } catch (e) {} };
+}
+
 function renderShocks() {
   const only = $("#sh-only").checked;
   $("#sh-list").innerHTML = SH.shocks.filter((s) => !only || !s.explained).map((s) => {
@@ -189,8 +272,8 @@ function renderShocks() {
       : s.news_checked ? `<b class="down">No clear reason found</b>: no news coverage and no insider filings.`
       : `No insider filings around this day. News for this day isn't loaded yet.`;
     const hist = s.past_shocks ? `History: after ${s.past_shocks} similar shocks in 5 years, ${s.ticker} was higher 20 trading days later ${Math.round(s.past_up_rate * 100)}% of the time (average ${pct(s.past_avg_20d)}).` : `First shock like this in 5 years.`;
-    return `<div class="card clickable ${!s.explained && s.news_checked ? "alert" : ""}" data-t="${esc(s.ticker)}">
-      <h3><span class="tk" style="font-size:16px">${esc(s.ticker)}</span> <span class="${s.abnormal < 0 ? "sell" : "buy"}">${esc(s.kind)}</span> <span class="meta">${esc(s.date)}</span></h3>
+    return `<div class="card clickable ${isMajor(s) ? "major" : !s.explained && s.news_checked ? "alert" : ""}" data-t="${esc(s.ticker)}">
+      <h3><span class="tk" style="font-size:16px">${esc(s.ticker)}</span> <span class="${s.ret < 0 ? "sell" : "buy"}">${esc(s.kind)}</span> <span class="meta">${esc(s.date)}</span>${isMajor(s) ? '<span class="majortag">MAJOR</span>' : ""}</h3>
       <div class="row"><span>Stock</span><b class="${cls(s.ret)}">${pct(s.ret, 2)}</b></div>
       <div class="row"><span>Market that day</span><span class="${cls(s.market)}">${pct(s.market, 2)}</span></div>
       <div class="row"><span>Unexplained by market</span><span class="${cls(s.abnormal)}">${pct(s.abnormal, 2)} (${Math.abs(s.z).toFixed(1)}× normal)</span></div>
@@ -226,9 +309,11 @@ function renderCalls() {
   document.querySelectorAll("#calls-list .card").forEach((el) => el.onclick = () => openStock(el.dataset.t));
 }
 
-market();
-insiders();
-shocks();
-world();
-calls();
+(async () => {
+  await market();
+  await shocks();
+  await insiders();
+  world();
+  calls();
+})();
 

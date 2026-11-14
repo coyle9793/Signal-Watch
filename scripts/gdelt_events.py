@@ -117,13 +117,13 @@ def main(args):
     intl = df[df.a1country.notna() & df.a2country.notna() & (df.a1country != df.a2country)]
     intl = intl[intl.isroot == "1"]
     pair = intl.apply(lambda r: "-".join(sorted([r.a1country, r.a2country])), axis=1)
-    intl = intl.assign(pair=pair)
+    intl = intl.assign(pair=pair, geokey=(intl.geo + "|" + intl.lat + "|" + intl.lon).where(intl.lat.notna() & intl.geo.notna()))
     g = intl.groupby(["pair","rootcode"]).agg(
         articles=("articles","sum"), sources=("sources","sum"), events=("id","count"),
         tone=("tone","mean"), goldstein=("goldstein","mean"),
         a1=("a1name", lambda s: s.mode().iat[0] if len(s.mode()) else ""),
         a2=("a2name", lambda s: s.mode().iat[0] if len(s.mode()) else ""),
-        place=("geo", lambda s: s.dropna().mode().iat[0] if len(s.dropna().mode()) else ""),
+        place=("geokey", lambda s: s.dropna().mode().iat[0] if len(s.dropna().mode()) else ""),
         url=("url", lambda s: s.iloc[0]), date=("dateadded","max"),
         countries=("a1country", lambda s: sorted(set(s))),
     ).reset_index()
@@ -144,8 +144,9 @@ def main(args):
         relevant = any(c in REGION or c == "USA" for c in cc)
         risk *= 1.0 if relevant else 0.35
         names = [CNAME.get(c, c) for c in cc]
+        place, lat, lon = (r.place.split("|") + ["", "", ""])[:3] if r.place else ("", None, None)
         out.append({"title": f"{' & '.join(names)}: {ROOT.get(r.rootcode,'Event')}", "actors": f"{(r.a1 or '').title()} / {(r.a2 or '').title()}",
-            "kind": k, "sector": SECTORS[k]["label"], "countries": cc, "place": r.place,
+            "kind": k, "sector": SECTORS[k]["label"], "countries": cc, "place": place, "lat": float(lat) if lat else None, "lon": float(lon) if lon else None,
             "articles": int(r.articles), "events": int(r.events), "tone": round(float(r.tone),2),
             "goldstein": round(float(r.goldstein),2), "risk": round(float(risk),1),
             "tickers": tickers[:8], "url": r.url, "date": r.date})

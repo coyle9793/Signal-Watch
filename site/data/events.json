@@ -1,30 +1,17 @@
 {
  "meta": {
   "source": "GDELT 1.0 daily export",
-  "date": "20261113",
+  "date": "20261110",
   "news_days": [
-   "20261031",
-   "20261101",
-   "20261102",
-   "20261103",
-   "20261104",
-   "20261105",
-   "20261106",
-   "20261107",
-   "20261108",
-   "20261109",
-   "20261110",
-   "20261111",
-   "20261112",
-   "20261113"
+   "20261110"
   ],
-  "total_events": 111095,
-  "international_events": 11235
+  "total_events": 124504,
+  "international_events": 13451
  },
  "events": [
   {
    "title": "Israel & Palestine: Armed conflict",
-   "actors": "Israeli / Palestinian",
+   "actors": "Israeli / Israel",
    "kind": "conflict",
    "sector": "Defence & energy",
    "countries": [
@@ -32,11 +19,13 @@
     "PSE"
    ],
    "place": "Gaza, Israel (general), Israel",
-   "articles": 386,
-   "events": 48,
-   "tone": -7.3,
+   "lat": 31.4167,
+   "lon": 34.3333,
+   "articles": 392,
+   "events": 42,
+   "tone": -8.05,
    "goldstein": -9.96,
-   "risk": 127.6,
+   "risk": 131.2,
    "tickers": [
     "LMT",
     "RTX",
@@ -46,62 +35,8 @@
     "BA",
     "COP"
    ],
-   "url": "https://www.wsiu.org/2026-11-12/israeli-air-strike-on-gaza-hospital-kills-six-including-surgeon",
-   "date": "20261113"
-  },
-  {
-   "title": "Russia & Ukraine: Armed conflict",
-   "actors": "Russia / Ukraine",
-   "kind": "conflict",
-   "sector": "Defence & energy",
-   "countries": [
-    "RUS",
-    "UKR"
-   ],
-   "place": "Kyiv, Kyyiv, Misto, Ukraine",
-   "articles": 1848,
-   "events": 59,
-   "tone": -5.46,
-   "goldstein": -9.98,
-   "risk": 121.7,
-   "tickers": [
-    "XOM",
-    "CVX",
-    "COP",
-    "LMT",
-    "RTX",
-    "GD",
-    "BA"
-   ],
-   "url": "https://jamestown.org/russias-push-for-ai-sovereignty-faces-setbacks/",
-   "date": "20261113"
-  },
-  {
-   "title": "Colombia & United States: Armed conflict",
-   "actors": "United States / Colombia",
-   "kind": "conflict",
-   "sector": "Defence & energy",
-   "countries": [
-    "COL",
-    "USA"
-   ],
-   "place": "New York, United States",
-   "articles": 397,
-   "events": 22,
-   "tone": -4.36,
-   "goldstein": -10.0,
-   "risk": 117.1,
-   "tickers": [
-    "LMT",
-    "RTX",
-    "GD",
-    "BA",
-    "XOM",
-    "CVX",
-    "COP"
-   ],
-   "url": "https://www.whec.com/ap-top-news/ap-top-news-us-headlines/hunt-for-clues-in-deadly-brooklyn-building-collapse-will-take-time/",
-   "date": "20261113"
+   "url": "https://aa.com.tr/en/middle-east/israeli-drone-strikes-gunfire-kill-1-palestinian-injure-19-others-in-gaza/4117565",
+   "date": "20261110"
   },
   {
    "title": "Iran & United States: Armed conflict",
@@ -112,233 +47,132 @@
     "IRN",
     "USA"
    ],
-   "place": "Tehran, Tehran, Iran",
-   "articles": 264,
+   "place": "Washington, District of Columbia, United States",
+   "lat": 38.8951,
+   "lon": -77.0364,
+   "articles": 401,
+   "events": 36,
+   "tone": -5.14,
+   "goldstein": -9.88,
+   "risk": 119.8,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "GD",
+    "BA"
+   ],
+   "url": "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-november-10-crude-oil-falls-below-92-as-trump-says-iran-war-is-effectively-over-what-lies-ahead/articleshow/135696913.cms",
+   "date": "20261110"
+  },
+  {
+   "title": "Mexico & United States: Armed conflict",
+   "actors": "Mexican / Mexico",
+   "kind": "conflict",
+   "sector": "Defence & energy",
+   "countries": [
+    "MEX",
+    "USA"
+   ],
+   "place": "Texas, United States",
+   "lat": 31.106,
+   "lon": -97.6475,
+   "articles": 315,
+   "events": 10,
+   "tone": -6.68,
+   "goldstein": -9.9,
+   "risk": 117.6,
+   "tickers": [
+    "GM",
+    "F",
+    "CAT",
+    "LMT",
+    "RTX",
+    "GD",
+    "BA",
+    "XOM"
+   ],
+   "url": "https://www.kztv10.com/politics/immigration/ice-separates-8-year-old-haitian-child-from-caretaker",
+   "date": "20261110"
+  },
+  {
+   "title": "Russia & Ukraine: Armed conflict",
+   "actors": "Russia / Ukraine",
+   "kind": "conflict",
+   "sector": "Defence & energy",
+   "countries": [
+    "RUS",
+    "UKR"
+   ],
+   "place": "Kremlin, Moskva, Russia",
+   "lat": 55.7522,
+   "lon": 37.6156,
+   "articles": 385,
+   "events": 49,
+   "tone": -4.61,
+   "goldstein": -9.99,
+   "risk": 116.9,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "GD",
+    "BA"
+   ],
+   "url": "http://www.iranherald.com/news/279422728/us-says-russia-ukraine-talks-in-abu-dhabi-aim-to-start-final-end-to-war",
+   "date": "20261110"
+  },
+  {
+   "title": "Russia & United States: Coercion",
+   "actors": "Russia / The Us",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "RUS",
+    "USA"
+   ],
+   "place": "Gloucestershire, Gloucestershire, United Kingdom",
+   "lat": 51.8333,
+   "lon": -2.16667,
+   "articles": 644,
+   "events": 10,
+   "tone": -5.9,
+   "goldstein": -5.0,
+   "risk": 93.6,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "AAPL",
+    "NVDA",
+    "QCOM"
+   ],
+   "url": "https://www.aol.co.uk/articles/member-us-army-arrested-suspicion-191140000.html",
+   "date": "20261110"
+  },
+  {
+   "title": "China & United States: Coercion",
+   "actors": "United States / Chinese",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "CHN",
+    "USA"
+   ],
+   "place": "China",
+   "lat": 35.0,
+   "lon": 105.0,
+   "articles": 303,
    "events": 26,
-   "tone": -4.56,
-   "goldstein": -9.98,
-   "risk": 104.5,
-   "tickers": [
-    "XOM",
-    "CVX",
-    "COP",
-    "LMT",
-    "RTX",
-    "GD",
-    "BA"
-   ],
-   "url": "https://www.algemeiner.com/2026/11/12/iran-races-rebuild-missile-arsenal-trump-signals-us-unlikely-resume-strikes/",
-   "date": "20261113"
-  },
-  {
-   "title": "United Kingdom & United States: Rejection",
-   "actors": "Microsoft / United Kingdom",
-   "kind": "sanctions",
-   "sector": "Trade-exposed tech & industrials",
-   "countries": [
-    "GBR",
-    "USA"
-   ],
-   "place": "Burnham, Somerset, United Kingdom",
-   "articles": 750,
-   "events": 15,
-   "tone": -6.02,
-   "goldstein": -4.87,
-   "risk": 93.3,
-   "tickers": [
-    "AAPL",
-    "NVDA",
-    "QCOM",
-    "INTC",
-    "CAT",
-    "BA"
-   ],
-   "url": "https://www.gazette-news.co.uk/news/26725724.microsoft-outage-causing-disruption-across-uk-essex/",
-   "date": "20261113"
-  },
-  {
-   "title": "Russia & Ukraine: Cut ties / sanctions",
-   "actors": "Ukraine / Russia",
-   "kind": "sanctions",
-   "sector": "Trade-exposed tech & industrials",
-   "countries": [
-    "RUS",
-    "UKR"
-   ],
-   "place": "Barrot, Auvergne, France",
-   "articles": 251,
-   "events": 4,
-   "tone": -3.23,
-   "goldstein": -7.5,
-   "risk": 83.0,
-   "tickers": [
-    "XOM",
-    "CVX",
-    "COP",
-    "LMT",
-    "RTX",
-    "GD",
-    "AAPL",
-    "NVDA"
-   ],
-   "url": "https://dailypioneer.com/business/indias-russian-oil-imports-hit-record-64b-euro",
-   "date": "20261113"
-  },
-  {
-   "title": "BHR & Iran: Threat",
-   "actors": "Iran / Bahrain",
-   "kind": "sanctions",
-   "sector": "Trade-exposed tech & industrials",
-   "countries": [
-    "BHR",
-    "IRN"
-   ],
-   "place": "Bahrain",
-   "articles": 217,
-   "events": 17,
-   "tone": -6.24,
-   "goldstein": -5.93,
-   "risk": 82.3,
-   "tickers": [
-    "XOM",
-    "CVX",
-    "COP",
-    "LMT",
-    "AAPL",
-    "NVDA",
-    "QCOM",
-    "INTC"
-   ],
-   "url": "https://www.freemalaysiatoday.com/category/world/2026/11/13/iran-s-guards-say-they-targeted-a-us-early-warning-radar-in-bahrain",
-   "date": "20261113"
-  },
-  {
-   "title": "Iran & United States: Threat",
-   "actors": "Iran / Iran",
-   "kind": "sanctions",
-   "sector": "Trade-exposed tech & industrials",
-   "countries": [
-    "IRN",
-    "USA"
-   ],
-   "place": "Tehran, Tehran, Iran",
-   "articles": 239,
-   "events": 33,
-   "tone": -5.47,
-   "goldstein": -4.87,
-   "risk": 75.0,
-   "tickers": [
-    "XOM",
-    "CVX",
-    "COP",
-    "LMT",
-    "AAPL",
-    "NVDA",
-    "QCOM",
-    "INTC"
-   ],
-   "url": "https://krdo.com/news/national-world/cnn-world/2026/11/12/why-are-there-so-many-security-incidents-linked-to-us-military-bases-in-britain/",
-   "date": "20261113"
-  },
-  {
-   "title": "Russia & Ukraine: Criticism",
-   "actors": "Moscow / Ukraine",
-   "kind": "sanctions",
-   "sector": "Trade-exposed tech & industrials",
-   "countries": [
-    "RUS",
-    "UKR"
-   ],
-   "place": "Moscow, Moskva, Russia",
-   "articles": 396,
-   "events": 23,
-   "tone": -5.18,
-   "goldstein": -2.0,
-   "risk": 72.3,
-   "tickers": [
-    "XOM",
-    "CVX",
-    "COP",
-    "LMT",
-    "RTX",
-    "GD",
-    "AAPL",
-    "NVDA"
-   ],
-   "url": "https://www.irishtimes.com/ireland/2026/11/12/protesters-urge-peace-in-ukraine-and-an-end-to-further-military-spending-in-europe/",
-   "date": "20261113"
-  },
-  {
-   "title": "Israel & Palestine: Pledge to cooperate",
-   "actors": "Israel / Gaza",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "ISR",
-    "PSE"
-   ],
-   "place": "Gaza, Israel (general), Israel",
-   "articles": 482,
-   "events": 6,
-   "tone": -5.79,
-   "goldstein": 4.4,
-   "risk": 63.2,
-   "tickers": [
-    "LMT",
-    "RTX",
-    "XOM",
-    "CVX",
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS"
-   ],
-   "url": "https://www.greeleytribune.com/2026/11/12/israel-hamas-war-hospital-strike-explained/",
-   "date": "20261113"
-  },
-  {
-   "title": "China & United States: Investigation",
-   "actors": "Nvidia / China",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "CHN",
-    "USA"
-   ],
-   "place": "China",
-   "articles": 2729,
-   "events": 125,
-   "tone": -2.31,
-   "goldstein": -2.0,
-   "risk": 61.2,
-   "tickers": [
-    "AAPL",
-    "NVDA",
-    "QCOM",
-    "TSLA",
-    "NKE",
-    "SBUX",
-    "CAT",
-    "DE"
-   ],
-   "url": "https://mashable.com/tech/who-will-replace-jensen-huang-as-nvidia-ceo",
-   "date": "20261113"
-  },
-  {
-   "title": "China & United States: Rejection",
-   "actors": "The Us / China",
-   "kind": "sanctions",
-   "sector": "Trade-exposed tech & industrials",
-   "countries": [
-    "CHN",
-    "USA"
-   ],
-   "place": "Beijing, Beijing, China",
-   "articles": 217,
-   "events": 14,
-   "tone": -3.19,
-   "goldstein": -4.14,
-   "risk": 59.3,
+   "tone": -6.05,
+   "goldstein": -5.97,
+   "risk": 90.3,
    "tickers": [
     "AAPL",
     "NVDA",
@@ -349,24 +183,26 @@
     "INTC",
     "CAT"
    ],
-   "url": "https://www.channelnewsasia.com/east-asia/china-access-nvidia-chips-us-congress-jensen-huang-6546746",
-   "date": "20261113"
+   "url": "http://northcountrynow.com/stories/slc-grand-jury-indicts-two-manhattan-men-on-drug-charges,399822",
+   "date": "20261110"
   },
   {
-   "title": "Afghanistan & United States: Criticism",
-   "actors": "Maryland / Afghanistan",
+   "title": "United Kingdom & United States: Coercion",
+   "actors": "United Kingdom / United States",
    "kind": "sanctions",
    "sector": "Trade-exposed tech & industrials",
    "countries": [
-    "AFG",
+    "GBR",
     "USA"
    ],
-   "place": "Afghanistan",
-   "articles": 350,
-   "events": 2,
-   "tone": -3.06,
-   "goldstein": -2.0,
-   "risk": 59.2,
+   "place": "London, London, City of, United Kingdom",
+   "lat": 51.5,
+   "lon": -0.116667,
+   "articles": 571,
+   "events": 43,
+   "tone": -4.99,
+   "goldstein": -5.0,
+   "risk": 89.9,
    "tickers": [
     "AAPL",
     "NVDA",
@@ -375,164 +211,204 @@
     "CAT",
     "BA"
    ],
-   "url": "https://foxbaltimore.com/news/city-in-crisis/lt-col-says-moore-embellished-service-igniting-anger-among-war-veterans",
-   "date": "20261113"
+   "url": "https://www.wkyt.com/2026/11/10/east-bernstadt-man-arrested-allegedly-manufacturing-3d-printed-guns/",
+   "date": "20261110"
   },
   {
-   "title": "Iran & United States: Statement",
-   "actors": "Iran / Iran",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
+   "title": "Iran & United States: Threat",
+   "actors": "Iran / The Us",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
    "countries": [
     "IRN",
     "USA"
    ],
    "place": "Tehran, Tehran, Iran",
-   "articles": 1299,
-   "events": 38,
-   "tone": -4.39,
-   "goldstein": -0.22,
-   "risk": 58.9,
+   "lat": 35.75,
+   "lon": 51.5148,
+   "articles": 455,
+   "events": 36,
+   "tone": -4.71,
+   "goldstein": -5.06,
+   "risk": 89.2,
    "tickers": [
     "XOM",
     "CVX",
     "COP",
     "LMT",
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS"
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC"
    ],
-   "url": "http://www.orlandoecho.com/news/279426820/us-army-officer-held-in-uk-on-espionage-suspicions",
-   "date": "20261113"
+   "url": "http://www.iranherald.com/news/279422729/threat-to-constitution-republican-rep-massie-files-s-of-impeachment-against-hegseth-over-iran-war-actions",
+   "date": "20261110"
   },
   {
-   "title": "Iran & United States: Material cooperation",
-   "actors": "Wall Street Journal / Iranian",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
+   "title": "Ireland & United States: Coercion",
+   "actors": "The Us / Ireland",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
    "countries": [
-    "IRN",
+    "IRL",
     "USA"
    ],
-   "place": "Tehran, Tehran, Iran",
-   "articles": 453,
-   "events": 10,
-   "tone": -4.59,
-   "goldstein": 6.08,
-   "risk": 58.4,
+   "place": "Dublin, Dublin, Ireland",
+   "lat": 53.3331,
+   "lon": -6.24889,
+   "articles": 377,
+   "events": 4,
+   "tone": -3.2,
+   "goldstein": -5.0,
+   "risk": 80.5,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC",
+    "CAT",
+    "BA"
+   ],
+   "url": "https://www.irishtimes.com/world/us/2026/11/09/us-judge-raises-concerns-over-thomas-markles-mental-fitness-to-face-prosecution/",
+   "date": "20261110"
+  },
+  {
+   "title": "United Kingdom & Iran: Criticism",
+   "actors": "Iranian / Iran",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "GBR",
+    "IRN"
+   ],
+   "place": "Fairford, Gloucestershire, United Kingdom",
+   "lat": 51.7,
+   "lon": -1.78333,
+   "articles": 515,
+   "events": 4,
+   "tone": -6.6,
+   "goldstein": -2.0,
+   "risk": 78.4,
    "tickers": [
     "XOM",
     "CVX",
     "COP",
     "LMT",
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS"
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC"
    ],
-   "url": "https://www.wtae.com/article/iran-war-raises-government-shutdown-risk-some-lawmakers-say-the-risk-is-worth-taking/74416244",
-   "date": "20261113"
+   "url": "https://www.defensenews.com/global/europe/2026/11/10/britain-says-its-bases-are-safe-after-us-refueling-planes-evacuated/",
+   "date": "20261110"
   },
   {
-   "title": "Iran & Poland: Statement",
-   "actors": "Iran / Pole",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
+   "title": "United Kingdom & Iran: Threat",
+   "actors": "Iran / United Kingdom",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
    "countries": [
-    "IRN",
-    "POL"
+    "GBR",
+    "IRN"
    ],
-   "place": "Sirik, Hormozgan, Iran",
-   "articles": 558,
-   "events": 7,
-   "tone": -3.98,
-   "goldstein": 0.0,
-   "risk": 55.9,
+   "place": "Iran",
+   "lat": 32.0,
+   "lon": 53.0,
+   "articles": 288,
+   "events": 30,
+   "tone": -4.49,
+   "goldstein": -5.15,
+   "risk": 77.6,
    "tickers": [
     "XOM",
     "CVX",
     "COP",
     "LMT",
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS"
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC"
    ],
-   "url": "https://www.winnipegfreepress.com/world/2026/11/13/irans-revolutionary-guard-says-it-destroyed-a-u-s-radar-in-bahrain-and-other-mideast-news",
-   "date": "20261113"
+   "url": "https://www.hindustantimes.com/world-news/us-aircraft-evacuated-from-another-uk-base-raf-mildenhall-amid-threat-from-iran-trump-peace-talks-qatar-101794291215712.html",
+   "date": "20261110"
   },
   {
-   "title": "Israel & United States: Diplomacy",
-   "actors": "Israel / United States",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "ISR",
-    "USA"
-   ],
-   "place": "Washington, District of Columbia, United States",
-   "articles": 440,
-   "events": 72,
-   "tone": -3.13,
-   "goldstein": 3.49,
-   "risk": 52.5,
-   "tickers": [
-    "LMT",
-    "RTX",
-    "XOM",
-    "CVX",
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS"
-   ],
-   "url": "https://www.foxbusiness.com/technology/meet-nvidias-new-interim-ceo-fortune-rise-colette-kress",
-   "date": "20261113"
-  },
-  {
-   "title": "Iran & United States: Diplomacy",
-   "actors": "Iran / Iran",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
+   "title": "Iran & United States: Criticism",
+   "actors": "United States / Iran",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
    "countries": [
     "IRN",
     "USA"
    ],
    "place": "Iran",
-   "articles": 1229,
-   "events": 96,
-   "tone": -3.1,
-   "goldstein": 3.8,
-   "risk": 52.4,
+   "lat": 32.0,
+   "lon": 53.0,
+   "articles": 700,
+   "events": 69,
+   "tone": -6.0,
+   "goldstein": -2.0,
+   "risk": 76.0,
    "tickers": [
     "XOM",
     "CVX",
     "COP",
     "LMT",
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS"
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC"
    ],
-   "url": "https://www.koreatimes.co.kr/world/20261113/trump-says-us-does-not-need-iran-deal-directs-vance-to-focus-on-domestic-corruption",
-   "date": "20261113"
+   "url": "https://www.novinite.com/view_news.php?id=241505",
+   "date": "20261110"
   },
   {
-   "title": "BHR & Iran: Diplomacy",
-   "actors": "Bahrain / Iranian",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
+   "title": "France & Iran: Criticism",
+   "actors": "France / Iran",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
    "countries": [
-    "BHR",
+    "FRA",
     "IRN"
    ],
-   "place": "Bahrain",
-   "articles": 272,
-   "events": 3,
-   "tone": -6.11,
-   "goldstein": 2.5,
-   "risk": 51.6,
+   "place": "Paris, France (general), France",
+   "lat": 48.8667,
+   "lon": 2.33333,
+   "articles": 2919,
+   "events": 100,
+   "tone": -5.96,
+   "goldstein": -2.0,
+   "risk": 75.8,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC"
+   ],
+   "url": "https://www.wwno.org/npr-news/2026-11-09/france-accuses-iran-of-cyber-sabotage-in-fridge-attacks",
+   "date": "20261110"
+  },
+  {
+   "title": "France & Iran: Statement",
+   "actors": "Iran / Iran",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "FRA",
+    "IRN"
+   ],
+   "place": "Paris, France (general), France",
+   "lat": 48.8667,
+   "lon": 2.33333,
+   "articles": 1336,
+   "events": 32,
+   "tone": -6.44,
+   "goldstein": -0.44,
+   "risk": 68.4,
    "tickers": [
     "XOM",
     "CVX",
@@ -543,49 +419,176 @@
     "FDX",
     "UPS"
    ],
-   "url": "https://www.yasstribune.com.au/story/9391506/us-says-it-downed-two-iranian-drones-heading-to-bahrain/",
-   "date": "20261113"
+   "url": "https://economictimes.indiatimes.com/news/international/world-news/trumps-foreign-policy-wont-change-after-republicans-midterm-losses-rubio-asserts/articleshow/135696099.cms",
+   "date": "20261110"
   },
   {
-   "title": "Australia & United States: Statement",
-   "actors": "United States / Murray",
+   "title": "China & Taiwan: Criticism",
+   "actors": "Taiwan / China",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "CHN",
+    "TWN"
+   ],
+   "place": "Beijing, Beijing, China",
+   "lat": 39.9289,
+   "lon": 116.388,
+   "articles": 301,
+   "events": 11,
+   "tone": -6.01,
+   "goldstein": -2.0,
+   "risk": 66.2,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "AMD",
+    "AVGO"
+   ],
+   "url": "http://www.australiannews.net/news/279423162/taiwan-condemns-china-for-distorting-un-resolution-reasserts-sovereignty",
+   "date": "20261110"
+  },
+  {
+   "title": "United Kingdom & Russia: Material cooperation",
+   "actors": "United Kingdom / Russia",
    "kind": "cooperation",
    "sector": "Global trade & industrials",
    "countries": [
-    "AUS",
-    "USA"
+    "GBR",
+    "RUS"
    ],
-   "place": "Australia",
-   "articles": 758,
-   "events": 18,
-   "tone": -2.02,
-   "goldstein": 0.11,
-   "risk": 48.1,
+   "place": "Russia",
+   "lat": 60.0,
+   "lon": 100.0,
+   "articles": 553,
+   "events": 21,
+   "tone": -6.44,
+   "goldstein": 6.33,
+   "risk": 65.7,
    "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "CAT",
+    "DE",
+    "FDX"
+   ],
+   "url": "https://theconversation.com/how-decades-of-us-forever-war-led-to-the-republicans-midterm-losses-296201",
+   "date": "20261110"
+  },
+  {
+   "title": "Russia & Ukraine: Criticism",
+   "actors": "Ukraine / Russia",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "RUS",
+    "UKR"
+   ],
+   "place": "Donbas, Ukraine (general), Ukraine",
+   "lat": 48.5,
+   "lon": 38.5,
+   "articles": 585,
+   "events": 20,
+   "tone": -2.79,
+   "goldstein": -2.0,
+   "risk": 63.2,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "GD",
+    "AAPL",
+    "NVDA"
+   ],
+   "url": "https://www.winnipegfreepress.com/world/2026/11/10/us-brokered-talks-are-set-to-start-in-abu-dhabi-to-discuss-ukraine-russia-peace-deal",
+   "date": "20261110"
+  },
+  {
+   "title": "France & Iran: Diplomacy",
+   "actors": "France / Iran",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "FRA",
+    "IRN"
+   ],
+   "place": "Paris, France (general), France",
+   "lat": 48.8667,
+   "lon": 2.33333,
+   "articles": 748,
+   "events": 55,
+   "tone": -5.42,
+   "goldstein": 1.95,
+   "risk": 61.7,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
     "CAT",
     "DE",
     "FDX",
-    "UPS",
-    "HON"
+    "UPS"
    ],
-   "url": "https://www.dailykos.com/stories/2026/11/12/800127671/news/trumps-propaganda-flunky-really-misses-that-press-room-podium/",
-   "date": "20261113"
+   "url": "https://www.freemalaysiatoday.com/category/highlight/2026/11/10/europe-top-diplomats-press-rubio-on-ukraine-at-g7",
+   "date": "20261110"
   },
   {
-   "title": "China & United States: Appeal",
-   "actors": "China / China",
+   "title": "Iran & United States: Appeal",
+   "actors": "Iran / Iran",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "IRN",
+    "USA"
+   ],
+   "place": "Tehran, Tehran, Iran",
+   "lat": 35.75,
+   "lon": 51.5148,
+   "articles": 587,
+   "events": 48,
+   "tone": -5.09,
+   "goldstein": 3.15,
+   "risk": 60.4,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "http://www.iranherald.com/news/279422716/iran-vows-to-rain-down-hell-if-us-escalates-war",
+   "date": "20261110"
+  },
+  {
+   "title": "China & United States: Investigation",
+   "actors": "Nvidia / China",
    "kind": "cooperation",
    "sector": "Global trade & industrials",
    "countries": [
     "CHN",
     "USA"
    ],
-   "place": "China",
-   "articles": 719,
-   "events": 37,
-   "tone": -1.92,
-   "goldstein": 3.04,
-   "risk": 47.7,
+   "place": "Beijing, Beijing, China",
+   "lat": 39.9289,
+   "lon": 116.388,
+   "articles": 2705,
+   "events": 112,
+   "tone": -1.66,
+   "goldstein": -2.0,
+   "risk": 58.6,
    "tickers": [
     "AAPL",
     "NVDA",
@@ -596,24 +599,233 @@
     "CAT",
     "DE"
    ],
-   "url": "https://www.freemalaysiatoday.com/category/highlight/2026/11/13/trump-says-ex-apple-ceo-cook-is-a-legend-should-replace-huang-at-nvidia",
-   "date": "20261113"
+   "url": "https://www.wlwt.com/article/nvidia-stocks-fall-ceo-investigation/74376804",
+   "date": "20261110"
   },
   {
-   "title": "Russia & Ukraine: Diplomacy",
-   "actors": "Ukraine / Ukraine",
+   "title": "United Kingdom & Iran: Pledge to cooperate",
+   "actors": "United Kingdom / Iran",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "GBR",
+    "IRN"
+   ],
+   "place": "Iran",
+   "lat": 32.0,
+   "lon": 53.0,
+   "articles": 971,
+   "events": 14,
+   "tone": -4.32,
+   "goldstein": 4.0,
+   "risk": 57.3,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "https://cyprus-mail.com/2026/11/10/us-aircraft-evacuated-from-second-uk-base-due-to-iran-threat-wsj-reports",
+   "date": "20261110"
+  },
+  {
+   "title": "Qatar & United States: Diplomacy",
+   "actors": "Qatar / Qatar",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "QAT",
+    "USA"
+   ],
+   "place": "Qatar",
+   "lat": 25.5,
+   "lon": 51.25,
+   "articles": 1474,
+   "events": 124,
+   "tone": -2.96,
+   "goldstein": 3.9,
+   "risk": 51.8,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://myfox28columbus.com/news/nation-world/trump-meets-qatars-prime-minister-as-white-house-weighs-next-steps-for-iran-conflict-marco-rubio",
+   "date": "20261110"
+  },
+  {
+   "title": "Russia & United States: Pledge to cooperate",
+   "actors": "United States / Russia",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "RUS",
+    "USA"
+   ],
+   "place": "Mellat, Iran (general), Iran",
+   "lat": 32.7534,
+   "lon": 52.7476,
+   "articles": 2247,
+   "events": 23,
+   "tone": -2.79,
+   "goldstein": 4.2,
+   "risk": 51.2,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "CAT",
+    "DE",
+    "FDX"
+   ],
+   "url": "https://www.kxxv.com/politics/foreign-policy/a-white-house-deal-that-would-have-imported-russian-oil-to-the-us-is-falling-apart",
+   "date": "20261110"
+  },
+  {
+   "title": "Iran & United States: Cooperation",
+   "actors": "Iran / United States",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "IRN",
+    "USA"
+   ],
+   "place": "Tehran, Tehran, Iran",
+   "lat": 35.75,
+   "lon": 51.5148,
+   "articles": 348,
+   "events": 46,
+   "tone": -3.84,
+   "goldstein": 4.85,
+   "risk": 50.2,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "https://www.clevelandjewishnews.com/news/national_news/rep-thomas-massie-of-kentucky-files-resolution-to-impeach-defense-secretary-pete-hegseth/article_3b295863-eccf-5150-8827-ae3eacb72237.html",
+   "date": "20261110"
+  },
+  {
+   "title": "China & United States: Criticism",
+   "actors": "Nvidia / China",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "CHN",
+    "USA"
+   ],
+   "place": "Beijing, Beijing, China",
+   "lat": 39.9289,
+   "lon": 116.388,
+   "articles": 271,
+   "events": 35,
+   "tone": -2.65,
+   "goldstein": -2.0,
+   "risk": 49.7,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "INTC",
+    "CAT"
+   ],
+   "url": "https://www.cbc.ca/news/business/nvidia-survive-without-jensen-huang-ceo-9.7415544",
+   "date": "20261110"
+  },
+  {
+   "title": "Iran & Qatar: Diplomacy",
+   "actors": "Iran / Iran",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "IRN",
+    "QAT"
+   ],
+   "place": "Qatar",
+   "lat": 25.5,
+   "lon": 51.25,
+   "articles": 2500,
+   "events": 88,
+   "tone": -2.33,
+   "goldstein": 3.81,
+   "risk": 49.3,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "https://www.wibw.com/2026/11/09/trump-after-meeting-with-qatari-pm-says-he-believes-war-with-iran-is-militarily-effectively-over/",
+   "date": "20261110"
+  },
+  {
+   "title": "China & United States: Statement",
+   "actors": "China / China",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "USA"
+   ],
+   "place": "Beijing, Beijing, China",
+   "lat": 39.9289,
+   "lon": 116.388,
+   "articles": 1521,
+   "events": 129,
+   "tone": -2.04,
+   "goldstein": -0.13,
+   "risk": 49.0,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://www.nbcphiladelphia.com/news/national-international/trump-fbi-nvidia-ceo-jensen-huang-affair-chinese-agent/4494396/",
+   "date": "20261110"
+  },
+  {
+   "title": "Russia & Ukraine: Concession",
+   "actors": "Russian / Donetsk",
    "kind": "cooperation",
    "sector": "Global trade & industrials",
    "countries": [
     "RUS",
     "UKR"
    ],
-   "place": "Moscow, Moskva, Russia",
-   "articles": 3204,
-   "events": 219,
-   "tone": -1.89,
-   "goldstein": 4.55,
-   "risk": 47.5,
+   "place": "Kyiv, Kyyiv, Misto, Ukraine",
+   "lat": 50.4333,
+   "lon": 30.5167,
+   "articles": 4181,
+   "events": 26,
+   "tone": -2.1,
+   "goldstein": 7.23,
+   "risk": 48.4,
    "tickers": [
     "XOM",
     "CVX",
@@ -624,86 +836,8 @@
     "CAT",
     "DE"
    ],
-   "url": "https://www.sconeadvocate.com.au/story/9390879/us-envoys-shuttle-from-putin-to-zelenskyy/",
-   "date": "20261113"
-  },
-  {
-   "title": "SGP & United States: Diplomacy",
-   "actors": "Singapore / Singapore",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "SGP",
-    "USA"
-   ],
-   "place": "Singapore",
-   "articles": 1084,
-   "events": 17,
-   "tone": -1.77,
-   "goldstein": 3.15,
-   "risk": 47.1,
-   "tickers": [
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS",
-    "HON"
-   ],
-   "url": "http://www.thejakartapost.com/business/2026/11/13/nvidia-ceo-huang-quits-after-affair-with-suspected-china-spy",
-   "date": "20261113"
-  },
-  {
-   "title": "SEA & United States: Investigation",
-   "actors": "Nvidia / Southeast Asia",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "SEA",
-    "USA"
-   ],
-   "place": "China",
-   "articles": 237,
-   "events": 3,
-   "tone": -2.85,
-   "goldstein": -2.0,
-   "risk": 47.1,
-   "tickers": [
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS",
-    "HON"
-   ],
-   "url": "http://www.newyorkstatesman.com/news/279429873/trump-hops-on-huang-gate-bandwagon-hails-former-nvidia-ceo-for-doing-fanstastic-job-amid-chinese-spy-scandal",
-   "date": "20261113"
-  },
-  {
-   "title": "Europe & Russia: Diplomacy",
-   "actors": "European / Russia",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "EUR",
-    "RUS"
-   ],
-   "place": "Moscow, Moskva, Russia",
-   "articles": 1256,
-   "events": 32,
-   "tone": -1.7,
-   "goldstein": 4.62,
-   "risk": 46.8,
-   "tickers": [
-    "XOM",
-    "CVX",
-    "COP",
-    "LMT",
-    "RTX",
-    "CAT",
-    "DE",
-    "FDX"
-   ],
-   "url": "https://www.kyivpost.com/post/89969",
-   "date": "20261113"
+   "url": "https://www.ijpr.org/npr-news/2026-11-08/europe-to-join-u-s-brokered-ukraine-talks-in-abu-dhabi-defying-kremlin-objections",
+   "date": "20261110"
   },
   {
    "title": "China & United States: Material cooperation",
@@ -714,12 +848,14 @@
     "CHN",
     "USA"
    ],
-   "place": "China",
-   "articles": 1341,
-   "events": 74,
-   "tone": -1.63,
-   "goldstein": 6.3,
-   "risk": 46.5,
+   "place": "Beijing, Beijing, China",
+   "lat": 39.9289,
+   "lon": 116.388,
+   "articles": 1116,
+   "events": 40,
+   "tone": -1.81,
+   "goldstein": 6.34,
+   "risk": 47.3,
    "tickers": [
     "AAPL",
     "NVDA",
@@ -730,23 +866,82 @@
     "CAT",
     "DE"
    ],
-   "url": "https://www.wfmj.com/news/consumer/jensen-huang-built-the-company-that-powers-ai-now-nvidia-must-find-a-way-forward/article_284eaf54-e739-5895-8b20-fa8af8d8c05f.html",
-   "date": "20261113"
+   "url": "https://www.timesherald.com/2026/11/09/nvidia-ceo-investigation-what-we-know/",
+   "date": "20261110"
   },
   {
-   "title": "Russia & United States: Diplomacy",
-   "actors": "Russia / United States",
+   "title": "CHE & United States: Diplomacy",
+   "actors": "United States / Geneva",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHE",
+    "USA"
+   ],
+   "place": "Geneva, Gen\u00e8, Switzerland",
+   "lat": 46.1956,
+   "lon": 6.14811,
+   "articles": 1462,
+   "events": 20,
+   "tone": -1.73,
+   "goldstein": 2.12,
+   "risk": 46.9,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.denverpost.com/2026/11/10/denver-writing-groups-book-clubs-stores-analog-meetups/",
+   "date": "20261110"
+  },
+  {
+   "title": "Ukraine & United States: Pledge to cooperate",
+   "actors": "Ukraine / Ukraine",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "UKR",
+    "USA"
+   ],
+   "place": "Ukraine",
+   "lat": 49.0,
+   "lon": 32.0,
+   "articles": 2230,
+   "events": 22,
+   "tone": -1.65,
+   "goldstein": 4.0,
+   "risk": 46.6,
+   "tickers": [
+    "LMT",
+    "RTX",
+    "GD",
+    "XOM",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "https://www.bbc.co.uk/news/articles/cqpvgvrpjvv8o",
+   "date": "20261110"
+  },
+  {
+   "title": "Russia & Ukraine: Cooperation",
+   "actors": "Ukraine / Ukraine",
    "kind": "cooperation",
    "sector": "Global trade & industrials",
    "countries": [
     "RUS",
-    "USA"
+    "UKR"
    ],
-   "place": "Moscow, Moskva, Russia",
-   "articles": 1560,
-   "events": 103,
+   "place": "Kremlin, Moskva, Russia",
+   "lat": 55.7522,
+   "lon": 37.6156,
+   "articles": 4167,
+   "events": 26,
    "tone": -1.52,
-   "goldstein": 4.04,
+   "goldstein": 5.4,
    "risk": 46.1,
    "tickers": [
     "XOM",
@@ -754,55 +949,56 @@
     "COP",
     "LMT",
     "RTX",
-    "CAT",
-    "DE",
-    "FDX"
-   ],
-   "url": "https://www.kyivpost.com/post/89964",
-   "date": "20261113"
-  },
-  {
-   "title": "China & United States: Diplomacy",
-   "actors": "China / China",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "CHN",
-    "USA"
-   ],
-   "place": "Beijing, Beijing, China",
-   "articles": 1062,
-   "events": 123,
-   "tone": -1.5,
-   "goldstein": 2.79,
-   "risk": 46.0,
-   "tickers": [
-    "AAPL",
-    "NVDA",
-    "QCOM",
-    "TSLA",
-    "NKE",
-    "SBUX",
+    "GD",
     "CAT",
     "DE"
    ],
-   "url": "https://www.bbc.co.uk/news/articles/cmq5vd1wdgz6o",
-   "date": "20261113"
+   "url": "https://tv.rediff.com/news/will-do-everything-to-end-war-modi-talks-to-zelenskyy-on-phone/412692",
+   "date": "20261110"
   },
   {
-   "title": "Europe & Ukraine: Cooperation",
-   "actors": "European / Ukraine",
+   "title": "United Kingdom & United States: Diplomacy",
+   "actors": "United Kingdom / United Kingdom",
    "kind": "cooperation",
    "sector": "Global trade & industrials",
    "countries": [
-    "EUR",
-    "UKR"
+    "GBR",
+    "USA"
+   ],
+   "place": "London, London, City of, United Kingdom",
+   "lat": 51.5,
+   "lon": -0.116667,
+   "articles": 564,
+   "events": 110,
+   "tone": -1.46,
+   "goldstein": 2.76,
+   "risk": 45.8,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.business-standard.com/blueprint-defence-magazine/reports/taking-flight-126110700258_1.html",
+   "date": "20261110"
+  },
+  {
+   "title": "Ukraine & United States: Diplomacy",
+   "actors": "Ukraine / Ukraine",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "UKR",
+    "USA"
    ],
    "place": "Kyiv, Kyyiv, Misto, Ukraine",
-   "articles": 2189,
-   "events": 13,
-   "tone": -1.33,
-   "goldstein": 3.42,
+   "lat": 50.4333,
+   "lon": 30.5167,
+   "articles": 6955,
+   "events": 183,
+   "tone": -1.32,
+   "goldstein": 4.99,
    "risk": 45.3,
    "tickers": [
     "LMT",
@@ -814,52 +1010,26 @@
     "FDX",
     "UPS"
    ],
-   "url": "https://www.sthelensstar.co.uk/news/national/26725533.can-no-progress-reaching-ukraine-peace-agreement-without-eu---martin/",
-   "date": "20261113"
+   "url": "https://cedarnews.net/newstasks/1130907/ukraine-peace-talks-resume-some-flexibility-warring/",
+   "date": "20261110"
   },
   {
-   "title": "Europe & Ukraine: Diplomacy",
-   "actors": "European / Ukraine",
+   "title": "BHS & United States: Diplomacy",
+   "actors": "Bahama / Bahama",
    "kind": "cooperation",
    "sector": "Global trade & industrials",
    "countries": [
-    "EUR",
-    "UKR"
-   ],
-   "place": "Moscow, Moskva, Russia",
-   "articles": 3017,
-   "events": 71,
-   "tone": -0.8,
-   "goldstein": 4.62,
-   "risk": 43.2,
-   "tickers": [
-    "LMT",
-    "RTX",
-    "GD",
-    "XOM",
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS"
-   ],
-   "url": "https://www.militarytimes.com/global/europe/2026/11/12/putin-lets-europe-join-ukraine-peace-talks-as-kyiv-says-starshield-disrupted-again/",
-   "date": "20261113"
-  },
-  {
-   "title": "France & United States: Material cooperation",
-   "actors": "French / French",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "FRA",
+    "BHS",
     "USA"
    ],
-   "place": "",
-   "articles": 880,
-   "events": 2,
-   "tone": -0.58,
-   "goldstein": 7.4,
-   "risk": 42.3,
+   "place": "Texas, United States",
+   "lat": 31.106,
+   "lon": -97.6475,
+   "articles": 3530,
+   "events": 19,
+   "tone": -1.17,
+   "goldstein": 2.33,
+   "risk": 44.7,
    "tickers": [
     "CAT",
     "DE",
@@ -867,77 +1037,56 @@
     "UPS",
     "HON"
    ],
-   "url": "https://991kggi.iheart.com/content/2026-11-13-french-montana-max-b-team-up-with-jamie-foxx-on-new-song-all-i-need-is-somebody/",
-   "date": "20261113"
+   "url": "https://www.perthnow.com.au/news/world/florida-plane-crash-nanny-anita-maria-cetina-called-sister-from-doomed-learjet-60-c-23131048",
+   "date": "20261110"
   },
   {
-   "title": "Ireland & Ukraine: Diplomacy",
-   "actors": "Ireland / Ireland",
+   "title": "China & United States: Appeal",
+   "actors": "United States / China",
    "kind": "cooperation",
    "sector": "Global trade & industrials",
    "countries": [
-    "IRL",
-    "UKR"
-   ],
-   "place": "Dublin, Dublin, Ireland",
-   "articles": 1566,
-   "events": 114,
-   "tone": -0.27,
-   "goldstein": 3.48,
-   "risk": 41.1,
-   "tickers": [
-    "LMT",
-    "RTX",
-    "GD",
-    "XOM",
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS"
-   ],
-   "url": "http://www.heraldglobe.com/news/279429471/witkoff-kushner-head-to-meet-zelenskyy-after-talks-with-putin-in-moscow-on-ukraine-peace-deal",
-   "date": "20261113"
-  },
-  {
-   "title": "Australia & United States: Diplomacy",
-   "actors": "Australia / Australia",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "AUS",
+    "CHN",
     "USA"
    ],
-   "place": "Sydney, New South Wales, Australia",
-   "articles": 4676,
-   "events": 51,
-   "tone": -0.08,
-   "goldstein": 1.96,
-   "risk": 40.3,
+   "place": "Beijing, Beijing, China",
+   "lat": 39.9289,
+   "lon": 116.388,
+   "articles": 692,
+   "events": 37,
+   "tone": -1.14,
+   "goldstein": 3.08,
+   "risk": 44.6,
    "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
     "CAT",
-    "DE",
-    "FDX",
-    "UPS",
-    "HON"
+    "DE"
    ],
-   "url": "https://www.cairnspost.com.au/entertainment/music/heartbreak-high-star-ayesha-madon-brands-ignoring-aussie-music-a-dating-red-flag/news-story/3669fe73e48dba9fb5d6838bc1502d86?nk=b233e47c61f3081b9beb0219f89d9af1-1794532622",
-   "date": "20261113"
+   "url": "https://woc1420.iheart.com/content/2026-11-09-trump-praises-nvidias-jensen-huang-amid-spy-probe/",
+   "date": "20261110"
   },
   {
-   "title": "UAE & Russia: Cooperation",
-   "actors": "Abu Dhabi / Abu Dhabi",
+   "title": "Russia & United States: Diplomacy",
+   "actors": "Russia / Russia",
    "kind": "cooperation",
    "sector": "Global trade & industrials",
    "countries": [
-    "ARE",
-    "RUS"
+    "RUS",
+    "USA"
    ],
-   "place": "Russia",
-   "articles": 1064,
-   "events": 4,
-   "tone": 3.11,
-   "goldstein": 3.5,
-   "risk": 40.0,
+   "place": "Kyiv, Kyyiv, Misto, Ukraine",
+   "lat": 50.4333,
+   "lon": 30.5167,
+   "articles": 3072,
+   "events": 153,
+   "tone": -1.1,
+   "goldstein": 5.07,
+   "risk": 44.4,
    "tickers": [
     "XOM",
     "CVX",
@@ -948,49 +1097,86 @@
     "DE",
     "FDX"
    ],
-   "url": "https://www.countypress.co.uk/news/national/26725607.zelensky-hails-real-result-prisoner-exchange-russia-secured/",
-   "date": "20261113"
+   "url": "https://www.wfmj.com/news/international/trump-envoys-aim-to-persuade-russia-to-include-europe-in-negotiations-on-ending-war-with/article_a725da41-031b-5a80-9d30-e51fd5a3046f.html",
+   "date": "20261110"
   },
   {
-   "title": "Egypt & United States: Cooperation",
-   "actors": "United States / Egypt",
+   "title": "China & United States: Diplomacy",
+   "actors": "China / China",
    "kind": "cooperation",
    "sector": "Global trade & industrials",
    "countries": [
-    "EGY",
+    "CHN",
     "USA"
    ],
-   "place": "California, United States",
-   "articles": 432,
-   "events": 2,
-   "tone": 0.0,
-   "goldstein": 3.4,
-   "risk": 40.0,
+   "place": "Beijing, Beijing, China",
+   "lat": 39.9289,
+   "lon": 116.388,
+   "articles": 849,
+   "events": 113,
+   "tone": -0.74,
+   "goldstein": 2.16,
+   "risk": 43.0,
    "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
     "CAT",
-    "DE",
-    "FDX",
-    "UPS",
-    "HON"
+    "DE"
    ],
-   "url": "https://wmanfm.iheart.com/content/2026-11-13-newsom-to-decide-on-2028-presidential-bid-by-january/",
-   "date": "20261113"
+   "url": "https://www.freemalaysiatoday.com/category/world/2026/11/10/trump-says-nvidia-ceo-had-no-idea-lover-was-alleged-chinese-spy",
+   "date": "20261110"
   },
   {
-   "title": "United Kingdom & Ukraine: Diplomacy",
-   "actors": "United Kingdom / Ukrainian",
+   "title": "China & United States: Cooperation",
+   "actors": "China / Nvidia",
    "kind": "cooperation",
    "sector": "Global trade & industrials",
    "countries": [
-    "GBR",
+    "CHN",
+    "USA"
+   ],
+   "place": "Beijing, Beijing, China",
+   "lat": 39.9289,
+   "lon": 116.388,
+   "articles": 458,
+   "events": 19,
+   "tone": -0.75,
+   "goldstein": 5.25,
+   "risk": 43.0,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://whp580.iheart.com/content/2026-11-09-trump-praises-nvidias-jensen-huang-amid-spy-probe/",
+   "date": "20261110"
+  },
+  {
+   "title": "Europe & Ukraine: Diplomacy",
+   "actors": "European / European",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "EUR",
     "UKR"
    ],
-   "place": "Ukraine",
-   "articles": 388,
-   "events": 11,
-   "tone": -0.14,
-   "goldstein": 1.08,
-   "risk": 39.4,
+   "place": "Kyiv, Kyyiv, Misto, Ukraine",
+   "lat": 50.4333,
+   "lon": 30.5167,
+   "articles": 1755,
+   "events": 54,
+   "tone": -0.23,
+   "goldstein": 4.15,
+   "risk": 40.9,
    "tickers": [
     "LMT",
     "RTX",
@@ -1001,24 +1187,26 @@
     "FDX",
     "UPS"
    ],
-   "url": "https://www.wiltsglosstandard.co.uk/news/national/26725532.pm-not-reading-much-ukraine-peace-talks-urges-focus-ceasefire/",
-   "date": "20261113"
+   "url": "https://kesq.com/news/national-world/cnn-world/2026/11/09/ukraine-peace-talks-to-restart-after-9-months-what-makes-them-different-this-time/",
+   "date": "20261110"
   },
   {
    "title": "Russia & Ukraine: Statement",
-   "actors": "Ukraine / Ukraine",
+   "actors": "Russia / Ukraine",
    "kind": "cooperation",
    "sector": "Global trade & industrials",
    "countries": [
     "RUS",
     "UKR"
    ],
-   "place": "Moscow, Moskva, Russia",
-   "articles": 244,
-   "events": 30,
-   "tone": -3.41,
-   "goldstein": 0.05,
-   "risk": 38.0,
+   "place": "Kyiv, Kyyiv, Misto, Ukraine",
+   "lat": 50.4333,
+   "lon": 30.5167,
+   "articles": 341,
+   "events": 23,
+   "tone": -1.68,
+   "goldstein": 0.07,
+   "risk": 40.8,
    "tickers": [
     "XOM",
     "CVX",
@@ -1029,366 +1217,26 @@
     "CAT",
     "DE"
    ],
-   "url": "https://www.aljazeera.com/news/2026/11/12/russian-court-jails-rights-lawyer-for-12-years-on-treason-charge",
-   "date": "20261113"
+   "url": "https://www.hngn.com/articles/273753/20261109/ukrainian-drones-hit-kirishi-refinery-abu-dhabi-talks-near.htm",
+   "date": "20261110"
   },
   {
-   "title": "Germany & United Kingdom: Coercion",
-   "actors": "Germany / United Kingdom",
-   "kind": "sanctions",
-   "sector": "Trade-exposed tech & industrials",
-   "countries": [
-    "DEU",
-    "GBR"
-   ],
-   "place": "Germany",
-   "articles": 1194,
-   "events": 10,
-   "tone": -9.09,
-   "goldstein": -5.0,
-   "risk": 37.2,
-   "tickers": [
-    "AAPL",
-    "NVDA",
-    "QCOM",
-    "INTC",
-    "CAT",
-    "BA"
-   ],
-   "url": "https://www.aol.co.uk/articles/hamas-terror-suspect-given-asylum-123000000.html",
-   "date": "20261113"
-  },
-  {
-   "title": "Australia & France: Armed conflict",
-   "actors": "Australia / France",
-   "kind": "conflict",
-   "sector": "Defence & energy",
-   "countries": [
-    "AUS",
-    "FRA"
-   ],
-   "place": "Brisbane, Queensland, Australia",
-   "articles": 248,
-   "events": 1,
-   "tone": -4.49,
-   "goldstein": -10.0,
-   "risk": 36.0,
-   "tickers": [
-    "LMT",
-    "RTX",
-    "GD",
-    "BA",
-    "XOM",
-    "CVX",
-    "COP"
-   ],
-   "url": "https://www.theleader.com.au/story/9391475/phone-data-challenges-husbands-mower-death-alibi/",
-   "date": "20261113"
-  },
-  {
-   "title": "Ireland & United States: Diplomacy",
-   "actors": "Dublin / Dublin",
+   "title": "Ukraine & WST: Diplomacy",
+   "actors": "Nato / Nato",
    "kind": "cooperation",
    "sector": "Global trade & industrials",
    "countries": [
-    "IRL",
-    "USA"
+    "UKR",
+    "WST"
    ],
-   "place": "Dublin, Dublin, Ireland",
-   "articles": 358,
-   "events": 22,
-   "tone": 0.7,
-   "goldstein": 2.17,
-   "risk": 35.8,
-   "tickers": [
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS",
-    "HON"
-   ],
-   "url": "https://vineyardgazette.com/news/2026/11/12/island-preacher-joins-growing-ranks-of-woman-priests/",
-   "date": "20261113"
-  },
-  {
-   "title": "United Kingdom & Russia: Diplomacy",
-   "actors": "British / Russia",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "GBR",
-    "RUS"
-   ],
-   "place": "Lincolnshire, Lincolnshire, United Kingdom",
-   "articles": 242,
-   "events": 31,
-   "tone": -1.89,
-   "goldstein": 1.69,
-   "risk": 31.8,
-   "tickers": [
-    "XOM",
-    "CVX",
-    "COP",
-    "LMT",
-    "RTX",
-    "CAT",
-    "DE",
-    "FDX"
-   ],
-   "url": "http://www.jpost.com/international/article-914783",
-   "date": "20261113"
-  },
-  {
-   "title": "China & United States: Concession",
-   "actors": "Nvidia / China",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "CHN",
-    "USA"
-   ],
-   "place": "China",
-   "articles": 232,
-   "events": 24,
-   "tone": -2.03,
-   "goldstein": 5.17,
-   "risk": 31.3,
-   "tickers": [
-    "AAPL",
-    "NVDA",
-    "QCOM",
-    "TSLA",
-    "NKE",
-    "SBUX",
-    "CAT",
-    "DE"
-   ],
-   "url": "https://www.nbcphiladelphia.com/news/national-international/colette-kress-nvidia-interim-ceo-jensen-huang/4496510/",
-   "date": "20261113"
-  },
-  {
-   "title": "UAE & Russia: Diplomacy",
-   "actors": "Abu Dhabi / Abu Dhabi",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "ARE",
-    "RUS"
-   ],
-   "place": "Moscow, Moskva, Russia",
-   "articles": 283,
-   "events": 26,
-   "tone": -0.44,
-   "goldstein": 4.83,
-   "risk": 30.1,
-   "tickers": [
-    "XOM",
-    "CVX",
-    "COP",
-    "LMT",
-    "RTX",
-    "CAT",
-    "DE",
-    "FDX"
-   ],
-   "url": "https://voiceofvienna.org/russia-cools-hopes-of-europe-joining-ukraine-peace-talks/",
-   "date": "20261113"
-  },
-  {
-   "title": "United Kingdom & United States: Diplomacy",
-   "actors": "United Kingdom / United Kingdom",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "GBR",
-    "USA"
-   ],
-   "place": "United Kingdom",
-   "articles": 300,
-   "events": 65,
-   "tone": 0.15,
-   "goldstein": 3.15,
-   "risk": 30.0,
-   "tickers": [
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS",
-    "HON"
-   ],
-   "url": "https://www.news9.com/oklahoma-city-news/gun-seized-at-arnett-high-school-after-student-altercation-district-says",
-   "date": "20261113"
-  },
-  {
-   "title": "Afghanistan & Australia: Coercion",
-   "actors": "Afghanistan / Australia",
-   "kind": "sanctions",
-   "sector": "Trade-exposed tech & industrials",
-   "countries": [
-    "AFG",
-    "AUS"
-   ],
-   "place": "Australia",
-   "articles": 364,
-   "events": 4,
-   "tone": -3.87,
-   "goldstein": -5.0,
-   "risk": 28.7,
-   "tickers": [
-    "AAPL",
-    "NVDA",
-    "QCOM",
-    "INTC",
-    "CAT",
-    "BA"
-   ],
-   "url": "https://www.redlandcitybulletin.com.au/story/9391523/aussie-aid-workers-recall-miracle-escape-from-taliban/",
-   "date": "20261113"
-  },
-  {
-   "title": "AFR & United States: Diplomacy",
-   "actors": "Africa / Africa",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "AFR",
-    "USA"
-   ],
-   "place": "Mississippi, United States",
-   "articles": 280,
-   "events": 22,
-   "tone": 1.05,
-   "goldstein": 4.34,
-   "risk": 28.0,
-   "tickers": [
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS",
-    "HON"
-   ],
-   "url": "https://www.harpersbazaar.com/culture/art-books-music/a74398897/mary-lovelace-oneal-marianne-boesky-requiem/",
-   "date": "20261113"
-  },
-  {
-   "title": "France & United States: Diplomacy",
-   "actors": "France / United States",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "FRA",
-    "USA"
-   ],
-   "place": "France",
-   "articles": 273,
-   "events": 32,
-   "tone": -0.13,
-   "goldstein": 2.07,
-   "risk": 27.8,
-   "tickers": [
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS",
-    "HON"
-   ],
-   "url": "https://www.koreatimes.co.kr/world/20261113/former-nvidia-ceo-huang-had-a-relationship-with-a-second-employee-sources-say",
-   "date": "20261113"
-  },
-  {
-   "title": "China & Japan: Cooperation",
-   "actors": "Japanese / China",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "CHN",
-    "JPN"
-   ],
-   "place": "Tokyo, Tokyo, Japan",
-   "articles": 269,
-   "events": 10,
-   "tone": -0.21,
-   "goldstein": 3.46,
-   "risk": 27.7,
-   "tickers": [
-    "AAPL",
-    "NVDA",
-    "QCOM",
-    "TSLA",
-    "NKE",
-    "SBUX",
-    "GM",
-    "CAT"
-   ],
-   "url": "https://japantoday.com/category/politics/update2-japan-seeks-takaichi-meeting-with-trump-next-week",
-   "date": "20261113"
-  },
-  {
-   "title": "PER & United States: Diplomacy",
-   "actors": "Peru / Peru",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "PER",
-    "USA"
-   ],
-   "place": "Lima, Lima, Peru",
-   "articles": 258,
-   "events": 22,
-   "tone": 1.08,
-   "goldstein": 2.39,
-   "risk": 25.8,
-   "tickers": [
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS",
-    "HON"
-   ],
-   "url": "https://www.waer.org/2026-11-12/chicagoan-born-pope-leo-returns-to-his-second-home-peru",
-   "date": "20261113"
-  },
-  {
-   "title": "Europe & United Kingdom: Demand",
-   "actors": "European / United Kingdom",
-   "kind": "sanctions",
-   "sector": "Trade-exposed tech & industrials",
-   "countries": [
-    "EUR",
-    "GBR"
-   ],
-   "place": "Brussels, Bruxelles-Capitale, Belgium",
-   "articles": 430,
-   "events": 6,
-   "tone": 0.39,
-   "goldstein": -5.0,
-   "risk": 24.5,
-   "tickers": [
-    "AAPL",
-    "NVDA",
-    "QCOM",
-    "INTC",
-    "CAT",
-    "BA"
-   ],
-   "url": "https://londonlovesbusiness.com/burnham-hits-back-at-cameron-over-brexit-as-he-claims-eu-deal-could-deliver-what-voters-wanted-in-2016/",
-   "date": "20261113"
-  },
-  {
-   "title": "United Kingdom & Ukraine: Appeal",
-   "actors": "United Kingdom / Ukraine",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "GBR",
-    "UKR"
-   ],
-   "place": "Brussels, Bruxelles-Capitale, Belgium",
-   "articles": 210,
-   "events": 4,
-   "tone": -0.72,
-   "goldstein": 4.0,
-   "risk": 23.9,
+   "place": "Kyiv, Kyyiv, Misto, Ukraine",
+   "lat": 50.4333,
+   "lon": 30.5167,
+   "articles": 872,
+   "events": 16,
+   "tone": 0.17,
+   "goldstein": 2.5,
+   "risk": 40.0,
    "tickers": [
     "LMT",
     "RTX",
@@ -1399,133 +1247,26 @@
     "FDX",
     "UPS"
    ],
-   "url": "https://www.countypress.co.uk/news/national/26725532.pm-not-reading-much-ukraine-peace-talks-urges-focus-ceasefire/",
-   "date": "20261113"
+   "url": "https://www.rte.ie/news/ukraine/2026/1110/1598616-ukraine-russia/",
+   "date": "20261110"
   },
   {
-   "title": "Ireland & Ukraine: Statement",
-   "actors": "Ukraine / Dublin",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "IRL",
-    "UKR"
-   ],
-   "place": "Ukraine",
-   "articles": 228,
-   "events": 6,
-   "tone": 0.34,
-   "goldstein": 0.13,
-   "risk": 22.8,
-   "tickers": [
-    "LMT",
-    "RTX",
-    "GD",
-    "XOM",
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS"
-   ],
-   "url": "https://www.dw.com/en/eu-leaders-tussle-over-whom-to-send-to-ukraine-russia-peace-talks/a-79935468",
-   "date": "20261113"
-  },
-  {
-   "title": "Saudi Arabia & Turkey: Pledge to cooperate",
-   "actors": "Saudi Arabia / Saudi Arabia",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "SAU",
-    "TUR"
-   ],
-   "place": "Mecca, Makkah, Saudi Arabia",
-   "articles": 226,
-   "events": 20,
-   "tone": 1.84,
-   "goldstein": 4.0,
-   "risk": 22.6,
-   "tickers": [
-    "XOM",
-    "CVX",
-    "COP",
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS",
-    "HON"
-   ],
-   "url": "https://www.middle-east-online.com/en/regional-tensions-drive-deeper-turkey-saudi-defence-ties",
-   "date": "20261113"
-  },
-  {
-   "title": "Pakistan & Saudi Arabia: Pledge to cooperate",
-   "actors": "Pakistan / Pakistan",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "PAK",
-    "SAU"
-   ],
-   "place": "Makkah, Makkah, Saudi Arabia",
-   "articles": 224,
-   "events": 20,
-   "tone": 1.89,
-   "goldstein": 4.0,
-   "risk": 22.4,
-   "tickers": [
-    "XOM",
-    "CVX",
-    "COP",
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS",
-    "HON"
-   ],
-   "url": "https://www.arabnews.com/middle-east/turkiye-qatar-sign-mutual-defense-agreement-turkish-presidency-says-3011680",
-   "date": "20261113"
-  },
-  {
-   "title": "Germany & United Kingdom: Aid",
-   "actors": "Britain / Germany",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "DEU",
-    "GBR"
-   ],
-   "place": "Germany",
-   "articles": 258,
-   "events": 4,
-   "tone": -8.96,
-   "goldstein": 7.0,
-   "risk": 21.6,
-   "tickers": [
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS",
-    "HON"
-   ],
-   "url": "https://www.kentonline.co.uk/news/national/government-blames-tories-for-giving-british-citizenship-to-hamas-bodyguard-174262/",
-   "date": "20261113"
-  },
-  {
-   "title": "Canada & United States: Diplomacy",
-   "actors": "Canada / Canada",
+   "title": "Canada & JOR: Statement",
+   "actors": "Hassan / Canada",
    "kind": "cooperation",
    "sector": "Global trade & industrials",
    "countries": [
     "CAN",
-    "USA"
+    "JOR"
    ],
-   "place": "Toronto, Ontario, Canada",
-   "articles": 204,
-   "events": 52,
-   "tone": 1.03,
-   "goldstein": 2.48,
-   "risk": 20.4,
+   "place": "Quebec, Quebec, Canada",
+   "lat": 47.5,
+   "lon": -72.0,
+   "articles": 422,
+   "events": 2,
+   "tone": 0.57,
+   "goldstein": 0.0,
+   "risk": 40.0,
    "tickers": [
     "GM",
     "F",
@@ -1536,124 +1277,26 @@
     "UPS",
     "HON"
    ],
-   "url": "https://www.journalpatriot.com/obituaries/james-franklin-houck/article_f9488602-e1e8-5a10-83a4-cda1f1fd7842.html",
-   "date": "20261113"
+   "url": "https://www.yourlocalguardian.co.uk/news/national/uk-today/26714072.tesco-hack-uses-app-shopping-list-save-time-store/",
+   "date": "20261110"
   },
   {
-   "title": "Philippines & SEA: Diplomacy",
-   "actors": "Asean / Asean",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "PHL",
-    "SEA"
-   ],
-   "place": "Manila, Manila, Philippines",
-   "articles": 925,
-   "events": 53,
-   "tone": 1.09,
-   "goldstein": 3.39,
-   "risk": 14.0,
-   "tickers": [
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS",
-    "HON"
-   ],
-   "url": "https://foreignpolicy.com/2026/11/12/hegseth-impeachment-congress-democrats-trump/",
-   "date": "20261113"
-  },
-  {
-   "title": "Philippines & SEA: Pledge to cooperate",
-   "actors": "Philippine / Asean",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "PHL",
-    "SEA"
-   ],
-   "place": "Manila, Manila, Philippines",
-   "articles": 464,
-   "events": 16,
-   "tone": 0.84,
-   "goldstein": 4.0,
-   "risk": 14.0,
-   "tickers": [
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS",
-    "HON"
-   ],
-   "url": "http://www.africaleader.com/news/279429725/pm-modi-to-attend-49th-asean-india-and-east-asia-summits-in-manila-from-nov-16-to-18",
-   "date": "20261113"
-  },
-  {
-   "title": "Qatar & Turkey: Cooperation",
-   "actors": "Qatar / Qatar",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "QAT",
-    "TUR"
-   ],
-   "place": "Doha, Ad Daw?ah, Qatar",
-   "articles": 435,
-   "events": 40,
-   "tone": 2.44,
-   "goldstein": 7.33,
-   "risk": 14.0,
-   "tickers": [
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS",
-    "HON"
-   ],
-   "url": "https://news.az/news/qatar-and-turkiye-conclude-mutual-defense-deal",
-   "date": "20261113"
-  },
-  {
-   "title": "Pakistan & Turkey: Cooperation",
-   "actors": "Pakistan / Pakistan",
-   "kind": "cooperation",
-   "sector": "Global trade & industrials",
-   "countries": [
-    "PAK",
-    "TUR"
-   ],
-   "place": "Pakistan",
-   "articles": 424,
-   "events": 25,
-   "tone": 1.73,
-   "goldstein": 6.74,
-   "risk": 14.0,
-   "tickers": [
-    "CAT",
-    "DE",
-    "FDX",
-    "UPS",
-    "HON"
-   ],
-   "url": "http://www.bignewsnetwork.com/news/279429858/turkiye-pakistan-working-together-in-bangladesh-defence-ties-a-very-serious-development-veena-sikri",
-   "date": "20261113"
-  },
-  {
-   "title": "Spain & France: Diplomacy",
+   "title": "France & United States: Diplomacy",
    "actors": "France / France",
    "kind": "cooperation",
    "sector": "Global trade & industrials",
    "countries": [
-    "ESP",
-    "FRA"
+    "FRA",
+    "USA"
    ],
    "place": "France",
-   "articles": 240,
-   "events": 9,
-   "tone": -3.05,
-   "goldstein": 2.4,
-   "risk": 12.7,
+   "lat": 46.0,
+   "lon": 2.0,
+   "articles": 404,
+   "events": 44,
+   "tone": 0.59,
+   "goldstein": 3.13,
+   "risk": 40.0,
    "tickers": [
     "CAT",
     "DE",
@@ -1661,24 +1304,421 @@
     "UPS",
     "HON"
    ],
-   "url": "https://www.geosuper.tv/latest/61246-mbappe-expected-to-return-for-france-against-turkey-after-hamstring-concern",
-   "date": "20261113"
+   "url": "https://www.wyff4.com/article/106-year-old-wwii-veteran-service/74380588",
+   "date": "20261110"
   },
   {
-   "title": "Australia & NLD: Diplomacy",
+   "title": "Canada & China: Diplomacy",
+   "actors": "Chinese / Chinese",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CAN",
+    "CHN"
+   ],
+   "place": "Ottawa, Ontario, Canada",
+   "lat": 45.4167,
+   "lon": -75.7,
+   "articles": 386,
+   "events": 45,
+   "tone": 0.06,
+   "goldstein": 1.73,
+   "risk": 38.6,
+   "tickers": [
+    "GM",
+    "F",
+    "CVX",
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE"
+   ],
+   "url": "https://www.cbc.ca/news/politics/tiananmen-square-candle-beijing-embassy-9.7415257",
+   "date": "20261110"
+  },
+  {
+   "title": "China & PGS: Material cooperation",
+   "actors": "China / Persian Gulf",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "PGS"
+   ],
+   "place": "Linhai, Zhejiang, China",
+   "lat": 28.85,
+   "lon": 121.117,
+   "articles": 305,
+   "events": 2,
+   "tone": -1.76,
+   "goldstein": 6.4,
+   "risk": 37.5,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://www.the-messenger.com/news/world/article_46992e5e-9a28-56fa-aa36-82f4e94bd89c.html",
+   "date": "20261110"
+  },
+  {
+   "title": "China & Venezuela: Diplomacy",
+   "actors": "China / China",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "VEN"
+   ],
+   "place": "China",
+   "lat": 35.0,
+   "lon": 105.0,
+   "articles": 312,
+   "events": 4,
+   "tone": -1.19,
+   "goldstein": 2.35,
+   "risk": 36.0,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "XOM",
+    "CVX"
+   ],
+   "url": "https://aninews.in/news/world/us/biggest-oil-deal-in-world-history-jd-vance-claims-us-control-of-venezuelan-reserves-energy-dominance20261110033423/",
+   "date": "20261110"
+  },
+  {
+   "title": "SEA & United States: Material cooperation",
+   "actors": "United States / Asean",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "SEA",
+    "USA"
+   ],
+   "place": "United States",
+   "lat": 39.828175,
+   "lon": -98.5795,
+   "articles": 344,
+   "events": 3,
+   "tone": 2.53,
+   "goldstein": 6.4,
+   "risk": 34.4,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "http://www.bignewsnetwork.com/news/279423427/1st-ld-china-foreign-trade-growth-picks-up-pace-in-first-10-months",
+   "date": "20261110"
+  },
+  {
+   "title": "Argentina & United States: Diplomacy",
+   "actors": "Argentina / Argentina",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "ARG",
+    "USA"
+   ],
+   "place": "Buenos Aires, Distrito Federal, Argentina",
+   "lat": -34.5875,
+   "lon": -58.6725,
+   "articles": 310,
+   "events": 22,
+   "tone": 0.31,
+   "goldstein": 2.31,
+   "risk": 31.0,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.cathstan.org/us-world/pope-leo-celebrates-mass-with-2-5-million-people-in-heart-of-buenos-aires",
+   "date": "20261110"
+  },
+  {
+   "title": "France & Ukraine: Diplomacy",
+   "actors": "Ukraine / Ukraine",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "FRA",
+    "UKR"
+   ],
+   "place": "Paris, France (general), France",
+   "lat": 48.8667,
+   "lon": 2.33333,
+   "articles": 301,
+   "events": 61,
+   "tone": 1.32,
+   "goldstein": 3.7,
+   "risk": 30.1,
+   "tickers": [
+    "LMT",
+    "RTX",
+    "GD",
+    "XOM",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "https://www.goulburnpost.com.au/story/9389031/russia-ukraine-to-meet-for-us-brokered-talks-in-uae/",
+   "date": "20261110"
+  },
+  {
+   "title": "Ecuador & Panama: Concession",
+   "actors": "Panama / Ecuador",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "ECU",
+    "PAN"
+   ],
+   "place": "Ecuador",
+   "lat": -2.0,
+   "lon": -77.5,
+   "articles": 1090,
+   "events": 2,
+   "tone": -11.21,
+   "goldstein": 5.0,
+   "risk": 29.7,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://wiod.iheart.com/content/2026-11-10-guilty-plea-for-man-in-100-million-brinks-heist/",
+   "date": "20261110"
+  },
+  {
+   "title": "Japan & United States: Diplomacy",
+   "actors": "Japan / Japan",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "JPN",
+    "USA"
+   ],
+   "place": "Ohio, United States",
+   "lat": 40.3736,
+   "lon": -82.7755,
+   "articles": 279,
+   "events": 44,
+   "tone": 0.18,
+   "goldstein": 2.73,
+   "risk": 27.9,
+   "tickers": [
+    "TSLA",
+    "GM",
+    "AAPL",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.parkrecord.com/2026/11/09/koyote-open-for-dinner-in-park-city-starting-nov-11/",
+   "date": "20261110"
+  },
+  {
+   "title": "Ethiopia & Sudan: Criticism",
+   "actors": "Ethiopia / Sudan",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "ETH",
+    "SDN"
+   ],
+   "place": "Tigray, Tigray, Ethiopia",
+   "lat": 13.5,
+   "lon": 39.5,
+   "articles": 882,
+   "events": 16,
+   "tone": -6.53,
+   "goldstein": -2.0,
+   "risk": 27.3,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC",
+    "CAT",
+    "BA"
+   ],
+   "url": "https://allafrica.com/stories/202611100043.html",
+   "date": "20261110"
+  },
+  {
+   "title": "Egypt & Ethiopia: Criticism",
+   "actors": "Ethiopian / Egypt",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "EGY",
+    "ETH"
+   ],
+   "place": "Sudan",
+   "lat": 16.0,
+   "lon": 30.0,
+   "articles": 830,
+   "events": 3,
+   "tone": -6.19,
+   "goldstein": -2.0,
+   "risk": 26.9,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC",
+    "CAT",
+    "BA"
+   ],
+   "url": "https://www.kedm.org/npr-news/2026-11-10/seven-days-of-chaos-in-the-er-how-this-countrys-healthcare-system-is-unraveling",
+   "date": "20261110"
+  },
+  {
+   "title": "BGD & United Kingdom: Diplomacy",
+   "actors": "Bangladesh / Bangladesh",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "BGD",
+    "GBR"
+   ],
+   "place": "Bangladesh",
+   "lat": 24.0,
+   "lon": 90.0,
+   "articles": 2090,
+   "events": 10,
+   "tone": -4.05,
+   "goldstein": 2.26,
+   "risk": 19.7,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.rhyljournal.co.uk/news/national/26716200.sophie-visits-rohingya-refugee-camps-coxs-bazar-trip-bangladesh/",
+   "date": "20261110"
+  },
+  {
+   "title": "HTI & SLV: Diplomacy",
+   "actors": "Haitian / Haitian",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "HTI",
+    "SLV"
+   ],
+   "place": "El Salvador",
+   "lat": 13.833333,
+   "lon": -88.916667,
+   "articles": 728,
+   "events": 39,
+   "tone": -2.78,
+   "goldstein": 2.18,
+   "risk": 17.9,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "http://www.goskagit.com/news/world/haitian-leader-to-visit-el-salvador-to-discuss-future-of-salvadoran-troops-offensive-in-haiti/article_f0d9e8ab-6cb9-5dc0-8489-e1be54334224.html",
+   "date": "20261110"
+  },
+  {
+   "title": "BEL & Europe: Diplomacy",
+   "actors": "European Parliament / Brussels",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "BEL",
+    "EUR"
+   ],
+   "place": "Brussels, Bruxelles-Capitale, Belgium",
+   "lat": 50.8333,
+   "lon": 4.33333,
+   "articles": 585,
+   "events": 31,
+   "tone": -2.47,
+   "goldstein": 2.82,
+   "risk": 17.5,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.film-news.co.uk/news/UK/130191/Meghan-Duchess-of-Sussex-cancels-child-safety-speech-in-Brussels",
+   "date": "20261110"
+  },
+  {
+   "title": "UAE & DNK: Diplomacy",
+   "actors": "Abu Dhabi / Abu Dhabi",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "ARE",
+    "DNK"
+   ],
+   "place": "Copenhagen, K\u00f8avn*, Denmark",
+   "lat": 55.6667,
+   "lon": 12.5833,
+   "articles": 800,
+   "events": 8,
+   "tone": -0.94,
+   "goldstein": 1.67,
+   "risk": 15.3,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "http://www.bgnes.com/politics/denmark-pledges-720-million-in-military-aid-to-ukraine-as-zelensky-meets-nordic-leaders",
+   "date": "20261110"
+  },
+  {
+   "title": "Australia & KEN: Diplomacy",
    "actors": "Australia / Australia",
    "kind": "cooperation",
    "sector": "Global trade & industrials",
    "countries": [
     "AUS",
-    "NLD"
+    "KEN"
    ],
-   "place": "Melbourne, Victoria, Australia",
-   "articles": 276,
-   "events": 4,
-   "tone": 0.05,
-   "goldstein": 1.67,
-   "risk": 9.7,
+   "place": "Antalya, Antalya, Turkey",
+   "lat": 36.9081,
+   "lon": 30.6956,
+   "articles": 620,
+   "events": 10,
+   "tone": -0.9,
+   "goldstein": 5.14,
+   "risk": 15.3,
    "tickers": [
     "CAT",
     "DE",
@@ -1686,24 +1726,80 @@
     "UPS",
     "HON"
    ],
-   "url": "https://www.southcoastregister.com.au/story/9385636/east-arnhem-land-travel-shift-how-remote-region-opens-up/",
-   "date": "20261113"
+   "url": "https://www.winnipegfreepress.com/arts-and-life/life/greenpage/2026/11/10/nations-promise-to-install-more-rooftop-solar-at-un-climate-talks",
+   "date": "20261110"
   },
   {
-   "title": "Qatar & Turkey: Diplomacy",
-   "actors": "Qatar / Qatar",
+   "title": "BEL & United Kingdom: Diplomacy",
+   "actors": "United Kingdom / United Kingdom",
    "kind": "cooperation",
    "sector": "Global trade & industrials",
    "countries": [
-    "QAT",
+    "BEL",
+    "GBR"
+   ],
+   "place": "Sussex, East Sussex, United Kingdom",
+   "lat": 50.9167,
+   "lon": -0.083333,
+   "articles": 736,
+   "events": 44,
+   "tone": -0.65,
+   "goldstein": 3.27,
+   "risk": 14.9,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.wimbledonguardian.co.uk/news/national/26713980.meghan-make-first-public-appearance-since-fathers-arrest-us/",
+   "date": "20261110"
+  },
+  {
+   "title": "Australia & Nigeria: Diplomacy",
+   "actors": "Nigeria / Nigeria",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "AUS",
+    "NGA"
+   ],
+   "place": "Antalya, Antalya, Turkey",
+   "lat": 36.9081,
+   "lon": 30.6956,
+   "articles": 610,
+   "events": 14,
+   "tone": -0.24,
+   "goldstein": 4.34,
+   "risk": 14.3,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://thenationonlineng.net/fed-govt-committee-pushes-for-improved-autism-care-in-universities/",
+   "date": "20261110"
+  },
+  {
+   "title": "Australia & Turkey: Diplomacy",
+   "actors": "Australia / Australia",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "AUS",
     "TUR"
    ],
-   "place": "Istanbul, Istanbul, Turkey",
-   "articles": 268,
-   "events": 47,
-   "tone": 2.33,
-   "goldstein": 2.99,
-   "risk": 9.4,
+   "place": "Antalya, Antalya, Turkey",
+   "lat": 36.9081,
+   "lon": 30.6956,
+   "articles": 380,
+   "events": 11,
+   "tone": -0.55,
+   "goldstein": 2.31,
+   "risk": 14.1,
    "tickers": [
     "CAT",
     "DE",
@@ -1711,24 +1807,26 @@
     "UPS",
     "HON"
    ],
-   "url": "https://www.qatar-tribune.com/article/264230/latest-news/amirs-visit-carries-particular-significance-amid-deepening-bilateral-ties-qatars-ambassador-to-turkiye",
-   "date": "20261113"
+   "url": "https://www.santafenewmexican.com/ap/international/un-climate-summit-kicks-off-in-turkey-after-a-disastrous-year-of-extreme-weather/article_191c5755-6891-5f2a-ae1a-c992782ba0d2.html",
+   "date": "20261110"
   },
   {
-   "title": "MMR & SEA: Diplomacy",
-   "actors": "Asean / Myanmar",
+   "title": "Germany & United Kingdom: Appeal",
+   "actors": "Germany / German",
    "kind": "cooperation",
    "sector": "Global trade & industrials",
    "countries": [
-    "MMR",
-    "SEA"
+    "DEU",
+    "GBR"
    ],
-   "place": "Yangon, Yangon, Myanmar",
-   "articles": 220,
-   "events": 7,
-   "tone": -0.48,
-   "goldstein": 2.71,
-   "risk": 8.4,
+   "place": "Germany",
+   "lat": 51.5,
+   "lon": 10.5,
+   "articles": 855,
+   "events": 4,
+   "tone": 0.92,
+   "goldstein": 3.0,
+   "risk": 14.0,
    "tickers": [
     "CAT",
     "DE",
@@ -1736,1078 +1834,286 @@
     "UPS",
     "HON"
    ],
-   "url": "http://www.thailandnews.net/news/279425724/22nd-asean-pac-meeting-held-in-myanmar",
-   "date": "20261113"
+   "url": "https://www.andoveradvertiser.co.uk/news/national/26714175.vodafone-axed-another-3-000-jobs-first-half-amid-cost-cutting-overhaul/",
+   "date": "20261110"
+  },
+  {
+   "title": "BGD & Turkey: Diplomacy",
+   "actors": "Bangladesh / Bangladesh",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "BGD",
+    "TUR"
+   ],
+   "place": "Dhaka, Dhaka, Bangladesh",
+   "lat": 23.7231,
+   "lon": 90.4086,
+   "articles": 482,
+   "events": 29,
+   "tone": 0.24,
+   "goldstein": 1.81,
+   "risk": 14.0,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://news.webindia123.com/news/Articles/World/20261110/4517890.html",
+   "date": "20261110"
+  },
+  {
+   "title": "Germany & United Kingdom: Diplomacy",
+   "actors": "Germany / United Kingdom",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "DEU",
+    "GBR"
+   ],
+   "place": "Barrot, Auvergne, France",
+   "lat": 46.1026,
+   "lon": 2.76841,
+   "articles": 388,
+   "events": 55,
+   "tone": 0.02,
+   "goldstein": 3.29,
+   "risk": 13.6,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.aol.co.uk/articles/ukraine-peace-talks-abu-dhabi-054405000.html",
+   "date": "20261110"
+  },
+  {
+   "title": "Europe & United Kingdom: Diplomacy",
+   "actors": "United Kingdom / United Kingdom",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "EUR",
+    "GBR"
+   ],
+   "place": "United Kingdom",
+   "lat": 54.0,
+   "lon": -4.0,
+   "articles": 331,
+   "events": 43,
+   "tone": -0.34,
+   "goldstein": 3.6,
+   "risk": 12.1,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.freemalaysiatoday.com/category/world/2026/11/10/harry-meghan-visit-brussels-after-thomas-markle-arrest",
+   "date": "20261110"
   }
  ],
  "mentions": {
   "AAPL": {
-   "20261031": 5,
-   "20261101": 5,
-   "20261102": 15,
-   "20261103": 30,
-   "20261104": 21,
-   "20261105": 24,
-   "20261106": 22,
-   "20261107": 16,
-   "20261108": 9,
-   "20261109": 24,
-   "20261110": 21,
-   "20261111": 23,
-   "20261112": 32,
-   "20261113": 27
-  },
-  "ABBV": {
-   "20261105": 1,
-   "20261107": 1,
-   "20261108": 1,
-   "20261109": 1
+   "20261110": 21
   },
   "ABT": {
-   "20261031": 4,
-   "20261101": 3,
-   "20261102": 8,
-   "20261103": 17,
-   "20261104": 50,
-   "20261105": 14,
-   "20261106": 6,
-   "20261107": 6,
-   "20261108": 4,
-   "20261109": 3,
-   "20261110": 4,
-   "20261111": 2,
-   "20261112": 4,
-   "20261113": 1
+   "20261110": 4
   },
   "ACN": {
-   "20261031": 1,
-   "20261102": 1,
-   "20261103": 2,
-   "20261107": 1,
-   "20261110": 15,
-   "20261111": 3,
-   "20261112": 2
+   "20261110": 15
   },
   "ADBE": {
-   "20261103": 2,
-   "20261104": 1,
-   "20261105": 1,
-   "20261108": 1,
-   "20261110": 8,
-   "20261111": 1,
-   "20261112": 3,
-   "20261113": 2
+   "20261110": 8
   },
   "AIG": {
-   "20261101": 1,
-   "20261104": 2,
-   "20261107": 1,
-   "20261109": 1,
-   "20261110": 1,
-   "20261111": 2,
-   "20261112": 2,
-   "20261113": 1
-  },
-  "AMD": {
-   "20261101": 2,
-   "20261102": 1,
-   "20261103": 5,
-   "20261104": 1,
-   "20261105": 2,
-   "20261106": 2,
-   "20261107": 3,
-   "20261109": 2,
-   "20261110": 7,
-   "20261111": 2,
-   "20261112": 3,
-   "20261113": 8
-  },
-  "AMGN": {
-   "20261105": 1
-  },
-  "AMT": {
-   "20261104": 1,
-   "20261107": 1,
-   "20261108": 1
-  },
-  "AMZN": {
-   "20261031": 7,
-   "20261101": 5,
-   "20261102": 19,
-   "20261103": 17,
-   "20261104": 12,
-   "20261105": 26,
-   "20261106": 14,
-   "20261107": 13,
-   "20261108": 3,
-   "20261109": 17,
-   "20261110": 18,
-   "20261111": 21,
-   "20261112": 14,
-   "20261113": 18
-  },
-  "AVGO": {
-   "20261102": 2,
-   "20261103": 2,
-   "20261106": 1,
-   "20261108": 2,
-   "20261113": 4
-  },
-  "AXP": {
-   "20261102": 1,
-   "20261106": 2,
-   "20261107": 1
-  },
-  "BA": {
-   "20261031": 14,
-   "20261101": 10,
-   "20261102": 10,
-   "20261103": 17,
-   "20261104": 6,
-   "20261105": 5,
-   "20261106": 14,
-   "20261107": 8,
-   "20261108": 2,
-   "20261109": 8,
-   "20261110": 35,
-   "20261111": 15,
-   "20261112": 9,
-   "20261113": 5
-  },
-  "BAC": {
-   "20261031": 5,
-   "20261101": 8,
-   "20261102": 5,
-   "20261103": 12,
-   "20261104": 7,
-   "20261105": 6,
-   "20261106": 7,
-   "20261107": 5,
-   "20261108": 6,
-   "20261109": 11,
-   "20261110": 7,
-   "20261111": 8,
-   "20261112": 6,
-   "20261113": 6
-  },
-  "BKNG": {
-   "20261031": 1,
-   "20261101": 2,
-   "20261102": 3,
-   "20261103": 5,
-   "20261104": 8,
-   "20261105": 1,
-   "20261106": 3,
-   "20261107": 2,
-   "20261108": 2,
-   "20261110": 5,
-   "20261111": 9,
-   "20261112": 12,
-   "20261113": 2
-  },
-  "BLK": {
-   "20261101": 2,
-   "20261102": 2,
-   "20261103": 4,
-   "20261104": 3,
-   "20261105": 3,
-   "20261106": 2,
-   "20261109": 4,
-   "20261110": 4,
-   "20261111": 2,
-   "20261112": 5,
-   "20261113": 6
-  },
-  "BMY": {
-   "20261102": 1,
-   "20261104": 2,
-   "20261107": 1,
-   "20261108": 2,
-   "20261113": 3
-  },
-  "BRK-B": {
-   "20261031": 4,
-   "20261101": 3,
-   "20261102": 2,
-   "20261103": 6,
-   "20261104": 4,
-   "20261105": 4,
-   "20261106": 3,
-   "20261107": 3,
-   "20261108": 1,
-   "20261109": 4,
-   "20261110": 4,
-   "20261111": 5,
-   "20261112": 2,
-   "20261113": 1
-  },
-  "C": {
-   "20261031": 4,
-   "20261101": 5,
-   "20261102": 8,
-   "20261103": 13,
-   "20261104": 20,
-   "20261105": 40,
-   "20261106": 36,
-   "20261107": 9,
-   "20261108": 6,
-   "20261109": 8,
-   "20261110": 8,
-   "20261111": 6,
-   "20261112": 8,
-   "20261113": 3
-  },
-  "CAT": {
-   "20261031": 1,
-   "20261102": 1,
-   "20261104": 1,
-   "20261105": 1,
-   "20261106": 2,
-   "20261107": 1,
-   "20261109": 3
-  },
-  "CHTR": {
-   "20261031": 8,
-   "20261101": 2,
-   "20261102": 6,
-   "20261103": 11,
-   "20261104": 23,
-   "20261105": 12,
-   "20261106": 10,
-   "20261107": 3,
-   "20261108": 3,
-   "20261109": 5,
-   "20261110": 14,
-   "20261111": 13,
-   "20261112": 9,
-   "20261113": 8
-  },
-  "CL": {
-   "20261107": 1,
-   "20261112": 1
-  },
-  "CMCSA": {
-   "20261102": 3,
-   "20261104": 5,
-   "20261105": 1,
-   "20261106": 6,
-   "20261108": 1,
-   "20261109": 3,
-   "20261111": 2,
-   "20261112": 1,
-   "20261113": 2
-  },
-  "COF": {
-   "20261102": 1,
-   "20261105": 2
-  },
-  "COP": {
-   "20261101": 1,
-   "20261102": 1,
-   "20261104": 1,
-   "20261105": 1,
-   "20261106": 2,
-   "20261107": 1,
-   "20261110": 2,
-   "20261112": 2
-  },
-  "COST": {
-   "20261031": 3,
-   "20261101": 6,
-   "20261102": 6,
-   "20261103": 8,
-   "20261104": 4,
-   "20261105": 7,
-   "20261106": 9,
-   "20261107": 1,
-   "20261108": 4,
-   "20261109": 6,
-   "20261110": 6,
-   "20261111": 8,
-   "20261112": 7,
-   "20261113": 15
-  },
-  "CRM": {
-   "20261031": 1,
-   "20261101": 1,
-   "20261104": 1,
-   "20261107": 3,
-   "20261108": 1,
-   "20261110": 1,
-   "20261111": 2,
-   "20261113": 1
-  },
-  "CSCO": {
-   "20261102": 3,
-   "20261103": 1,
-   "20261104": 2,
-   "20261105": 1,
-   "20261107": 2,
-   "20261108": 1,
-   "20261109": 2,
-   "20261110": 4,
-   "20261111": 9,
-   "20261112": 6,
-   "20261113": 2
-  },
-  "CVS": {
-   "20261101": 1,
-   "20261104": 3,
-   "20261105": 1,
-   "20261109": 2,
-   "20261112": 1
-  },
-  "CVX": {
-   "20261031": 7,
-   "20261101": 3,
-   "20261102": 4,
-   "20261103": 5,
-   "20261104": 8,
-   "20261105": 1,
-   "20261106": 4,
-   "20261107": 6,
-   "20261108": 3,
-   "20261109": 7,
-   "20261110": 9,
-   "20261111": 7,
-   "20261112": 5,
-   "20261113": 4
-  },
-  "DE": {
-   "20261031": 1,
-   "20261101": 1,
-   "20261102": 2,
-   "20261103": 2,
-   "20261104": 4,
-   "20261105": 6,
-   "20261106": 1,
-   "20261108": 1,
-   "20261109": 1,
-   "20261111": 1,
-   "20261112": 1,
-   "20261113": 2
-  },
-  "DHR": {
-   "20261109": 1,
-   "20261112": 1
-  },
-  "DIS": {
-   "20261031": 11,
-   "20261101": 10,
-   "20261102": 20,
-   "20261103": 35,
-   "20261104": 24,
-   "20261105": 25,
-   "20261106": 30,
-   "20261107": 18,
-   "20261108": 12,
-   "20261109": 17,
-   "20261110": 27,
-   "20261111": 24,
-   "20261112": 37,
-   "20261113": 35
-  },
-  "DUK": {
-   "20261103": 1,
-   "20261104": 1,
-   "20261105": 2,
-   "20261107": 1,
-   "20261109": 2,
-   "20261110": 1,
-   "20261111": 3,
-   "20261112": 2,
-   "20261113": 2
-  },
-  "EMR": {
-   "20261103": 1,
-   "20261104": 2,
-   "20261105": 1,
-   "20261106": 3,
-   "20261107": 2,
-   "20261110": 1,
-   "20261112": 3
-  },
-  "F": {
-   "20261101": 1,
-   "20261105": 2,
-   "20261106": 1,
-   "20261110": 2,
-   "20261111": 2,
-   "20261112": 1
-  },
-  "FDX": {
-   "20261031": 1,
-   "20261101": 1,
-   "20261102": 1,
-   "20261103": 2,
-   "20261104": 2,
-   "20261105": 1,
-   "20261109": 1,
-   "20261110": 2,
-   "20261111": 2,
-   "20261112": 1,
-   "20261113": 1
-  },
-  "GD": {
-   "20261101": 2,
-   "20261102": 1,
-   "20261107": 1,
-   "20261108": 2,
-   "20261112": 1
-  },
-  "GE": {
-   "20261102": 1,
-   "20261106": 1,
-   "20261107": 1,
-   "20261109": 1,
-   "20261110": 1,
-   "20261112": 1
-  },
-  "GM": {
-   "20261103": 1,
-   "20261104": 1,
-   "20261105": 3,
-   "20261106": 3,
-   "20261107": 1,
-   "20261109": 1
-  },
-  "GOOGL": {
-   "20261031": 106,
-   "20261101": 92,
-   "20261102": 160,
-   "20261103": 192,
-   "20261104": 217,
-   "20261105": 225,
-   "20261106": 185,
-   "20261107": 131,
-   "20261108": 104,
-   "20261109": 149,
-   "20261110": 157,
-   "20261111": 147,
-   "20261112": 174,
-   "20261113": 180
-  },
-  "GOOG": {
-   "20261031": 106,
-   "20261101": 92,
-   "20261102": 160,
-   "20261103": 192,
-   "20261104": 217,
-   "20261105": 225,
-   "20261106": 185,
-   "20261107": 131,
-   "20261108": 104,
-   "20261109": 149,
-   "20261110": 157,
-   "20261111": 147,
-   "20261112": 174,
-   "20261113": 180
-  },
-  "GS": {
-   "20261031": 3,
-   "20261101": 8,
-   "20261102": 17,
-   "20261103": 11,
-   "20261104": 13,
-   "20261105": 9,
-   "20261106": 11,
-   "20261107": 7,
-   "20261108": 6,
-   "20261109": 4,
-   "20261110": 10,
-   "20261111": 10,
-   "20261112": 4,
-   "20261113": 6
-  },
-  "HD": {
-   "20261031": 1,
-   "20261104": 1,
-   "20261105": 2,
-   "20261107": 2,
-   "20261110": 1,
-   "20261111": 1,
-   "20261112": 2,
-   "20261113": 1
-  },
-  "HON": {
-   "20261106": 1,
-   "20261110": 1,
-   "20261112": 1,
-   "20261113": 1
-  },
-  "IBM": {
-   "20261103": 1,
-   "20261104": 3,
-   "20261106": 6,
-   "20261107": 4,
-   "20261108": 2,
-   "20261109": 9,
-   "20261110": 3,
-   "20261111": 9,
-   "20261112": 5,
-   "20261113": 4
-  },
-  "INTC": {
-   "20261031": 3,
-   "20261101": 5,
-   "20261102": 6,
-   "20261103": 12,
-   "20261104": 4,
-   "20261105": 5,
-   "20261106": 3,
-   "20261107": 3,
-   "20261108": 4,
-   "20261109": 3,
-   "20261110": 3,
-   "20261111": 3,
-   "20261112": 1,
-   "20261113": 5
-  },
-  "INTU": {
-   "20261103": 1,
-   "20261105": 1,
    "20261110": 1
   },
-  "ISRG": {
-   "20261101": 1
+  "AMD": {
+   "20261110": 7
   },
-  "JNJ": {
-   "20261103": 2,
-   "20261104": 1,
-   "20261107": 1,
-   "20261108": 1
+  "AMZN": {
+   "20261110": 18
+  },
+  "BA": {
+   "20261110": 35
+  },
+  "BAC": {
+   "20261110": 7
+  },
+  "BKNG": {
+   "20261110": 5
+  },
+  "BLK": {
+   "20261110": 4
+  },
+  "BRK-B": {
+   "20261110": 4
+  },
+  "C": {
+   "20261110": 8
+  },
+  "CHTR": {
+   "20261110": 14
+  },
+  "COP": {
+   "20261110": 2
+  },
+  "COST": {
+   "20261110": 6
+  },
+  "CRM": {
+   "20261110": 1
+  },
+  "CSCO": {
+   "20261110": 4
+  },
+  "CVX": {
+   "20261110": 9
+  },
+  "DIS": {
+   "20261110": 27
+  },
+  "DUK": {
+   "20261110": 1
+  },
+  "EMR": {
+   "20261110": 1
+  },
+  "F": {
+   "20261110": 2
+  },
+  "FDX": {
+   "20261110": 2
+  },
+  "GE": {
+   "20261110": 1
+  },
+  "GOOGL": {
+   "20261110": 157
+  },
+  "GOOG": {
+   "20261110": 157
+  },
+  "GS": {
+   "20261110": 10
+  },
+  "HD": {
+   "20261110": 1
+  },
+  "HON": {
+   "20261110": 1
+  },
+  "IBM": {
+   "20261110": 3
+  },
+  "INTC": {
+   "20261110": 3
+  },
+  "INTU": {
+   "20261110": 1
   },
   "JPM": {
-   "20261031": 5,
-   "20261101": 3,
-   "20261103": 2,
-   "20261104": 1,
-   "20261105": 4,
-   "20261106": 2,
-   "20261107": 3,
-   "20261108": 1,
-   "20261109": 4,
-   "20261110": 1,
-   "20261111": 1,
-   "20261112": 6,
-   "20261113": 3
+   "20261110": 1
   },
   "KO": {
-   "20261031": 1,
-   "20261101": 5,
-   "20261102": 5,
-   "20261103": 9,
-   "20261104": 7,
-   "20261105": 1,
-   "20261106": 8,
-   "20261107": 9,
-   "20261108": 1,
-   "20261109": 6,
-   "20261110": 5,
-   "20261111": 3,
-   "20261112": 6,
-   "20261113": 5
+   "20261110": 5
   },
   "LLY": {
-   "20261031": 2,
-   "20261101": 2,
-   "20261102": 5,
-   "20261103": 4,
-   "20261104": 5,
-   "20261105": 5,
-   "20261106": 2,
-   "20261107": 5,
-   "20261108": 1,
-   "20261109": 7,
-   "20261110": 8,
-   "20261111": 3,
-   "20261112": 10,
-   "20261113": 10
+   "20261110": 8
   },
   "LMT": {
-   "20261031": 13,
-   "20261101": 7,
-   "20261102": 16,
-   "20261103": 8,
-   "20261104": 5,
-   "20261105": 16,
-   "20261106": 4,
-   "20261107": 7,
-   "20261108": 2,
-   "20261109": 8,
-   "20261110": 8,
-   "20261111": 2,
-   "20261112": 5
+   "20261110": 8
   },
   "MA": {
-   "20261031": 4,
-   "20261101": 3,
-   "20261102": 5,
-   "20261103": 5,
-   "20261104": 9,
-   "20261105": 5,
-   "20261106": 2,
-   "20261108": 4,
-   "20261109": 3,
-   "20261110": 11,
-   "20261111": 6,
-   "20261112": 3,
-   "20261113": 10
+   "20261110": 11
   },
   "MCD": {
-   "20261102": 2,
-   "20261103": 3,
-   "20261104": 2,
-   "20261105": 3,
-   "20261106": 3,
-   "20261107": 2,
-   "20261109": 2,
-   "20261110": 2,
-   "20261111": 6,
-   "20261112": 5,
-   "20261113": 4
-  },
-  "MDLZ": {
-   "20261102": 4,
-   "20261103": 2,
-   "20261104": 2
-  },
-  "MDT": {
-   "20261104": 1,
-   "20261107": 1,
-   "20261109": 1,
-   "20261111": 1
-  },
-  "MET": {
-   "20261103": 1,
-   "20261104": 1,
-   "20261105": 2,
-   "20261106": 4,
-   "20261108": 1,
-   "20261112": 1
+   "20261110": 2
   },
   "META": {
-   "20261031": 6,
-   "20261101": 5,
-   "20261102": 5,
-   "20261103": 3,
-   "20261104": 4,
-   "20261105": 15,
-   "20261106": 12,
-   "20261107": 4,
-   "20261108": 3,
-   "20261109": 5,
-   "20261110": 8,
-   "20261111": 5,
-   "20261112": 16,
-   "20261113": 7
+   "20261110": 8
   },
   "MMM": {
-   "20261031": 3,
-   "20261102": 2,
-   "20261103": 5,
-   "20261104": 8,
-   "20261105": 11,
-   "20261106": 11,
-   "20261107": 3,
-   "20261108": 2,
-   "20261109": 4,
-   "20261110": 6,
-   "20261111": 13,
-   "20261112": 7,
-   "20261113": 8
-  },
-  "MO": {
-   "20261101": 1,
-   "20261103": 1,
-   "20261105": 1,
-   "20261106": 1,
-   "20261107": 1,
-   "20261108": 1,
-   "20261109": 1
-  },
-  "MRK": {
-   "20261102": 1,
-   "20261103": 4,
-   "20261104": 1,
-   "20261105": 1,
-   "20261113": 2
+   "20261110": 6
   },
   "MS": {
-   "20261031": 1,
-   "20261101": 2,
-   "20261102": 6,
-   "20261103": 6,
-   "20261104": 4,
-   "20261105": 2,
-   "20261106": 3,
-   "20261107": 2,
-   "20261108": 1,
-   "20261109": 6,
-   "20261110": 9,
-   "20261111": 10,
-   "20261112": 7,
-   "20261113": 5
+   "20261110": 9
   },
   "MSFT": {
-   "20261031": 24,
-   "20261101": 15,
-   "20261102": 24,
-   "20261103": 43,
-   "20261104": 25,
-   "20261105": 39,
-   "20261106": 57,
-   "20261107": 27,
-   "20261108": 23,
-   "20261109": 32,
-   "20261110": 52,
-   "20261111": 61,
-   "20261112": 105,
-   "20261113": 516
-  },
-  "NEE": {
-   "20261106": 2
+   "20261110": 52
   },
   "NFLX": {
-   "20261031": 36,
-   "20261101": 32,
-   "20261102": 51,
-   "20261103": 52,
-   "20261104": 63,
-   "20261105": 51,
-   "20261106": 68,
-   "20261107": 39,
-   "20261108": 26,
-   "20261109": 52,
-   "20261110": 53,
-   "20261111": 38,
-   "20261112": 57,
-   "20261113": 61
+   "20261110": 53
   },
   "NKE": {
-   "20261103": 2,
-   "20261104": 2,
-   "20261105": 2,
-   "20261106": 1,
-   "20261107": 1,
-   "20261108": 1,
    "20261110": 1
   },
   "NOW": {
-   "20261105": 1,
-   "20261109": 1,
-   "20261110": 2,
-   "20261111": 1,
-   "20261113": 2
+   "20261110": 2
   },
   "NVDA": {
-   "20261031": 13,
-   "20261101": 21,
-   "20261102": 27,
-   "20261103": 27,
-   "20261104": 17,
-   "20261105": 25,
-   "20261106": 40,
-   "20261107": 41,
-   "20261108": 91,
-   "20261109": 613,
-   "20261110": 534,
-   "20261111": 356,
-   "20261112": 1021,
-   "20261113": 743
+   "20261110": 534
   },
   "ORCL": {
-   "20261031": 1,
-   "20261101": 2,
-   "20261102": 3,
-   "20261103": 3,
-   "20261104": 8,
-   "20261105": 5,
-   "20261106": 2,
-   "20261107": 1,
-   "20261108": 1,
-   "20261109": 2,
-   "20261110": 6,
-   "20261111": 3,
-   "20261112": 3,
-   "20261113": 3
+   "20261110": 6
   },
   "PEP": {
-   "20261031": 3,
-   "20261101": 2,
-   "20261102": 4,
-   "20261103": 5,
-   "20261104": 6,
-   "20261105": 4,
-   "20261106": 2,
-   "20261107": 3,
-   "20261109": 4,
-   "20261110": 5,
-   "20261111": 3,
-   "20261112": 2,
-   "20261113": 1
+   "20261110": 5
   },
   "PFE": {
-   "20261031": 3,
-   "20261101": 2,
-   "20261102": 3,
-   "20261103": 8,
-   "20261104": 2,
-   "20261105": 8,
-   "20261106": 4,
-   "20261107": 4,
-   "20261108": 4,
-   "20261109": 3,
-   "20261110": 2,
-   "20261111": 4,
-   "20261112": 11,
-   "20261113": 11
-  },
-  "PG": {
-   "20261102": 1,
-   "20261104": 1,
-   "20261109": 1,
-   "20261113": 1
+   "20261110": 2
   },
   "PLTR": {
-   "20261101": 3,
-   "20261102": 3,
-   "20261103": 5,
-   "20261104": 4,
-   "20261105": 1,
-   "20261106": 3,
-   "20261107": 2,
-   "20261108": 2,
-   "20261109": 10,
-   "20261110": 8,
-   "20261111": 10,
-   "20261112": 4,
-   "20261113": 3
+   "20261110": 8
   },
   "PM": {
-   "20261101": 1,
-   "20261102": 3,
-   "20261103": 2,
-   "20261104": 1,
-   "20261105": 2,
-   "20261106": 1,
-   "20261107": 2,
-   "20261109": 1,
-   "20261110": 2,
-   "20261111": 1,
-   "20261112": 3
+   "20261110": 2
   },
   "PYPL": {
-   "20261106": 1,
-   "20261107": 3,
-   "20261108": 1,
-   "20261109": 1,
-   "20261110": 1,
-   "20261112": 1,
-   "20261113": 1
+   "20261110": 1
   },
   "QCOM": {
-   "20261031": 1,
-   "20261101": 2,
-   "20261102": 1,
-   "20261103": 5,
-   "20261104": 16,
-   "20261105": 11,
-   "20261106": 4,
-   "20261107": 3,
-   "20261108": 5,
-   "20261109": 4,
-   "20261110": 2,
-   "20261111": 12,
-   "20261112": 1,
-   "20261113": 6
+   "20261110": 2
   },
   "RTX": {
-   "20261031": 1,
-   "20261101": 4,
-   "20261102": 5,
-   "20261103": 1,
-   "20261104": 5,
-   "20261107": 2,
-   "20261110": 2,
-   "20261111": 2,
-   "20261112": 2,
-   "20261113": 3
+   "20261110": 2
   },
   "SBUX": {
-   "20261031": 1,
-   "20261101": 5,
-   "20261102": 5,
-   "20261103": 7,
-   "20261104": 7,
-   "20261105": 6,
-   "20261106": 4,
-   "20261107": 1,
-   "20261108": 6,
-   "20261109": 8,
-   "20261110": 4,
-   "20261111": 5,
-   "20261112": 9,
-   "20261113": 10
-  },
-  "SCHW": {
-   "20261103": 1,
-   "20261104": 1,
-   "20261108": 1,
-   "20261111": 1,
-   "20261112": 2
+   "20261110": 4
   },
   "T": {
-   "20261031": 1,
-   "20261102": 1,
-   "20261104": 2,
-   "20261108": 1,
-   "20261110": 1,
-   "20261112": 1
-  },
-  "TMO": {
-   "20261103": 1,
-   "20261111": 1,
-   "20261113": 1
+   "20261110": 1
   },
   "TMUS": {
-   "20261102": 3,
-   "20261104": 2,
-   "20261105": 1,
-   "20261106": 2,
-   "20261109": 1,
-   "20261110": 1,
-   "20261111": 1,
-   "20261112": 1,
-   "20261113": 1
+   "20261110": 1
   },
   "TSLA": {
-   "20261031": 9,
-   "20261101": 10,
-   "20261102": 21,
-   "20261103": 19,
-   "20261104": 63,
-   "20261105": 26,
-   "20261106": 40,
-   "20261107": 24,
-   "20261108": 13,
-   "20261109": 38,
-   "20261110": 19,
-   "20261111": 16,
-   "20261112": 40,
-   "20261113": 20
-  },
-  "TXN": {
-   "20261112": 7,
-   "20261113": 3
-  },
-  "UNH": {
-   "20261101": 1,
-   "20261111": 2,
-   "20261112": 1
+   "20261110": 19
   },
   "UNP": {
-   "20261102": 1,
-   "20261103": 1,
-   "20261105": 2,
-   "20261106": 3,
-   "20261107": 1,
-   "20261109": 3,
-   "20261110": 4,
-   "20261111": 1,
-   "20261112": 2,
-   "20261113": 3
+   "20261110": 4
   },
   "UPS": {
-   "20261031": 7,
-   "20261101": 1,
-   "20261102": 9,
-   "20261103": 13,
-   "20261104": 7,
-   "20261105": 9,
-   "20261106": 3,
-   "20261107": 6,
-   "20261108": 6,
-   "20261109": 10,
-   "20261110": 12,
-   "20261111": 10,
-   "20261112": 7,
-   "20261113": 8
-  },
-  "USB": {
-   "20261102": 1,
-   "20261105": 1,
-   "20261107": 1,
-   "20261109": 1,
-   "20261113": 1
-  },
-  "V": {
-   "20261107": 2,
-   "20261108": 1,
-   "20261113": 1
+   "20261110": 12
   },
   "VZ": {
-   "20261031": 2,
-   "20261101": 2,
-   "20261102": 6,
-   "20261103": 4,
-   "20261104": 7,
-   "20261105": 3,
-   "20261106": 5,
-   "20261107": 2,
-   "20261108": 3,
-   "20261109": 4,
-   "20261110": 7,
-   "20261111": 5,
-   "20261112": 4,
-   "20261113": 6
+   "20261110": 7
   },
   "WFC": {
-   "20261031": 3,
-   "20261101": 1,
-   "20261102": 8,
-   "20261103": 9,
-   "20261104": 6,
-   "20261105": 6,
-   "20261106": 3,
-   "20261107": 1,
-   "20261108": 2,
-   "20261109": 7,
-   "20261110": 4,
-   "20261111": 1,
-   "20261112": 5,
-   "20261113": 3
+   "20261110": 4
   },
   "WMT": {
-   "20261031": 6,
-   "20261101": 2,
-   "20261102": 12,
-   "20261103": 4,
-   "20261104": 9,
-   "20261105": 8,
-   "20261106": 5,
-   "20261107": 7,
-   "20261108": 2,
-   "20261109": 12,
-   "20261110": 6,
-   "20261111": 4,
-   "20261112": 6,
-   "20261113": 8
+   "20261110": 6
   },
   "XOM": {
-   "20261031": 7,
-   "20261101": 6,
-   "20261102": 7,
-   "20261103": 5,
-   "20261104": 7,
-   "20261105": 1,
-   "20261106": 8,
-   "20261107": 2,
-   "20261108": 2,
-   "20261110": 24,
-   "20261111": 13,
-   "20261112": 7,
-   "20261113": 3
+   "20261110": 24
   }
  }
 }

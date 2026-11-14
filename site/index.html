@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Signal Watch</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -17,6 +18,12 @@
     <button data-tab="calls">Daily calls</button>
   </nav>
 </header>
+<div id="alarm" class="alarm" hidden>
+  <div class="siren" aria-hidden="true"><i></i><i></i></div>
+  <div class="alarm-text"><b>SHOCK ALARM</b> <span id="alarm-msg"></span></div>
+  <button id="alarm-go">See the shocks</button>
+  <button id="alarm-x" class="x2" aria-label="Dismiss">&times;</button>
+</div>
 <main>
   <section id="market" class="tab on">
     <h1>Market</h1>
@@ -41,6 +48,10 @@
     <h2 class="h2">Where insiders agree</h2>
     <p class="meta">Stocks where several people with inside knowledge are trading the same way. Buying by several insiders at once is one of the best-studied signals. Selling is weaker evidence, since insiders often sell on a schedule for taxes or diversification.</p>
     <div id="ins-clusters" class="cards"></div>
+    <h2 class="h2">Spy files</h2>
+    <p class="meta">Every insider trade gets a case file. Trades that fit an unusual pattern (sold just before a drop, bought just before a jump, a large sale by a top boss, several insiders moving together) are stamped <b>Unusual</b>. Unusual means worth a closer look, not that anything illegal happened.</p>
+    <div class="controls"><label><input type="checkbox" id="spy-only" checked> Unusual only</label><span id="spy-count" class="meta"></span></div>
+    <div id="spy" class="files"></div>
     <div class="controls" style="margin-top:20px"><input id="ins-q" type="search" placeholder="Filter by ticker or name"></div>
     <div class="split">
       <div><h2 class="h2">Company insiders <small class="meta">SEC Form 4</small></h2><div class="tablewrap"><table id="f4t"><thead><tr><th>Date</th><th>Stock</th><th>Who</th><th>Trade</th><th class="r">Value</th></tr></thead><tbody></tbody></table></div></div>
@@ -59,6 +70,9 @@
     <h1>World events</h1>
     <p class="lede">Major international events from global news, and the stocks they could move.</p>
     <div id="world-meta" class="meta"></div>
+    <div class="mapwrap"><div id="map"></div>
+      <div class="maplegend"><span><i class="lg conflict"></i>Conflict</span><span><i class="lg sanctions"></i>Tension</span><span><i class="lg unrest"></i>Unrest</span><span><i class="lg cooperation"></i>Diplomacy</span><span class="meta">Bigger pulse = bigger market risk. Click one.</span></div>
+    </div>
     <h2 class="h2">Hot spots today</h2>
     <div id="world-spots" class="spots"></div>
     <h2 class="h2">Events most likely to move markets</h2>
@@ -102,6 +116,7 @@
 </div>
 <footer>Not financial advice. For information and demonstration only.</footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
