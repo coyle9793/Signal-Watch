@@ -68,7 +68,10 @@ def parse_form4(xml_text, url, filed):
 
 
 def form4(s):
-    m = s.get("https://www.sec.gov/files/company_tickers.json", timeout=30).json()
+    r = s.get("https://www.sec.gov/files/company_tickers.json", timeout=30)
+    if r.status_code != 200:
+        raise SystemExit(f"SEC refused the request: HTTP {r.status_code} {r.text[:200]}")
+    m = r.json()
     cik = {v["ticker"].upper().replace(".", "-"): int(v["cik_str"]) for v in m.values()}
     since = TODAY - dt.timedelta(days=DAYS)
     trades = []
