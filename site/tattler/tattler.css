@@ -155,3 +155,65 @@ body.diary .fine{margin-top:14px;font-size:11px;color:#7a4a5e}
   body.diary .abroad{grid-template-columns:1fr}
   body.feed h1,body.diary h1{font-size:44px}
 }
+
+/* ============ DIARY BOOK (page turning) ============ */
+.stage{display:none}
+body.feed .pager{display:none !important}
+body.diary{overflow:hidden;background:#d98aa8 radial-gradient(circle at 50% 40%,#f0b3c8,#c96f93)}
+body.diary .page{max-width:none;min-height:0;height:100vh;height:100svh;padding:0;display:flex;flex-direction:column;background:none;box-shadow:none}
+body.diary .flow{display:none}
+body.diary .stage{display:block;position:relative;flex:none;width:var(--pw);height:var(--ph);margin:14px auto 0;overflow:hidden;border-radius:4px 14px 14px 4px;box-shadow:0 18px 40px rgba(90,20,50,.35)}
+body.diary.spread .stage{width:calc(var(--pw) * 2);overflow:visible;border-radius:6px;box-shadow:none}
+body.diary .book{position:absolute;top:0;left:calc(var(--pw) * -1);width:calc(var(--pw) * 2);height:100%;perspective:2400px}
+body.diary.spread .book{left:0}
+body.diary.spread:not(.book-open) .book{transform:translateX(calc(var(--pw) * -.5));transition:transform .8s}
+body.diary.spread.book-open .book{transform:none;transition:transform .8s}
+body.diary .leaf{position:absolute;top:0;left:50%;width:50%;height:100%;transform-origin:left center;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.33,.08,.2,1)}
+body.diary .leaf.flipped{transform:rotateY(-180deg)}
+body.diary .face{position:absolute;inset:0;overflow-x:hidden;overflow-y:auto;-webkit-backface-visibility:hidden;backface-visibility:hidden;background:#f7c6d6 radial-gradient(#f2adc4 1.2px,transparent 1.4px) 0 0/14px 14px;scrollbar-width:thin}
+body.diary .face.f-front{border-radius:0 12px 12px 0;box-shadow:inset 18px 0 22px -14px rgba(90,20,50,.35)}
+body.diary .face.f-back{transform:rotateY(180deg);border-radius:12px 0 0 12px;box-shadow:inset -18px 0 22px -14px rgba(90,20,50,.35)}
+body.diary.spread .face{box-shadow:inset 18px 0 22px -14px rgba(90,20,50,.35),0 12px 30px rgba(90,20,50,.25)}
+body.diary.spread .face.f-back{box-shadow:inset -18px 0 22px -14px rgba(90,20,50,.35),0 12px 30px rgba(90,20,50,.25)}
+body.diary .face.blank,body.diary .face.cover-face{background:#e85d93 repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0 6px,transparent 6px 12px)}
+body.diary .leaf.turning .face{box-shadow:0 0 30px rgba(60,10,30,.35)}
+body.diary .face.f-front::after{content:"";position:absolute;right:0;bottom:0;width:34px;height:34px;background:linear-gradient(135deg,transparent 50%,rgba(0,0,0,.08) 50%,#fff 62%,#f3d3df);border-top-left-radius:6px;pointer-events:none}
+body.diary .face.cover-face::after,body.diary .face.blank::after{display:none}
+body.diary .pg{position:relative;min-height:100%;padding-bottom:44px}
+body.diary .pgnum{position:absolute;bottom:10px;left:0;right:0;text-align:center;font:500 18px Caveat,cursive;color:#a3305f;pointer-events:none}
+body.diary .pg-cover{display:flex;flex-direction:column}
+body.diary .pg-cover .cover{flex:1;border-bottom:0;box-shadow:none;background:none;padding-top:56px}
+body.diary .pg-cover .lock{top:auto;bottom:38%}
+body.diary .openhint{margin-top:26px;font:500 20px Caveat,cursive;color:#fff3f7;animation:nudge 1.6s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateX(6px)}}
+body.diary .pg-end{display:flex;align-items:center}
+body.diary .pg-end footer{margin:0 22px;width:100%}
+body.diary .pager{display:flex !important;align-items:center;justify-content:center;gap:18px;padding:8px 0 10px}
+body.diary .pager span{min-width:130px;text-align:center;font:600 21px Caveat,cursive;color:#fff;text-shadow:0 1px 2px rgba(90,20,50,.4)}
+body.diary .pager button{width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:#a3305f;font:700 26px/1 Inter,sans-serif;cursor:pointer;box-shadow:0 3px 8px rgba(90,20,50,.3)}
+body.diary .pager button:disabled{opacity:.4;cursor:default}
+body.diary .mood{margin-top:26px}
+@media (prefers-reduced-motion:reduce){body.diary .leaf,body.diary .book{transition:none !important}body.diary .openhint{animation:none}}
+
+/* ============ company logos ============ */
+.lg{display:inline-block;width:20px;height:20px;border-radius:5px;object-fit:contain;vertical-align:-4px;background:#fff}
+.lg-txt{display:inline-flex;align-items:center;justify-content:center;font:700 8px Inter,sans-serif;color:#a3305f;overflow:hidden}
+.stick{position:absolute;width:52px;height:52px;padding:8px;border-radius:14px;background:#fff;box-shadow:0 3px 8px rgba(0,0,0,.22);z-index:2}
+.stick .lg{width:100%;height:100%;border-radius:0}
+.stick .lg-txt{font-size:11px}
+body.feed .stick{position:static;display:inline-block;width:auto;height:auto;padding:0;box-shadow:none;background:none;vertical-align:middle;margin-right:6px}
+body.feed .stick .lg{width:22px;height:22px;border-radius:6px}
+body.diary .clip .stick{top:-18px;right:-10px;transform:rotate(8deg)}
+body.diary .clip:nth-child(2n) .stick{right:auto;left:-12px;transform:rotate(-7deg)}
+body.diary .clip .tape{z-index:3}
+body.diary .alert .stick{top:-20px;left:-10px;transform:rotate(-8deg)}
+body.diary .alert h3{margin-top:10px}
+body.feed .clip .stick{display:none}
+body.diary .polaroid{position:relative}
+body.diary .polaroid .stick{width:46px;height:46px;padding:6px;right:-14px;top:-16px;transform:rotate(10deg)}
+body.feed .polaroid .stick{display:none}
+.col li .lg,.dressed .lg,.note2 .lg{width:18px;height:18px;margin-right:5px;vertical-align:-3px}
+.note2 .logos{margin-top:8px;display:flex;gap:6px}
+.note2 .logos .lg{width:24px;height:24px;margin:0;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+body.diary .clip .meta .lg,body.diary .clip .meta .lg-txt{display:none}
+body.feed .pgnum{display:none}

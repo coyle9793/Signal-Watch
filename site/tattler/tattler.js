@@ -13,6 +13,12 @@
   const num = (n) => WORDS[n] ?? String(n);
   const load = (f) => fetch(`../data/${f}`, { cache: "no-cache" }).then((r) => { if (!r.ok) throw new Error(f); return r.json(); });
 
+  // company logos (Google's public favicon service); falls back to the ticker if one won't load
+  const DOMAINS = {"AAPL":"apple.com","ABBV":"abbvie.com","ABT":"abbott.com","ACN":"accenture.com","ADBE":"adobe.com","AIG":"aig.com","AMD":"amd.com","AMGN":"amgen.com","AMT":"americantower.com","AMZN":"amazon.com","AVGO":"broadcom.com","AXP":"americanexpress.com","BA":"boeing.com","BAC":"bankofamerica.com","BK":"bnymellon.com","BKNG":"bookingholdings.com","BLK":"blackrock.com","BMY":"bms.com","BRK-B":"berkshirehathaway.com","C":"citigroup.com","CAT":"caterpillar.com","CHTR":"charter.com","CL":"colgatepalmolive.com","CMCSA":"comcast.com","COF":"capitalone.com","COP":"conocophillips.com","COST":"costco.com","CRM":"salesforce.com","CSCO":"cisco.com","CVS":"cvshealth.com","CVX":"chevron.com","DE":"deere.com","DHR":"danaher.com","DIS":"disney.com","DUK":"duke-energy.com","EMR":"emerson.com","F":"ford.com","FDX":"fedex.com","GD":"gd.com","GE":"ge.com","GILD":"gilead.com","GM":"gm.com","GOOGL":"google.com","GOOG":"google.com","GS":"goldmansachs.com","HD":"homedepot.com","HON":"honeywell.com","IBM":"ibm.com","INTC":"intel.com","INTU":"intuit.com","ISRG":"intuitive.com","JNJ":"jnj.com","JPM":"jpmorganchase.com","KO":"coca-cola.com","LIN":"linde.com","LLY":"lilly.com","LMT":"lockheedmartin.com","LOW":"lowes.com","MA":"mastercard.com","MCD":"mcdonalds.com","MDLZ":"mondelezinternational.com","MDT":"medtronic.com","MET":"metlife.com","META":"meta.com","MMM":"3m.com","MO":"altria.com","MRK":"merck.com","MS":"morganstanley.com","MSFT":"microsoft.com","NEE":"nexteraenergy.com","NFLX":"netflix.com","NKE":"nike.com","NOW":"servicenow.com","NVDA":"nvidia.com","ORCL":"oracle.com","PEP":"pepsico.com","PFE":"pfizer.com","PG":"pg.com","PLTR":"palantir.com","PM":"pmi.com","PYPL":"paypal.com","QCOM":"qualcomm.com","RTX":"rtx.com","SBUX":"starbucks.com","SCHW":"schwab.com","SO":"southerncompany.com","SPG":"simon.com","T":"att.com","TGT":"target.com","TMO":"thermofisher.com","TMUS":"t-mobile.com","TSLA":"tesla.com","TXN":"ti.com","UNH":"unitedhealthgroup.com","UNP":"up.com","UPS":"ups.com","USB":"usbank.com","V":"visa.com","VZ":"verizon.com","WFC":"wellsfargo.com","WMT":"walmart.com","XOM":"exxonmobil.com"};
+  window.ttLogoFail = (img) => { const s = document.createElement("span"); s.className = img.className + " lg-txt"; s.textContent = img.dataset.t; img.replaceWith(s); };
+  const logo = (t) => DOMAINS[t] ? `<img class="lg" data-t="${esc(t)}" src="https://www.google.com/s2/favicons?domain=${DOMAINS[t]}&sz=128" alt="${esc(nameOf(t))} logo" loading="lazy" onerror="ttLogoFail(this)">` : "";
+  const stick = (t) => (DOMAINS[t] ? `<span class="stick">${logo(t)}</span>` : "");
+
   // ---------- look toggle ----------
   function setLook(look) {
     document.body.className = look;
@@ -21,6 +27,7 @@
       b.setAttribute("aria-pressed", b.dataset.look === look);
     });
     try { localStorage.setItem("tt-look", look); } catch (e) {}
+    window.TTBook?.[look === "diary" ? "on" : "off"]();
   }
   let start = new URLSearchParams(location.search).get("look");
   if (!["diary", "feed"].includes(start)) { try { start = localStorage.getItem("tt-look"); } catch (e) {} }
@@ -88,6 +95,7 @@
         ? `${sc.ticker} moved ${Math.abs(sc.z).toFixed(1)} times its usual swing`
         : `${sc.ticker} traded ${sc.vol_ratio.toFixed(1)} times its usual volume`;
       $("#alert").innerHTML = `
+        ${stick(sc.ticker)}
         <p class="lbl"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></svg>SCANDAL ALERT</p>
         <h3>${esc(sc.name)} ${verb} ${apct(sc.ret)} and nobody will say why</h3>
         <p class="txt">On ${fmt(sc.date)}, ${why}. No news. No insider filings. Somebody knew something, or nobody did. Either way, we're watching.</p>
@@ -166,7 +174,8 @@
     $("#spotted").innerHTML = stories.length ? stories.map(({ g, lead, note, badge }) => `
       <article class="clip">
         <span class="tape" aria-hidden="true"></span>
-        <p class="meta">${esc(g.ticker)} · ${span(g)} · <a href="${esc(g.url)}" target="_blank" rel="noopener">Filings</a></p>
+        ${stick(g.ticker)}
+        <p class="meta">${logo(g.ticker)} ${esc(g.ticker)} · ${span(g)} · <a href="${esc(g.url)}" target="_blank" rel="noopener">Filings</a></p>
         <p class="lead"><b class="sp">Spotted:</b> ${esc(cap(lead))}</p>
         <p class="note">${esc(note)}</p>
         ${badge ? `<span class="badge" aria-hidden="true">${badge}</span>` : ""}
@@ -176,7 +185,7 @@
     const C = calls.calls || [];
     const ins = C.filter((c) => c.call === "Buy").sort((a, b) => b.score - a.score).slice(0, 3);
     const outs = C.filter((c) => c.call === "Sell").sort((a, b) => a.score - b.score).slice(0, 3);
-    const li = (xs) => xs.map((c) => `<li title="${esc(c.ticker)}">${esc(c.name)}</li>`).join("") || "<li>Nobody, for now</li>";
+    const li = (xs) => xs.map((c) => `<li title="${esc(c.ticker)}">${logo(c.ticker)}${esc(c.name)}</li>`).join("") || "<li>Nobody, for now</li>";
     $("#inout").innerHTML = `
       <div class="col in"><p class="lbl"><span class="d-only">totally in ✓</span><span class="f-only">IN</span></p><ul>${li(ins)}</ul><p class="cap">Fallen behind, ready for a comeback.</p></div>
       <div class="col out"><p class="lbl"><span class="d-only">so over it ✗</span><span class="f-only">OUT</span></p><ul>${li(outs)}</ul><p class="cap">Partied too hard. Expect a hangover.</p></div>`;
@@ -195,7 +204,7 @@
       ? `${esc(sorted[sorted.length - 2].name)} had a wardrobe malfunction too (${pct(sorted[sorted.length - 2].chg_1d)}). ${esc(sorted[0].name)} was belle of the ball, ${pct(sorted[0].chg_1d)} ✨`
       : "";
     $("#worst").innerHTML = `
-      <figure class="polaroid"><svg viewBox="0 0 92 70" width="100%" role="img" aria-label="${esc(worst.name)} price over the last 30 trading days"><rect width="92" height="70" fill="#2a1a24"/><polyline points="${poly}" fill="none" stroke="#ff7aa2" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg><figcaption>last month&hellip;</figcaption></figure>
+      <figure class="polaroid">${stick(worst.ticker)}<svg viewBox="0 0 92 70" width="100%" role="img" aria-label="${esc(worst.name)} price over the last 30 trading days"><rect width="92" height="70" fill="#2a1a24"/><polyline points="${poly}" fill="none" stroke="#ff7aa2" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg><figcaption>last month&hellip;</figcaption></figure>
       <div>
         <p class="big">${esc(worst.name)}: ${pct(worst.chg_1d)} in one day. A very bad night.</p>
         <p class="txt"><span class="f-only">It's ${pct(worst.chg_1m)} over the past month. Somebody get this stock a glass of water.</span><span class="d-only">${worstNote}</span></p>
@@ -207,7 +216,7 @@
       ...sorted.slice(0, 2).map((s, i) => [s, BEST[i]]),
       ...sorted.slice(-2).reverse().map((s, i) => [s, WORST[i]]).reverse(),
     ];
-    $("#dressed").innerHTML = rows.map(([s, pun]) => `<div class="row"><span>${esc(s.name)}, ${pun}</span><b class="${s.chg_1d >= 0 ? "up" : "down"}">${pct(s.chg_1d)}</b></div>`).join("");
+    $("#dressed").innerHTML = rows.map(([s, pun]) => `<div class="row"><span>${logo(s.ticker)}${esc(s.name)}, ${pun}</span><b class="${s.chg_1d >= 0 ? "up" : "down"}">${pct(s.chg_1d)}</b></div>`).join("");
 
     // overheard abroad: top world events, one per country pair
     const HEAD = {
@@ -225,7 +234,7 @@
       const names = e.tickers.slice(0, 3).map(nameOf);
       const list = names.length > 1 ? names.slice(0, -1).join(", ") + " and " + names[names.length - 1] : names[0];
       const what = e.title.split(":")[0];
-      return `<div class="note2"><h3>${esc(opts[i % opts.length])}</h3><p>${esc(what)} drama filled ${e.articles} news stories on ${fmt(gdelt(e.date || events.meta.date))}, and ${esc(list)} can't stop checking the headlines.</p></div>`;
+      return `<div class="note2"><h3>${esc(opts[i % opts.length])}</h3><p>${esc(what)} drama filled ${e.articles} news stories on ${fmt(gdelt(e.date || events.meta.date))}, and ${esc(list)} can't stop checking the headlines.</p><p class="logos">${e.tickers.slice(0, 3).map(logo).join("")}</p></div>`;
     }).join("") || `<div class="note2"><p>All quiet abroad. For now.</p></div>`;
   }
 
