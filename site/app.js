@@ -120,10 +120,12 @@ let MAP;
 function drawMap() {
   if (!window.L || MAP) return;
   const { ev, w } = WORLD;
-  MAP = L.map("map", { worldCopyJump: true, minZoom: 1, zoomSnap: 0.5 }).setView([28, 15], 1.5);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-    subdomains: "abcd", maxZoom: 8, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-  }).addTo(MAP);
+  MAP = L.map("map", { minZoom: 1, maxZoom: 6, zoomSnap: 0.5, maxBounds: [[-75, -200], [85, 200]] }).setView([28, 15], 1.5);
+  // Self-hosted country outlines (Natural Earth, public domain, via world-atlas): no map key or tile server needed
+  load("countries.geo.json").then((geo) => {
+    L.geoJSON(geo, { interactive: false, style: { color: "#3b4452", weight: 0.7, fillColor: "#1c232d", fillOpacity: 1 } }).addTo(MAP).bringToBack();
+  });
+  MAP.attributionControl.addAttribution("Map: Natural Earth");
   const max = Math.max(...ev.events.map((e) => e.risk));
   ev.events.forEach((e, i) => {
     if (e.lat == null) return;
