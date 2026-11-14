@@ -102,6 +102,38 @@ def form4(s):
     return trades
 
 
+def form4_openinsider(s):
+    """Fallback when sec.gov refuses cloud servers: OpenInsider republishes the same Form 4 data."""
+    import pandas as pd
+    from io import StringIO
+    trades = []
+    for t in UNIVERSE:
+        url = f"http://openinsider.com/screener?s={t.replace('-', '.')}&fd={DAYS}&xp=1&xs=1&cnt=40"
+        try:
+            html = s.get(url, timeout=30).text
+            tables = [x for x in pd.read_html(StringIO(html)) if "Trade Type" in [str(c).replace("\xa0", " ") for c in x.columns]]
+        except Exception as e:
+            print("openinsider skip", t, e); continue
+        time.sleep(0.3)
+        if not tables:
+            continue
+        df = tables[0]; df.columns = [str(c).replace("\xa0", " ") for c in df.columns]
+        for _, r in df.iterrows():
+            typ = str(r["Trade Type"])
+            if not typ.startswith(("P", "S")):
+                continue
+            num = lambda v: float(str(v).replace("$", "").replace(",", "").replace("+", "") or 0)
+            try:
+                qty, price = abs(num(r["Qty"])), num(r["Price"])
+            except ValueError:
+                continue
+            trades.append({"ticker": t, "who": str(r["Insider Name"]), "role": str(r.get("Title", "")),
+                           "type": "Buy" if typ.startswith("P") else "Sell", "date": str(r["Trade Date"])[:10],
+                           "filed": str(r["Filing Date"])[:10], "shares": int(qty), "price": round(price, 2), "value": round(qty * price),
+                           "owned_after": None, "planned": False, "url": url})
+    return trades
+
+
 def congress(s):
     tok = os.environ.get("QUIVER_TOKEN")
     rows, source = [], None
@@ -190,14 +222,18 @@ def fake():
 
 def main():
     if "--fake" in sys.argv:
-        f4, cg, csrc = fake(); demo = True
+        f4, cg, csrc = fake(); demo = True; f4src = None
     else:
         s = http(); demo = False
-        f4 = form4(s)
+        try:
+            f4, f4src = form4(s), "SEC EDGAR Form 4"
+        except SystemExit as e:
+            print(e, "-> trying OpenInsider")
+            f4, f4src = form4_openinsider(s), "SEC Form 4 via OpenInsider"
         cg, csrc = congress(s)
     f4.sort(key=lambda x: x["date"] or "", reverse=True)
     meta = {"demo": demo, "updated": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
-            "form4_source": "SEC EDGAR Form 4" if not demo else "FICTIONAL SAMPLE (layout only)", "form4_days": DAYS,
+            "form4_source": f4src if not demo else "FICTIONAL SAMPLE (layout only)", "form4_days": DAYS,
             "congress_source": csrc, "congress_count": len(cg)}
     json.dump({"meta": meta, "form4": f4, "congress": cg, "signals": signals(f4, cg)},
               open(os.path.join(DATA, "insiders.json"), "w"), separators=(",", ":"))

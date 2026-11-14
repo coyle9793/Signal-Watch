@@ -28,7 +28,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Build data
         env:
-          SEC_USER_AGENT: "SignalWatch-demo coyle9793@users.noreply.github.com"
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT || 'SignalWatch-demo coyle9793@users.noreply.github.com' }}
+          QUIVER_TOKEN: ${{ secrets.QUIVER_TOKEN }}
         run: python scripts/build_all.py
       - uses: actions/upload-pages-artifact@v3
         with:
