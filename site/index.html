@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signal Watch</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="dot"></span> Signal Watch <small>S&amp;P 100</small></div>
+  <nav id="tabs">
+    <button data-tab="market" class="on">Market</button>
+    <button data-tab="insiders">Insider trades</button>
+    <button data-tab="shocks">Surprise shocks</button>
+    <button data-tab="world">World events</button>
+    <button data-tab="calls">Daily calls</button>
+  </nav>
+</header>
+<main>
+  <section id="market" class="tab on">
+    <h1>Market</h1>
+    <p class="lede">Live prices and history for the 100 largest US companies.</p>
+    <div id="demo-banner" class="banner" hidden></div>
+    <div id="market-summary" class="kpis"></div>
+    <div class="controls">
+      <input id="q" type="search" placeholder="Search ticker or company">
+      <select id="sector"><option value="">All sectors</option></select>
+      <span id="updated" class="meta"></span>
+    </div>
+    <div class="tablewrap"><table id="mtable">
+      <thead><tr><th data-k="ticker">Stock</th><th data-k="price" class="r">Price</th><th data-k="chg_1d" class="r">Today</th><th data-k="chg_1m" class="r">1 month</th><th data-k="chg_1y" class="r">1 year</th><th data-k="vol_ratio" class="r">Volume vs normal</th><th>60 days</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+  <section id="insiders" class="tab">
+    <h1>Insider trades</h1>
+    <p class="lede">What members of Congress and company insiders (SEC Form 4) are buying and selling.</p>
+    <div id="ins-banner" class="banner" hidden></div>
+    <div id="ins-kpis" class="kpis"></div>
+    <h2 class="h2">Where insiders agree</h2>
+    <p class="meta">Stocks where several people with inside knowledge are trading the same way. Buying by several insiders at once is one of the best-studied signals; planned (10b5-1) sales are routine and carry little meaning.</p>
+    <div id="ins-clusters" class="cards"></div>
+    <div class="controls" style="margin-top:20px"><input id="ins-q" type="search" placeholder="Filter by ticker or name"></div>
+    <div class="split">
+      <div><h2 class="h2">Company insiders <small class="meta">SEC Form 4</small></h2><div class="tablewrap"><table id="f4t"><thead><tr><th>Date</th><th>Stock</th><th>Who</th><th>Trade</th><th class="r">Value</th></tr></thead><tbody></tbody></table></div></div>
+      <div><h2 class="h2">Members of Congress</h2><div class="tablewrap"><table id="cgt"><thead><tr><th>Traded</th><th>Stock</th><th>Member</th><th>Trade</th><th class="r">Amount</th></tr></thead><tbody></tbody></table></div></div>
+    </div>
+  </section>
+  <section id="shocks" class="tab">
+    <h1>Surprise shocks</h1>
+    <p class="lede">Unusual selling, volume spikes or price drops with no clear news behind them.</p>
+    <div id="sh-kpis" class="kpis"></div>
+    <p class="meta">We flag a stock when its price moves far more than the market explains (2.5+ times its usual swing), or when 2.5+ times the normal number of shares trade in a day. Then we check for a reason: news coverage that day, or an insider filing. Shocks with no reason are marked in red.</p>
+    <div class="controls"><label><input type="checkbox" id="sh-only"> Only show unexplained</label></div>
+    <div id="sh-list" class="cards"></div>
+  </section>
+  <section id="world" class="tab">
+    <h1>World events</h1>
+    <p class="lede">Major international events from global news, and the stocks they could move.</p>
+    <div id="world-meta" class="meta"></div>
+    <h2 class="h2">Hot spots today</h2>
+    <div id="world-spots" class="spots"></div>
+    <h2 class="h2">Events most likely to move markets</h2>
+    <div class="controls"><select id="world-kind"><option value="">All kinds</option><option value="conflict">Conflict</option><option value="sanctions">Tension &amp; sanctions</option><option value="unrest">Unrest</option><option value="cooperation">Diplomacy</option></select></div>
+    <div id="world-body" class="cards"></div>
+    <h2 class="h2">What history says</h2>
+    <p class="meta">How the S&amp;P 100 actually moved after big world shocks of the last five years, from our price history.</p>
+    <div id="world-history" class="cards"></div>
+  </section>
+  <section id="calls" class="tab">
+    <h1>Daily calls</h1>
+    <p class="lede">A plain Buy, Hold or Sell for each stock, with the reasons behind it.</p>
+    <div id="calls-kpis" class="kpis"></div>
+    <details class="how"><summary>How the calls are made</summary>
+      <p>Each stock gets points from simple rules, and every point comes with its reason. A total of +2 or more is a <b class="buy">Buy</b>, −2 or less is a <b class="sell">Sell</b>, anything in between is a <b>Hold</b>.</p>
+      <ul class="facts">
+        <li><b>Trend:</b> +1 if the price is above its 200-day average, −1 if below; ±0.5 for the 50-day vs 200-day average.</li>
+        <li><b>Momentum:</b> ±1 if it beat or trailed the market by 5+ points over 3 months.</li>
+        <li><b>Insiders:</b> +2 if two or more company insiders bought (+1 for one); −1 for $5M+ of unplanned insider selling.</li>
+        <li><b>Congress:</b> +0.5 per net buy by members of Congress, up to ±1.</li>
+        <li><b>Shocks:</b> −1.5 for an unexplained sell-off in the last 10 days; ±0.5 depending on how it recovered from past shocks.</li>
+        <li><b>World events:</b> −0.5 if it's exposed to one of today's five riskiest world events.</li>
+      </ul>
+    </details>
+    <div class="controls">
+      <input id="c-q" type="search" placeholder="Search ticker or company">
+      <select id="c-f"><option value="">All calls</option><option>Buy</option><option>Hold</option><option>Sell</option></select>
+    </div>
+    <div id="calls-list" class="cards"></div>
+  </section>
+</main>
+<div id="drawer" class="drawer" hidden>
+  <div class="drawer-in">
+    <button id="close" class="x" aria-label="Close">&times;</button>
+    <h2 id="d-title"></h2><div id="d-sub" class="meta"></div>
+    <div class="ranges"><button data-r="21">1M</button><button data-r="126">6M</button><button data-r="252" class="on">1Y</button><button data-r="1260">5Y</button></div>
+    <div class="chartbox"><canvas id="d-chart"></canvas></div>
+    <div id="d-call"></div>
+    <h3>What history says</h3>
+    <ul id="d-history" class="facts"></ul>
+  </div>
+</div>
+<footer>Not financial advice. For information and demonstration only.</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

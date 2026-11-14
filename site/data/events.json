@@ -1,0 +1,1987 @@
+{
+ "meta": {
+  "source": "GDELT 1.0 daily export",
+  "date": "20261110",
+  "news_days": [
+   "20261110"
+  ],
+  "total_events": 124504,
+  "international_events": 13451
+ },
+ "events": [
+  {
+   "title": "Israel & Palestine: Armed conflict",
+   "actors": "Israeli / Israel",
+   "kind": "conflict",
+   "sector": "Defence & energy",
+   "countries": [
+    "ISR",
+    "PSE"
+   ],
+   "place": "Gaza, Israel (general), Israel",
+   "articles": 392,
+   "events": 42,
+   "tone": -8.05,
+   "goldstein": -9.96,
+   "risk": 131.2,
+   "tickers": [
+    "LMT",
+    "RTX",
+    "XOM",
+    "CVX",
+    "GD",
+    "BA",
+    "COP"
+   ],
+   "url": "https://aa.com.tr/en/middle-east/israeli-drone-strikes-gunfire-kill-1-palestinian-injure-19-others-in-gaza/4117565",
+   "date": "20261110"
+  },
+  {
+   "title": "Iran & United States: Armed conflict",
+   "actors": "United States / Iran",
+   "kind": "conflict",
+   "sector": "Defence & energy",
+   "countries": [
+    "IRN",
+    "USA"
+   ],
+   "place": "Washington, District of Columbia, United States",
+   "articles": 401,
+   "events": 36,
+   "tone": -5.14,
+   "goldstein": -9.88,
+   "risk": 119.8,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "GD",
+    "BA"
+   ],
+   "url": "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-november-10-crude-oil-falls-below-92-as-trump-says-iran-war-is-effectively-over-what-lies-ahead/articleshow/135696913.cms",
+   "date": "20261110"
+  },
+  {
+   "title": "Mexico & United States: Armed conflict",
+   "actors": "Mexican / Mexico",
+   "kind": "conflict",
+   "sector": "Defence & energy",
+   "countries": [
+    "MEX",
+    "USA"
+   ],
+   "place": "Texas, United States",
+   "articles": 315,
+   "events": 10,
+   "tone": -6.68,
+   "goldstein": -9.9,
+   "risk": 117.6,
+   "tickers": [
+    "GM",
+    "F",
+    "CAT",
+    "LMT",
+    "RTX",
+    "GD",
+    "BA",
+    "XOM"
+   ],
+   "url": "https://www.kztv10.com/politics/immigration/ice-separates-8-year-old-haitian-child-from-caretaker",
+   "date": "20261110"
+  },
+  {
+   "title": "Russia & Ukraine: Armed conflict",
+   "actors": "Russia / Ukraine",
+   "kind": "conflict",
+   "sector": "Defence & energy",
+   "countries": [
+    "RUS",
+    "UKR"
+   ],
+   "place": "Kremlin, Moskva, Russia",
+   "articles": 385,
+   "events": 49,
+   "tone": -4.61,
+   "goldstein": -9.99,
+   "risk": 116.9,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "GD",
+    "BA"
+   ],
+   "url": "http://www.iranherald.com/news/279422728/us-says-russia-ukraine-talks-in-abu-dhabi-aim-to-start-final-end-to-war",
+   "date": "20261110"
+  },
+  {
+   "title": "Russia & United States: Coercion",
+   "actors": "Russia / The Us",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "RUS",
+    "USA"
+   ],
+   "place": "Gloucestershire, Gloucestershire, United Kingdom",
+   "articles": 644,
+   "events": 10,
+   "tone": -5.9,
+   "goldstein": -5.0,
+   "risk": 93.6,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "AAPL",
+    "NVDA",
+    "QCOM"
+   ],
+   "url": "https://www.aol.co.uk/articles/member-us-army-arrested-suspicion-191140000.html",
+   "date": "20261110"
+  },
+  {
+   "title": "China & United States: Coercion",
+   "actors": "United States / Chinese",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "CHN",
+    "USA"
+   ],
+   "place": "China",
+   "articles": 303,
+   "events": 26,
+   "tone": -6.05,
+   "goldstein": -5.97,
+   "risk": 90.3,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "INTC",
+    "CAT"
+   ],
+   "url": "http://northcountrynow.com/stories/slc-grand-jury-indicts-two-manhattan-men-on-drug-charges,399822",
+   "date": "20261110"
+  },
+  {
+   "title": "United Kingdom & United States: Coercion",
+   "actors": "United Kingdom / United States",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "GBR",
+    "USA"
+   ],
+   "place": "London, London, City of, United Kingdom",
+   "articles": 571,
+   "events": 43,
+   "tone": -4.99,
+   "goldstein": -5.0,
+   "risk": 89.9,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC",
+    "CAT",
+    "BA"
+   ],
+   "url": "https://www.wkyt.com/2026/11/10/east-bernstadt-man-arrested-allegedly-manufacturing-3d-printed-guns/",
+   "date": "20261110"
+  },
+  {
+   "title": "Iran & United States: Threat",
+   "actors": "Iran / The Us",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "IRN",
+    "USA"
+   ],
+   "place": "Tehran, Tehran, Iran",
+   "articles": 455,
+   "events": 36,
+   "tone": -4.71,
+   "goldstein": -5.06,
+   "risk": 89.2,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC"
+   ],
+   "url": "http://www.iranherald.com/news/279422729/threat-to-constitution-republican-rep-massie-files-s-of-impeachment-against-hegseth-over-iran-war-actions",
+   "date": "20261110"
+  },
+  {
+   "title": "Ireland & United States: Coercion",
+   "actors": "The Us / Ireland",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "IRL",
+    "USA"
+   ],
+   "place": "Dublin, Dublin, Ireland",
+   "articles": 377,
+   "events": 4,
+   "tone": -3.2,
+   "goldstein": -5.0,
+   "risk": 80.5,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC",
+    "CAT",
+    "BA"
+   ],
+   "url": "https://www.irishtimes.com/world/us/2026/11/09/us-judge-raises-concerns-over-thomas-markles-mental-fitness-to-face-prosecution/",
+   "date": "20261110"
+  },
+  {
+   "title": "United Kingdom & Iran: Criticism",
+   "actors": "Iranian / Iran",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "GBR",
+    "IRN"
+   ],
+   "place": "Fairford, Gloucestershire, United Kingdom",
+   "articles": 515,
+   "events": 4,
+   "tone": -6.6,
+   "goldstein": -2.0,
+   "risk": 78.4,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC"
+   ],
+   "url": "https://www.defensenews.com/global/europe/2026/11/10/britain-says-its-bases-are-safe-after-us-refueling-planes-evacuated/",
+   "date": "20261110"
+  },
+  {
+   "title": "United Kingdom & Iran: Threat",
+   "actors": "Iran / United Kingdom",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "GBR",
+    "IRN"
+   ],
+   "place": "Iran",
+   "articles": 288,
+   "events": 30,
+   "tone": -4.49,
+   "goldstein": -5.15,
+   "risk": 77.6,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC"
+   ],
+   "url": "https://www.hindustantimes.com/world-news/us-aircraft-evacuated-from-another-uk-base-raf-mildenhall-amid-threat-from-iran-trump-peace-talks-qatar-101794291215712.html",
+   "date": "20261110"
+  },
+  {
+   "title": "Iran & United States: Criticism",
+   "actors": "United States / Iran",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "IRN",
+    "USA"
+   ],
+   "place": "Iran",
+   "articles": 700,
+   "events": 69,
+   "tone": -6.0,
+   "goldstein": -2.0,
+   "risk": 76.0,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC"
+   ],
+   "url": "https://www.novinite.com/view_news.php?id=241505",
+   "date": "20261110"
+  },
+  {
+   "title": "France & Iran: Criticism",
+   "actors": "France / Iran",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "FRA",
+    "IRN"
+   ],
+   "place": "Paris, France (general), France",
+   "articles": 2919,
+   "events": 100,
+   "tone": -5.96,
+   "goldstein": -2.0,
+   "risk": 75.8,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC"
+   ],
+   "url": "https://www.wwno.org/npr-news/2026-11-09/france-accuses-iran-of-cyber-sabotage-in-fridge-attacks",
+   "date": "20261110"
+  },
+  {
+   "title": "France & Iran: Statement",
+   "actors": "Iran / Iran",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "FRA",
+    "IRN"
+   ],
+   "place": "Paris, France (general), France",
+   "articles": 1336,
+   "events": 32,
+   "tone": -6.44,
+   "goldstein": -0.44,
+   "risk": 68.4,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "https://economictimes.indiatimes.com/news/international/world-news/trumps-foreign-policy-wont-change-after-republicans-midterm-losses-rubio-asserts/articleshow/135696099.cms",
+   "date": "20261110"
+  },
+  {
+   "title": "China & Taiwan: Criticism",
+   "actors": "Taiwan / China",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "CHN",
+    "TWN"
+   ],
+   "place": "Beijing, Beijing, China",
+   "articles": 301,
+   "events": 11,
+   "tone": -6.01,
+   "goldstein": -2.0,
+   "risk": 66.2,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "AMD",
+    "AVGO"
+   ],
+   "url": "http://www.australiannews.net/news/279423162/taiwan-condemns-china-for-distorting-un-resolution-reasserts-sovereignty",
+   "date": "20261110"
+  },
+  {
+   "title": "United Kingdom & Russia: Material cooperation",
+   "actors": "United Kingdom / Russia",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "GBR",
+    "RUS"
+   ],
+   "place": "Russia",
+   "articles": 553,
+   "events": 21,
+   "tone": -6.44,
+   "goldstein": 6.33,
+   "risk": 65.7,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "CAT",
+    "DE",
+    "FDX"
+   ],
+   "url": "https://theconversation.com/how-decades-of-us-forever-war-led-to-the-republicans-midterm-losses-296201",
+   "date": "20261110"
+  },
+  {
+   "title": "Russia & Ukraine: Criticism",
+   "actors": "Ukraine / Russia",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "RUS",
+    "UKR"
+   ],
+   "place": "Donbas, Ukraine (general), Ukraine",
+   "articles": 585,
+   "events": 20,
+   "tone": -2.79,
+   "goldstein": -2.0,
+   "risk": 63.2,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "GD",
+    "AAPL",
+    "NVDA"
+   ],
+   "url": "https://www.winnipegfreepress.com/world/2026/11/10/us-brokered-talks-are-set-to-start-in-abu-dhabi-to-discuss-ukraine-russia-peace-deal",
+   "date": "20261110"
+  },
+  {
+   "title": "France & Iran: Diplomacy",
+   "actors": "France / Iran",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "FRA",
+    "IRN"
+   ],
+   "place": "Paris, France (general), France",
+   "articles": 748,
+   "events": 55,
+   "tone": -5.42,
+   "goldstein": 1.95,
+   "risk": 61.7,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "https://www.freemalaysiatoday.com/category/highlight/2026/11/10/europe-top-diplomats-press-rubio-on-ukraine-at-g7",
+   "date": "20261110"
+  },
+  {
+   "title": "Iran & United States: Appeal",
+   "actors": "Iran / Iran",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "IRN",
+    "USA"
+   ],
+   "place": "Tehran, Tehran, Iran",
+   "articles": 587,
+   "events": 48,
+   "tone": -5.09,
+   "goldstein": 3.15,
+   "risk": 60.4,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "http://www.iranherald.com/news/279422716/iran-vows-to-rain-down-hell-if-us-escalates-war",
+   "date": "20261110"
+  },
+  {
+   "title": "China & United States: Investigation",
+   "actors": "Nvidia / China",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "USA"
+   ],
+   "place": "Beijing, Beijing, China",
+   "articles": 2705,
+   "events": 112,
+   "tone": -1.66,
+   "goldstein": -2.0,
+   "risk": 58.6,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://www.wlwt.com/article/nvidia-stocks-fall-ceo-investigation/74376804",
+   "date": "20261110"
+  },
+  {
+   "title": "United Kingdom & Iran: Pledge to cooperate",
+   "actors": "United Kingdom / Iran",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "GBR",
+    "IRN"
+   ],
+   "place": "Iran",
+   "articles": 971,
+   "events": 14,
+   "tone": -4.32,
+   "goldstein": 4.0,
+   "risk": 57.3,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "https://cyprus-mail.com/2026/11/10/us-aircraft-evacuated-from-second-uk-base-due-to-iran-threat-wsj-reports",
+   "date": "20261110"
+  },
+  {
+   "title": "Qatar & United States: Diplomacy",
+   "actors": "Qatar / Qatar",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "QAT",
+    "USA"
+   ],
+   "place": "Qatar",
+   "articles": 1474,
+   "events": 124,
+   "tone": -2.96,
+   "goldstein": 3.9,
+   "risk": 51.8,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://myfox28columbus.com/news/nation-world/trump-meets-qatars-prime-minister-as-white-house-weighs-next-steps-for-iran-conflict-marco-rubio",
+   "date": "20261110"
+  },
+  {
+   "title": "Russia & United States: Pledge to cooperate",
+   "actors": "United States / Russia",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "RUS",
+    "USA"
+   ],
+   "place": "Mellat, Iran (general), Iran",
+   "articles": 2247,
+   "events": 23,
+   "tone": -2.79,
+   "goldstein": 4.2,
+   "risk": 51.2,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "CAT",
+    "DE",
+    "FDX"
+   ],
+   "url": "https://www.kxxv.com/politics/foreign-policy/a-white-house-deal-that-would-have-imported-russian-oil-to-the-us-is-falling-apart",
+   "date": "20261110"
+  },
+  {
+   "title": "Iran & United States: Cooperation",
+   "actors": "Iran / United States",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "IRN",
+    "USA"
+   ],
+   "place": "Tehran, Tehran, Iran",
+   "articles": 348,
+   "events": 46,
+   "tone": -3.84,
+   "goldstein": 4.85,
+   "risk": 50.2,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "https://www.clevelandjewishnews.com/news/national_news/rep-thomas-massie-of-kentucky-files-resolution-to-impeach-defense-secretary-pete-hegseth/article_3b295863-eccf-5150-8827-ae3eacb72237.html",
+   "date": "20261110"
+  },
+  {
+   "title": "China & United States: Criticism",
+   "actors": "Nvidia / China",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "CHN",
+    "USA"
+   ],
+   "place": "Beijing, Beijing, China",
+   "articles": 271,
+   "events": 35,
+   "tone": -2.65,
+   "goldstein": -2.0,
+   "risk": 49.7,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "INTC",
+    "CAT"
+   ],
+   "url": "https://www.cbc.ca/news/business/nvidia-survive-without-jensen-huang-ceo-9.7415544",
+   "date": "20261110"
+  },
+  {
+   "title": "Iran & Qatar: Diplomacy",
+   "actors": "Iran / Iran",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "IRN",
+    "QAT"
+   ],
+   "place": "Qatar",
+   "articles": 2500,
+   "events": 88,
+   "tone": -2.33,
+   "goldstein": 3.81,
+   "risk": 49.3,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "https://www.wibw.com/2026/11/09/trump-after-meeting-with-qatari-pm-says-he-believes-war-with-iran-is-militarily-effectively-over/",
+   "date": "20261110"
+  },
+  {
+   "title": "China & United States: Statement",
+   "actors": "China / China",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "USA"
+   ],
+   "place": "Beijing, Beijing, China",
+   "articles": 1521,
+   "events": 129,
+   "tone": -2.04,
+   "goldstein": -0.13,
+   "risk": 49.0,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://www.nbcphiladelphia.com/news/national-international/trump-fbi-nvidia-ceo-jensen-huang-affair-chinese-agent/4494396/",
+   "date": "20261110"
+  },
+  {
+   "title": "Russia & Ukraine: Concession",
+   "actors": "Russian / Donetsk",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "RUS",
+    "UKR"
+   ],
+   "place": "Kyiv, Kyyiv, Misto, Ukraine",
+   "articles": 4181,
+   "events": 26,
+   "tone": -2.1,
+   "goldstein": 7.23,
+   "risk": 48.4,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "GD",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://www.ijpr.org/npr-news/2026-11-08/europe-to-join-u-s-brokered-ukraine-talks-in-abu-dhabi-defying-kremlin-objections",
+   "date": "20261110"
+  },
+  {
+   "title": "China & United States: Material cooperation",
+   "actors": "China / China",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "USA"
+   ],
+   "place": "Beijing, Beijing, China",
+   "articles": 1116,
+   "events": 40,
+   "tone": -1.81,
+   "goldstein": 6.34,
+   "risk": 47.3,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://www.timesherald.com/2026/11/09/nvidia-ceo-investigation-what-we-know/",
+   "date": "20261110"
+  },
+  {
+   "title": "CHE & United States: Diplomacy",
+   "actors": "United States / Geneva",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHE",
+    "USA"
+   ],
+   "place": "Geneva, Gen\u00e8, Switzerland",
+   "articles": 1462,
+   "events": 20,
+   "tone": -1.73,
+   "goldstein": 2.12,
+   "risk": 46.9,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.denverpost.com/2026/11/10/denver-writing-groups-book-clubs-stores-analog-meetups/",
+   "date": "20261110"
+  },
+  {
+   "title": "Ukraine & United States: Pledge to cooperate",
+   "actors": "Ukraine / Ukraine",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "UKR",
+    "USA"
+   ],
+   "place": "Ukraine",
+   "articles": 2230,
+   "events": 22,
+   "tone": -1.65,
+   "goldstein": 4.0,
+   "risk": 46.6,
+   "tickers": [
+    "LMT",
+    "RTX",
+    "GD",
+    "XOM",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "https://www.bbc.co.uk/news/articles/cqpvgvrpjvv8o",
+   "date": "20261110"
+  },
+  {
+   "title": "Russia & Ukraine: Cooperation",
+   "actors": "Ukraine / Ukraine",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "RUS",
+    "UKR"
+   ],
+   "place": "Kremlin, Moskva, Russia",
+   "articles": 4167,
+   "events": 26,
+   "tone": -1.52,
+   "goldstein": 5.4,
+   "risk": 46.1,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "GD",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://tv.rediff.com/news/will-do-everything-to-end-war-modi-talks-to-zelenskyy-on-phone/412692",
+   "date": "20261110"
+  },
+  {
+   "title": "United Kingdom & United States: Diplomacy",
+   "actors": "United Kingdom / United Kingdom",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "GBR",
+    "USA"
+   ],
+   "place": "London, London, City of, United Kingdom",
+   "articles": 564,
+   "events": 110,
+   "tone": -1.46,
+   "goldstein": 2.76,
+   "risk": 45.8,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.business-standard.com/blueprint-defence-magazine/reports/taking-flight-126110700258_1.html",
+   "date": "20261110"
+  },
+  {
+   "title": "Ukraine & United States: Diplomacy",
+   "actors": "Ukraine / Ukraine",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "UKR",
+    "USA"
+   ],
+   "place": "Kyiv, Kyyiv, Misto, Ukraine",
+   "articles": 6955,
+   "events": 183,
+   "tone": -1.32,
+   "goldstein": 4.99,
+   "risk": 45.3,
+   "tickers": [
+    "LMT",
+    "RTX",
+    "GD",
+    "XOM",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "https://cedarnews.net/newstasks/1130907/ukraine-peace-talks-resume-some-flexibility-warring/",
+   "date": "20261110"
+  },
+  {
+   "title": "BHS & United States: Diplomacy",
+   "actors": "Bahama / Bahama",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "BHS",
+    "USA"
+   ],
+   "place": "Texas, United States",
+   "articles": 3530,
+   "events": 19,
+   "tone": -1.17,
+   "goldstein": 2.33,
+   "risk": 44.7,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.perthnow.com.au/news/world/florida-plane-crash-nanny-anita-maria-cetina-called-sister-from-doomed-learjet-60-c-23131048",
+   "date": "20261110"
+  },
+  {
+   "title": "China & United States: Appeal",
+   "actors": "United States / China",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "USA"
+   ],
+   "place": "Beijing, Beijing, China",
+   "articles": 692,
+   "events": 37,
+   "tone": -1.14,
+   "goldstein": 3.08,
+   "risk": 44.6,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://woc1420.iheart.com/content/2026-11-09-trump-praises-nvidias-jensen-huang-amid-spy-probe/",
+   "date": "20261110"
+  },
+  {
+   "title": "Russia & United States: Diplomacy",
+   "actors": "Russia / Russia",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "RUS",
+    "USA"
+   ],
+   "place": "Kyiv, Kyyiv, Misto, Ukraine",
+   "articles": 3072,
+   "events": 153,
+   "tone": -1.1,
+   "goldstein": 5.07,
+   "risk": 44.4,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "CAT",
+    "DE",
+    "FDX"
+   ],
+   "url": "https://www.wfmj.com/news/international/trump-envoys-aim-to-persuade-russia-to-include-europe-in-negotiations-on-ending-war-with/article_a725da41-031b-5a80-9d30-e51fd5a3046f.html",
+   "date": "20261110"
+  },
+  {
+   "title": "China & United States: Diplomacy",
+   "actors": "China / China",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "USA"
+   ],
+   "place": "Beijing, Beijing, China",
+   "articles": 849,
+   "events": 113,
+   "tone": -0.74,
+   "goldstein": 2.16,
+   "risk": 43.0,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://www.freemalaysiatoday.com/category/world/2026/11/10/trump-says-nvidia-ceo-had-no-idea-lover-was-alleged-chinese-spy",
+   "date": "20261110"
+  },
+  {
+   "title": "China & United States: Cooperation",
+   "actors": "China / Nvidia",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "USA"
+   ],
+   "place": "Beijing, Beijing, China",
+   "articles": 458,
+   "events": 19,
+   "tone": -0.75,
+   "goldstein": 5.25,
+   "risk": 43.0,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://whp580.iheart.com/content/2026-11-09-trump-praises-nvidias-jensen-huang-amid-spy-probe/",
+   "date": "20261110"
+  },
+  {
+   "title": "Europe & Ukraine: Diplomacy",
+   "actors": "European / European",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "EUR",
+    "UKR"
+   ],
+   "place": "Kyiv, Kyyiv, Misto, Ukraine",
+   "articles": 1755,
+   "events": 54,
+   "tone": -0.23,
+   "goldstein": 4.15,
+   "risk": 40.9,
+   "tickers": [
+    "LMT",
+    "RTX",
+    "GD",
+    "XOM",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "https://kesq.com/news/national-world/cnn-world/2026/11/09/ukraine-peace-talks-to-restart-after-9-months-what-makes-them-different-this-time/",
+   "date": "20261110"
+  },
+  {
+   "title": "Russia & Ukraine: Statement",
+   "actors": "Russia / Ukraine",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "RUS",
+    "UKR"
+   ],
+   "place": "Kyiv, Kyyiv, Misto, Ukraine",
+   "articles": 341,
+   "events": 23,
+   "tone": -1.68,
+   "goldstein": 0.07,
+   "risk": 40.8,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "GD",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://www.hngn.com/articles/273753/20261109/ukrainian-drones-hit-kirishi-refinery-abu-dhabi-talks-near.htm",
+   "date": "20261110"
+  },
+  {
+   "title": "Ukraine & WST: Diplomacy",
+   "actors": "Nato / Nato",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "UKR",
+    "WST"
+   ],
+   "place": "Kyiv, Kyyiv, Misto, Ukraine",
+   "articles": 872,
+   "events": 16,
+   "tone": 0.17,
+   "goldstein": 2.5,
+   "risk": 40.0,
+   "tickers": [
+    "LMT",
+    "RTX",
+    "GD",
+    "XOM",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "https://www.rte.ie/news/ukraine/2026/1110/1598616-ukraine-russia/",
+   "date": "20261110"
+  },
+  {
+   "title": "Canada & JOR: Statement",
+   "actors": "Hassan / Canada",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CAN",
+    "JOR"
+   ],
+   "place": "Quebec, Quebec, Canada",
+   "articles": 422,
+   "events": 2,
+   "tone": 0.57,
+   "goldstein": 0.0,
+   "risk": 40.0,
+   "tickers": [
+    "GM",
+    "F",
+    "CVX",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.yourlocalguardian.co.uk/news/national/uk-today/26714072.tesco-hack-uses-app-shopping-list-save-time-store/",
+   "date": "20261110"
+  },
+  {
+   "title": "France & United States: Diplomacy",
+   "actors": "France / France",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "FRA",
+    "USA"
+   ],
+   "place": "France",
+   "articles": 404,
+   "events": 44,
+   "tone": 0.59,
+   "goldstein": 3.13,
+   "risk": 40.0,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.wyff4.com/article/106-year-old-wwii-veteran-service/74380588",
+   "date": "20261110"
+  },
+  {
+   "title": "Canada & China: Diplomacy",
+   "actors": "Chinese / Chinese",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CAN",
+    "CHN"
+   ],
+   "place": "Ottawa, Ontario, Canada",
+   "articles": 386,
+   "events": 45,
+   "tone": 0.06,
+   "goldstein": 1.73,
+   "risk": 38.6,
+   "tickers": [
+    "GM",
+    "F",
+    "CVX",
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE"
+   ],
+   "url": "https://www.cbc.ca/news/politics/tiananmen-square-candle-beijing-embassy-9.7415257",
+   "date": "20261110"
+  },
+  {
+   "title": "China & PGS: Material cooperation",
+   "actors": "China / Persian Gulf",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "PGS"
+   ],
+   "place": "Linhai, Zhejiang, China",
+   "articles": 305,
+   "events": 2,
+   "tone": -1.76,
+   "goldstein": 6.4,
+   "risk": 37.5,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://www.the-messenger.com/news/world/article_46992e5e-9a28-56fa-aa36-82f4e94bd89c.html",
+   "date": "20261110"
+  },
+  {
+   "title": "China & Venezuela: Diplomacy",
+   "actors": "China / China",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "VEN"
+   ],
+   "place": "China",
+   "articles": 312,
+   "events": 4,
+   "tone": -1.19,
+   "goldstein": 2.35,
+   "risk": 36.0,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "XOM",
+    "CVX"
+   ],
+   "url": "https://aninews.in/news/world/us/biggest-oil-deal-in-world-history-jd-vance-claims-us-control-of-venezuelan-reserves-energy-dominance20261110033423/",
+   "date": "20261110"
+  },
+  {
+   "title": "SEA & United States: Material cooperation",
+   "actors": "United States / Asean",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "SEA",
+    "USA"
+   ],
+   "place": "United States",
+   "articles": 344,
+   "events": 3,
+   "tone": 2.53,
+   "goldstein": 6.4,
+   "risk": 34.4,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "http://www.bignewsnetwork.com/news/279423427/1st-ld-china-foreign-trade-growth-picks-up-pace-in-first-10-months",
+   "date": "20261110"
+  },
+  {
+   "title": "Argentina & United States: Diplomacy",
+   "actors": "Argentina / Argentina",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "ARG",
+    "USA"
+   ],
+   "place": "Buenos Aires, Distrito Federal, Argentina",
+   "articles": 310,
+   "events": 22,
+   "tone": 0.31,
+   "goldstein": 2.31,
+   "risk": 31.0,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.cathstan.org/us-world/pope-leo-celebrates-mass-with-2-5-million-people-in-heart-of-buenos-aires",
+   "date": "20261110"
+  },
+  {
+   "title": "France & Ukraine: Diplomacy",
+   "actors": "Ukraine / Ukraine",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "FRA",
+    "UKR"
+   ],
+   "place": "Paris, France (general), France",
+   "articles": 301,
+   "events": 61,
+   "tone": 1.32,
+   "goldstein": 3.7,
+   "risk": 30.1,
+   "tickers": [
+    "LMT",
+    "RTX",
+    "GD",
+    "XOM",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "https://www.goulburnpost.com.au/story/9389031/russia-ukraine-to-meet-for-us-brokered-talks-in-uae/",
+   "date": "20261110"
+  },
+  {
+   "title": "Ecuador & Panama: Concession",
+   "actors": "Panama / Ecuador",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "ECU",
+    "PAN"
+   ],
+   "place": "Ecuador",
+   "articles": 1090,
+   "events": 2,
+   "tone": -11.21,
+   "goldstein": 5.0,
+   "risk": 29.7,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://wiod.iheart.com/content/2026-11-10-guilty-plea-for-man-in-100-million-brinks-heist/",
+   "date": "20261110"
+  },
+  {
+   "title": "Japan & United States: Diplomacy",
+   "actors": "Japan / Japan",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "JPN",
+    "USA"
+   ],
+   "place": "Ohio, United States",
+   "articles": 279,
+   "events": 44,
+   "tone": 0.18,
+   "goldstein": 2.73,
+   "risk": 27.9,
+   "tickers": [
+    "TSLA",
+    "GM",
+    "AAPL",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.parkrecord.com/2026/11/09/koyote-open-for-dinner-in-park-city-starting-nov-11/",
+   "date": "20261110"
+  },
+  {
+   "title": "Ethiopia & Sudan: Criticism",
+   "actors": "Ethiopia / Sudan",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "ETH",
+    "SDN"
+   ],
+   "place": "Tigray, Tigray, Ethiopia",
+   "articles": 882,
+   "events": 16,
+   "tone": -6.53,
+   "goldstein": -2.0,
+   "risk": 27.3,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC",
+    "CAT",
+    "BA"
+   ],
+   "url": "https://allafrica.com/stories/202611100043.html",
+   "date": "20261110"
+  },
+  {
+   "title": "Egypt & Ethiopia: Criticism",
+   "actors": "Ethiopian / Egypt",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "EGY",
+    "ETH"
+   ],
+   "place": "Sudan",
+   "articles": 830,
+   "events": 3,
+   "tone": -6.19,
+   "goldstein": -2.0,
+   "risk": 26.9,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC",
+    "CAT",
+    "BA"
+   ],
+   "url": "https://www.kedm.org/npr-news/2026-11-10/seven-days-of-chaos-in-the-er-how-this-countrys-healthcare-system-is-unraveling",
+   "date": "20261110"
+  },
+  {
+   "title": "BGD & United Kingdom: Diplomacy",
+   "actors": "Bangladesh / Bangladesh",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "BGD",
+    "GBR"
+   ],
+   "place": "Bangladesh",
+   "articles": 2090,
+   "events": 10,
+   "tone": -4.05,
+   "goldstein": 2.26,
+   "risk": 19.7,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.rhyljournal.co.uk/news/national/26716200.sophie-visits-rohingya-refugee-camps-coxs-bazar-trip-bangladesh/",
+   "date": "20261110"
+  },
+  {
+   "title": "HTI & SLV: Diplomacy",
+   "actors": "Haitian / Haitian",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "HTI",
+    "SLV"
+   ],
+   "place": "El Salvador",
+   "articles": 728,
+   "events": 39,
+   "tone": -2.78,
+   "goldstein": 2.18,
+   "risk": 17.9,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "http://www.goskagit.com/news/world/haitian-leader-to-visit-el-salvador-to-discuss-future-of-salvadoran-troops-offensive-in-haiti/article_f0d9e8ab-6cb9-5dc0-8489-e1be54334224.html",
+   "date": "20261110"
+  },
+  {
+   "title": "BEL & Europe: Diplomacy",
+   "actors": "European Parliament / Brussels",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "BEL",
+    "EUR"
+   ],
+   "place": "Brussels, Bruxelles-Capitale, Belgium",
+   "articles": 585,
+   "events": 31,
+   "tone": -2.47,
+   "goldstein": 2.82,
+   "risk": 17.5,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.film-news.co.uk/news/UK/130191/Meghan-Duchess-of-Sussex-cancels-child-safety-speech-in-Brussels",
+   "date": "20261110"
+  },
+  {
+   "title": "UAE & DNK: Diplomacy",
+   "actors": "Abu Dhabi / Abu Dhabi",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "ARE",
+    "DNK"
+   ],
+   "place": "Copenhagen, K\u00f8avn*, Denmark",
+   "articles": 800,
+   "events": 8,
+   "tone": -0.94,
+   "goldstein": 1.67,
+   "risk": 15.3,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "http://www.bgnes.com/politics/denmark-pledges-720-million-in-military-aid-to-ukraine-as-zelensky-meets-nordic-leaders",
+   "date": "20261110"
+  },
+  {
+   "title": "Australia & KEN: Diplomacy",
+   "actors": "Australia / Australia",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "AUS",
+    "KEN"
+   ],
+   "place": "Antalya, Antalya, Turkey",
+   "articles": 620,
+   "events": 10,
+   "tone": -0.9,
+   "goldstein": 5.14,
+   "risk": 15.3,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.winnipegfreepress.com/arts-and-life/life/greenpage/2026/11/10/nations-promise-to-install-more-rooftop-solar-at-un-climate-talks",
+   "date": "20261110"
+  },
+  {
+   "title": "BEL & United Kingdom: Diplomacy",
+   "actors": "United Kingdom / United Kingdom",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "BEL",
+    "GBR"
+   ],
+   "place": "Sussex, East Sussex, United Kingdom",
+   "articles": 736,
+   "events": 44,
+   "tone": -0.65,
+   "goldstein": 3.27,
+   "risk": 14.9,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.wimbledonguardian.co.uk/news/national/26713980.meghan-make-first-public-appearance-since-fathers-arrest-us/",
+   "date": "20261110"
+  },
+  {
+   "title": "Australia & Nigeria: Diplomacy",
+   "actors": "Nigeria / Nigeria",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "AUS",
+    "NGA"
+   ],
+   "place": "Antalya, Antalya, Turkey",
+   "articles": 610,
+   "events": 14,
+   "tone": -0.24,
+   "goldstein": 4.34,
+   "risk": 14.3,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://thenationonlineng.net/fed-govt-committee-pushes-for-improved-autism-care-in-universities/",
+   "date": "20261110"
+  },
+  {
+   "title": "Australia & Turkey: Diplomacy",
+   "actors": "Australia / Australia",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "AUS",
+    "TUR"
+   ],
+   "place": "Antalya, Antalya, Turkey",
+   "articles": 380,
+   "events": 11,
+   "tone": -0.55,
+   "goldstein": 2.31,
+   "risk": 14.1,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.santafenewmexican.com/ap/international/un-climate-summit-kicks-off-in-turkey-after-a-disastrous-year-of-extreme-weather/article_191c5755-6891-5f2a-ae1a-c992782ba0d2.html",
+   "date": "20261110"
+  },
+  {
+   "title": "Germany & United Kingdom: Appeal",
+   "actors": "Germany / German",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "DEU",
+    "GBR"
+   ],
+   "place": "Germany",
+   "articles": 855,
+   "events": 4,
+   "tone": 0.92,
+   "goldstein": 3.0,
+   "risk": 14.0,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.andoveradvertiser.co.uk/news/national/26714175.vodafone-axed-another-3-000-jobs-first-half-amid-cost-cutting-overhaul/",
+   "date": "20261110"
+  },
+  {
+   "title": "BGD & Turkey: Diplomacy",
+   "actors": "Bangladesh / Bangladesh",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "BGD",
+    "TUR"
+   ],
+   "place": "Dhaka, Dhaka, Bangladesh",
+   "articles": 482,
+   "events": 29,
+   "tone": 0.24,
+   "goldstein": 1.81,
+   "risk": 14.0,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://news.webindia123.com/news/Articles/World/20261110/4517890.html",
+   "date": "20261110"
+  },
+  {
+   "title": "Germany & United Kingdom: Diplomacy",
+   "actors": "Germany / United Kingdom",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "DEU",
+    "GBR"
+   ],
+   "place": "Barrot, Auvergne, France",
+   "articles": 388,
+   "events": 55,
+   "tone": 0.02,
+   "goldstein": 3.29,
+   "risk": 13.6,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.aol.co.uk/articles/ukraine-peace-talks-abu-dhabi-054405000.html",
+   "date": "20261110"
+  },
+  {
+   "title": "Europe & United Kingdom: Diplomacy",
+   "actors": "United Kingdom / United Kingdom",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "EUR",
+    "GBR"
+   ],
+   "place": "United Kingdom",
+   "articles": 331,
+   "events": 43,
+   "tone": -0.34,
+   "goldstein": 3.6,
+   "risk": 12.1,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.freemalaysiatoday.com/category/world/2026/11/10/harry-meghan-visit-brussels-after-thomas-markle-arrest",
+   "date": "20261110"
+  }
+ ],
+ "mentions": {
+  "AAPL": {
+   "20261110": 21
+  },
+  "ABT": {
+   "20261110": 4
+  },
+  "ACN": {
+   "20261110": 15
+  },
+  "ADBE": {
+   "20261110": 8
+  },
+  "AIG": {
+   "20261110": 1
+  },
+  "AMD": {
+   "20261110": 7
+  },
+  "AMZN": {
+   "20261110": 18
+  },
+  "BA": {
+   "20261110": 35
+  },
+  "BAC": {
+   "20261110": 7
+  },
+  "BKNG": {
+   "20261110": 5
+  },
+  "BLK": {
+   "20261110": 4
+  },
+  "BRK-B": {
+   "20261110": 4
+  },
+  "C": {
+   "20261110": 8
+  },
+  "CHTR": {
+   "20261110": 14
+  },
+  "COP": {
+   "20261110": 2
+  },
+  "COST": {
+   "20261110": 6
+  },
+  "CRM": {
+   "20261110": 1
+  },
+  "CSCO": {
+   "20261110": 4
+  },
+  "CVX": {
+   "20261110": 9
+  },
+  "DIS": {
+   "20261110": 27
+  },
+  "DUK": {
+   "20261110": 1
+  },
+  "EMR": {
+   "20261110": 1
+  },
+  "F": {
+   "20261110": 2
+  },
+  "FDX": {
+   "20261110": 2
+  },
+  "GE": {
+   "20261110": 1
+  },
+  "GOOGL": {
+   "20261110": 157
+  },
+  "GOOG": {
+   "20261110": 157
+  },
+  "GS": {
+   "20261110": 10
+  },
+  "HD": {
+   "20261110": 1
+  },
+  "HON": {
+   "20261110": 1
+  },
+  "IBM": {
+   "20261110": 3
+  },
+  "INTC": {
+   "20261110": 3
+  },
+  "INTU": {
+   "20261110": 1
+  },
+  "JPM": {
+   "20261110": 1
+  },
+  "KO": {
+   "20261110": 5
+  },
+  "LLY": {
+   "20261110": 8
+  },
+  "LMT": {
+   "20261110": 8
+  },
+  "MA": {
+   "20261110": 11
+  },
+  "MCD": {
+   "20261110": 2
+  },
+  "META": {
+   "20261110": 8
+  },
+  "MMM": {
+   "20261110": 6
+  },
+  "MS": {
+   "20261110": 9
+  },
+  "MSFT": {
+   "20261110": 52
+  },
+  "NFLX": {
+   "20261110": 53
+  },
+  "NKE": {
+   "20261110": 1
+  },
+  "NOW": {
+   "20261110": 2
+  },
+  "NVDA": {
+   "20261110": 534
+  },
+  "ORCL": {
+   "20261110": 6
+  },
+  "PEP": {
+   "20261110": 5
+  },
+  "PFE": {
+   "20261110": 2
+  },
+  "PLTR": {
+   "20261110": 8
+  },
+  "PM": {
+   "20261110": 2
+  },
+  "PYPL": {
+   "20261110": 1
+  },
+  "QCOM": {
+   "20261110": 2
+  },
+  "RTX": {
+   "20261110": 2
+  },
+  "SBUX": {
+   "20261110": 4
+  },
+  "T": {
+   "20261110": 1
+  },
+  "TMUS": {
+   "20261110": 1
+  },
+  "TSLA": {
+   "20261110": 19
+  },
+  "UNP": {
+   "20261110": 4
+  },
+  "UPS": {
+   "20261110": 12
+  },
+  "VZ": {
+   "20261110": 7
+  },
+  "WFC": {
+   "20261110": 4
+  },
+  "WMT": {
+   "20261110": 6
+  },
+  "XOM": {
+   "20261110": 24
+  }
+ }
+}
