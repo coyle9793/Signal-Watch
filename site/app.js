@@ -96,20 +96,42 @@ async function openStock(t) {
   const paint = () => { sb.textContent = WATCH.has(t) ? "★ On your watchlist" : "☆ Add to watchlist"; sb.classList.toggle("on", WATCH.has(t)); };
   paint(); sb.onclick = () => { WATCH.toggle(t); paint(); };
   $("#drawer").hidden = false;
-  hist = await load(`history/${t}.json`);
+  curT = t;
+  [hist] = await Promise.all([load(`history/${t}.json`), loadMoves()]);
   drawChart(252);
 }
+// ---- "Why did it move?": big moves pinned on the chart, each with its likely reason
+let MOVES = null, curT = null;
+const MK = { earnings: ["Earnings", "#ffd75c"], news: ["News", "#2ef2ff"], market: ["Whole market", "#a59fc9"], sector: ["Sector", "#6b5cff"], world: ["World event", "#ffa53d"], insider: ["Insiders", "#b44dff"], unknown: ["No clear reason", "#ff5c8a"] };
+const loadMoves = () => MOVES ? Promise.resolve(MOVES) : load("moves.json").then((m) => (MOVES = m)).catch(() => (MOVES = { moves: {} }));
 function drawChart(n) {
   document.querySelectorAll(".ranges button").forEach((b) => b.classList.toggle("on", +b.dataset.r === n));
   const d = hist.dates.slice(-n), c = hist.close.slice(-n);
   const col = c[c.length - 1] >= c[0] ? "#3ee08f" : "#ff5c8a";
+  const all = (MOVES?.moves?.[curT] || []).filter((m) => m.date >= d[0]);
+  // keep the chart readable: at most 12 pins, the biggest moves in view
+  const shown = [...all].sort((a, b) => Math.abs(b.ret - b.market) - Math.abs(a.ret - a.market)).slice(0, 12);
+  const at = Object.fromEntries(shown.map((m) => [m.date, m]));
+  const pins = d.map((x, i) => (at[x] ? c[i] : null));
   chart?.destroy();
   chart = new Chart($("#d-chart"), {
     type: "line",
-    data: { labels: d, datasets: [{ data: c, borderColor: col, borderWidth: 1.5, pointRadius: 0, fill: true, backgroundColor: col + "22", tension: 0.1 }] },
-    options: { maintainAspectRatio: false, animation: false, plugins: { legend: { display: false } }, interaction: { mode: "index", intersect: false },
-      scales: { x: { ticks: { color: "#8b949e", maxTicksLimit: 6 }, grid: { color: "#21262d" } }, y: { ticks: { color: "#8b949e" }, grid: { color: "#21262d" } } } },
+    data: { labels: d, datasets: [
+      { data: c, borderColor: col, borderWidth: 1.5, pointRadius: 0, fill: true, backgroundColor: col + "22", tension: 0.1 },
+      { data: pins, showLine: false, pointRadius: d.map((x) => (at[x] ? 7 : 0)), pointHoverRadius: 9, pointBorderColor: "#fff", pointBorderWidth: 1.5,
+        pointBackgroundColor: d.map((x) => (at[x] ? MK[at[x].kind][1] : "transparent")), pointStyle: d.map((x) => (at[x] ? (at[x].ret < 0 ? "triangle" : "circle") : "circle")), pointRotation: d.map((x) => (at[x]?.ret < 0 ? 180 : 0)) },
+    ] },
+    options: { maintainAspectRatio: false, animation: false, plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: (ctx) => ctx.datasetIndex === 0 ? `$${ctx.parsed.y.toFixed(2)}` : (() => { const m = at[d[ctx.dataIndex]]; return m ? [`${pct(m.ret)} (${MK[m.kind][0]})`, m.text.length > 70 ? m.text.slice(0, 68) + "…" : m.text] : ""; })() } } },
+      interaction: { mode: "index", intersect: false },
+      onClick: (e, els) => { const el = els.find((x) => x.datasetIndex === 1 && pins[x.index] != null); if (el) document.getElementById("mv-" + d[el.index])?.scrollIntoView({ behavior: "smooth", block: "nearest" }); },
+      scales: { x: { ticks: { color: "#a59fc9", maxTicksLimit: 6 }, grid: { color: "#1c1838" } }, y: { ticks: { color: "#a59fc9" }, grid: { color: "#1c1838" } } } },
   });
+  const list = shown.sort((a, b) => (a.date < b.date ? 1 : -1));
+  $("#d-moves").innerHTML = list.length ? list.map((m) => `<li id="mv-${m.date}" class="mv"><span class="mvk" style="--k:${MK[m.kind][1]}"><span class="ex" data-ex="mv-${m.kind}">${MK[m.kind][0]}</span></span>
+      <div><div><b class="${cls(m.ret)}">${pct(m.ret)}</b> <span class="meta">on ${esc(m.date)} · market ${pct(m.market)}</span></div>
+      <div>${m.kind === "news" ? `“${esc(m.text)}”` : esc(m.text)}${m.url ? ` <a href="${esc(m.url)}" target="_blank" rel="noopener">${esc(m.src)}</a>` : m.src ? ` <span class="meta">(${esc(m.src)})</span>` : ""}</div></div></li>`).join("")
+    : `<li class="meta">No big moves (3%+ beyond the market) in this period.</li>`;
 }
 document.querySelectorAll(".ranges button").forEach((b) => b.onclick = () => drawChart(+b.dataset.r));
 $("#close").onclick = () => ($("#drawer").hidden = true);

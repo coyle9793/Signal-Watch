@@ -247,3 +247,13 @@ th.st,td.st{width:28px;padding-right:0}
 #world-body .card{cursor:pointer}
 @media (max-width:900px){.stormk{grid-template-columns:1fr 1fr}.stormcast{grid-column:1/-1}.todaygrid.three,.excols{grid-template-columns:1fr}}
 .tcard.span3{grid-column:1/-1}
+/* ---- why did it move ---- */
+.moves{list-style:none;margin:6px 0 14px;padding:0;display:grid;gap:6px;max-height:340px;overflow:auto}
+.mv{display:grid;grid-template-columns:118px 1fr;gap:10px;align-items:start;border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:rgba(14,11,28,.7);font-size:13.5px}
+.mv:target,.mv:focus-within{border-color:var(--c)}
+.mvk{display:inline-block;font:700 11px Inter,sans-serif;padding:3px 8px;border-radius:99px;border:1px solid var(--k);color:var(--k);text-align:center;box-shadow:0 0 8px color-mix(in srgb,var(--k) 40%,transparent)}
+.mv a{color:var(--c)}
+@media (max-width:600px){.mv{grid-template-columns:1fr}}
+.onwatch{grid-column:1/-1;border:1px dashed rgba(255,228,92,.45);border-radius:10px;padding:8px 12px;background:rgba(255,228,92,.04)}
+.onwatch>summary{cursor:pointer;list-style:none;color:var(--lv-yellow);font-size:14.5px}.onwatch>summary::-webkit-details-marker{display:none}
+.onwatch[open]>summary{margin-bottom:10px}

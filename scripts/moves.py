@@ -130,6 +130,13 @@ def main():
                 txt = "Earnings day" + (f": profit {'beat' if s >= 0 else 'missed'} forecasts by {abs(s):.0f}%" if s is not None else ": the company reported results")
                 why = {"kind": "earnings", "text": txt, "src": "Yahoo Finance earnings calendar"}
             if not why:
+                k = r.index.get_loc(d)
+                for back in (2, 3):     # still reacting to results from a day or two earlier
+                    if k - back < 0: break
+                    pd_ = r.index[k - back].strftime("%Y-%m-%d"); e = ed.get(pd_)
+                    if e and (e["after_close"] or back == 2):
+                        why = {"kind": "earnings", "text": f"Still reacting to earnings on {pd_}", "src": "Yahoo Finance earnings calendar"}; break
+            if not why:
                 for dk in (ds.replace("-", ""), prev.replace("-", "")):
                     for u in arc.get(t, {}).get(dk, []):
                         h = headline(u)
@@ -149,7 +156,7 @@ def main():
             if not why:
                 ins = [x for x in f4 if x["ticker"] == t and x["date"] and abs((dt.date.fromisoformat(x["date"]) - d.date()).days) <= 3]
                 if ins:
-                    why = {"kind": "insider", "text": f"No news found, but {len(ins)} insider trade{'s were' if len(ins) > 1 else ' was'} filed around then"}
+                    why = {"kind": "insider", "text": f"No clear reason, but {len(ins)} insider trade{'s were' if len(ins) > 1 else ' was'} filed around then"}
             moves.append({"date": ds, "ret": round(ret, 4), "market": round(mk, 4), **(why or {"kind": "unknown", "text": "No clear reason in our data"})})
         out[t] = moves
     kinds = pd.Series([x["kind"] for v in out.values() for x in v]).value_counts().to_dict()

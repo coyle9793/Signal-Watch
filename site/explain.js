@@ -73,6 +73,13 @@
     theme: ["Theme", "A big trend or risk many companies share, like chips made in Taiwan or interest rates. Rough guide from public company reports."],
     place: ["Place", "Countries a company depends on for supplies or sales. All these companies are based in the US."],
     worldrisk: ["World risk", "The stock is in a sector that's often sensitive to one of today's biggest world events."],
+    "mv-earnings": ["Earnings day", "The company reported its results (profits and sales) that day or the evening before. Beating or missing what analysts expected often moves a stock a lot."],
+    "mv-news": ["News", "A news story naming the company that day. We show its headline and link to it. A report isn't proof of anything."],
+    "mv-market": ["Whole market", "The entire market moved hard that day, so the stock was mostly carried along with it."],
+    "mv-sector": ["Sector move", "Most companies in the same industry moved the same way that day, so the reason was probably industry-wide news."],
+    "mv-world": ["World event", "A big world event from our history list happened that day."],
+    "mv-insider": ["Insider filings", "We found no news, but company insiders traded around then. It's a clue, not an explanation."],
+    "mv-unknown": ["No clear reason", "None of our data explains this move. Often it's analyst notes, rumours or news we don't track."],
     sector: ["Sector", "The part of the economy a company is in, like Technology, Energy or Health Care. Stocks in the same sector often move together."],
   };
   // label text (lower case) -> glossary key

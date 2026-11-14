@@ -93,7 +93,7 @@
     // warnings
     const only = $("#st-w").checked;
     const list = RADAR.filter((r) => r.lv <= 2 && (!only || WATCH.has(r.s.ticker)));
-    $("#st-list").innerHTML = list.slice(0, only ? 99 : 24).map((r) => `<div class="card stormcard lv-${LV[r.lv][0]}">
+    const card = (r) => `<div class="card stormcard lv-${LV[r.lv][0]}">
       <h3>${star(r.s.ticker)} ${lvBadge(r.lv)} <span class="tk" style="font-size:16px">${esc(r.s.ticker)}</span> <span class="meta">${esc(r.s.name)}</span></h3>
       <div class="row"><span>$${r.s.price.toFixed(2)} <span class="${cls(r.s.chg_1d)}">${pct(r.s.chg_1d, 2)}</span> · 1 month <span class="${cls(r.s.chg_1m)}">${pct(r.s.chg_1m)}</span></span><span class="sc">${EX.ex("radar", "storm score")} ${r.score}</span></div>
       <div class="smeter"><b style="width:${Math.min(100, r.score * 10)}%"></b></div>
@@ -102,7 +102,12 @@
         <ul class="facts">${next(r.s).map((x) => `<li>${x}</li>`).join("")}</ul>
         <p class="planh">Storm plan (${LV[r.lv][1].toLowerCase()})</p><ul class="facts">${PLAN[r.lv].map((x) => `<li>${x}</li>`).join("")}</ul>
         <p class="meta">Ideas to think about, not advice. History is a guide, not a promise.</p></details>
-    </div>`).join("") || `<div class="placeholder">${only ? "Nothing on your watchlist is under a warning. ☀️" : "No warnings today. ☀️"}</div>`;
+    </div>`;
+    // red and amber show in full; yellows fold into one "on watch" button (sorting and thresholds unchanged)
+    const main = list.filter((r) => r.lv <= 1), yel = list.filter((r) => r.lv === 2);
+    const wasOpen = $("#st-yellow")?.open;
+    $("#st-list").innerHTML = (main.map(card).join("") || `<div class="placeholder">${only ? "Nothing on your watchlist is under an amber or red warning. ☀️" : "No amber or red warnings today. ☀️"}</div>`) +
+      (yel.length ? `<details class="onwatch" id="st-yellow"${wasOpen ? " open" : ""}><summary>🌦️ <b>${yel.length}</b> on watch <span class="meta">(<span class="ex" data-ex="lv-yellow">yellow</span>, tap to show)</span></summary><div class="cards">${yel.map(card).join("")}</div></details>` : "");
 
     // rainbow watch
     const spy = window.SPY || {};
