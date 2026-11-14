@@ -14,7 +14,11 @@
   }
 
   window.renderIssue = function (d) {
-    const { spy, stocks, dateLong, moodTxt, sc, stories, span, cap, clusters, ins, outs, worst, sorted, rows, world, esc, pct, apct, fmt, num, logo } = d;
+    const { spy, stocks, dateLong, moodTxt, sc, stories, span, cap, clusters, ins, outs, worst, sorted, rows, world, esc, pct, apct, fmt, num, logo, gdelt } = d;
+    const helpers = { esc, pct, apct, fmt, fmtG: (s) => fmt(gdelt(String(s))), logoBig: (t) => logo(t).replace('class="lg"', 'class="lg lg-big"').replace('class="lg lg-txt"', 'class="lg lg-big lg-txt"') };
+    const raw = window.TT_RAW || {};
+    const oppHtml = window.renderOpp ? window.renderOpp(raw, helpers) : "";
+    const scopesHtml = window.renderScopes ? window.renderScopes(raw, helpers) : "";
     const issueNo = Math.max(1, Math.round((new Date(spy.date) - new Date("2026-11-01")) / 864e5));
     const N = stocks.length;
 
@@ -30,6 +34,8 @@
       ["05", "Worst night", `${worst.name}'s ${pct(worst.chg_1d)}`, "worst-i"],
       ["06", "World news", "The events moving markets", "world-i"],
       ["07", "Best &amp; worst dressed", "The day's winners and losers", "dressed-i"],
+      ["08", "Opp of the day", "The company that had a very bad day", "opp-i"],
+      ["09", "Stockscopes", "What the stars say about your sector", "scopes-i"],
     ];
 
     // cover chart: the S&P 500 over the last few months
@@ -45,7 +51,7 @@
     $("#issue").innerHTML = `
     <header class="mast">
       <a class="mast-logo" href="#top"><span class="mast-kick">THE TICKER</span><span class="gt glow">TATTLER</span></a>
-      <nav class="mast-nav">${toc.slice(0, 5).map(([, k, , id]) => `<a href="#${id}">${k}</a>`).join("")}<a href="../">Data desk</a></nav>
+      <nav class="mast-nav">${[toc[0], toc[1], toc[2], toc[6], toc[7], toc[4]].map(([, k, , id]) => `<a href="#${id}">${k}</a>`).join("")}<a href="../">Data desk</a></nav>
       <span class="pill">Issue ${issueNo} · ${esc(dateLong.replace(/ \d{4}$/, ""))}</span>
     </header>
 
@@ -132,6 +138,9 @@
         ${rows.map(([s, pun]) => `<div class="drow"><span>${logo(s.ticker)}${esc(s.name)}, <i>${pun}</i></span><b class="${pcls(s.chg_1d)}">${pct(s.chg_1d)}</b></div>`).join("")}
       </div>
     </section>
+
+    ${oppHtml}
+    ${scopesHtml}
 
     <section class="desk">
       <div class="desk-head"><div><p class="kick">THE DATA DESK</p><h2>Signal Watch, <span class="gt">dressed to match</span></h2></div>

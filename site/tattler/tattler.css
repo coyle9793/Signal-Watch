@@ -340,3 +340,46 @@ body.issue .back{color:var(--mute)}
 }
 
 body.issue .loading{color:var(--mute);font:500 15px Inter,system-ui,sans-serif}
+
+/* ---- 08 Opp of the day ---- */
+body.issue .opp{display:grid;grid-template-columns:260px 1fr;gap:34px;align-items:center;margin:28px 0;border-color:rgba(255,92,138,.45);background:linear-gradient(120deg,rgba(255,92,138,.08),rgba(14,11,28,.95) 50%)}
+body.issue .opp-art{position:relative;display:grid;place-items:center}
+body.issue .opp-frame{position:relative;width:220px;height:220px;border-radius:28px;display:grid;place-items:center;background:radial-gradient(circle,#1a1236,#0b0818);box-shadow:0 0 0 2px #ff5c8a,0 0 26px rgba(255,92,138,.55),0 0 60px rgba(180,77,255,.35),inset 0 0 30px rgba(255,92,138,.2);overflow:hidden;transform:rotate(-3deg)}
+body.issue .opp-frame .lg-big{width:132px;height:132px;border-radius:24px;object-fit:contain;filter:grayscale(.35) contrast(1.05) drop-shadow(0 0 10px rgba(255,255,255,.2))}
+body.issue .opp-frame .lg-txt.lg-big{display:grid;place-items:center;font:900 44px 'Playfair Display',serif;color:#fff;background:none}
+body.issue .opp-frame .crack{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:#fff;stroke-width:2.5;stroke-linejoin:round;opacity:.85;filter:drop-shadow(0 0 4px #ff5c8a)}
+body.issue .opp-arrow{position:absolute;bottom:-14px;right:-6px;background:#ff5c8a;color:#14010a;font:800 15px Inter,sans-serif;padding:6px 12px;border-radius:10px;box-shadow:0 0 18px rgba(255,92,138,.7);transform:rotate(4deg)}
+body.issue .opp h2{font:900 clamp(30px,4vw,48px)/1.05 'Playfair Display',serif;margin:6px 0 10px}
+body.issue .opp-num{font:600 15px Inter,sans-serif;color:var(--mute);margin:0 0 10px}.opp-num b{font:900 26px 'Playfair Display',serif;margin-right:6px}
+body.issue .opp-q{font:italic 700 clamp(18px,2vw,23px)/1.35 'Playfair Display',serif;margin:0 0 10px;color:#fff;border-left:3px solid #ff5c8a;padding-left:14px}
+body.issue .opp .note a{color:var(--c)}
+body.issue .neg{color:#ff5c8a}body.issue .pos{color:#3ee08f}
+/* ---- 09 Stockscopes ---- */
+body.issue .scopes{position:relative}
+body.issue .sc-hero{display:flex;gap:28px;align-items:center;padding:28px 32px;border:1px solid var(--b);border-radius:22px;background:linear-gradient(120deg,rgba(180,77,255,.18),rgba(46,242,255,.07));box-shadow:0 0 40px rgba(107,92,255,.3);margin:6px 0 18px}
+body.issue .sc-hn{font:italic 900 clamp(40px,5vw,62px)/1 'Playfair Display',serif;margin:6px 0}
+body.issue .sc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+body.issue .sc-card{background:linear-gradient(180deg,rgba(22,16,46,.95),rgba(12,9,26,.95));border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:10px}
+body.issue .sc-key{border-style:dashed;justify-content:center}
+body.issue .sc-sign{display:flex;gap:12px;align-items:center}
+body.issue .sc-glyph{flex:none;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,rgba(107,92,255,.25),transparent 70%);box-shadow:0 0 0 1px rgba(107,92,255,.6),0 0 18px rgba(107,92,255,.45),inset 0 0 12px rgba(46,242,255,.25)}
+body.issue .sc-glyph.big{width:130px;height:130px}
+body.issue .sc-glyph svg{fill:none;stroke:url(#ng);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 4px rgba(46,242,255,.8))}
+body.issue .sc-n{font:italic 900 22px/1.05 'Playfair Display',serif;margin:0}
+body.issue .sc-s{font:600 11px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:3px 0 0}
+body.issue .sc-mood{display:flex;justify-content:space-between;align-items:center;font:600 12px Inter,sans-serif;color:var(--mute)}
+body.issue .sc-mood b{font:italic 700 17px 'Playfair Display',serif;color:#fff}
+body.issue .st{color:#ffd75c;letter-spacing:2px;font-size:13px;text-shadow:0 0 8px rgba(255,215,92,.6)}.st-off{color:#3a3160;text-shadow:none}
+body.issue .sc-fc{font:italic 500 15px/1.45 'Playfair Display',serif;color:#e9e4ff;margin:0}.sc-fc.big{font-size:19px;margin-top:10px;max-width:680px}
+body.issue .sc-reads{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+body.issue .sc-reads>div{border:1px solid var(--line);border-radius:10px;padding:6px 8px;background:rgba(6,5,12,.5)}
+body.issue .sc-reads span{display:block;font:600 9.5px Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+body.issue .sc-reads b{font:800 15px Inter,sans-serif}.sc-reads i{font-style:normal}
+body.issue .sc-world{font:500 12.5px/1.45 Inter,sans-serif;color:#cfc9ea;border-left:2px solid var(--b);padding:2px 0 2px 10px;margin:0}
+body.issue .sc-lucky{display:flex;align-items:center;gap:10px;border-top:1px dashed #3a2f6e;padding-top:10px;font-size:13px;margin-top:auto}
+body.issue .sc-lk{font:700 10px Inter,sans-serif;letter-spacing:.16em;color:var(--c);text-transform:uppercase}
+body.issue .sc-tk{font:800 13px ui-monospace,Menlo,monospace;color:#fff;padding:3px 8px;border-radius:7px;background:linear-gradient(90deg,var(--p),var(--b));box-shadow:0 0 10px rgba(140,90,255,.6)}
+body.issue .sc-ln{flex:1;color:#cfc9ea;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.issue .sc-b{font:700 11px Inter,sans-serif;padding:2px 8px;border-radius:6px;white-space:nowrap}.sc-b.Buy{background:#0f3d2a;color:#3ee08f}.sc-b.Hold{background:#2a2540;color:#d9d3ff}.sc-b.Sell{background:#3d0f1e;color:#ff5c8a}
+@media (max-width:980px){body.issue .sc-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:860px){body.issue .opp{grid-template-columns:1fr;justify-items:center;text-align:left}body.issue .opp-body{width:100%}body.issue .sc-grid{grid-template-columns:1fr}body.issue .sc-hero{flex-direction:column;text-align:center;padding:22px 16px}body.issue .sc-glyph.big{width:100px;height:100px}}

@@ -228,11 +228,12 @@
     });
     $("#abroad").innerHTML = world.map((w) => `<div class="note2"><h3>${esc(w.head)}</h3><p>${esc(w.body)}</p><p class="tickers">${w.tickers.map((t) => `<span>${esc(t)}</span>`).join("")}</p></div>`).join("") || `<div class="note2"><p>No major world events in the news today.</p></div>`;
 
-    window.renderIssue?.({ spy, stocks, by, dateLong, moodTxt, big, sc, stories, span, cap, clusters, ins, outs, worst, sorted, rows, world, updated: prices.meta.updated, logo, esc, pct, apct, fmt, num });
+    window.renderIssue?.({ spy, stocks, by, dateLong, moodTxt, big, sc, stories, span, cap, clusters, ins, outs, worst, sorted, rows, world, updated: prices.meta.updated, logo, esc, pct, apct, fmt, num, gdelt });
   }
 
-  Promise.all(["prices.json", "insiders.json", "shocks.json", "events.json", "calls.json"].map((f) => load(f).catch(() => ({}))))
-    .then(([prices, insiders, shocks, events, calls]) => {
+  Promise.all(["prices.json", "insiders.json", "shocks.json", "events.json", "calls.json", "news.json"].map((f) => load(f).catch(() => ({}))))
+    .then(([prices, insiders, shocks, events, calls, news]) => {
+      window.TT_RAW = { prices, insiders, shocks, events, calls, news };
       $("#loading").hidden = true;
       if (!prices.stocks) { $("#loading").hidden = false; $("#loading").textContent = "The gossip line is down. Try again in a minute."; return; }
       render({ prices, insiders, shocks, events, calls });

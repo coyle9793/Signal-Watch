@@ -41,7 +41,17 @@ def mentions(df):
         by_day = df.loc[hit].groupby("dateadded")["url"].nunique()
         if len(by_day):
             out[u["ticker"]] = {str(d): int(n) for d, n in by_day.items()}
+        # keep a few article links per day whose address names the company (used by the Tattler's "Opp of the day")
+        inurl = pd.Series(False, index=df.index)
+        for k in keywords(u):
+            inurl |= url.str.contains(r"(?<![a-z0-9])" + re.escape(k) + r"(?![a-z0-9])", regex=True)
+        sub = df.loc[inurl, ["dateadded", "url"]].drop_duplicates("url")
+        if len(sub):
+            HEADS[u["ticker"]] = {str(d): g["url"].head(8).tolist() for d, g in sub.groupby("dateadded")}
     return out
+
+
+HEADS = {}
 
 
 def fetch(days):
@@ -159,6 +169,7 @@ def main(args):
     meta = {"source":"GDELT 1.0 daily export","date": latest, "news_days": sorted(set(frames_dates(frames))),
             "total_events": int(len(df)), "international_events": int(len(intl))}
     json.dump({"meta": meta, "events": out, "mentions": news}, open(OUT, "w"), indent=1)
+    json.dump({"meta": {"news_days": meta["news_days"]}, "links": HEADS}, open(os.path.join(os.path.dirname(OUT), "news.json"), "w"), separators=(",", ":"))
     print(meta, len(out))
 
 def frames_dates(frames):
