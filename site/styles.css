@@ -121,3 +121,15 @@ label{color:var(--muted);display:flex;gap:6px;align-items:center;cursor:pointer}
 .stamp{position:absolute;right:10px;top:16px;transform:rotate(-14deg);border:3px solid;border-radius:6px;padding:2px 8px;font:800 15px/1.2 system-ui,sans-serif;letter-spacing:.14em;opacity:.85;mix-blend-mode:multiply}
 .stamp.unusual{color:#b3141b;border-color:#b3141b}.stamp.routine{color:#3d5a3d;border-color:#3d5a3d;opacity:.55}
 @media (prefers-reduced-motion:reduce){.alarm,.siren i,.pulse i,.shake{animation:none!important}}
+
+/* ---- market weather ---- */
+#sky{position:fixed;inset:0;z-index:0;pointer-events:none}
+main,footer{position:relative;z-index:1}
+body{background:var(--bg)}
+footer{background:transparent}
+.weather{font-size:13px;font-weight:500;padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--bg);margin-left:6px;white-space:nowrap}
+.weather .meta{font-size:12px}.weather .wi{font-size:15px}
+.weather.sunny{border-color:#d29922}.weather.stormy{border-color:#8957e5}.weather.rainy{border-color:#388bfd}
+.h2,h1,.lede,.meta{text-shadow:0 1px 3px rgba(0,0,0,.6)}
+@media (max-width:600px){.weather .meta{display:none}}
+.tablewrap{background:var(--bg)}.kpi,.card,.spot,.how,.mapwrap{position:relative}

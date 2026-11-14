@@ -8,8 +8,9 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<canvas id="sky" aria-hidden="true"></canvas>
 <header class="top">
-  <div class="brand"><span class="dot"></span> Signal Watch <small>S&amp;P 100</small></div>
+  <div class="brand"><span class="dot"></span> Signal Watch <small>S&amp;P 100</small> <span id="weather" class="weather" hidden></span></div>
   <nav id="tabs">
     <button data-tab="market" class="on">Market</button>
     <button data-tab="insiders">Insider trades</button>
@@ -117,6 +118,7 @@
 <footer>Not financial advice. For information and demonstration only.</footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="weather.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
