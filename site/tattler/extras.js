@@ -1,4 +1,4 @@
-// Ticker Tattler extras: "Opp of the day" and "Stockscopes" (sector horoscopes).
+// Whistle Street Issue extras: "Opp of the day" and "Stockscopes" (sector horoscopes).
 // Both are worked out from the site's real data. Rules kept here on purpose:
 //  - Opp of the day is about a company's bad day, backed by a linked, reported news story.
 //    Stories about anyone's private life, and rumours, are skipped entirely. We say "reported", never guilt.

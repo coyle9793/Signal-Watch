@@ -1,5 +1,5 @@
 // Reality TV roles: a playful, generic archetype for each stock, worked out fresh from each day's data.
-// Original archetypes only (no real shows or people). Used by the main site and the Ticker Tattler.
+// Original archetypes only (no real shows or people). Used by the main site and the Whistle Street Issue.
 (() => {
   const ROLES = {
     voted:   { name: "Voted Off", icon: "🚪", color: "#ff5c8a", blurb: "The worst week in the whole cast." },

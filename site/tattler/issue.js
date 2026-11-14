@@ -1,4 +1,4 @@
-// The Ticker Tattler, issue look: the day's data laid out as a neon magazine issue.
+// Whistle Street Issue: the day's data laid out as a neon magazine issue.
 // Wars and conflicts stay plain and respectful (see the World news section).
 (function () {
   const $ = (s) => document.querySelector(s);
@@ -53,15 +53,15 @@
 
     $("#issue").innerHTML = `
     <header class="mast">
-      <a class="mast-logo" href="#top"><span class="mast-kick">THE TICKER</span><span class="gt glow">TATTLER</span></a>
+      <a class="mast-logo" href="#top"><span class="mast-kick">WHISTLE</span><span class="gt glow">STREET</span></a>
       <nav class="mast-nav">${[toc[0], toc[1], toc[2], toc[6], toc[7], toc[4]].map(([, k, , id]) => `<a href="#${id}">${k}</a>`).join("")}<a href="../">Data desk</a></nav>
       <span class="pill">Issue ${issueNo} · ${esc(dateLong.replace(/ \d{4}$/, ""))}</span>
     </header>
 
     <section class="hero" id="top">
       <div class="cover" role="img" aria-label="This issue's cover">
-        <p class="c-kick">THE TICKER</p>
-        <p class="c-mast gt glow">TATTLER</p>
+        <p class="c-kick">WHISTLE</p>
+        <p class="c-mast gt glow">STREET</p>
         <svg class="c-chart" viewBox="0 0 390 300" preserveAspectRatio="none" aria-hidden="true">
           <defs><linearGradient id="cfill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#2ef2ff" stop-opacity=".3"/><stop offset="1" stop-color="#2ef2ff" stop-opacity="0"/></linearGradient></defs>
           <path d="${cv.area}" fill="url(#cfill)"/>

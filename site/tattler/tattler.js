@@ -1,4 +1,4 @@
-// The Ticker Tattler: turns Whistle Street's daily data into gossip.
+// Whistle Street Issue: turns Whistle Street's daily data into gossip.
 // Every line is generated from site/data/*.json. Insiders are named by role only.
 (function () {
   const NOOP = { set textContent(v) {}, get textContent() { return ""; }, set innerHTML(v) {}, hidden: true };

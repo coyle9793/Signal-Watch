@@ -1,4 +1,4 @@
-/* Who's the Snake? (shared by the main site and the Ticker Tattler) */
+/* Who's the Snake? (shared by the main site and the Whistle Street Issue) */
 .snakebox{--sp:#b44dff;--sb:#6b5cff;--sc:#2ef2ff;--sl:#3ee08f}
 .sn-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}
 .sn-kick{margin:0;color:var(--sc);font:700 11px Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase}
