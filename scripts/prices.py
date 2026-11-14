@@ -18,13 +18,19 @@ TICKERS = [u["ticker"] for u in UNIVERSE] + ["SPY"]  # SPY = the market benchmar
 def fetch_real():
     import yfinance as yf
     raw = yf.download(TICKERS, period="5y", interval="1d", group_by="ticker",
-                      auto_adjust=True, threads=True, progress=False)
+                      auto_adjust=True, threads=False, progress=False)
     out = {}
     for t in TICKERS:
         try:
             df = raw[t][["Open", "High", "Low", "Close", "Volume"]].dropna()
         except KeyError:
-            continue
+            df = pd.DataFrame()
+        if len(df) <= 50:   # retry one by one (the batch download occasionally drops a ticker)
+            try:
+                df = yf.Ticker(t).history(period="5y", interval="1d", auto_adjust=True)[["Open", "High", "Low", "Close", "Volume"]].dropna()
+                df.index = df.index.tz_localize(None)
+            except Exception as e:
+                print("missing", t, e); continue
         if len(df) > 50:
             out[t] = df
     return out, "Yahoo Finance"
