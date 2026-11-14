@@ -29,6 +29,8 @@
       badge.title = "Market weather: based on today's S&P 500 move and how many of the 100 stocks rose";
       badge.innerHTML = `<span class="wi">${m.icon}</span> ${m.label} market <span class="meta">${spy != null ? `${spy >= 0 ? "+" : ""}${(spy * 100).toFixed(2)}%` : ""}${upN != null ? ` · ${upN}/${total} up` : ""}</span>`;
     }
+    const sky = new URLSearchParams(location.search).get("sky");
+    if (sky && window.startSky) { window.startSky(sky, true); return; }
     const cv = document.getElementById("sky");
     if (!cv) return;
     const ctx = cv.getContext("2d");

@@ -35,3 +35,12 @@ body[data-wx=hurricane] .rv{transform:rotate(-7deg) scale(.86)}
 body[data-wx=hurricane] .rv.in{transform:none}
 body.wx-calm .rv{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important;transition:none!important;animation:none!important}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important;transition:none!important}}
+
+/* live weather backdrop (preview switcher + slightly see-through cards so the weather shows) */
+.sky-pick{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:50;display:flex;gap:6px;align-items:center;flex-wrap:nowrap;overflow-x:auto;max-width:calc(100% - 24px);padding:6px 8px;border-radius:99px;background:rgba(10,8,22,.85);border:1px solid #2a2350;box-shadow:0 0 20px rgba(107,92,255,.35);scrollbar-width:none}
+.sky-pick::-webkit-scrollbar{display:none}
+.sky-pick span{font:700 10px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#a59fc9;padding:0 6px;white-space:nowrap}
+.sky-pick button{font:600 12px Inter,sans-serif;color:#f1eeff;background:transparent;border:1px solid #2a2350;border-radius:99px;padding:5px 10px;cursor:pointer;white-space:nowrap}
+.sky-pick button.on{border-color:#2ef2ff;background:rgba(46,242,255,.15);box-shadow:0 0 10px rgba(46,242,255,.4)}
+body[data-sky] .tcard,body[data-sky] .card,body[data-sky] .kpi,body[data-sky] .mood{background:linear-gradient(180deg,rgba(20,15,40,.7),rgba(14,11,28,.74))}
+body[data-sky] header.top{background:rgba(6,5,12,.72)}
