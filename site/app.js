@@ -71,7 +71,7 @@ function renderTable() {
   const rows = STOCKS.filter((s) => (!sec || s.sector === sec) && (!q || s.ticker.toLowerCase().includes(q) || s.name.toLowerCase().includes(q)))
     .sort((a, b) => (a[sortK] > b[sortK] ? 1 : a[sortK] < b[sortK] ? -1 : 0) * sortDir);
   $("#mtable tbody").innerHTML = rows.map((s) => `<tr data-t="${esc(s.ticker)}">
-    <td class="st">${star(s.ticker)}</td><td><b>${esc(s.ticker)}</b> <span class="n">${esc(s.name)}</span></td>
+    <td class="st">${star(s.ticker)}</td><td><b>${esc(s.ticker)}</b> <span class="n">${esc(s.name)}</span> ${roleBadge(window.CAST?.[s.ticker], true)}</td>
     <td class="r">$${s.price.toFixed(2)}</td>
     <td class="r ${cls(s.chg_1d)}">${pct(s.chg_1d, 2)}</td><td class="r ${cls(s.chg_1m)}">${pct(s.chg_1m)}</td><td class="r ${cls(s.chg_1y)}">${pct(s.chg_1y)}</td>
     <td class="r ${s.vol_ratio > 2 ? "hot" : ""}">${s.vol_ratio?.toFixed(1)}×</td><td>${spark(s.spark)}</td></tr>`).join("");
@@ -82,7 +82,8 @@ let chart, hist;
 async function openStock(t) {
   const s = STOCKS.find((x) => x.ticker === t);
   $("#d-title").textContent = `${s.ticker} · ${s.name}`;
-  $("#d-sub").innerHTML = `$${s.price.toFixed(2)} <span class="${cls(s.chg_1d)}">${pct(s.chg_1d, 2)} today</span> · ${esc(s.sector)}`;
+  const rl = window.CAST?.[t];
+  $("#d-sub").innerHTML = `$${s.price.toFixed(2)} <span class="${cls(s.chg_1d)}">${pct(s.chg_1d, 2)} today</span> · ${esc(s.sector)}` + (rl ? `<div class="rolewhy">${roleBadge(rl)} <span>${esc(rl.why)}</span></div>` : "");
   const f = [];
   f.push(`It is <b>${pct(s.drawdown)}</b> from its 5-year high; its worst fall in 5 years was <b>${pct(s.max_drawdown_5y)}</b>.`);
   f.push(`52-week range $${s.low_52w} to $${s.high_52w}. It moves about <b>${(s.volatility_1y * 100).toFixed(0)}%</b> a year (volatility)${s.beta ? `, and about ${s.beta.toFixed(1)}× as much as the market` : ""}.`);
@@ -392,6 +393,7 @@ function renderCalls() {
   await market();
   await shocks();
   await insiders();
+  window.CAST = castRoles(STOCKS, INS.signals, SH.shocks); renderTable();
   await Promise.all([world(), calls()]);
   window.DATA_READY = true;
   document.dispatchEvent(new Event("watch"));

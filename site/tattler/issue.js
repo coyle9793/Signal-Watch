@@ -19,6 +19,7 @@
     const raw = window.TT_RAW || {};
     const oppHtml = window.renderOpp ? window.renderOpp(raw, helpers) : "";
     const scopesHtml = window.renderScopes ? window.renderScopes(raw, helpers) : "";
+    const castHtml = window.renderCast ? window.renderCast(raw, { ...helpers, logo }) : "";
     const issueNo = Math.max(1, Math.round((new Date(spy.date) - new Date("2026-11-01")) / 864e5));
     const N = stocks.length;
 
@@ -36,6 +37,7 @@
       ["07", "Best &amp; worst dressed", "The day's winners and losers", "dressed-i"],
       ["08", "Opp of the day", "The company that had a very bad day", "opp-i"],
       ["09", "Stockscopes", "What the stars say about your sector", "scopes-i"],
+      ["10", "The cast list", "Villains, underdogs and fan favourites", "cast-i"],
     ];
 
     // cover chart: the S&P 500 over the last few months
@@ -141,6 +143,7 @@
 
     ${oppHtml}
     ${scopesHtml}
+    ${castHtml}
 
     <section class="desk">
       <div class="desk-head"><div><p class="kick">THE DATA DESK</p><h2>Whistle Street, <span class="gt">dressed to match</span></h2></div>

@@ -104,6 +104,7 @@
       ].filter(Boolean);
       return `<div class="card clickable" data-open="${esc(t)}">
         <h3>${star(t)} <span class="tk" style="font-size:16px">${esc(t)}</span> <span class="meta">${esc(s.name)}</span></h3>
+        ${window.CAST?.[t] ? `<div class="rolewhy">${roleBadge(window.CAST[t])} <span class="meta">${esc(window.CAST[t].why)}</span></div>` : ""}
         <div class="row"><span>$${s.price.toFixed(2)} <span class="${cls(s.chg_1d)}">${pct(s.chg_1d, 2)}</span></span>${c ? `<span><span class="badge ${c.call}">${c.call}</span> <span class="sc">${sgn(c.score)}</span></span>` : ""}</div>
         <div class="row"><span class="meta">1 month <span class="${cls(s.chg_1m)}">${pct(s.chg_1m)}</span> · 1 year <span class="${cls(s.chg_1y)}">${pct(s.chg_1y)}</span></span>${spark(s.spark)}</div>
         ${c ? meter(c.score) + factorChips(c) : ""}

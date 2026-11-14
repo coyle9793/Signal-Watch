@@ -172,4 +172,31 @@
           <p class="sc-fc">World watch: plain facts about world events the sign is sensitive to.</p></article></div>
     </section>`;
   };
+
+  // ------------------------------------------------------------ 10. The cast list (reality TV roles)
+  window.renderCast = function (raw, h) {
+    const { esc, logo } = h;
+    if (!window.castRoles) return "";
+    const stocks = (raw.prices?.stocks || []).filter((s) => s.ticker !== "SPY");
+    const cast = window.castRoles(stocks, raw.insiders?.signals || {}, raw.shocks?.shocks || []);
+    const strength = (s) => Math.abs(s.chg_5d ?? s.chg_1d ?? 0);
+    const order = ["voted", "wild", "villain", "front", "under", "fan", "drama", "quiet"];
+    const cards = order.map((k) => {
+      const members = stocks.filter((s) => cast[s.ticker]?.key === k).sort((a, b) => k === "quiet" ? strength(a) - strength(b) : strength(b) - strength(a));
+      if (!members.length) return "";
+      const lead = members[0], r = cast[lead.ticker];
+      return `<article class="cast-card" style="--rc:${r.color}">
+        <p class="cast-role"><span class="cast-ic">${r.icon}</span>${r.name}</p>
+        <p class="cast-who">${logo(lead.ticker)}<b>${esc(lead.name)}</b></p>
+        <p class="cast-why">${esc(r.why)}</p>
+        ${members.length > 1 ? `<p class="cast-also">Also cast: ${members.slice(1, 6).map((m) => esc(m.ticker)).join(" · ")}${members.length > 6 ? ` +${members.length - 6}` : ""}</p>` : ""}
+      </article>`;
+    }).join("");
+    const n = Object.values(cast).filter((r) => r.key === "extra").length;
+    return `<section class="sec cast" id="cast-i">
+      <div class="sec-head"><div><p class="kick">10 · THE CAST LIST</p><h2>This week's <span class="gt glow">cast</span></h2></div>
+        <p class="note">Every stock gets a role, recast daily from its price, insider trades and shocks. ${n} are supporting cast this week. All in good fun.</p></div>
+      <div class="cast-grid">${cards}</div>
+    </section>`;
+  };
 })();
