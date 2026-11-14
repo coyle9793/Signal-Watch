@@ -133,3 +133,5 @@ footer{background:transparent}
 .h2,h1,.lede,.meta{text-shadow:0 1px 3px rgba(0,0,0,.6)}
 @media (max-width:600px){.weather .meta{display:none}}
 .tablewrap{background:var(--bg)}.kpi,.card,.spot,.how,.mapwrap{position:relative}
+
+.tt-link{padding:6px 12px;border-radius:6px;text-decoration:none;font-weight:600;color:#ff7aa2;border:1px solid rgba(255,122,162,.4)}.tt-link:hover{background:rgba(255,122,162,.12)}

@@ -320,3 +320,7 @@ function renderCalls() {
   calls();
 })();
 
+
+// Open a tab from the URL, e.g. #shocks (used by the Ticker Tattler links)
+const startTab = location.hash.slice(1);
+if (startTab) document.querySelector(`#tabs [data-tab="${CSS.escape(startTab)}"]`)?.click();
