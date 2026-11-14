@@ -170,7 +170,7 @@ body.diary.spread:not(.book-open) .book{transform:translateX(calc(var(--pw) * -.
 body.diary.spread.book-open .book{transform:none;transition:transform .8s}
 body.diary .leaf{position:absolute;top:0;left:50%;width:50%;height:100%;transform-origin:left center;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.33,.08,.2,1)}
 body.diary .leaf.flipped{transform:rotateY(-180deg)}
-body.diary .face{position:absolute;inset:0;overflow-x:hidden;overflow-y:auto;-webkit-backface-visibility:hidden;backface-visibility:hidden;background:#f7c6d6 radial-gradient(#f2adc4 1.2px,transparent 1.4px) 0 0/14px 14px;scrollbar-width:thin}
+body.diary .face{position:absolute;inset:0;overflow:hidden;-webkit-backface-visibility:hidden;backface-visibility:hidden;background:#f7c6d6 radial-gradient(#f2adc4 1.2px,transparent 1.4px) 0 0/14px 14px;scrollbar-width:thin}
 body.diary .face.f-front{border-radius:0 12px 12px 0;box-shadow:inset 18px 0 22px -14px rgba(90,20,50,.35)}
 body.diary .face.f-back{transform:rotateY(180deg);border-radius:12px 0 0 12px;box-shadow:inset -18px 0 22px -14px rgba(90,20,50,.35)}
 body.diary.spread .face{box-shadow:inset 18px 0 22px -14px rgba(90,20,50,.35),0 12px 30px rgba(90,20,50,.25)}
@@ -217,3 +217,8 @@ body.feed .polaroid .stick{display:none}
 .note2 .logos .lg{width:24px;height:24px;margin:0;box-shadow:0 1px 3px rgba(0,0,0,.2)}
 body.diary .clip .meta .lg,body.diary .clip .meta .lg-txt{display:none}
 body.feed .pgnum{display:none}
+.measure{display:none}
+body.diary .measure{display:block;position:absolute;left:-9999px;top:0;width:var(--pw);height:var(--ph);visibility:hidden;pointer-events:none}
+body.diary .measure .pg{min-height:0}
+body.diary .cont{margin:16px 22px 22px;font:500 20px Caveat,cursive;color:#7a4a5e}
+body.diary:not(.spread) .abroad{grid-template-columns:1fr}
