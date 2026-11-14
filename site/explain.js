@@ -3,9 +3,9 @@
 // Labels, headers, pills and tags are also matched by their text automatically (see ALIAS).
 (() => {
   const G = {
-    "ex-demo": ["Like this!", "Every dotted word on Signal Watch has a plain-English explanation. Tap it on a phone, or hover on a laptop."],
+    "ex-demo": ["Like this!", "Every dotted word on Whistle Street has a plain-English explanation. Tap it on a phone, or hover on a laptop."],
     market: ["The market (S&P 500)", "The S&P 500 is an index of 500 of the biggest US companies. When people say “the market was up 1%”, they usually mean this. We use it as the yardstick for every stock."],
-    sp100: ["S&P 100", "The 100 largest companies in the S&P 500, such as Apple, Microsoft and Coca-Cola. These are the stocks Signal Watch follows."],
+    sp100: ["S&P 100", "The 100 largest companies in the S&P 500, such as Apple, Microsoft and Coca-Cola. These are the stocks Whistle Street follows."],
     rising: ["Rising / falling", "How many of the 100 stocks went up today versus down. Lots of risers with a falling index means a few giants dragged it down."],
     chg_1d: ["Today", "How much the price changed since yesterday's close, in percent."],
     chg_1m: ["1 month", "Price change over the last 21 trading days (about a calendar month)."],

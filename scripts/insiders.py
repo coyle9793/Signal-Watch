@@ -18,7 +18,7 @@ UNIVERSE = {u["ticker"]: u for u in json.load(open(os.path.join(DATA, "universe.
 TODAY = dt.date.today()
 DAYS = 60            # Form 4 look-back
 PER_TICKER = 12      # most recent Form 4s per company
-UA = os.environ.get("SEC_USER_AGENT", "SignalWatch demo research contact@example.com")
+UA = os.environ.get("SEC_USER_AGENT", "WhistleStreet demo research contact@example.com")
 
 CODES = {"P": "Buy", "S": "Sell", "A": "Award", "M": "Option exercise", "F": "Tax withholding",
          "G": "Gift", "D": "Sold to company", "C": "Conversion", "X": "Option exercise"}

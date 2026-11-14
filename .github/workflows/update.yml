@@ -33,14 +33,14 @@ jobs:
           ls -la site/data
       - name: Build data
         env:
-          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT || 'SignalWatch-demo coyle9793@users.noreply.github.com' }}
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT || 'WhistleStreet-demo coyle9793@users.noreply.github.com' }}
           QUIVER_TOKEN: ${{ secrets.QUIVER_TOKEN }}
         run: python scripts/build_all.py
       - name: Save a copy of the data on the "data" branch (keeps a history of calls)
         run: |
           cd site/data
           git init -q -b data && git add -A
-          git -c user.name="signal-watch-bot" -c user.email="actions@github.com" commit -qm "Data $(date -u +%F_%H%M)"
+          git -c user.name="whistle-street-bot" -c user.email="actions@github.com" commit -qm "Data $(date -u +%F_%H%M)"
           git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" data
       - uses: actions/upload-pages-artifact@v3
         with:

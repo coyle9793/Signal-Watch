@@ -1,4 +1,4 @@
-# Signal Watch
+# Whistle Street
 
 A demo site that watches the S&P 100 for insider trades (Congress and SEC Form 4),
 surprise market shocks and major world events, and gives a plain daily Buy, Hold or

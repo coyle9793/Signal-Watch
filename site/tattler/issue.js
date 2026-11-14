@@ -143,8 +143,8 @@
     ${scopesHtml}
 
     <section class="desk">
-      <div class="desk-head"><div><p class="kick">THE DATA DESK</p><h2>Signal Watch, <span class="gt">dressed to match</span></h2></div>
-        <div class="desk-tabs"><a href="../#market">Market</a><a href="../#insiders">Insider trades</a><a href="../#shocks">Surprise shocks</a><a href="../#world">World events</a><a href="../#calls">Daily calls</a></div></div>
+      <div class="desk-head"><div><p class="kick">THE DATA DESK</p><h2>Whistle Street, <span class="gt">dressed to match</span></h2></div>
+        <div class="desk-tabs"><a href="../#market">Market</a><a href="../#insiders">Insider trades</a><a href="../#shocks">Surprise shocks</a><a href="../#world">World events</a><a href="../#calls">Smart calls</a><a href="../#storm">Storm watch</a></div></div>
       <div class="dtable" role="table">
         <div class="dr dh" role="row"><span>TICKER</span><span>NAME</span><span>PRICE</span><span>1 DAY</span><span>1 MONTH</span></div>
         ${rows.map(([s]) => `<div class="dr" role="row"><span>${esc(s.ticker)}</span><span>${esc(s.name)}</span><span>$${s.price.toFixed(2)}</span><span class="${pcls(s.chg_1d)}">${pct(s.chg_1d)}</span><span class="${pcls(s.chg_1m)}">${pct(s.chg_1m)}</span></div>`).join("")}
