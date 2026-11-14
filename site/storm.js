@@ -70,7 +70,7 @@
   // ---------------------------------------------------------------- render: Storm tab
   window.renderStorm = function () {
     if (!window.DATA_READY || !STORMS) return;
-    RADAR = radar();
+    RADAR = radar(); window.RADAR_NOW = RADAR; window.renderPlan?.();
     const counts = [0, 0, 0, 0]; RADAR.forEach((r) => counts[r.lv]++);
     const mood = counts[0] >= 5 ? LV[0] : counts[0] + counts[1] >= 8 ? LV[1] : counts[0] + counts[1] + counts[2] >= 15 ? LV[2] : LV[3];
     $("#st-kpis").innerHTML = `<div class="stormcast lv-${mood[0]}"><span class="big">${mood[2]}</span><div><div class="l">Today's storm forecast</div><div class="v">${mood[0] === "clear" ? "Mostly clear" : mood[1].replace(" warning", " skies")}</div></div></div>` +
