@@ -29,7 +29,7 @@ jobs:
       - name: Restore saved files from the "data" branch (Congress filing cache, call log)
         run: |
           git fetch -q --depth 1 origin data || exit 0
-          for f in congress_cache.json calls_log.json; do git show FETCH_HEAD:$f > site/data/$f 2>/dev/null || rm -f site/data/$f; done
+          for f in congress_cache.json calls_log.json earnings.json news_archive.json; do git show FETCH_HEAD:$f > site/data/$f 2>/dev/null || rm -f site/data/$f; done
           ls -la site/data
       - name: Build data
         env:

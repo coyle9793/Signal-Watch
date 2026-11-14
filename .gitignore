@@ -3,3 +3,5 @@ __pycache__/
 .DS_Store
 site/data/congress_cache.json
 site/data/calls_log.json
+site/data/earnings.json
+site/data/news_archive.json
