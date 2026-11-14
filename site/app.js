@@ -134,7 +134,6 @@ async function insiders() {
   INS = await load("insiders.json");
   const { meta, form4, congress, signals } = INS;
   if (meta.demo) { $("#ins-banner").hidden = false; $("#ins-banner").textContent = "Fictional sample trades for layout only. Real SEC and Congress filings load once the data feed is live."; }
-  else if (!meta.congress_source) { $("#ins-banner").hidden = false; $("#ins-banner").textContent = "Congress trades are unavailable right now; company insider trades are live."; }
   const sum = (a) => a.reduce((x, y) => x + y.value, 0);
   const b = form4.filter((x) => x.type === "Buy"), s = form4.filter((x) => x.type === "Sell");
   const late = congress.filter((x) => x.delay_days > 45).length;
@@ -142,7 +141,7 @@ async function insiders() {
     [`Insider buying (${meta.form4_days} days)`, `<span class="up">${money(sum(b))}</span>`],
     ["Insider selling", `<span class="down">${money(sum(s))}</span>`],
     ["Of which unplanned", `<span class="hot">${money(sum(s.filter((x) => !x.planned)))}</span>`],
-    ["Congress trades", `${meta.congress_count}${late ? ` <span class="tag warn">${late} filed late</span>` : ""}`],
+    ["Congress trades", meta.congress_source ? `${meta.congress_count}${late ? ` <span class="tag warn">${late} filed late</span>` : ""}` : `<span class="meta">Coming soon</span>`],
   ].map(([l, v]) => `<div class="kpi"><div class="l">${l}</div><div class="v">${v}</div></div>`).join("");
   const rank = Object.entries(signals).map(([t, g]) => {
     const score = g.insider_buyers * 3 + g.congress_buys - g.congress_sells + (g.unplanned_sell_value > 5e6 ? -2 : 0);
@@ -167,7 +166,7 @@ function renderIns() {
   $("#cgt tbody").innerHTML = INS.congress.filter(m).slice(0, 150).map((x) => `<tr>
     <td>${esc(x.date)}</td><td class="tk">${esc(x.ticker)}</td><td>${esc(x.who)}<div class="n">${esc(x.chamber || "")}${x.party ? " · " + esc(x.party) : ""}</div></td>
     <td class="${x.type === "Buy" ? "buy" : "sell"}">${esc(x.type)}${x.delay_days > 45 ? `<span class="tag warn">filed ${x.delay_days}d later</span>` : ""}</td>
-    <td class="r">${esc(x.amount || "")}</td></tr>`).join("");
+    <td class="r">${esc(x.amount || "")}</td></tr>`).join("") || `<tr><td colspan="5" class="meta">${INS.meta.congress_source ? "No matching trades." : "Congress trades feed coming soon."}</td></tr>`;
 }
 
 let SH;
