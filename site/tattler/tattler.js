@@ -1,7 +1,8 @@
 // The Ticker Tattler: turns Signal Watch's daily data into gossip.
 // Every line is generated from site/data/*.json. Insiders are named by role only.
 (function () {
-  const $ = (s) => document.querySelector(s);
+  const NOOP = { set textContent(v) {}, get textContent() { return ""; }, set innerHTML(v) {}, hidden: true };
+  const $ = (s) => document.querySelector(s) || NOOP;   // the diary and feed looks were retired; only the Issue is drawn
   const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const pct = (x, d = 1) => `${x >= 0 ? "+" : "−"}${Math.abs(x * 100).toFixed(d)}%`;
   const apct = (x, d = 1) => `${Math.abs(x * 100).toFixed(d)}%`;
@@ -19,21 +20,7 @@
   const logo = (t) => DOMAINS[t] ? `<img class="lg" data-t="${esc(t)}" src="https://www.google.com/s2/favicons?domain=${DOMAINS[t]}&sz=128" alt="${esc(nameOf(t))} logo" loading="lazy" onload="if(this.naturalWidth&&this.naturalWidth<48)ttLogoFail(this)" onerror="ttLogoFail(this)">` : `<span class="lg lg-txt">${esc(t)}</span>`;
   const stick = (t) => `<span class="stick">${logo(t)}</span>`;
 
-  // ---------- look toggle ----------
-  function setLook(look) {
-    document.body.className = look;
-    document.querySelectorAll(".look button").forEach((b) => {
-      b.classList.toggle("on", b.dataset.look === look);
-      b.setAttribute("aria-pressed", b.dataset.look === look);
-    });
-    try { localStorage.setItem("tt-look", look); } catch (e) {}
-    window.TTBook?.[look === "diary" ? "on" : "off"]();
-  }
-  const LOOKS = ["issue", "diary", "feed"];
-  let start = new URLSearchParams(location.search).get("look");
-  if (!LOOKS.includes(start)) { try { start = localStorage.getItem("tt-look"); } catch (e) {} }
-  setLook(LOOKS.includes(start) ? start : "issue");
-  document.querySelectorAll(".look button").forEach((b) => b.addEventListener("click", () => setLook(b.dataset.look)));
+  document.body.className = "issue";
 
   // ---------- roles: never names ----------
   function role(r) {
@@ -249,6 +236,5 @@
       $("#loading").hidden = true;
       if (!prices.stocks) { $("#loading").hidden = false; $("#loading").textContent = "The gossip line is down. Try again in a minute."; return; }
       render({ prices, insiders, shocks, events, calls });
-      window.TTBook?.refresh();
     });
 })();

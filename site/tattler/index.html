@@ -7,72 +7,19 @@
 <meta name="description" content="Market gossip from Signal Watch: insider trades, surprise moves and world news, built on real data.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,500;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,500;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tattler.css">
 </head>
-<body class="diary">
+<body class="issue">
 <div class="page">
   <div class="bar">
     <a class="back" href="../">&larr; Signal Watch</a>
-    <div class="look" role="group" aria-label="Choose a look">
-      <button type="button" data-look="issue">Issue &#10022;</button>
-      <button type="button" data-look="diary">Diary &#9825;</button>
-      <button type="button" data-look="feed">Feed</button>
-    </div>
   </div>
 
 <main class="issue" id="issue" aria-live="polite"></main>
-<div class="stage" id="stage" aria-live="polite"><div class="book" id="book"></div></div>
-<div class="measure" id="measure" aria-hidden="true"></div>
-<div class="flow" id="flow">
-  <section class="pg pg-cover">
-  <header class="cover">
-    <div class="lock d-only" aria-hidden="true"><svg width="24" height="28" viewBox="0 0 24 28"><rect x="3" y="12" width="18" height="14" rx="3" fill="#8a6326"/><path d="M7 12V8a5 5 0 0 1 10 0v4" fill="none" stroke="#8a6326" stroke-width="3"/><circle cx="12" cy="19" r="2" fill="#e8c27a"/></svg></div>
-    <p class="kicker"><span class="d-only">private!! keep out &#9825;</span><span class="f-only" id="blast">Blast</span></p>
-    <h1>The Ticker <br class="d-only">Tattler</h1>
-    <p class="tag"><span class="d-only">my diary of who's selling, who's buying &amp; who's hiding something</span><span class="f-only">Who's selling, who's buying, and who's hiding something.</span></p>
-    <p class="datesticker d-only" id="datesticker"></p>
-    <p class="openhint d-only">tap the edge or swipe to open &rarr;</p>
-  </header>
-  </section>
-  <section class="pg">
-  <p class="loading" id="loading">Getting the gossip&hellip;</p>
-
-  <section class="mood" id="mood" hidden></section>
-  <article class="alert" id="alert" hidden></article>
-  </section>
-  <section class="pg">
-  <h2><span class="d-only">Spotted &#9986;</span><span class="f-only">Spotted</span></h2>
-  <p class="sub">Insider trades from SEC Form 4 filings</p>
-  <div id="spotted" data-split></div>
-  </section>
-  <section class="pg">
-  <h2><span class="d-only">My verdicts &#9825;</span><span class="f-only">Who's in, who's out</span></h2>
-  <section class="inout" id="inout"></section>
-  </section>
-  <section class="pg">
-  <h2><span class="d-only" id="worst-h">Worst night</span><span class="f-only">Worst night</span></h2>
-  <section class="worst" id="worst"></section>
-  <h2><span class="d-only">Best &amp; worst dressed &#10024;</span><span class="f-only">Best &amp; worst dressed</span></h2>
-  <section class="dressed" id="dressed"></section>
-  </section>
-  <section class="pg">
-  <h2><span class="d-only">World news &#127757;</span><span class="f-only">World news</span></h2>
-  <div class="abroad" id="abroad" data-split></div>
-  </section>
-  <section class="pg pg-end">
-  <footer>
-    <p class="bye"><span class="d-only">lock it up, stay liquid &#9825;</span><span class="f-only">Until next time, stay liquid.</span></p>
-    <p class="sig">&mdash; T.T.</p>
-    <p class="fine">The gossip is for fun. The data is real and updates every 30 minutes in market hours. Insiders are named by role only, and nothing here says anyone broke the law. Not financial advice. <span id="updated"></span></p>
-    <p class="fine"><a href="../">See the full data on Signal Watch</a></p>
-  </footer>
-  </section>
-</div>
-<nav class="pager d-only" aria-label="Diary pages"><button type="button" id="prev" aria-label="Previous page">&lsaquo;</button><span id="pnum"></span><button type="button" id="next" aria-label="Next page">&rsaquo;</button></nav>
+<p class="loading" id="loading">Getting the gossip&hellip;</p>
 </div>
 <script src="issue.js"></script>
-<script src="book.js"></script>
 <script src="tattler.js"></script>
 </body>
 </html>

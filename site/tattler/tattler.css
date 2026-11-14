@@ -237,9 +237,6 @@ body.issue .flow,body.issue .stage,body.issue .pager{display:none !important}
 body.issue main.issue{display:block;max-width:1280px;margin:0 auto;padding:0 0 20px}
 body.issue .bar{max-width:1280px;margin:0 auto;border-bottom:1px solid var(--line)}
 body.issue .back{color:var(--mute)}
-body.issue .look{background:var(--card);border:1px solid var(--line)}
-body.issue .look button{color:var(--mute)}
-body.issue .look button.on{background:linear-gradient(90deg,var(--p),var(--b));color:#fff}
 .issue .gt{background:linear-gradient(90deg,#b44dff,#6b5cff 50%,#2ec8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
 .issue .glow{filter:drop-shadow(0 0 10px rgba(120,90,255,.85)) drop-shadow(0 0 24px rgba(46,200,255,.4))}
 .issue .neon-c{filter:drop-shadow(0 0 6px #2ef2ff) drop-shadow(0 0 14px #2ef2ff)}
@@ -341,3 +338,5 @@ body.issue .look button.on{background:linear-gradient(90deg,var(--p),var(--b));c
   .desk{margin:36px 16px 0;padding:20px 16px}
   .dr{grid-template-columns:52px 1fr 70px 64px;font-size:13px;padding:10px 12px}.dr span:nth-child(3){display:none}
 }
+
+body.issue .loading{color:var(--mute);font:500 15px Inter,system-ui,sans-serif}
