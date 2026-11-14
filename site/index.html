@@ -19,6 +19,7 @@
     <button data-tab="insiders">Insider trades</button>
     <button data-tab="shocks">Surprise shocks</button>
     <button data-tab="world">World events</button>
+    <button data-tab="storm">Storm watch</button>
     <button data-tab="calls">Smart calls</button>
     <button data-tab="watch">Watchlist <span id="watch-n" class="wn"></span></button>
     <a class="tt-link" href="tattler/">Ticker Tattler &#9825;</a>
@@ -45,6 +46,7 @@
       <div class="tcard" id="t-world"></div>
       <div class="tcard span2" id="t-watch"></div>
       <div class="tcard" id="t-movers"></div>
+      <div class="tcard span3" id="t-storm"></div>
     </div>
   </section>
   <section id="market" class="tab">
@@ -98,6 +100,7 @@
     <h2 class="h2">Hot spots today</h2>
     <div id="world-spots" class="spots"></div>
     <h2 class="h2">Events most likely to move markets</h2>
+    <p class="meta">Tap an event to see which stocks on your watchlist it touches.</p>
     <div class="controls"><select id="world-kind"><option value="">All kinds</option><option value="conflict">Conflict</option><option value="sanctions">Tension &amp; sanctions</option><option value="unrest">Unrest</option><option value="cooperation">Diplomacy</option></select></div>
     <div id="world-body" class="cards"></div>
     <h2 class="h2">What history says</h2>
@@ -127,10 +130,28 @@
     </div>
     <div id="calls-list" class="cards"></div>
   </section>
+  <section id="storm" class="tab">
+    <div class="kicker">Spot it · prepare · find the rainbow</div>
+    <h1>Storm watch</h1>
+    <p class="lede">Our <span class="ex" data-ex="radar">storm radar</span> puts a warning level on every stock, from insider selling, unexplained shocks, world tension and big swings. Tap a warning for what usually happens next and a simple plan.</p>
+    <div id="st-kpis" class="kpis stormk"></div>
+    <h2 class="h2">Sector radar</h2>
+    <div id="st-sectors" class="secgrid"></div>
+    <div class="controls" style="margin-top:18px"><h2 class="h2" style="margin:0;flex:1">Warnings</h2><label class="chk"><input type="checkbox" id="st-w"> Watchlist only</label></div>
+    <div id="st-list" class="cards"></div>
+    <h2 class="h2">After the storm</h2>
+    <div class="todaygrid three">
+      <div class="tcard"><div class="tlabel"><span class="ex" data-ex="rainbow">Rainbow watch</span></div><p class="meta">Stocks that fell well behind the market and, in the past, usually bounced after big drops.</p><div id="st-rainbow"></div></div>
+      <div class="tcard"><div class="tlabel"><span class="ex" data-ex="shelter">Shelter sectors</span></div><p class="meta">Sectors that held up best a month after past world shocks.</p><div id="st-shelter"></div></div>
+      <div class="tcard"><div class="tlabel"><span class="ex" data-ex="dipbuy">Insiders buying the dip</span></div><p class="meta">Insiders who bought with their own money while the stock was falling.</p><div id="st-dip"></div></div>
+    </div>
+    <p class="meta" style="margin-top:14px">Storm watch is for learning about risk, not a signal to buy or sell. Not financial advice.</p>
+  </section>
   <section id="watch" class="tab">
     <h1>My watchlist</h1>
     <p class="lede">Tap the ☆ next to any stock to follow it. Your list is saved in this browser only, no account needed.</p>
     <div class="controls"><input id="w-add" list="w-opts" placeholder="Add a stock, e.g. AAPL"><datalist id="w-opts"></datalist><button id="w-go" class="btn">Add</button><button id="w-clear" class="btn ghost">Clear list</button></div>
+    <div id="exposure"></div>
     <div id="watch-list" class="cards"></div>
   </section>
 </main>
@@ -153,5 +174,6 @@
 <script src="explain.js"></script>
 <script src="app.js"></script>
 <script src="today.js"></script>
+<script src="storm.js"></script>
 </body>
 </html>
