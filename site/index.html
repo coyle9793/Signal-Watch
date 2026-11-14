@@ -5,12 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Signal Watch</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <canvas id="sky" aria-hidden="true"></canvas>
 <header class="top">
-  <div class="brand"><span class="dot"></span> Signal Watch <small>S&amp;P 100</small> <span id="weather" class="weather" hidden></span></div>
+  <div class="brand"><span class="dot"></span> <span class="gt">Signal Watch</span> <small>S&amp;P 100</small> <span id="weather" class="weather" hidden></span></div>
   <nav id="tabs">
     <button data-tab="market" class="on">Market</button>
     <button data-tab="insiders">Insider trades</button>

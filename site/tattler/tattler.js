@@ -29,9 +29,10 @@
     try { localStorage.setItem("tt-look", look); } catch (e) {}
     window.TTBook?.[look === "diary" ? "on" : "off"]();
   }
+  const LOOKS = ["issue", "diary", "feed"];
   let start = new URLSearchParams(location.search).get("look");
-  if (!["diary", "feed"].includes(start)) { try { start = localStorage.getItem("tt-look"); } catch (e) {} }
-  setLook(["diary", "feed"].includes(start) ? start : "diary");
+  if (!LOOKS.includes(start)) { try { start = localStorage.getItem("tt-look"); } catch (e) {} }
+  setLook(LOOKS.includes(start) ? start : "issue");
   document.querySelectorAll(".look button").forEach((b) => b.addEventListener("click", () => setLook(b.dataset.look)));
 
   // ---------- roles: never names ----------
@@ -225,7 +226,7 @@
       .filter((e) => { const k = [...e.countries].sort().join(); if (seen.has(k)) return false; seen.add(k); return true; })
       .slice(0, 4);
     const SECTOR = { "Defence & energy": "Defence and energy stocks", "Trade-exposed tech & industrials": "Tech and industrial companies that trade abroad" };
-    $("#abroad").innerHTML = evs.map((e) => {
+    const world = evs.map((e) => {
       const names = e.tickers.slice(0, 3).map(nameOf);
       const list = names.length > 1 ? names.slice(0, -1).join(", ") + " and " + names[names.length - 1] : names[0];
       const [pair, label] = e.title.split(":").map((x) => x.trim());
@@ -236,8 +237,11 @@
       const body = e.kind === "conflict"
         ? `The conflict was in ${e.articles} news stories on ${when}. ${group}, such as ${list}, are often sensitive to events like this.`
         : `Reports of ${(label || "pressure").toLowerCase()} between ${where} were in ${e.articles} news stories on ${when}. ${group}, such as ${list}, can be affected by sanctions and trade pressure.`;
-      return `<div class="note2"><h3>${esc(head)}</h3><p>${esc(body)}</p><p class="tickers">${e.tickers.slice(0, 3).map((t) => `<span>${esc(t)}</span>`).join("")}</p></div>`;
-    }).join("") || `<div class="note2"><p>No major world events in the news today.</p></div>`;
+      return { head, body, tickers: e.tickers.slice(0, 3) };
+    });
+    $("#abroad").innerHTML = world.map((w) => `<div class="note2"><h3>${esc(w.head)}</h3><p>${esc(w.body)}</p><p class="tickers">${w.tickers.map((t) => `<span>${esc(t)}</span>`).join("")}</p></div>`).join("") || `<div class="note2"><p>No major world events in the news today.</p></div>`;
+
+    window.renderIssue?.({ spy, stocks, by, dateLong, moodTxt, big, sc, stories, span, cap, clusters, ins, outs, worst, sorted, rows, world, updated: prices.meta.updated, logo, esc, pct, apct, fmt, num });
   }
 
   Promise.all(["prices.json", "insiders.json", "shocks.json", "events.json", "calls.json"].map((f) => load(f).catch(() => ({}))))

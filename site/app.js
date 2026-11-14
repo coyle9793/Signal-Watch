@@ -78,7 +78,7 @@ async function openStock(t) {
 function drawChart(n) {
   document.querySelectorAll(".ranges button").forEach((b) => b.classList.toggle("on", +b.dataset.r === n));
   const d = hist.dates.slice(-n), c = hist.close.slice(-n);
-  const col = c[c.length - 1] >= c[0] ? "#3fb950" : "#f85149";
+  const col = c[c.length - 1] >= c[0] ? "#3ee08f" : "#ff5c8a";
   chart?.destroy();
   chart = new Chart($("#d-chart"), {
     type: "line",

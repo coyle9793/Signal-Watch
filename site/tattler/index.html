@@ -7,7 +7,7 @@
 <meta name="description" content="Market gossip from Signal Watch: insider trades, surprise moves and world news, built on real data.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,600;0,800;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,500;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tattler.css">
 </head>
 <body class="diary">
@@ -15,11 +15,13 @@
   <div class="bar">
     <a class="back" href="../">&larr; Signal Watch</a>
     <div class="look" role="group" aria-label="Choose a look">
+      <button type="button" data-look="issue">Issue &#10022;</button>
       <button type="button" data-look="diary">Diary &#9825;</button>
-      <button type="button" data-look="feed">Feed &#10022;</button>
+      <button type="button" data-look="feed">Feed</button>
     </div>
   </div>
 
+<main class="issue" id="issue" aria-live="polite"></main>
 <div class="stage" id="stage" aria-live="polite"><div class="book" id="book"></div></div>
 <div class="measure" id="measure" aria-hidden="true"></div>
 <div class="flow" id="flow">
@@ -69,6 +71,7 @@
 </div>
 <nav class="pager d-only" aria-label="Diary pages"><button type="button" id="prev" aria-label="Previous page">&lsaquo;</button><span id="pnum"></span><button type="button" id="next" aria-label="Next page">&rsaquo;</button></nav>
 </div>
+<script src="issue.js"></script>
 <script src="book.js"></script>
 <script src="tattler.js"></script>
 </body>
