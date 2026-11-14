@@ -14,11 +14,13 @@
 <header class="top">
   <div class="brand"><span class="dot"></span> <span class="gt">Signal Watch</span> <small>S&amp;P 100</small> <span id="weather" class="weather" hidden></span></div>
   <nav id="tabs">
-    <button data-tab="market" class="on">Market</button>
+    <button data-tab="today" class="on">Today</button>
+    <button data-tab="market">Market</button>
     <button data-tab="insiders">Insider trades</button>
     <button data-tab="shocks">Surprise shocks</button>
     <button data-tab="world">World events</button>
-    <button data-tab="calls">Daily calls</button>
+    <button data-tab="calls">Smart calls</button>
+    <button data-tab="watch">Watchlist <span id="watch-n" class="wn"></span></button>
     <a class="tt-link" href="tattler/">Ticker Tattler &#9825;</a>
   </nav>
 </header>
@@ -29,7 +31,23 @@
   <button id="alarm-x" class="x2" aria-label="Dismiss">&times;</button>
 </div>
 <main>
-  <section id="market" class="tab on">
+  <section id="today" class="tab on">
+    <div class="today-head">
+      <div><div class="kicker" id="t-date"></div><h1>Today</h1>
+      <p class="lede">The whole day on one screen. Tap any <span class="ex" data-ex="ex-demo">dotted word</span> to see what it means.</p></div>
+      <div id="t-mood" class="mood"></div>
+    </div>
+    <div class="todaygrid">
+      <div class="tcard span2" id="t-headline"></div>
+      <div class="tcard" id="t-alarm"></div>
+      <div class="tcard" id="t-calls"></div>
+      <div class="tcard" id="t-insiders"></div>
+      <div class="tcard" id="t-world"></div>
+      <div class="tcard span2" id="t-watch"></div>
+      <div class="tcard" id="t-movers"></div>
+    </div>
+  </section>
+  <section id="market" class="tab">
     <h1>Market</h1>
     <p class="lede">Live prices and history for the 100 largest US companies.</p>
     <div id="demo-banner" class="banner" hidden></div>
@@ -40,7 +58,7 @@
       <span id="updated" class="meta"></span>
     </div>
     <div class="tablewrap"><table id="mtable">
-      <thead><tr><th data-k="ticker">Stock</th><th data-k="price" class="r">Price</th><th data-k="chg_1d" class="r">Today</th><th data-k="chg_1m" class="r">1 month</th><th data-k="chg_1y" class="r">1 year</th><th data-k="vol_ratio" class="r">Volume vs normal</th><th>60 days</th></tr></thead>
+      <thead><tr><th class="st"></th><th data-k="ticker">Stock</th><th data-k="price" class="r">Price</th><th data-k="chg_1d" class="r"><span class="ex" data-ex="chg_1d">Today</span></th><th data-k="chg_1m" class="r"><span class="ex" data-ex="chg_1m">1 month</span></th><th data-k="chg_1y" class="r"><span class="ex" data-ex="chg_1y">1 year</span></th><th data-k="vol_ratio" class="r"><span class="ex" data-ex="vol_ratio">Volume vs normal</span></th><th><span class="ex" data-ex="spark">60 days</span></th></tr></thead>
       <tbody></tbody>
     </table></div>
   </section>
@@ -59,7 +77,7 @@
     <div class="controls" style="margin-top:20px"><input id="ins-q" type="search" placeholder="Filter by ticker or name"></div>
     <div class="split">
       <div><h2 class="h2">Company insiders <small class="meta">SEC Form 4</small></h2><div class="tablewrap"><table id="f4t"><thead><tr><th>Date</th><th>Stock</th><th>Who</th><th>Trade</th><th class="r">Value</th></tr></thead><tbody></tbody></table></div></div>
-      <div><h2 class="h2">Members of Congress</h2><div class="tablewrap"><table id="cgt"><thead><tr><th>Traded</th><th>Stock</th><th>Member</th><th>Trade</th><th class="r">Amount</th></tr></thead><tbody></tbody></table></div></div>
+      <div><h2 class="h2">Members of Congress</h2><p id="cg-note" class="meta"></p><div class="tablewrap"><table id="cgt"><thead><tr><th>Traded</th><th>Stock</th><th>Member</th><th>Trade</th><th class="r">Amount</th></tr></thead><tbody></tbody></table></div></div>
     </div>
   </section>
   <section id="shocks" class="tab">
@@ -87,24 +105,33 @@
     <div id="world-history" class="cards"></div>
   </section>
   <section id="calls" class="tab">
-    <h1>Daily calls</h1>
-    <p class="lede">A plain Buy, Hold or Sell for each stock, with the reasons behind it.</p>
+    <h1>Smart calls</h1>
+    <p class="lede">Everything we track, rolled into one <span class="ex" data-ex="score">score</span> per stock: price, insiders, Congress, shocks and world events. Every point shows where it came from.</p>
     <div id="calls-kpis" class="kpis"></div>
-    <details class="how"><summary>How the calls are made</summary>
-      <p>Each stock gets points from simple rules, and every point comes with its reason. A total of +2 or more is a <b class="buy">Buy</b>, −2 or less is a <b class="sell">Sell</b>, anything in between is a <b>Hold</b>.</p>
+    <div id="calls-record" class="record"></div>
+    <details class="how"><summary>How the score is made</summary>
+      <p>Each stock gets points from five simple rules, and every point comes with its reason. A total of +2 or more is a <b class="buy">Buy</b>, −2 or less is a <b class="sell">Sell</b>, anything in between is a <b>Hold</b>.</p>
       <ul class="facts">
-        <li><b>Pullback:</b> +2 if it fell 7+ points behind the market over the past month, −2 if it ran 7+ points ahead. Short-term overreactions tend to partly reverse; in our 5-year backtest this was the only simple price rule that beat the market.</li>
-        <li><b>Insiders:</b> +2 if two or more company insiders bought with their own money (+1 for one); −1 if three or more sold and none bought.</li>
-        <li><b>Congress:</b> +0.5 per net buy by members of Congress, up to ±1.</li>
-        <li><b>Shocks:</b> −1.5 for an unexplained sell-off in the last 10 days; ±0.5 depending on how it recovered from past shocks.</li>
-        <li><b>World events:</b> −0.5 if it's exposed to one of today's five riskiest world events.</li>
+        <li><b><span class="ex" data-ex="f-Price">Price</span>:</b> +2 if it fell 7+ points behind the market over the past month, −2 if it ran 7+ points ahead. Short-term overreactions tend to partly reverse; in our 5-year backtest this was the only simple price rule that beat the market.</li>
+        <li><b><span class="ex" data-ex="f-Insiders">Insiders</span>:</b> +2 if two or more company insiders bought with their own money (+1 for one); −1 for heavy <span class="ex" data-ex="unplanned">unplanned</span> selling.</li>
+        <li><b><span class="ex" data-ex="f-Congress">Congress</span>:</b> +0.5 per net buy by members of Congress, up to ±1.</li>
+        <li><b><span class="ex" data-ex="f-Shocks">Shocks</span>:</b> −1.5 for an unexplained sell-off in the last 10 days; ±0.5 depending on how it recovered from past shocks.</li>
+        <li><b><span class="ex" data-ex="f-World">World</span>:</b> −0.5 if it's exposed to one of today's five biggest world events.</li>
       </ul>
     </details>
     <div class="controls">
       <input id="c-q" type="search" placeholder="Search ticker or company">
       <select id="c-f"><option value="">All calls</option><option>Buy</option><option>Hold</option><option>Sell</option></select>
+      <select id="c-s"><option value="score">Highest score first</option><option value="low">Lowest score first</option><option value="Insiders">Most insider points</option><option value="Congress">Most Congress points</option><option value="Shocks">Biggest shock points</option></select>
+      <label class="chk"><input type="checkbox" id="c-w"> Watchlist only</label>
     </div>
     <div id="calls-list" class="cards"></div>
+  </section>
+  <section id="watch" class="tab">
+    <h1>My watchlist</h1>
+    <p class="lede">Tap the ☆ next to any stock to follow it. Your list is saved in this browser only, no account needed.</p>
+    <div class="controls"><input id="w-add" list="w-opts" placeholder="Add a stock, e.g. AAPL"><datalist id="w-opts"></datalist><button id="w-go" class="btn">Add</button><button id="w-clear" class="btn ghost">Clear list</button></div>
+    <div id="watch-list" class="cards"></div>
   </section>
 </main>
 <div id="drawer" class="drawer" hidden>
@@ -114,6 +141,7 @@
     <div class="ranges"><button data-r="21">1M</button><button data-r="126">6M</button><button data-r="252" class="on">1Y</button><button data-r="1260">5Y</button></div>
     <div class="chartbox"><canvas id="d-chart"></canvas></div>
     <div id="d-call"></div>
+    <button id="d-star" class="btn star-btn"></button>
     <h3>What history says</h3>
     <ul id="d-history" class="facts"></ul>
   </div>
@@ -122,6 +150,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="weather.js"></script>
+<script src="explain.js"></script>
 <script src="app.js"></script>
+<script src="today.js"></script>
 </body>
 </html>

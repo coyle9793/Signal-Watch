@@ -10,6 +10,27 @@ document.querySelectorAll("#tabs button").forEach((b) =>
   })
 );
 
+// ---- personal watchlist (saved in this browser only) ----
+const WATCH = (() => {
+  let set = new Set();
+  try { set = new Set(JSON.parse(localStorage.getItem("sw-watch") || "[]")); } catch (e) {}
+  const save = () => { try { localStorage.setItem("sw-watch", JSON.stringify([...set])); } catch (e) {} document.dispatchEvent(new Event("watch")); };
+  return { has: (t) => set.has(t), list: () => [...set], toggle: (t) => { set.has(t) ? set.delete(t) : set.add(t); save(); }, add: (t) => { set.add(t); save(); }, clear: () => { set.clear(); save(); } };
+})();
+const star = (t) => `<button class="star ${WATCH.has(t) ? "on" : ""}" data-star="${t}" aria-label="Watchlist ${t}" title="${WATCH.has(t) ? "On your watchlist" : "Add to watchlist"}">${WATCH.has(t) ? "★" : "☆"}</button>`;
+document.addEventListener("click", (e) => {
+  const b = e.target.closest?.("[data-star]");
+  if (!b) return;
+  e.stopPropagation(); e.preventDefault();
+  WATCH.toggle(b.dataset.star);
+}, true);
+document.addEventListener("watch", () => {
+  document.querySelectorAll("[data-star]").forEach((b) => { const on = WATCH.has(b.dataset.star); b.classList.toggle("on", on); b.textContent = on ? "★" : "☆"; });
+  const n = WATCH.list().length; const el = document.getElementById("watch-n"); if (el) el.textContent = n ? n : "";
+  if (document.getElementById("c-w")?.checked) renderCalls();
+  window.renderWatch?.(); window.renderToday?.();
+});
+
 const pct = (x, d = 1) => (x == null ? "–" : `${x > 0 ? "+" : ""}${(x * 100).toFixed(d)}%`);
 const cls = (x) => (x == null ? "" : x >= 0 ? "up" : "down");
 function spark(arr) {
@@ -23,7 +44,7 @@ let STOCKS = [], sortK = "chg_1d", sortDir = -1;
 async function market() {
   const { meta, stocks } = await load("prices.json");
   STOCKS = stocks.filter((s) => s.ticker !== "SPY");
-  const spy = stocks.find((s) => s.ticker === "SPY");
+  const spy = stocks.find((s) => s.ticker === "SPY"); window.SPY = spy || { chg_1d: 0 };
   if (meta.demo) { $("#demo-banner").hidden = false; $("#demo-banner").textContent = "Showing demo prices while the live data feed is being set up."; }
   $("#updated").textContent = `Updated ${meta.updated} · ${meta.source}`;
   const upN = STOCKS.filter((s) => s.chg_1d > 0).length;
@@ -50,7 +71,7 @@ function renderTable() {
   const rows = STOCKS.filter((s) => (!sec || s.sector === sec) && (!q || s.ticker.toLowerCase().includes(q) || s.name.toLowerCase().includes(q)))
     .sort((a, b) => (a[sortK] > b[sortK] ? 1 : a[sortK] < b[sortK] ? -1 : 0) * sortDir);
   $("#mtable tbody").innerHTML = rows.map((s) => `<tr data-t="${esc(s.ticker)}">
-    <td><b>${esc(s.ticker)}</b> <span class="n">${esc(s.name)}</span></td>
+    <td class="st">${star(s.ticker)}</td><td><b>${esc(s.ticker)}</b> <span class="n">${esc(s.name)}</span></td>
     <td class="r">$${s.price.toFixed(2)}</td>
     <td class="r ${cls(s.chg_1d)}">${pct(s.chg_1d, 2)}</td><td class="r ${cls(s.chg_1m)}">${pct(s.chg_1m)}</td><td class="r ${cls(s.chg_1y)}">${pct(s.chg_1y)}</td>
     <td class="r ${s.vol_ratio > 2 ? "hot" : ""}">${s.vol_ratio?.toFixed(1)}×</td><td>${spark(s.spark)}</td></tr>`).join("");
@@ -71,6 +92,9 @@ async function openStock(t) {
   $("#d-history").innerHTML = f.map((x) => `<li>${x}</li>`).join("");
   const c = CALLS?.calls.find((x) => x.ticker === t);
   $("#d-call").innerHTML = c ? `<div class="callbox"><b>Today's call:</b> <span class="badge ${c.call}">${c.call}</span> <span class="meta">score ${c.score > 0 ? "+" : ""}${c.score}</span>${reasonList(c)}</div>` : "";
+  const sb = $("#d-star");
+  const paint = () => { sb.textContent = WATCH.has(t) ? "★ On your watchlist" : "☆ Add to watchlist"; sb.classList.toggle("on", WATCH.has(t)); };
+  paint(); sb.onclick = () => { WATCH.toggle(t); paint(); };
   $("#drawer").hidden = false;
   hist = await load(`history/${t}.json`);
   drawChart(252);
@@ -172,7 +196,7 @@ async function insiders() {
     [`Insider buying (${meta.form4_days} days)`, `<span class="up">${money(sum(b))}</span>`],
     ["Insider selling", `<span class="down">${money(sum(s))}</span>`],
     ["Insiders buying / selling", `<span class="up">${new Set(b.map((x) => x.who)).size}</span> / <span class="down">${new Set(s.map((x) => x.who)).size}</span> <span class="meta" style="font-size:12px">people</span>`],
-    ["Congress trades", meta.congress_source ? `${meta.congress_count}${late ? ` <span class="tag warn">${late} filed late</span>` : ""}` : `<span class="meta">Coming soon</span>`],
+    ["Congress trades", meta.congress_source ? `${meta.congress_count}${late ? ` <span class="tag warn">${late} filed late</span>` : ""}` : `<span class="meta">Feed unavailable today</span>`],
   ].map(([l, v]) => `<div class="kpi"><div class="l">${l}</div><div class="v">${v}</div></div>`).join("");
   const rank = Object.entries(signals).map(([t, g]) => {
     const score = g.insider_buyers * 3 + g.congress_buys - g.congress_sells + (g.unplanned_sell_value > 5e6 || (g.insider_sellers >= 3 && !g.insider_buyers) ? -2 : 0);
@@ -184,6 +208,10 @@ async function insiders() {
     <div>${g.insider_buyers} insider${g.insider_buyers === 1 ? "" : "s"} bought ${g.insider_buy_value ? money(g.insider_buy_value) : ""}</div>
     <div>${g.insider_sellers} insider${g.insider_sellers === 1 ? "" : "s"} sold ${g.insider_sell_value ? money(g.insider_sell_value) : ""}${g.unplanned_sell_value ? ` <span class="tag warn">${money(g.unplanned_sell_value)} unplanned</span>` : ""}</div>
     ${meta.congress_source ? `<div>Congress: <span class="up">${g.congress_buys} buys</span>, <span class="down">${g.congress_sells} sells</span></div>` : ""}</div>`).join("");
+  const cn = meta.congress_notes;
+  if (cn) $("#cg-note").innerHTML = `Source: ${esc(meta.congress_source || "official House and Senate filings")}. ` + Object.entries(cn).map(([k, v]) => v.ok
+      ? `${k}: ${v.trades} trades read${v.scanned_skipped ? `, ${v.scanned_skipped} hand-written filings skipped (scans can't be read automatically)` : ""}.`
+      : `${k}: couldn't be reached today.`).join(" ");
   $("#ins-q").oninput = renderIns;
   $("#spy-only").onchange = renderSpy;
   renderIns();
@@ -234,7 +262,7 @@ function renderIns() {
   $("#cgt tbody").innerHTML = INS.congress.filter(m).slice(0, 150).map((x) => `<tr>
     <td>${esc(x.date)}</td><td class="tk">${esc(x.ticker)}</td><td>${esc(x.who)}<div class="n">${esc(x.chamber || "")}${x.party ? " · " + esc(x.party) : ""}</div></td>
     <td class="${x.type === "Buy" ? "buy" : "sell"}">${esc(x.type)}${x.delay_days > 45 ? `<span class="tag warn">filed ${x.delay_days}d later</span>` : ""}</td>
-    <td class="r">${esc(x.amount || "")}</td></tr>`).join("") || `<tr><td colspan="5" class="meta">${INS.meta.congress_source ? "No matching trades." : "Congress trades feed coming soon."}</td></tr>`;
+    <td class="r">${esc(x.amount || "")}</td></tr>`).join("") || `<tr><td colspan="5" class="meta">${INS.meta.congress_source ? "No matching trades." : "No Congress trades loaded today."}</td></tr>`;
 }
 
 var SH;
@@ -288,27 +316,47 @@ function renderShocks() {
 }
 
 let CALLS;
-const reasonList = (c, n = 99) => `<ul class="reasons">${c.reasons.slice(0, n).map((r) => `<li><span class="p ${r.pts > 0 ? "up" : "down"}">${r.pts > 0 ? "+" : ""}${r.pts}</span><span>${esc(r.text)}</span></li>`).join("")}</ul>`;
+const FACT = ["Price", "Insiders", "Congress", "Shocks", "World"];
+const sgn = (x) => `${x > 0 ? "+" : ""}${x}`;
+const reasonList = (c, n = 99) => `<ul class="reasons">${c.reasons.slice(0, n).map((r) => `<li><span class="p ${r.pts > 0 ? "up" : r.pts < 0 ? "down" : ""}">${r.pts ? sgn(r.pts) : "·"}</span><span>${r.f ? `<span class="ex rf" data-ex="f-${r.f}">${r.f}</span> ` : ""}${esc(r.text)}</span></li>`).join("")}</ul>`;
+function meter(score) {
+  const x = Math.max(-5, Math.min(5, score)), w = Math.abs(x) * 10;
+  return `<div class="meter" title="Score ${sgn(score)}"><i class="mid"></i><b class="${x >= 0 ? "pos" : "neg"}" style="left:${x >= 0 ? 50 : 50 - w}%;width:${w}%"></b></div>`;
+}
+const factorChips = (c) => `<div class="fchips">${FACT.map((f) => { const v = c.factors?.[f] ?? 0; return `<span class="fchip ${v > 0 ? "pos" : v < 0 ? "neg" : "zero"}"><span class="fl ex" data-ex="f-${f}">${f}</span><b>${v ? sgn(v) : "0"}</b></span>`; }).join("")}</div>`;
 async function calls() {
   CALLS = await load("calls.json");
-  const { counts, track_record: tr } = CALLS.meta;
-  const trk = (k) => !tr[k]?.n ? "–" : `<span class="${cls(k === "Sell" ? -tr[k].avg_vs_market : tr[k].avg_vs_market)}">${pct(tr[k].avg_vs_market)}</span> <span class="meta" style="font-size:12px">vs market a month later, across ${tr[k].n.toLocaleString()} past calls</span>`;
+  const { counts, track_record: tr, live_record: lr } = CALLS.meta;
+  const trk = (k) => !tr[k]?.n ? "–" : `<span class="${cls(k === "Sell" ? -tr[k].avg_vs_market : tr[k].avg_vs_market)}">${pct(tr[k].avg_vs_market)}</span> <span class="meta" style="font-size:12px">${EX.ex("vsmarket", "vs market")} a month later, ${tr[k].n.toLocaleString()} replayed calls</span>`;
   $("#calls-kpis").innerHTML = [
     ["Today", `<span class="up">${counts.Buy} Buy</span> · ${counts.Hold} Hold · <span class="down">${counts.Sell} Sell</span>`],
     ["Track record: Buy calls", trk("Buy")],
     ["Track record: Sell calls", trk("Sell")],
-  ].map(([l, v]) => `<div class="kpi"><div class="l">${l}</div><div class="v">${v}</div></div>`).join("") +
-    `<div class="meta" style="grid-column:1/-1">Track record: we replayed the pullback rule every week for the past four years and measured each stock against the market over the next month. Beating the market is hard; Buy calls have had a small edge, Sell calls have not.</div>`;
-  $("#c-q").oninput = $("#c-f").onchange = renderCalls;
+  ].map(([l, v]) => `<div class="kpi"><div class="l">${l}</div><div class="v">${v}</div></div>`).join("");
+  const live = (k) => lr?.[k]?.n
+    ? `<b class="${cls(k === "Sell" ? -lr[k].avg_vs_market : lr[k].avg_vs_market)}">${pct(lr[k].avg_vs_market)}</b> vs market so far · beat it ${Math.round(lr[k].beat_rate * 100)}% of the time (${lr[k].n} calls)`
+    : `<span class="meta">first results after the next trading day</span>`;
+  $("#calls-record").innerHTML = `<div class="rec-h"><span class="ex" data-ex="record">Live track record</span> <span class="meta">since ${lr ? esc(lr.since) : "today"} · ${lr?.days_logged || 1} day${(lr?.days_logged || 1) === 1 ? "" : "s"} logged</span></div>
+    <div class="rec-row"><span class="badge Buy">Buy</span><span>${live("Buy")}</span></div><div class="rec-row"><span class="badge Sell">Sell</span><span>${live("Sell")}</span></div>
+    <div class="meta">Every call is saved with its price on the day we make it, then checked against the market. The ${EX.ex("backtest", "replayed record")} above shows how the price rule did over the past four years. Beating the market is hard, so treat these as a starting point for your own research, not advice.</div>`;
+  $("#c-q").oninput = $("#c-f").onchange = $("#c-s").onchange = $("#c-w").onchange = renderCalls;
   renderCalls();
 }
 function renderCalls() {
-  const q = $("#c-q").value.trim().toLowerCase(), f = $("#c-f").value;
-  $("#calls-list").innerHTML = CALLS.calls.filter((c) => (!f || c.call === f) && (!q || c.ticker.toLowerCase().includes(q) || c.name.toLowerCase().includes(q)))
-    .map((c) => `<div class="card clickable" data-t="${esc(c.ticker)}">
-      <h3><span class="badge ${c.call}">${c.call}</span> <span class="tk" style="font-size:16px">${esc(c.ticker)}</span> <span class="meta">${esc(c.name)}</span></h3>
-      <div class="row"><span>$${c.price.toFixed(2)} <span class="${cls(c.chg_1d)}">${pct(c.chg_1d, 2)}</span></span><span class="meta">score ${c.score > 0 ? "+" : ""}${c.score}</span></div>
-      ${reasonList(c, 3)}</div>`).join("") || `<div class="placeholder">No stocks match.</div>`;
+  if (!CALLS) return;
+  const q = $("#c-q").value.trim().toLowerCase(), f = $("#c-f").value, so = $("#c-s").value, w = $("#c-w").checked;
+  const list = CALLS.calls.filter((c) => (!f || c.call === f) && (!w || WATCH.has(c.ticker)) && (!q || c.ticker.toLowerCase().includes(q) || c.name.toLowerCase().includes(q)));
+  if (so === "low") list.sort((a, b) => a.score - b.score);
+  else if (so !== "score") list.sort((a, b) => Math.abs(b.factors?.[so] || 0) - Math.abs(a.factors?.[so] || 0) || b.score - a.score);
+  else list.sort((a, b) => b.score - a.score);
+  $("#calls-list").innerHTML = list.map((c) => {
+    const pts = c.reasons.filter((r) => r.pts);
+    return `<div class="card clickable callcard" data-t="${esc(c.ticker)}">
+      <h3>${star(c.ticker)} <span class="badge ${c.call}">${c.call}</span> <span class="tk" style="font-size:16px">${esc(c.ticker)}</span> <span class="meta">${esc(c.name)}</span></h3>
+      <div class="row"><span>$${c.price.toFixed(2)} <span class="${cls(c.chg_1d)}">${pct(c.chg_1d, 2)}</span></span><span class="sc ${c.score > 0 ? "up" : c.score < 0 ? "down" : ""}">${EX.ex("score", "score")} ${sgn(c.score)}</span></div>
+      ${meter(c.score)}${factorChips(c)}
+      ${reasonList(pts.length ? { reasons: pts } : c, 3)}</div>`;
+  }).join("") || `<div class="placeholder">${w ? "No stocks on your watchlist yet. Tap ☆ on any stock to add it." : "No stocks match."}</div>`;
   document.querySelectorAll("#calls-list .card").forEach((el) => el.onclick = () => openStock(el.dataset.t));
 }
 
@@ -316,8 +364,9 @@ function renderCalls() {
   await market();
   await shocks();
   await insiders();
-  world();
-  calls();
+  await Promise.all([world(), calls()]);
+  window.DATA_READY = true;
+  document.dispatchEvent(new Event("watch"));
 })();
 
 

@@ -26,6 +26,11 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
+      - name: Restore saved files from the "data" branch (Congress filing cache, call log)
+        run: |
+          git fetch -q --depth 1 origin data || exit 0
+          for f in congress_cache.json calls_log.json; do git show FETCH_HEAD:$f > site/data/$f 2>/dev/null || rm -f site/data/$f; done
+          ls -la site/data
       - name: Build data
         env:
           SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT || 'SignalWatch-demo coyle9793@users.noreply.github.com' }}

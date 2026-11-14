@@ -5,8 +5,8 @@
 
 Sources
 - Form 4: SEC EDGAR (free). Set SEC_USER_AGENT to "<name> <contact>" as the SEC asks.
-- Congress: Quiver Quantitative if QUIVER_TOKEN is set, else the free House/Senate Stock
-  Watcher datasets. If every Congress source fails, the site says so instead of guessing.
+- Congress: Quiver Quantitative if QUIVER_TOKEN is set, else the free official House Clerk and
+  Senate eFD filings (scripts/congress_official.py). If every Congress source fails, the site says so instead of guessing.
 Writes site/data/insiders.json
 """
 import json, os, sys, time, datetime as dt
@@ -149,23 +149,15 @@ def congress(s):
             source = "Quiver Quantitative"
         except Exception as e:
             print("quiver failed", e)
+    notes = None
     if not rows:
-        for url, chamber, who in [
-            ("https://house-stock-watcher-data.s3-us-west-2.amazonaws.com/data/all_transactions.json", "House", "representative"),
-            ("https://senate-stock-watcher-data.s3-us-west-2.amazonaws.com/aggregate/all_transactions.json", "Senate", "senator")]:
-            try:
-                for x in s.get(url, timeout=60).json():
-                    d = x.get("transaction_date") or ""
-                    if "/" in d:
-                        mm, dd, yy = d.split("/"); d = f"{yy}-{mm}-{dd}"
-                    f = x.get("disclosure_date") or ""
-                    if "/" in f:
-                        mm, dd, yy = f.split("/"); f = f"{yy}-{mm}-{dd}"
-                    rows.append({"who": x.get(who), "chamber": chamber, "party": x.get("party"), "ticker": x.get("ticker"),
-                                 "type": x.get("type"), "date": d, "filed": f, "amount": x.get("amount"), "url": x.get("ptr_link")})
-                source = "House & Senate Stock Watcher"
-            except Exception as e:
-                print("watcher failed", chamber, e)
+        try:
+            from congress_official import fetch
+            rows, notes = fetch()
+            if any(n.get("ok") for n in notes.values()):
+                source = "House Clerk & Senate eFD (official filings)"
+        except Exception as e:
+            print("official congress sources failed", e)
     out = []
     for r in rows:
         t = (r["ticker"] or "").upper().replace(".", "-")
@@ -179,7 +171,7 @@ def congress(s):
             r["delay_days"] = None
         out.append(r)
     out.sort(key=lambda r: r["date"], reverse=True)
-    return out[:400], source
+    return out[:400], source, notes
 
 
 def signals(f4, cong):
@@ -222,7 +214,7 @@ def fake():
 
 def main():
     if "--fake" in sys.argv:
-        f4, cg, csrc = fake(); demo = True; f4src = None
+        f4, cg, csrc = fake(); demo = True; f4src = None; cnotes = None
     else:
         s = http(); demo = False
         try:
@@ -230,11 +222,11 @@ def main():
         except SystemExit as e:
             print(e, "-> trying OpenInsider")
             f4, f4src = form4_openinsider(s), "SEC Form 4 via OpenInsider"
-        cg, csrc = congress(s)
+        cg, csrc, cnotes = congress(s)
     f4.sort(key=lambda x: x["date"] or "", reverse=True)
     meta = {"demo": demo, "updated": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
             "form4_source": f4src if not demo else "FICTIONAL SAMPLE (layout only)", "form4_days": DAYS,
-            "congress_source": csrc, "congress_count": len(cg)}
+            "congress_source": csrc, "congress_count": len(cg), "congress_notes": cnotes}
     json.dump({"meta": meta, "form4": f4, "congress": cg, "signals": signals(f4, cg)},
               open(os.path.join(DATA, "insiders.json"), "w"), separators=(",", ":"))
     print(meta, len(f4), "form 4 trades")
