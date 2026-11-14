@@ -58,6 +58,7 @@ async function market() {
     ["Busiest trading", `${busy.ticker} <span class="hot">${busy.vol_ratio.toFixed(1)}×</span>`],
   ].map(([l, v]) => `<div class="kpi"><div class="l">${l}</div><div class="v">${v}</div></div>`).join("");
   window.startWeather?.(spy?.chg_1d, upN / STOCKS.length, upN, STOCKS.length);
+  window.startIntro?.(spy?.chg_1d, upN / STOCKS.length, upN, STOCKS.length);
   const sectors = [...new Set(STOCKS.map((s) => s.sector))].sort();
   $("#sector").innerHTML += sectors.map((s) => `<option>${esc(s)}</option>`).join("");
   $("#q").oninput = $("#sector").onchange = renderTable;
