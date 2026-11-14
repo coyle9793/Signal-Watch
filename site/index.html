@@ -39,7 +39,7 @@
     <div id="ins-banner" class="banner" hidden></div>
     <div id="ins-kpis" class="kpis"></div>
     <h2 class="h2">Where insiders agree</h2>
-    <p class="meta">Stocks where several people with inside knowledge are trading the same way. Buying by several insiders at once is one of the best-studied signals; planned (10b5-1) sales are routine and carry little meaning.</p>
+    <p class="meta">Stocks where several people with inside knowledge are trading the same way. Buying by several insiders at once is one of the best-studied signals. Selling is weaker evidence, since insiders often sell on a schedule for taxes or diversification.</p>
     <div id="ins-clusters" class="cards"></div>
     <div class="controls" style="margin-top:20px"><input id="ins-q" type="search" placeholder="Filter by ticker or name"></div>
     <div class="split">
@@ -51,7 +51,7 @@
     <h1>Surprise shocks</h1>
     <p class="lede">Unusual selling, volume spikes or price drops with no clear news behind them.</p>
     <div id="sh-kpis" class="kpis"></div>
-    <p class="meta">We flag a stock when its price moves far more than the market explains (2.5+ times its usual swing), or when 2.5+ times the normal number of shares trade in a day. Then we check for a reason: news coverage that day, or an insider filing. Shocks with no reason are marked in red.</p>
+    <p class="meta">We flag a stock when its price moves far more than the market explains (2.5+ times its usual swing), or when 3+ times the normal number of shares trade in a day. Then we check for a reason: news coverage that day, or an insider filing. Shocks with no reason are marked in red.</p>
     <div class="controls"><label><input type="checkbox" id="sh-only"> Only show unexplained</label></div>
     <div id="sh-list" class="cards"></div>
   </section>
@@ -75,9 +75,8 @@
     <details class="how"><summary>How the calls are made</summary>
       <p>Each stock gets points from simple rules, and every point comes with its reason. A total of +2 or more is a <b class="buy">Buy</b>, −2 or less is a <b class="sell">Sell</b>, anything in between is a <b>Hold</b>.</p>
       <ul class="facts">
-        <li><b>Trend:</b> +1 if the price is above its 200-day average, −1 if below; ±0.5 for the 50-day vs 200-day average.</li>
-        <li><b>Momentum:</b> ±1 if it beat or trailed the market by 5+ points over 3 months.</li>
-        <li><b>Insiders:</b> +2 if two or more company insiders bought (+1 for one); −1 for $5M+ of unplanned insider selling.</li>
+        <li><b>Pullback:</b> +2 if it fell 7+ points behind the market over the past month, −2 if it ran 7+ points ahead. Short-term overreactions tend to partly reverse; in our 5-year backtest this was the only simple price rule that beat the market.</li>
+        <li><b>Insiders:</b> +2 if two or more company insiders bought with their own money (+1 for one); −1 if three or more sold and none bought.</li>
         <li><b>Congress:</b> +0.5 per net buy by members of Congress, up to ±1.</li>
         <li><b>Shocks:</b> −1.5 for an unexplained sell-off in the last 10 days; ±0.5 depending on how it recovered from past shocks.</li>
         <li><b>World events:</b> −0.5 if it's exposed to one of today's five riskiest world events.</li>

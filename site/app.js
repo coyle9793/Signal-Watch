@@ -140,19 +140,19 @@ async function insiders() {
   $("#ins-kpis").innerHTML = [
     [`Insider buying (${meta.form4_days} days)`, `<span class="up">${money(sum(b))}</span>`],
     ["Insider selling", `<span class="down">${money(sum(s))}</span>`],
-    ["Of which unplanned", `<span class="hot">${money(sum(s.filter((x) => !x.planned)))}</span>`],
+    ["Insiders buying / selling", `<span class="up">${new Set(b.map((x) => x.who)).size}</span> / <span class="down">${new Set(s.map((x) => x.who)).size}</span> <span class="meta" style="font-size:12px">people</span>`],
     ["Congress trades", meta.congress_source ? `${meta.congress_count}${late ? ` <span class="tag warn">${late} filed late</span>` : ""}` : `<span class="meta">Coming soon</span>`],
   ].map(([l, v]) => `<div class="kpi"><div class="l">${l}</div><div class="v">${v}</div></div>`).join("");
   const rank = Object.entries(signals).map(([t, g]) => {
-    const score = g.insider_buyers * 3 + g.congress_buys - g.congress_sells + (g.unplanned_sell_value > 5e6 ? -2 : 0);
+    const score = g.insider_buyers * 3 + g.congress_buys - g.congress_sells + (g.unplanned_sell_value > 5e6 || (g.insider_sellers >= 3 && !g.insider_buyers) ? -2 : 0);
     return { t, g, score };
-  }).filter((x) => x.g.insider_buyers || x.g.congress_members || x.g.unplanned_sell_value > 5e6);
+  }).filter((x) => x.g.insider_buyers || x.g.congress_members || x.g.unplanned_sell_value > 5e6 || x.g.insider_sellers >= 3);
   rank.sort((a, b) => Math.abs(b.score) - Math.abs(a.score));
   $("#ins-clusters").innerHTML = rank.slice(0, 6).map(({ t, g, score }) => `<div class="card">
     <h3><span class="tk" style="font-size:16px">${t}</span> <span class="${score >= 0 ? "buy" : "sell"}">${score >= 0 ? "Leaning buy" : "Leaning sell"}</span></h3>
     <div>${g.insider_buyers} insider${g.insider_buyers === 1 ? "" : "s"} bought ${g.insider_buy_value ? money(g.insider_buy_value) : ""}</div>
     <div>${g.insider_sellers} insider${g.insider_sellers === 1 ? "" : "s"} sold ${g.insider_sell_value ? money(g.insider_sell_value) : ""}${g.unplanned_sell_value ? ` <span class="tag warn">${money(g.unplanned_sell_value)} unplanned</span>` : ""}</div>
-    <div>Congress: <span class="up">${g.congress_buys} buys</span>, <span class="down">${g.congress_sells} sells</span></div></div>`).join("");
+    ${meta.congress_source ? `<div>Congress: <span class="up">${g.congress_buys} buys</span>, <span class="down">${g.congress_sells} sells</span></div>` : ""}</div>`).join("");
   $("#ins-q").oninput = renderIns;
   renderIns();
 }
@@ -206,15 +206,13 @@ const reasonList = (c, n = 99) => `<ul class="reasons">${c.reasons.slice(0, n).m
 async function calls() {
   CALLS = await load("calls.json");
   const { counts, track_record: tr } = CALLS.meta;
-  const trk = (k) => !tr[k]?.n ? "–" : k === "Sell"
-    ? `${Math.round((1 - tr[k].beat_rate) * 100)}% <span class="meta" style="font-size:12px">of Sell calls then lagged the market (avg ${pct(tr[k].avg_vs_market)} vs market)</span>`
-    : `${Math.round(tr[k].beat_rate * 100)}% <span class="meta" style="font-size:12px">of Buy calls then beat the market (avg ${pct(tr[k].avg_vs_market)})</span>`;
+  const trk = (k) => !tr[k]?.n ? "–" : `<span class="${cls(k === "Sell" ? -tr[k].avg_vs_market : tr[k].avg_vs_market)}">${pct(tr[k].avg_vs_market)}</span> <span class="meta" style="font-size:12px">vs market a month later, across ${tr[k].n.toLocaleString()} past calls</span>`;
   $("#calls-kpis").innerHTML = [
     ["Today", `<span class="up">${counts.Buy} Buy</span> · ${counts.Hold} Hold · <span class="down">${counts.Sell} Sell</span>`],
     ["Track record: Buy calls", trk("Buy")],
     ["Track record: Sell calls", trk("Sell")],
   ].map(([l, v]) => `<div class="kpi"><div class="l">${l}</div><div class="v">${v}</div></div>`).join("") +
-    `<div class="meta" style="grid-column:1/-1">Track record replays the trend and momentum rules on each week of the past year and checks the next month (20 trading days).</div>`;
+    `<div class="meta" style="grid-column:1/-1">Track record: we replayed the pullback rule every week for the past four years and measured each stock against the market over the next month. Beating the market is hard; Buy calls have had a small edge, Sell calls have not.</div>`;
   $("#c-q").oninput = $("#c-f").onchange = renderCalls;
   renderCalls();
 }

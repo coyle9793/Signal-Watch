@@ -1,8 +1,10 @@
 """Daily Buy / Hold / Sell call for each S&P 100 stock, from simple, explainable rules.
 
 Points (each comes with a plain-English reason):
-  Trend      +1 price above 200-day average, -1 below; +0.5/-0.5 if 50-day above/below 200-day
-  Momentum   +1 / -1 if 3-month return beats / trails the market by 5+ points
+  Pullback   +2 if it fell 7+ points behind the market over the past month (short-term
+             overreactions tend to partly reverse), -2 if it ran 7+ points ahead
+  Trend      shown for context (above/below the 200-day average), no points: in our 5-year
+             backtest, trend-following rules did not beat the market for these stocks
   Insiders   +2 if 2+ insiders bought in the open market, +1 if one did; -1 if $5M+ unplanned selling
   Congress   +0.5 per net buy, capped at +/-1
   Shocks     -1.5 for an unexplained sell-off in the last 10 days, -0.5 explained; +0.5 for a surge
@@ -35,12 +37,10 @@ def label(score):
 
 
 def price_points(c, spy):
-    """Trend + momentum points for every day (vectorised) -- used for today and the backtest."""
-    s200, s50 = c.rolling(200).mean(), c.rolling(50).mean()
-    pts = np.where(c > s200, 1.0, -1.0) + np.where(s50 > s200, 0.5, -0.5)
-    rel = c.pct_change(63) - spy.pct_change(63)
-    pts = pts + np.where(rel > 0.05, 1.0, np.where(rel < -0.05, -1.0, 0.0))
-    return pd.Series(pts, index=c.index).where(s200.notna())
+    """Pullback points for every day (vectorised) -- used for today and the backtest."""
+    rel = c.pct_change(21) - spy.pct_change(21)
+    pts = np.where(rel < -0.07, 2.0, np.where(rel > 0.07, -2.0, 0.0))
+    return pd.Series(pts, index=c.index).where(rel.notna())
 
 
 def main():
@@ -64,24 +64,22 @@ def main():
             score += pts
             why.append({"pts": pts, "text": text})
 
+        rel = (p["chg_1m"] or 0) - (prices["SPY"]["chg_1m"] or 0)
+        if rel < -0.07: add(2, f"Fell {-rel*100:.0f} points behind the market this month; pullbacks like this have tended to partly recover")
+        elif rel > 0.07: add(-2, f"Ran {rel*100:.0f} points ahead of the market this month; spikes like this have tended to partly fade")
         if p["sma200"]:
-            add(1 if p["price"] > p["sma200"] else -1,
-                "Price is above its 200-day average (long-term uptrend)" if p["price"] > p["sma200"] else "Price is below its 200-day average (long-term downtrend)")
-            add(0.5 if p["sma50"] > p["sma200"] else -0.5,
-                "Short-term trend is above the long-term trend" if p["sma50"] > p["sma200"] else "Short-term trend is below the long-term trend")
-        rel = (p["chg_3m"] or 0) - (prices["SPY"]["chg_3m"] or 0)
-        if rel > 0.05: add(1, f"Beat the market by {rel*100:.0f} points over 3 months")
-        elif rel < -0.05: add(-1, f"Trailed the market by {-rel*100:.0f} points over 3 months")
+            add(0, "Long-term uptrend (above its 200-day average)" if p["price"] > p["sma200"] else "Long-term downtrend (below its 200-day average)")
         g = sig.get(t, {})
         if g.get("insider_buyers", 0) >= 2: add(2, f"{g['insider_buyers']} company insiders bought shares with their own money")
         elif g.get("insider_buyers", 0) == 1: add(1, "A company insider bought shares with their own money")
         if g.get("unplanned_sell_value", 0) >= 5e6: add(-1, f"Insiders sold ${g['unplanned_sell_value']/1e6:.0f}M outside pre-planned schedules")
+        elif g.get("insider_sellers", 0) >= 3 and not g.get("insider_buyers"): add(-1, f"{g['insider_sellers']} different insiders sold and none bought")
         net = g.get("congress_buys", 0) - g.get("congress_sells", 0)
         if net: add(max(-1, min(1, 0.5 * net)), f"Members of Congress were net {'buyers' if net > 0 else 'sellers'} ({g['congress_buys']} buys, {g['congress_sells']} sells)")
         mine = [s for s in shocks if s["ticker"] == t]
         if mine:
             s = mine[0]
-            if s["abnormal"] < 0:
+            if s["ret"] < 0 and s["abnormal"] < 0:
                 add(-1.5 if not s["explained"] else -0.5, f"{'Unexplained' if not s['explained'] else 'News-driven'} {s['kind'].lower()} on {s['date']} ({s['ret']*100:+.1f}%)")
             else:
                 add(0.5, f"{s['kind']} on {s['date']} ({s['ret']*100:+.1f}%)")
@@ -95,7 +93,7 @@ def main():
         # backtest of the price-only rules
         pp = price_points(c, spy.reindex(c.index).ffill())
         fwd = c.shift(-20) / c - 1 - (spy.shift(-20) / spy - 1).reindex(c.index)
-        bt = pd.concat([pp, fwd], axis=1, keys=["p", "f"]).dropna().iloc[-270:-20:5]   # weekly samples, last ~year
+        bt = pd.concat([pp, fwd], axis=1, keys=["p", "f"], sort=True).dropna().iloc[-1000:][::5]   # weekly samples, last ~4 years
         for _, r in bt.iterrows():
             record[label(r.p)].append(float(r.f))
     calls.sort(key=lambda x: -x["score"])

@@ -130,7 +130,7 @@ def form4_openinsider(s):
             trades.append({"ticker": t, "who": str(r["Insider Name"]), "role": str(r.get("Title", "")),
                            "type": "Buy" if typ.startswith("P") else "Sell", "date": str(r["Trade Date"])[:10],
                            "filed": str(r["Filing Date"])[:10], "shares": int(qty), "price": round(price, 2), "value": round(qty * price),
-                           "owned_after": None, "planned": False, "url": url})
+                           "owned_after": None, "planned": None, "url": url})   # OpenInsider doesn't say if a sale was pre-planned
     return trades
 
 
@@ -188,7 +188,7 @@ def signals(f4, cong):
     for t in UNIVERSE:
         buys = [x for x in f4 if x["ticker"] == t and x["type"] == "Buy"]
         sells = [x for x in f4 if x["ticker"] == t and x["type"] == "Sell"]
-        unplanned = [x for x in sells if not x["planned"]]
+        unplanned = [x for x in sells if x["planned"] is False]
         cb = [x for x in cong if x["ticker"] == t and x["type"] == "Buy"]
         cs = [x for x in cong if x["ticker"] == t and x["type"] == "Sell"]
         sig[t] = {"insider_buyers": len({x["who"] for x in buys}), "insider_buy_value": sum(x["value"] for x in buys),

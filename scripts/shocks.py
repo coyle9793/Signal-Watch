@@ -50,7 +50,7 @@ def main():
         sd = ab.rolling(250, min_periods=120).std().shift(1)
         z = ab / sd
         vr = df["volume"] / df["volume"].rolling(50, min_periods=20).median().shift(1)
-        flags = (z.abs() >= 2.5) | (vr.reindex(z.index) >= 2.5)
+        flags = (z.abs() >= 2.5) | (vr.reindex(z.index) >= 3)
         # history: every past flagged day before the look-back window
         past = [d for d in z.index[flags][:-LOOKBACK] if z.index.get_loc(d) + 20 < len(z)]
         close = df["close"]
@@ -61,7 +61,7 @@ def main():
             ds, dk = d.strftime("%Y-%m-%d"), d.strftime("%Y%m%d")
             news = ev.get("mentions", {}).get(t, {}).get(dk, 0)
             filings = [f for f in ins.get("form4", []) if f["ticker"] == t and f["date"] and abs((pd.Timestamp(f["date"]) - d).days) <= 3]
-            unplanned_sells = [f for f in filings if f["type"] == "Sell" and not f["planned"]]
+            unplanned_sells = [f for f in filings if f["type"] == "Sell" and f["planned"] is False]
             reasons = []
             if news: reasons.append(f"{news} news articles that day")
             if filings: reasons.append(f"{len(filings)} insider trade{'s' if len(filings) > 1 else ''} within 3 days")
@@ -70,7 +70,7 @@ def main():
                 "ticker": t, "name": u["name"], "sector": u["sector"], "date": ds,
                 "ret": round(float(j.r.loc[d]), 4), "market": round(float(j.m.loc[d]), 4), "abnormal": round(float(ab.loc[d]), 4),
                 "z": round(float(z.loc[d]), 2), "vol_ratio": round(float(vr.loc[d]), 2),
-                "kind": ("Sell-off" if ab.loc[d] < 0 else "Surge") if abs(z.loc[d]) >= 2.5 else ("Heavy selling" if ab.loc[d] < 0 else "Heavy buying"),
+                "kind": ("Sell-off" if ab.loc[d] < 0 else "Surge") if abs(z.loc[d]) >= 2.5 else ("Heavy trading, price down" if j.r.loc[d] < 0 else "Heavy trading, price up"),
                 "explained": bool(reasons), "news_checked": known, "reasons": reasons,
                 "unplanned_insider_sells": len(unplanned_sells),
                 "past_shocks": len(fwd), "past_avg_20d": round(float(np.mean(fwd)), 4) if fwd else None,

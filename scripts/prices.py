@@ -28,7 +28,7 @@ def fetch_real():
         if len(df) <= 50:   # retry one by one (the batch download occasionally drops a ticker)
             try:
                 df = yf.Ticker(t).history(period="5y", interval="1d", auto_adjust=True)[["Open", "High", "Low", "Close", "Volume"]].dropna()
-                df.index = df.index.tz_localize(None)
+                df.index = pd.to_datetime(df.index, utc=True).tz_localize(None).normalize()
             except Exception as e:
                 print("missing", t, e); continue
         if len(df) > 50:
