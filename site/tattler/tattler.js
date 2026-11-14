@@ -14,7 +14,7 @@
   const load = (f) => fetch(`../data/${f}`, { cache: "no-cache" }).then((r) => { if (!r.ok) throw new Error(f); return r.json(); });
 
   // company logos (Google's public favicon service); falls back to the ticker if one won't load
-  const DOMAINS = {"AAPL":"apple.com","ABBV":"abbvie.com","ABT":"abbott.com","ACN":"accenture.com","ADBE":"adobe.com","AIG":"aig.com","AMD":"amd.com","AMGN":"amgen.com","AMT":"americantower.com","AMZN":"amazon.com","AVGO":"broadcom.com","AXP":"americanexpress.com","BA":"boeing.com","BAC":"bankofamerica.com","BK":"bnymellon.com","BKNG":"bookingholdings.com","BLK":"blackrock.com","BMY":"bms.com","BRK-B":"berkshirehathaway.com","C":"citigroup.com","CAT":"caterpillar.com","CHTR":"charter.com","CL":"colgatepalmolive.com","CMCSA":"comcast.com","COF":"capitalone.com","COP":"conocophillips.com","COST":"costco.com","CRM":"salesforce.com","CSCO":"cisco.com","CVS":"cvshealth.com","CVX":"chevron.com","DE":"deere.com","DHR":"danaher.com","DIS":"disney.com","DUK":"duke-energy.com","EMR":"emerson.com","F":"ford.com","FDX":"fedex.com","GD":"gd.com","GE":"ge.com","GILD":"gilead.com","GM":"gm.com","GOOGL":"google.com","GOOG":"google.com","GS":"goldmansachs.com","HD":"homedepot.com","HON":"honeywell.com","IBM":"ibm.com","INTC":"intel.com","INTU":"intuit.com","ISRG":"intuitive.com","JNJ":"jnj.com","JPM":"jpmorganchase.com","KO":"coca-cola.com","LIN":"linde.com","LLY":"lilly.com","LMT":"lockheedmartin.com","MA":"mastercard.com","MCD":"mcdonalds.com","MDLZ":"mondelezinternational.com","MDT":"medtronic.com","MET":"metlife.com","META":"meta.com","MMM":"3m.com","MO":"altria.com","MRK":"merck.com","MS":"morganstanley.com","MSFT":"microsoft.com","NEE":"nexteraenergy.com","NFLX":"netflix.com","NKE":"nike.com","NOW":"servicenow.com","NVDA":"nvidia.com","ORCL":"oracle.com","PEP":"pepsico.com","PFE":"pfizer.com","PG":"pg.com","PLTR":"palantir.com","PM":"pmi.com","PYPL":"paypal.com","QCOM":"qualcomm.com","RTX":"rtx.com","SBUX":"starbucks.com","SCHW":"schwab.com","SO":"southerncompany.com","SPG":"simon.com","T":"att.com","TGT":"target.com","TMO":"thermofisher.com","TMUS":"t-mobile.com","TSLA":"tesla.com","TXN":"ti.com","UNH":"unitedhealthgroup.com","UNP":"up.com","UPS":"ups.com","USB":"usbank.com","V":"visa.com","VZ":"verizon.com","WFC":"wellsfargo.com","WMT":"walmart.com","XOM":"exxonmobil.com"};
+  const DOMAINS = {"AAPL":"apple.com","ABBV":"abbvie.com","ABT":"abbott.com","ACN":"accenture.com","ADBE":"adobe.com","AIG":"aig.com","AMD":"amd.com","AMGN":"amgen.com","AMT":"americantower.com","AMZN":"amazon.com","AVGO":"broadcom.com","AXP":"americanexpress.com","BA":"boeing.com","BAC":"bankofamerica.com","BK":"bnymellon.com","BKNG":"bookingholdings.com","BLK":"blackrock.com","BMY":"bms.com","BRK-B":"berkshirehathaway.com","C":"citigroup.com","CAT":"caterpillar.com","CHTR":"charter.com","CL":"colgatepalmolive.com","CMCSA":"comcast.com","COF":"capitalone.com","COST":"costco.com","CRM":"salesforce.com","CSCO":"cisco.com","CVS":"cvshealth.com","CVX":"chevron.com","DE":"deere.com","DHR":"danaher.com","DIS":"disney.com","DUK":"duke-energy.com","EMR":"emerson.com","F":"ford.com","FDX":"fedex.com","GD":"gd.com","GE":"ge.com","GILD":"gilead.com","GM":"gm.com","GOOGL":"google.com","GOOG":"google.com","GS":"goldmansachs.com","HD":"homedepot.com","HON":"honeywell.com","IBM":"ibm.com","INTC":"intel.com","INTU":"intuit.com","ISRG":"intuitive.com","JNJ":"jnj.com","JPM":"jpmorganchase.com","KO":"coca-cola.com","LIN":"linde.com","LLY":"lilly.com","LMT":"lockheedmartin.com","MA":"mastercard.com","MCD":"mcdonalds.com","MDLZ":"mondelezinternational.com","MDT":"medtronic.com","MET":"metlife.com","META":"meta.com","MMM":"3m.com","MO":"altria.com","MRK":"merck.com","MS":"morganstanley.com","MSFT":"microsoft.com","NEE":"nexteraenergy.com","NFLX":"netflix.com","NKE":"nike.com","NOW":"servicenow.com","NVDA":"nvidia.com","ORCL":"oracle.com","PEP":"pepsico.com","PFE":"pfizer.com","PG":"pg.com","PLTR":"palantir.com","PM":"pmi.com","PYPL":"paypal.com","QCOM":"qualcomm.com","RTX":"rtx.com","SBUX":"starbucks.com","SCHW":"schwab.com","SO":"southerncompany.com","SPG":"simon.com","T":"att.com","TGT":"target.com","TMO":"thermofisher.com","TMUS":"t-mobile.com","TSLA":"tesla.com","TXN":"ti.com","UNH":"unitedhealthgroup.com","UNP":"up.com","UPS":"ups.com","USB":"usbank.com","V":"visa.com","VZ":"verizon.com","WFC":"wellsfargo.com","WMT":"walmart.com"};
   window.ttLogoFail = (img) => { const s = document.createElement("span"); s.className = img.className + " lg-txt"; s.textContent = img.dataset.t; img.replaceWith(s); };
   const logo = (t) => DOMAINS[t] ? `<img class="lg" data-t="${esc(t)}" src="https://www.google.com/s2/favicons?domain=${DOMAINS[t]}&sz=128" alt="${esc(nameOf(t))} logo" loading="lazy" onload="if(this.naturalWidth&&this.naturalWidth<48)ttLogoFail(this)" onerror="ttLogoFail(this)">` : `<span class="lg lg-txt">${esc(t)}</span>`;
   const stick = (t) => `<span class="stick">${logo(t)}</span>`;
@@ -218,24 +218,26 @@
     ];
     $("#dressed").innerHTML = rows.map(([s, pun]) => `<div class="row"><span>${logo(s.ticker)}${esc(s.name)}, ${pun}</span><b class="${s.chg_1d >= 0 ? "up" : "down"}">${pct(s.chg_1d)}</b></div>`).join("");
 
-    // overheard abroad: top world events, one per country pair
-    const HEAD = {
-      "Defence & energy": ["Oil and defence stocks are clutching their pearls", "Defence names, suddenly very popular", "Energy stocks can't stop checking the headlines", "Defence contractors, everyone's new plus-one"],
-      "Trade-exposed tech & industrials": ["Tech is nervous about the trade drama", "Factories are gossiping about sanctions"],
-    };
-    const seen = new Set(), headUsed = {};
+    // world news: wars, conflicts and sanctions are written plainly and respectfully, never as gossip
+    const seen = new Set();
     const evs = (events.events || []).filter((e) => e.kind !== "cooperation" && e.tickers?.length)
       .sort((a, b) => b.risk - a.risk)
       .filter((e) => { const k = [...e.countries].sort().join(); if (seen.has(k)) return false; seen.add(k); return true; })
       .slice(0, 4);
+    const SECTOR = { "Defence & energy": "Defence and energy stocks", "Trade-exposed tech & industrials": "Tech and industrial companies that trade abroad" };
     $("#abroad").innerHTML = evs.map((e) => {
-      const opts = HEAD[e.sector] || ["Somebody's causing a scene"];
-      const i = (headUsed[e.sector] = (headUsed[e.sector] ?? -1) + 1);
       const names = e.tickers.slice(0, 3).map(nameOf);
       const list = names.length > 1 ? names.slice(0, -1).join(", ") + " and " + names[names.length - 1] : names[0];
-      const what = e.title.split(":")[0];
-      return `<div class="note2"><h3>${esc(opts[i % opts.length])}</h3><p>${esc(what)} drama filled ${e.articles} news stories on ${fmt(gdelt(e.date || events.meta.date))}, and ${esc(list)} can't stop checking the headlines.</p><p class="logos">${e.tickers.slice(0, 3).map(logo).join("")}</p></div>`;
-    }).join("") || `<div class="note2"><p>All quiet abroad. For now.</p></div>`;
+      const [pair, label] = e.title.split(":").map((x) => x.trim());
+      const where = pair.replace(" & ", " and ").replace(/\b(United States|United Kingdom|Netherlands|Philippines|Czech Republic|United Arab Emirates)\b/g, "the $1");
+      const when = fmt(gdelt(e.date || events.meta.date));
+      const group = SECTOR[e.sector] || "Some stocks";
+      const head = e.kind === "conflict" ? `Conflict involving ${where}` : `Tension between ${where}`;
+      const body = e.kind === "conflict"
+        ? `The conflict was in ${e.articles} news stories on ${when}. ${group}, such as ${list}, are often sensitive to events like this.`
+        : `Reports of ${(label || "pressure").toLowerCase()} between ${where} were in ${e.articles} news stories on ${when}. ${group}, such as ${list}, can be affected by sanctions and trade pressure.`;
+      return `<div class="note2"><h3>${esc(head)}</h3><p>${esc(body)}</p><p class="tickers">${e.tickers.slice(0, 3).map((t) => `<span>${esc(t)}</span>`).join("")}</p></div>`;
+    }).join("") || `<div class="note2"><p>No major world events in the news today.</p></div>`;
   }
 
   Promise.all(["prices.json", "insiders.json", "shocks.json", "events.json", "calls.json"].map((f) => load(f).catch(() => ({}))))

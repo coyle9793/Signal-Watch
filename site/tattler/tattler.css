@@ -222,3 +222,9 @@ body.diary .measure{display:block;position:absolute;left:-9999px;top:0;width:var
 body.diary .measure .pg{min-height:0}
 body.diary .cont{margin:16px 22px 22px;font:500 20px Caveat,cursive;color:#7a4a5e}
 body.diary:not(.spread) .abroad{grid-template-columns:1fr}
+.note2 .tickers{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+.note2 .tickers span{padding:1px 8px;border-radius:999px;font:700 11px Inter,sans-serif;letter-spacing:.06em}
+body.diary .note2 .tickers span{background:rgba(255,255,255,.7);color:#7a4a5e}
+body.feed .note2 .tickers span{background:#241f18;color:#c9a54a}
+body.diary .note2,body.diary .note2:nth-child(2n),body.diary .note2:nth-child(3n){background:#fffaf4;transform:none}
+body.diary .note2 h3{color:#3b2230}
