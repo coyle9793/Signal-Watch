@@ -346,7 +346,7 @@ body.issue .opp{display:grid;grid-template-columns:260px 1fr;gap:34px;align-item
 body.issue .opp-art{position:relative;display:grid;place-items:center}
 body.issue .opp-frame{position:relative;width:220px;height:220px;border-radius:28px;display:grid;place-items:center;background:radial-gradient(circle,#1a1236,#0b0818);box-shadow:0 0 0 2px #ff5c8a,0 0 26px rgba(255,92,138,.55),0 0 60px rgba(180,77,255,.35),inset 0 0 30px rgba(255,92,138,.2);overflow:hidden;transform:rotate(-3deg)}
 body.issue .opp-frame .lg-big{width:132px;height:132px;border-radius:24px;object-fit:contain;filter:grayscale(.35) contrast(1.05) drop-shadow(0 0 10px rgba(255,255,255,.2))}
-body.issue .opp-frame .lg-txt.lg-big{display:grid;place-items:center;font:900 44px 'Playfair Display',serif;color:#fff;background:none}
+body.issue .opp-frame .lg-txt.lg-big{display:grid;place-items:center;font:900 36px 'Playfair Display',serif;color:#fff;background:none;width:auto;height:auto}
 body.issue .opp-frame .crack{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:#fff;stroke-width:2.5;stroke-linejoin:round;opacity:.85;filter:drop-shadow(0 0 4px #ff5c8a)}
 body.issue .opp-arrow{position:absolute;bottom:-14px;right:-6px;background:#ff5c8a;color:#14010a;font:800 15px Inter,sans-serif;padding:6px 12px;border-radius:10px;box-shadow:0 0 18px rgba(255,92,138,.7);transform:rotate(4deg)}
 body.issue .opp h2{font:900 clamp(30px,4vw,48px)/1.05 'Playfair Display',serif;margin:6px 0 10px}
@@ -383,3 +383,4 @@ body.issue .sc-ln{flex:1;color:#cfc9ea;min-width:0;white-space:nowrap;overflow:h
 body.issue .sc-b{font:700 11px Inter,sans-serif;padding:2px 8px;border-radius:6px;white-space:nowrap}.sc-b.Buy{background:#0f3d2a;color:#3ee08f}.sc-b.Hold{background:#2a2540;color:#d9d3ff}.sc-b.Sell{background:#3d0f1e;color:#ff5c8a}
 @media (max-width:980px){body.issue .sc-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:860px){body.issue .opp{grid-template-columns:1fr;justify-items:center;text-align:left}body.issue .opp-body{width:100%}body.issue .sc-grid{grid-template-columns:1fr}body.issue .sc-hero{flex-direction:column;text-align:center;padding:22px 16px}body.issue .sc-glyph.big{width:100px;height:100px}}
+body.issue .opp-empty{margin:28px 0}

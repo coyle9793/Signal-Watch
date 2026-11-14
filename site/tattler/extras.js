@@ -5,7 +5,7 @@
 //  - World events are worded plainly and kept apart from the jokes.
 (function () {
   const NEG = new Set("fine fined fines penalty penalties lawsuit lawsuits sue sued sues recall recalls antitrust layoff layoffs cut cuts cutting slash slashes misses missed miss downgrade downgraded downgrades warns warning plunge plunges plunged slump slumps tumble tumbles tumbled fall falls fell drop drops dropped sink sinks sank outage breach hack hacked strike strikes ban banned halt halts halted charged charges settlement settles loss losses guidance delay delays delayed shortfall slowdown weak weaker".split(" "));
-  const PRIVATE = new Set("affair affairs wife husband divorce sex sexual cheat cheating cheated girlfriend boyfriend mistress romance romantic dating lover spy spies agent honeytrap scandal rumor rumour rumors rumours nude pregnant marriage wedding relationship alleged allegedly allegation allegations".split(" "));
+  const PRIVATE = new Set("affair affairs wife husband divorce sex sexual cheat cheating cheated girlfriend boyfriend mistress romance romantic dating lover spy spies agent honeytrap scandal rumor rumour rumors rumours controversy controversies nude pregnant marriage wedding relationship alleged allegedly allegation allegations".split(" "));
   const toks = (u) => u.toLowerCase().split(/[^a-z0-9]+/);
   const host = (u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch (e) { return ""; } };
   function headline(u) {
@@ -14,6 +14,7 @@
     const s = segs.map((x) => x.replace(/\.(s?html?|php|aspx?)$/, "")).filter((x) => x.split("-").length >= 4).sort((a, b) => b.length - a.length)[0];
     if (!s) return null;
     const w = s.split("-").filter((x) => !/^\d{3,}$/.test(x) && !/^[a-f0-9]{8,}$/.test(x) && !/^article_/.test(x));
+    while (w.length && /^\d{1,2}$/.test(w[w.length - 1])) w.pop();
     const t = w.join(" ").replace(/\s+/g, " ").trim();
     return t ? t.charAt(0).toUpperCase() + t.slice(1) : null;
   }
@@ -29,14 +30,16 @@
     const by = Object.fromEntries(stocks.map((s) => [s.ticker, s]));
     const GENERIC = new Set(["bank", "general", "american", "united", "international", "the", "first", "capital"]);
     const keyOf = (t) => { const n = (by[t]?.name || "").toLowerCase(); const w = n.split(/[^a-z0-9]+/).filter(Boolean); return [n.replace(/[^a-z0-9]+/g, "-")].concat(w[0] && w[0].length >= 4 && !GENERIC.has(w[0]) ? [w[0]] : []); };
-    const aboutCo = (t, u) => { const tk = toks(headline(u) || ""); const s = tk.join("-"); return keyOf(t).some((k) => k.includes("-") ? s.includes(k) : tk.includes(k)); };
+    const names = (t, tk, s) => keyOf(t).some((k) => k.includes("-") ? s.includes(k) : tk.includes(k));
+    // the headline must name this company and no other S&P 100 company (so it's really about this one)
+    const aboutCo = (t, u) => { const tk = toks(headline(u) || ""); const s = tk.join("-"); return names(t, tk, s) && !stocks.some((o) => o.ticker !== t && o.ticker !== "SPY" && keyOf(o.ticker)[0] !== keyOf(t)[0] && names(o.ticker, tk, s)); };
     function story(t, days) {
       for (const d of days) {
         const l = links[t]?.[d];
         if (!l?.length) continue;
         if (l.some((u) => toks(u).some((w) => PRIVATE.has(w)))) continue;          // private-life story or rumour: skip the whole day
         const hit = l.find((u) => headline(u) && aboutCo(t, u) && toks(headline(u)).some((w) => NEG.has(w)));
-        if (hit) return { url: hit, head: headline(hit), src: host(hit), day: d };
+        if (hit && !toks(headline(hit)).some((w) => PRIVATE.has(w))) return { url: hit, head: headline(hit), src: host(hit), day: d };
       }
       return null;
     }
@@ -71,7 +74,7 @@
   window.renderOpp = function (raw, h) {
     const { esc, pct, apct, fmt, logoBig } = h;
     const o = findOpp(raw);
-    if (!o) return `<section class="panel opp" id="opp-i"><p class="kick">08 · OPP OF THE DAY</p><h2>No opp today</h2><p class="note">No big fall this week came with a clear, reported company reason, so nobody gets the side-eye today.</p></section>`;
+    if (!o) return `<section class="panel opp-empty" id="opp-i"><p class="kick">08 · OPP OF THE DAY</p><h2>No opp today</h2><p class="note">No big fall this week came with a clear, reported company reason, so nobody gets the side-eye today.</p></section>`;
     return `<section class="panel opp" id="opp-i">
       <div class="opp-art">
         <div class="opp-frame">${logoBig(o.s.ticker)}<svg class="crack" viewBox="0 0 200 200" aria-hidden="true"><path d="M104 0 L92 46 L118 78 L84 118 L110 150 L96 200" /><path d="M118 78 L160 70 M84 118 L40 132 M110 150 L150 176" /></svg></div>
@@ -103,21 +106,21 @@
     "Materials": ["The Crystal", "Materials", '<path d="M24 6l14 12-14 24L10 18z"/><path d="M10 18h28M24 6l-6 12 6 24 6-24z"/>'],
   };
   const glyph = (svg, size = 36) => `<svg viewBox="0 0 48 48" style="width:${size}px;height:${size}px">${svg}</svg>`;
-  function reading(x, pct) {
+  function reading(x, pct, calm) {   // calm: the sign is linked to a world event today, so no nerves jokes
     const { n, up, d, m, ib, isl, shk } = x;
     let mood, a;
     if (d <= -0.01) { mood = "Eclipsed"; a = `A rough day: ${pct(d)} today and ${pct(m)} this month. Rest, recharge, and remember that pullbacks have tended to partly recover.`; }
     else if (up === n && n > 1) { mood = "Radiant"; a = `Every one of your ${n} stocks rose today. You're the friend everyone suddenly wants at the party.`; }
     else if (ib >= 3 && ib >= isl) { mood = "Lucky"; a = `Insiders bought ${ib} times and sold ${isl}: the people with the keys are buying more keys.`; }
-    else if (shk >= 6) { mood = "Impulsive"; a = `${shk} surprise moves in two weeks. You're acting on feelings again, so keep the receipt.`; }
+    else if (!calm && shk >= 6) { mood = "Impulsive"; a = `${shk} surprise moves in two weeks. You're acting on feelings again, so keep the receipt.`; }
     else if (m >= 0.05) { mood = "Glowing"; a = `Up ${pct(m).replace("+", "")} this month, which is quite a sparkle. Enjoy the glow.`; }
     else if (d >= 0.005) { mood = "Confident"; a = `${up} of ${n} up today. Walk tall.`; }
     else if (d > 0) { mood = "Steady"; a = `A small step up today (${pct(d)}). Slow and steady suits you.`; }
     else { mood = "Grinding"; a = `${up} up and ${n - up} down. Head down, keep working.`; }
     let b = "";
     if (mood !== "Lucky" && isl >= 10 && ib <= 1) b = ` Insiders sold ${isl} times and bought ${ib}, so don't let the compliments go to your head.`;
-    else if (mood !== "Lucky" && ib >= 3) b = ` Insiders bought ${ib} times. Someone believes in you.`;
-    else if (mood !== "Impulsive" && shk >= 4) b = ` ${shk} surprise moves lately say your nerves are jangling.`;
+    else if (mood !== "Lucky" && ib >= 3 && ib * 3 >= isl) b = ` Insiders bought ${ib} times. Someone believes in you.`;
+    else if (!calm && mood !== "Impulsive" && shk >= 4) b = ` ${shk} surprise moves lately say your nerves are jangling.`;
     return { mood, text: a + b };
   }
   window.renderScopes = function (raw, h) {
@@ -135,9 +138,9 @@
         ib: ts.reduce((a, t) => a + (sig[t]?.insider_buyers || 0), 0), isl: ts.reduce((a, t) => a + (sig[t]?.insider_sellers || 0), 0),
         shk: shocks.filter((s) => ts.includes(s.ticker)).length,
       };
-      const lucky = [...ss].sort((a, b) => (calls[b.ticker]?.score ?? -9) - (calls[a.ticker]?.score ?? -9) || b.chg_1d - a.chg_1d)[0];
       const ev = evs.find((e) => e.tickers.some((t) => ts.includes(t)));
-      return { ...x, ...reading(x, pct), lucky, call: calls[lucky.ticker], ev, stars: Math.max(1, Math.min(5, Math.round(3 + x.d * 130))) };
+      const lucky = [...ss].sort((a, b) => (calls[b.ticker]?.score ?? -9) - (calls[a.ticker]?.score ?? -9) || b.chg_1d - a.chg_1d)[0];
+      return { ...x, ...reading(x, pct, !!ev), lucky, call: calls[lucky.ticker], ev, stars: Math.max(1, Math.min(5, Math.round(3 + x.d * 130))) };
     }).sort((a, b) => b.d - a.d);
     if (!list.length) return "";
     const top = list[0];
