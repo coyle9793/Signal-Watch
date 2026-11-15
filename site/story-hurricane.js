@@ -1,8 +1,24 @@
-// Hurricane story: tornado over farmland -> earthquake in the city -> sinkhole on a shopping street ->
+// Hurricane story: tornado over farmland -> earthquake in the city -> sinkhole on a shopping street -> a volcano spits out today's stocks ->
 // the sea pulls back from a beach -> the tsunami rolls in. Buildings, objects and landscapes only.
 WXS.add("hurricane", (K) => {
   const { W, H, rnd, clamp, ease, easeIO, lerp, TAU, sky, glow, ridge, hill, cloud, tree, city, drawCity, car, lamp, rainLines, palm } = K;
   const s0 = Math.min(W, H) / 700, phone = W < 600;
+
+
+  // a black-and-white cow, side on, legs kicking (drawn at the origin)
+  function cow(c, z, t) {
+    const k = Math.sin(t * 9) * 0.35;
+    c.strokeStyle = "#2a2220"; c.lineCap = "round"; c.lineWidth = 3.2 * z;
+    [[-12, k], [-7, -k], [9, -k], [14, k]].forEach(([dx, a]) => { c.beginPath(); c.moveTo(dx * z, 4 * z); c.lineTo(dx * z + Math.sin(a) * 11 * z, 4 * z + Math.cos(a) * 11 * z); c.stroke(); });
+    c.fillStyle = "#f2efe8"; c.beginPath(); c.ellipse(0, 0, 19 * z, 10 * z, 0, 0, TAU); c.fill();
+    c.fillStyle = "#1e1a1a"; c.beginPath(); c.ellipse(-6 * z, -3 * z, 6 * z, 4.5 * z, 0.4, 0, TAU); c.fill(); c.beginPath(); c.ellipse(9 * z, 2 * z, 5 * z, 4 * z, -0.3, 0, TAU); c.fill();
+    c.fillStyle = "#f0b8b0"; c.beginPath(); c.ellipse(6 * z, 9 * z, 4 * z, 2.5 * z, 0, 0, TAU); c.fill();
+    c.fillStyle = "#f2efe8"; c.beginPath(); c.ellipse(22 * z, -6 * z, 7 * z, 5.5 * z, 0.5, 0, TAU); c.fill();
+    c.fillStyle = "#e8b4a8"; c.beginPath(); c.ellipse(27 * z, -3 * z, 3.6 * z, 3 * z, 0.5, 0, TAU); c.fill();
+    c.fillStyle = "#1e1a1a"; c.beginPath(); c.arc(22 * z, -8 * z, 1.2 * z, 0, TAU); c.fill(); c.beginPath(); c.ellipse(17 * z, -11 * z, 3 * z, 1.4 * z, -0.6, 0, TAU); c.fill();
+    c.strokeStyle = "#d8cfa0"; c.lineWidth = 1.6 * z; c.beginPath(); c.moveTo(20 * z, -11 * z); c.lineTo(19 * z, -15 * z); c.stroke();
+    c.strokeStyle = "#2a2220"; c.lineWidth = 1.5 * z; c.beginPath(); c.moveTo(-18 * z, -3 * z); c.quadraticCurveTo(-26 * z, -2 * z + k * 8 * z, -24 * z, 8 * z); c.stroke();
+  }
 
   // ---------------------------------------------------------------- 1. tornado over farmland
   const fx = (t) => W * (phone ? lerp(0.62, 0.7, ease(t / 7)) : lerp(0.66, 0.74, easeIO(t / 7))) + Math.sin(t * 0.9) * W * 0.02;
@@ -12,7 +28,9 @@ WXS.add("hurricane", (K) => {
   const tornado = {
     D: 7.2, facts: ["market"], calm: false, cy: () => H * (phone ? 0.36 : 0.42), cx: () => (phone ? W / 2 : W * 0.4),
     init(S) {
-      S.deb = Array.from({ length: phone ? 50 : 90 }, () => ({ h: Math.pow(Math.random(), 0.7), a: rnd(0, TAU), v: rnd(2.2, 4.5), k: Math.floor(rnd(0, 4)), s: rnd(0.6, 1.4), sp: rnd(-6, 6) }));
+      S.deb = Array.from({ length: phone ? 50 : 90 }, () => ({ h: Math.pow(Math.random(), 0.7), a: rnd(0, TAU), v: rnd(2.2, 4.5), k: Math.floor(rnd(0, 4)), s: rnd(0.6, 1.4), sp: -rnd(2, 6) }));
+      // a cow and a car caught up in it too (they tumble round with everything else, all the same way)
+      S.deb.push({ h: 0.42, a: 0.6, v: 1.9, k: 4, s: 1, sp: -1.4 }, { h: 0.62, a: 3.6, v: 1.6, k: 5, s: 1, sp: -1.1 });
       S.cl = Array.from({ length: 16 }, (_, i) => ({ x: (i / 15) * W * 1.3 - W * 0.15, y: rnd(0.04, 0.16) * H, r: rnd(60, 130) * s0 * (phone ? 1.2 : 1), sd: rnd(0, 9) }));
       S.far = ridge(1.7, H * 0.035, H * 0.6); S.mid = ridge(4.2, H * 0.02, H * 0.64);
       S.posts = Array.from({ length: 14 }, (_, i) => i);
@@ -57,18 +75,20 @@ WXS.add("hurricane", (K) => {
       // debris: planks, leaves, hay and tin sheets circling the funnel
       S.deb.forEach((d) => {
         const a = d.a + t * d.v * (1.3 - d.h * 0.6), h = d.h, w = funnelW(h) * 1.15 + 10, x = funnelX(h, t) + Math.cos(a) * w, y = lerp(gy1, top1, h) + Math.sin(a) * w * 0.2;
-        c.save(); c.translate(x, y); c.rotate(t * d.sp); c.globalAlpha = Math.sin(a) < 0 ? 0.55 : 1; const z = d.s * s0;
+        c.save(); c.translate(x, y); c.rotate(t * d.sp + d.a); c.globalAlpha = Math.sin(a) < 0 ? (d.k > 3 ? 0.8 : 0.55) : 1; const z = d.s * s0;
         if (d.k === 0) { c.fillStyle = "#8a6a44"; c.fillRect(-10 * z, -2 * z, 20 * z, 4 * z); }
         else if (d.k === 1) { c.fillStyle = "#4a7a2a"; c.beginPath(); c.ellipse(0, 0, 4 * z, 2 * z, 0, 0, TAU); c.fill(); }
         else if (d.k === 2) { c.fillStyle = "#c9b26a"; c.fillRect(-5 * z, -4 * z, 10 * z, 8 * z); }
-        else { c.fillStyle = "#9aa2aa"; c.fillRect(-8 * z, -1 * z, 16 * z, 2 * z); }
+        else if (d.k === 3) { c.fillStyle = "#9aa2aa"; c.fillRect(-8 * z, -1 * z, 16 * z, 2 * z); }
+        else if (d.k === 4) cow(c, z * (phone ? 0.75 : 1), t);
+        else car(c, 0, 16 * z, z * (phone ? 0.55 : 0.75), "#c94a4a", { glass: "rgba(150,190,220,.9)" });
         c.restore();
       });
       if (flash) { c.fillStyle = "rgba(230,240,255,.25)"; c.fillRect(0, 0, W, H); }
     },
     // the letters are caught in the funnel with the debris, then fly out and land
     text: {
-      at: 3.6, spread: 1.1, dur: 1.0, pre: 0.4, preScale: 0.55, preFade: 0.6, spin: 1.2, glow: "rgba(46,242,255,.8)",
+      at: 3.6, spread: 1.1, dur: 1.0, pre: 0.4, preScale: 0.55, preFade: 0.6, spin: 1.2, spinDir: -1, glow: "rgba(46,242,255,.8)",
       from(p, S, t) { const h = 0.12 + p.q * 0.75, a = p.r * TAU + t * (3.2 - h * 1.4), w = funnelW(h) * 1.25 + 14; return [funnelX(h, t) + Math.cos(a) * w, lerp(gy1, top1, h) + Math.sin(a) * w * 0.2]; },
     },
     sound(e) { e.wind(0, 7.4, 0.55, 260, 620); e.rumble(0, 7.4, 0.45); e.crackle(0.5, 6.5, 6, 0.08); e.thunder(2.6, 0.35); e.thunder(5.1, 0.25); e.whoosh(3.5, 1.4, 0.25); },
@@ -174,7 +194,84 @@ WXS.add("hurricane", (K) => {
     sound(e) { e.rumble(0.2, 3.5, 0.8); e.crackle(0.3, 2.2, 22, 0.12); e.crash(1.2, 0.4); e.thud(1.9, 0.5); e.thud(2.3, 0.35); e.whoosh(2.6, 1.2, 0.18); },
   };
 
-  // ---------------------------------------------------------------- 4 and 5. the beach: sea pulls back, then the wave
+
+  // ---------------------------------------------------------------- 4. the volcano: it spits out today's stocks as lava bombs
+  const vc = () => ({ x: W * (phone ? 0.5 : 0.56), y: H * (phone ? 0.5 : 0.46), rw: W * (phone ? 0.09 : 0.055) });
+  const slopeY = (x) => { const v = vc(), gy = H * 0.9, half = W * (phone ? 0.62 : 0.42); const d = Math.abs(x - v.x); return d < v.rw ? v.y : lerp(v.y, gy, Math.pow(clamp((d - v.rw) / (half - v.rw)), 0.75)); };
+  const volcano = {
+    D: 8.2, facts: ["watch", "best", "busiest"], calm: false, cy: () => H * (phone ? 0.2 : 0.17),
+    init(S) {
+      const M = K.movers(phone ? 7 : 10), v = vc();
+      S.bombs = M.map((m, i) => { const dir = i % 2 ? 1 : -1, sp = phone ? 0.75 : 1; return { ...m, t0: 1.4 + i * (phone ? 0.75 : 0.55), vx: dir * rnd(0.09, 0.3) * W * sp, vy: rnd(0.55, 0.75) * H, g: 1.1 * H, rot: rnd(-3, 3) }; });
+      S.plume = Array.from({ length: phone ? 26 : 40 }, (_, i) => ({ k: i / 40, x: rnd(-1, 1), r: rnd(0.7, 1.3), sd: i }));
+      S.sparks = Array.from({ length: phone ? 60 : 110 }, () => ({ a: rnd(-1.25, 1.25), v: rnd(0.25, 0.7) * H, p: rnd(0, 1.4) }));
+      S.far = ridge(2.3, H * 0.05, H * 0.72); S.near = ridge(6.1, H * 0.03, H * 0.86);
+      S.flows = [[-1, 0.2], [1, 0.45], [-1, 0.75], [1, 0.95]].map(([d, o], i) => ({ d, o, st: 1.6 + i * 0.5, seed: i * 3.7 }));
+      void v;
+    },
+    draw(c, t, S) {
+      const v = vc(), erupt = clamp((t - 1.2) / 0.6), shake = t > 1.1 && t < 2 ? Math.sin(t * 70) * 4 * s0 : 0;
+      c.save(); c.translate(shake, 0);
+      // night sky lit red from below, an ash plume rising and spreading
+      sky(c, ["#0b0612", "#24101e", "#5a1e1c", "#a3401c"], -10, H * 0.9);
+      glow(c, v.x, v.y, H * 0.7 * (0.4 + erupt * 0.6), "rgba(255,110,40,.28)");
+      hill(c, S.far, "#1a0e14");
+      for (const q of S.plume) {
+        const k = ((q.k + t * 0.07) % 1), y = v.y - k * H * 0.62, x = v.x + q.x * k * W * 0.22 + Math.sin(t * 0.6 + q.sd) * 12 + k * k * W * 0.12, r = (30 + k * 150) * s0 * q.r * (0.3 + erupt * 0.7);
+        cloud(c, x, y, r, `rgba(${Math.round(lerp(120, 38, k))},${Math.round(lerp(60, 28, k))},${Math.round(lerp(40, 34, k))},${0.85 * (1 - k * 0.4)})`, 5, q.sd);
+      }
+      // lightning inside the ash cloud
+      if (t > 3 && (t % 2.3) < 0.09) { const P = K.boltPath(v.x + W * 0.1, H * 0.06, v.x + W * 0.02, v.y - H * 0.18, 7); K.bolt(c, P, 0.9); }
+      // the cone: dark rock with ridges, glowing at the top
+      c.fillStyle = "#24161a"; c.beginPath(); c.moveTo(-10, H * 0.92); for (let x = -10; x <= W + 10; x += 8) c.lineTo(x, slopeY(x) + Math.sin(x * 0.05) * 3 * s0); c.lineTo(W + 10, H + 10); c.lineTo(-10, H + 10); c.fill();
+      const cg = c.createLinearGradient(0, v.y, 0, v.y + H * 0.25); cg.addColorStop(0, "rgba(255,120,50,.45)"); cg.addColorStop(1, "rgba(255,120,50,0)"); c.fillStyle = cg; c.beginPath(); for (let x = v.x - W * 0.3; x <= v.x + W * 0.3; x += 8) c.lineTo(x, slopeY(x)); c.lineTo(v.x + W * 0.3, H); c.lineTo(v.x - W * 0.3, H); c.fill();
+      c.strokeStyle = "rgba(0,0,0,.35)"; c.lineWidth = 2; for (let i = -6; i <= 6; i++) { if (!i) continue; const x1 = v.x + i * W * 0.05; c.beginPath(); c.moveTo(v.x + Math.sign(i) * v.rw * 0.8, v.y + 4); c.quadraticCurveTo(lerp(v.x, x1, 0.5) + i * 4, lerp(v.y, slopeY(x1), 0.4), x1, slopeY(x1) + 6); c.stroke(); }
+      // crater glow
+      glow(c, v.x, v.y, v.rw * (2 + erupt * 1.5), `rgba(255,170,60,${0.6 + 0.3 * Math.sin(t * 7)})`);
+      c.fillStyle = "#ffb347"; c.beginPath(); c.ellipse(v.x, v.y + 2, v.rw * 0.95, v.rw * 0.22, 0, 0, TAU); c.fill();
+      // lava rivers running down the slopes, flowing all the time
+      S.flows.forEach((f) => {
+        const L = clamp((t - f.st) / 2.6); if (L <= 0) return;
+        const pts = []; for (let k = 0; k <= 1.0001; k += 0.04) { if (k > L) break; const x = v.x + f.d * (v.rw * (0.2 + f.o * 0.6) + k * W * (phone ? 0.2 : 0.13) * (0.4 + f.o)) + Math.sin(k * 7 + f.seed) * 16 * s0 * k; pts.push([x, Math.max(slopeY(x) + 4, lerp(v.y + 4, H * 0.9, k * (0.8 + f.o * 0.15)))]); }
+        if (pts.length < 2) return;
+        const path = () => { c.beginPath(); pts.forEach(([x, y], i) => (i ? c.lineTo(x, y) : c.moveTo(x, y))); };
+        c.lineCap = "round"; c.lineJoin = "round";
+        c.strokeStyle = "rgba(255,90,20,.35)"; c.lineWidth = 16 * s0; path(); c.stroke();
+        c.strokeStyle = "#e0441a"; c.lineWidth = 8 * s0; path(); c.stroke();
+        c.strokeStyle = "#ffcf5a"; c.lineWidth = 3 * s0; c.setLineDash([14 * s0, 10 * s0]); c.lineDashOffset = -t * 60 * s0; path(); c.stroke(); c.setLineDash([]);
+      });
+      // glowing sparks fountaining out
+      if (erupt > 0) { c.fillStyle = "#ffd27a"; S.sparks.forEach((q) => { const a = ((t - 1.2 + q.p) % 1.4); const x = v.x + Math.sin(q.a) * q.v * a * 0.6, y = v.y - Math.cos(q.a) * q.v * a + 0.5 * H * 0.9 * a * a; c.globalAlpha = (1 - a / 1.4) * erupt; c.fillRect(x, y, 2.5, 2.5); }); c.globalAlpha = 1; }
+      // the lava bombs: each carries one of today's stocks and its move
+      c.textAlign = "center"; c.textBaseline = "middle";
+      const fs = Math.round(11 * s0 + (phone ? 5 : 7)); c.font = `800 ${fs}px Inter, sans-serif`;
+      S.bombs.forEach((b) => {
+        const a = t - b.t0; if (a < 0) return;
+        let x = v.x + b.vx * a, y = v.y - b.vy * a + 0.5 * b.g * a * a; const land = y > slopeY(x) - 6 && a > 0.3; 
+        if (land && b.ta == null) b.ta = a; if (b.ta != null) { x = v.x + b.vx * b.ta; y = slopeY(x) - 6 + Math.min(1, (a - b.ta) * 2) * 2; }
+        const cool = b.ta != null ? clamp((a - b.ta) / 3) : 0, r = 9 * s0 + 3;
+        if (b.ta == null) { c.strokeStyle = "rgba(255,140,40,.45)"; c.lineWidth = r * 0.8; c.beginPath(); c.moveTo(x, y); c.lineTo(x - b.vx * 0.05, y + (b.vy - b.g * a) * 0.05); c.stroke(); }
+        glow(c, x, y, r * 3.2, `rgba(255,120,30,${0.6 * (1 - cool * 0.7)})`);
+        c.save(); c.translate(x, y); c.rotate(b.ta == null ? a * b.rot : b.ta * b.rot);
+        c.fillStyle = `rgb(${Math.round(lerp(255, 70, cool))},${Math.round(lerp(110, 40, cool))},${Math.round(lerp(30, 34, cool))})`; c.beginPath(); for (let i = 0; i < 7; i++) { const aa = (i / 7) * TAU, rr = r * (0.8 + ((i * 37) % 5) / 12); c.lineTo(Math.cos(aa) * rr, Math.sin(aa) * rr); } c.fill();
+        c.strokeStyle = `rgba(40,16,16,${0.5 + cool * 0.4})`; c.lineWidth = 1.4; c.beginPath(); c.moveTo(-r * 0.5, -r * 0.2); c.lineTo(0, r * 0.1); c.lineTo(r * 0.4, -r * 0.4); c.moveTo(0, r * 0.1); c.lineTo(r * 0.1, r * 0.6); c.stroke();
+        c.restore();
+        const ly = y - r - fs * 0.9; c.lineWidth = 4; c.strokeStyle = "rgba(10,4,8,.85)"; c.strokeText(b.label, x, ly); c.fillStyle = b.c >= 0 ? "#9dffb0" : "#ffb0a0"; c.fillText(b.label, x, ly);
+      });
+      // foreground: bare rocks and dead trees, nobody around
+      hill(c, S.near, "#0e080c");
+      c.strokeStyle = "#0e080c"; c.lineWidth = 3 * s0; [0.08, 0.9, 0.95].forEach((u, i) => { const x = W * u, gy = H * 0.88; c.beginPath(); c.moveTo(x, gy); c.lineTo(x, gy - 60 * s0); c.moveTo(x, gy - 34 * s0); c.lineTo(x - 16 * s0, gy - 50 * s0); c.moveTo(x, gy - 44 * s0); c.lineTo(x + 14 * s0, gy - 62 * s0 - i * 4); c.stroke(); });
+      c.restore();
+    },
+    // the fact's letters are blasted up out of the crater and drift down into place
+    text: { at: 3.0, spread: 1.0, dur: 1.2, arc: H * 0.25, startScale: 0.25, spin: 1.4, spinDir: -1, glow: "rgba(255,150,60,.95)", ink: ["#fff2b0", "#ffb347", "#ff5a2e"], from: () => [vc().x, vc().y] },
+    sound(e, S) {
+      e.rumble(0, 8.2, 0.7); e.rumble(1.1, 2, 1); e.thud(1.25, 0.9, 38); e.noise("bandpass", 600, 0.4, 1.3, 6.8, [[1.3, 0], [2, 0.12], [8, 0.06], [8.2, 0]]); e.crackle(1.4, 6.5, 12, 0.07);
+      (S.bombs || []).forEach((b) => { e.thud(b.t0, 0.3, 50); e.whoosh(b.t0, 0.9, 0.08); }); e.whoosh(2.9, 1.4, 0.2); e.thunder(3.05, 0.2); e.thunder(5.35, 0.18);
+    },
+  };
+
+  // ---------------------------------------------------------------- 5 and 6. the beach: sea pulls back, then the wave
   function beach(c, t, S, wind = 0) {
     const hz = H * 0.3;
     sky(c, ["#5aa8e8", "#9cd0f0", "#fbe6c4"], 0, hz);
@@ -229,6 +326,7 @@ WXS.add("hurricane", (K) => {
   };
   const crestY = (x, t, top, hgt) => top + Math.sin(x * 0.012 + t * 3) * hgt * 0.06 + Math.sin(x * 0.031 - t * 2) * hgt * 0.025;
   const wave = (t) => { const k = easeIO(t / 2.6), base = lerp(H * 0.31, H * 1.05, k), hgt = lerp(8, H * 0.82, Math.pow(clamp(t / 2.6), 1.3)); return { base, hgt, top: base - hgt }; };
+  // (the wave's crest also bends down at the sides, see tsunami.draw)
   const tsunami = {
     D: 7.6, facts: ["shelter", "busiest"], calm: false, cy: () => H * 0.42,
     init(S) {
@@ -240,13 +338,33 @@ WXS.add("hurricane", (K) => {
       const dark = clamp(t / 2.2); c.fillStyle = `rgba(30,40,60,${dark * 0.35})`; c.fillRect(0, 0, W, H * 0.3);
       const { base, hgt, top } = wave(t);
       if (t < 3.1) {
-        const g = c.createLinearGradient(0, top, 0, base); g.addColorStop(0, "#0c3a60"); g.addColorStop(0.45, "#17699a"); g.addColorStop(1, "#46a8cc");
-        c.fillStyle = g; c.beginPath(); c.moveTo(-20, base); for (let x = -20; x <= W + 20; x += 14) c.lineTo(x, crestY(x, t, top, hgt)); c.lineTo(W + 20, base); c.fill();
-        // the curling lip and spray
-        c.fillStyle = "rgba(255,255,255,.92)"; c.beginPath(); for (let x = -20; x <= W + 20; x += 14) c.lineTo(x, crestY(x, t, top, hgt) - 2); for (let x = W + 20; x >= -20; x -= 14) c.lineTo(x, crestY(x, t, top, hgt) + Math.max(3, hgt * 0.05) + Math.sin(x * 0.07 + t * 9) * 3); c.fill();
-        for (let i = 0; i < 70; i++) { const x = (i / 70) * W + Math.sin(t * 4 + i) * 12, y = crestY(x, t, top, hgt) - ((i * 37) % 10) / 10 * hgt * 0.09; c.globalAlpha = 0.7; c.beginPath(); c.arc(x, y, 2 + ((i * 13) % 7) / 7 * (3 + hgt * 0.012), 0, TAU); c.fill(); }
-        c.globalAlpha = 1;
-        c.strokeStyle = "rgba(255,255,255,.22)"; c.lineWidth = 2; for (let i = 0; i < 16; i++) { const x = (i * 131 + t * 50) % W; c.beginPath(); c.moveTo(x, top + hgt * 0.15); c.quadraticCurveTo(x - 10, top + hgt * 0.5, x - 26, top + hgt * 0.85); c.stroke(); }
+        // a real swell: tallest in the middle, sloping away at the sides, lit turquoise just under the lip
+        const cr = (x) => crestY(x, t, top, hgt) + hgt * 0.16 * Math.pow((x / W - 0.45) * 2, 2);
+        const g = c.createLinearGradient(0, top, 0, base); g.addColorStop(0, "#0e5a78"); g.addColorStop(0.12, "#2fb8c8"); g.addColorStop(0.3, "#13708f"); g.addColorStop(0.65, "#0b3d5e"); g.addColorStop(1, "#3a98b8");
+        c.fillStyle = g; c.beginPath(); c.moveTo(-20, base); for (let x = -20; x <= W + 20; x += 12) c.lineTo(x, cr(x)); c.lineTo(W + 20, base); c.fill();
+        // water racing up the face
+        c.strokeStyle = "rgba(200,245,255,.18)"; c.lineWidth = 1.6;
+        for (let i = 0; i < (phone ? 22 : 40); i++) { const x = ((i * 97.3) % W), ph = (t * 0.9 + i * 0.137) % 1, y0 = lerp(base, cr(x), ph), L = hgt * 0.12; c.beginPath(); c.moveTo(x, y0); c.quadraticCurveTo(x + 4, y0 - L * 0.5, x + 2, y0 - L); c.stroke(); }
+        // the backlit lip, then a curtain of white water pouring down from it
+        const lip = Math.max(4, hgt * 0.07);
+        c.fillStyle = "rgba(120,235,240,.55)"; c.beginPath(); for (let x = -20; x <= W + 20; x += 12) c.lineTo(x, cr(x)); for (let x = W + 20; x >= -20; x -= 12) c.lineTo(x, cr(x) + lip * 1.6); c.fill();
+        c.fillStyle = "rgba(255,255,255,.95)"; c.beginPath(); for (let x = -20; x <= W + 20; x += 12) c.lineTo(x, cr(x) - 3); for (let x = W + 20; x >= -20; x -= 12) c.lineTo(x, cr(x) + lip * 0.6 + Math.sin(x * 0.06 + t * 8) * 2); c.fill();
+        c.strokeStyle = "rgba(255,255,255,.55)"; c.lineCap = "round";
+        for (let i = 0; i < (phone ? 50 : 90); i++) { const x = (i / (phone ? 50 : 90)) * W + Math.sin(i * 3.1) * 8, y = cr(x) + lip * 0.4, L = hgt * (0.06 + ((i * 7) % 5) * 0.02) * clamp(t / 1.5); c.lineWidth = 1.5 + (i % 3); c.beginPath(); c.moveTo(x, y); c.lineTo(x + Math.sin(t * 6 + i) * 3, y + L); c.stroke(); }
+        // spray blown back off the top
+        for (let i = 0; i < (phone ? 18 : 30); i++) { const x = (i / 30) * W * 1.05 + Math.sin(t + i) * 20, k = (t * 0.8 + i * 0.21) % 1; glow(c, x, cr(x) - k * hgt * 0.22, (16 + hgt * 0.06) * (0.5 + k), `rgba(235,250,255,${0.35 * (1 - k)})`); }
+        // beach things lifted up the face: a surfboard, a parasol, a deckchair, a beach ball
+        [[0.22, "board"], [0.5, "brolly"], [0.7, "chair"], [0.36, "ball"]].forEach(([u, kind], i) => {
+          const x = u * W + Math.sin(t * 1.3 + i) * 20, k = clamp((t - 0.6 - i * 0.15) / 1.6), y = lerp(base - 6, cr(x) + lip * 2, ease(k)); if (hgt < 60) return;
+          c.save(); c.translate(x, y); c.rotate(-t * (1.2 + i * 0.3)); const z = s0 * (0.6 + 0.6 * (y - top) / Math.max(1, hgt) * 0) * 1.1;
+          if (kind === "board") { c.fillStyle = "#ffd36b"; c.beginPath(); c.ellipse(0, 0, 26 * z, 6 * z, 0, 0, TAU); c.fill(); c.fillStyle = "#e05a3a"; c.fillRect(-24 * z, -1 * z, 48 * z, 2 * z); }
+          else if (kind === "brolly") { c.fillStyle = "#ff7ab8"; c.beginPath(); c.arc(0, 0, 20 * z, Math.PI, TAU); c.fill(); c.fillStyle = "#fff"; c.beginPath(); c.moveTo(0, 0); c.arc(0, 0, 20 * z, Math.PI * 1.33, Math.PI * 1.66); c.fill(); c.strokeStyle = "#5a4a3a"; c.lineWidth = 2 * z; c.beginPath(); c.moveTo(0, 0); c.lineTo(0, 26 * z); c.stroke(); }
+          else if (kind === "chair") { c.strokeStyle = "#8a6a44"; c.lineWidth = 2.5 * z; c.beginPath(); c.moveTo(-12 * z, 10 * z); c.lineTo(8 * z, -10 * z); c.moveTo(-6 * z, -6 * z); c.lineTo(12 * z, 10 * z); c.stroke(); c.fillStyle = "#2ec7d9"; c.beginPath(); c.moveTo(-10 * z, 6 * z); c.lineTo(6 * z, -9 * z); c.lineTo(10 * z, -4 * z); c.lineTo(-4 * z, 9 * z); c.fill(); }
+          else { c.fillStyle = "#fff"; c.beginPath(); c.arc(0, 0, 8 * z, 0, TAU); c.fill(); ["#e05a3a", "#3a7ae0", "#f0c040"].forEach((col, j) => { c.fillStyle = col; c.beginPath(); c.moveTo(0, 0); c.arc(0, 0, 8 * z, j * 2.1, j * 2.1 + 1); c.fill(); }); }
+          c.restore();
+        });
+        // its shadow falls over the beach
+        c.fillStyle = `rgba(10,30,50,${0.35 * clamp(t / 2.4)})`; c.fillRect(0, base, W, H - base);
       }
       huts(c, t, S, clamp(t / 2));
       if (t > 2.3) {
@@ -259,16 +377,16 @@ WXS.add("hurricane", (K) => {
           c.strokeStyle = `rgba(255,255,255,${0.3 * settle})`; c.lineWidth = 2; for (let i = 0; i < 11; i++) { const y = H * 0.38 + i * H * 0.055; c.beginPath(); for (let x = 0; x <= W; x += 20) { const yy = y + Math.sin(x * 0.015 + t * 1.5 + i) * 4; x ? c.lineTo(x, yy) : c.moveTo(x, yy); } c.stroke(); }
           c.globalAlpha = 1;
         }
-        S.foam.forEach((f) => { const r = f.r * (phone ? 0.6 : 1) * (0.4 + b) * (1 - settle * 0.9), y = lerp(H * 1.1, f.y * H, ease(b * f.v)) - settle * 30 * f.v; if (r < 1) return; c.fillStyle = `rgba(255,255,255,${0.92 * (1 - settle * 0.8)})`; c.beginPath(); c.arc(f.x * W, y, r, 0, TAU); c.fill(); });
+        S.foam.forEach((f) => { const r = f.r * (phone ? 0.6 : 1) * (0.4 + b) * (1 - settle * 0.9), y = lerp(H * 1.1, f.y * H, ease(b * f.v)) - settle * 30 * f.v; if (r < 1) return; const a = 0.9 * (1 - settle * 0.8), g = c.createRadialGradient(f.x * W, y, 0, f.x * W, y, r * 1.5); g.addColorStop(0, `rgba(255,255,255,${a})`); g.addColorStop(0.5, `rgba(240,250,255,${a * 0.8})`); g.addColorStop(1, "rgba(240,250,255,0)"); c.fillStyle = g; c.fillRect(f.x * W - r * 1.5, y - r * 1.5, r * 3, r * 3); });
       }
     },
     // the letters ride the crest of the wave, get flung out when it breaks, and land on the calm water
     text: {
-      at: 2.6, spread: 0.8, dur: 1.1, pre: 0.5, preScale: 0.6, preFade: 0.8, spin: 0.6, glow: "rgba(46,242,255,.9)", ink: ["#ffffff", "#9fefff", "#2ef2ff"],
-      from(p, S, t) { const { top, hgt } = wave(Math.min(t, 2.6)), x = W * 0.06 + p.u * W * 0.88 + Math.sin(t * 3 + p.r * 9) * 10; return [x, crestY(x, Math.min(t, 2.6), top, hgt) - 14 - p.q * 26]; },
+      at: 2.6, spread: 0.8, dur: 1.1, pre: 0.5, preScale: 0.6, preFade: 0.8, spin: 0.6, spinDir: -1, glow: "rgba(46,242,255,.9)", ink: ["#ffffff", "#9fefff", "#2ef2ff"],
+      from(p, S, t) { const { top, hgt } = wave(Math.min(t, 2.6)), x = W * 0.06 + p.u * W * 0.88 + Math.sin(t * 3 + p.r * 9) * 10; return [x, crestY(x, Math.min(t, 2.6), top, hgt) + hgt * 0.16 * Math.pow((x / W - 0.45) * 2, 2) - 14 - p.q * 26]; },
     },
     sound(e) { e.noise("lowpass", 260, 0.7, 0, 9, [[0, 0.05], [2.2, 0.9], [2.7, 1.2], [4, 0.4], [7.5, 0]]); e.noise("highpass", 1600, 0.5, 2.3, 3.5, [[2.3, 0], [2.5, 0.4], [5.5, 0]]); e.thud(2.45, 0.8, 35); e.waves(4, 3.6, 0.15, 1.8); },
   };
 
-  return [tornado, quake, sinkhole, recede, tsunami];
+  return [tornado, quake, sinkhole, volcano, recede, tsunami];
 });

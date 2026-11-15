@@ -1,6 +1,6 @@
 // Breezy story: a walk in light rain under an umbrella (with the cavapoo and the lhasa apso on their
 // leads) -> a rainbow with the words riding it -> down to the pot at its end (empty!) and a dancing
-// leprechaun -> into his ginger hair and his busy brain -> out to the space station -> the stars align.
+// leprechaun -> a UFO beams him up and flies to space -> the space station -> the stars align.
 WXS.add("windy", (K) => {
   const { W, H, rnd, clamp, ease, easeIO, lerp, TAU, sky, glow, stars, drawStars, ridge, hill, cloud, tree, lamp, rainLines, E } = K;
   const s0 = Math.min(W, H) / 700, phone = W < 600;
@@ -9,8 +9,10 @@ WXS.add("windy", (K) => {
   // ---------------------------------------------------------------- 1. umbrella walk in the rain
   const ws = clamp(Math.min(W, H) / 560, 0.6, 1.35), wgy = H * (phone ? 0.8 : 0.86);
   const walkX = (t) => W * (phone ? lerp(0.12, 0.3, t / 9) : lerp(0.22, 0.4, t / 9));
-  const canopy = (t) => { const x = walkX(t) + 2 * ws, R = 66 * ws; return { x, y: wgy - 150 * ws, R }; };
+  // she holds the umbrella up in her far hand, so the canopy sits over her head
+  const canopy = (t) => { const x = walkX(t) + 20 * ws, R = 62 * ws; return { x, y: wgy - 152 * ws, R }; };
   const drop = (p, t) => { const dep = 3.0 + p.u * 1.3 + p.r * 0.4; return dep; };
+  const domeY = (U, x) => U.y - Math.sqrt(Math.max(0, U.R * U.R - (x - U.x) * (x - U.x)));
   const umbrella = {
     D: 8.6, facts: ["market"], cy: () => H * (phone ? 0.3 : 0.32), cx: () => (phone ? W / 2 : W * 0.58),
     init(S) { S.far = ridge(3.1, H * 0.03, H * 0.6); S.cl = Array.from({ length: 6 }, (_, i) => ({ x: rnd(0, 1), y: rnd(0.04, 0.2), r: rnd(40, 70) * s0, sd: i })); S.trees = [0.06, 0.5, 0.74, 0.95].map((u, i) => ({ u, s: 0.9 + (i % 2) * 0.3 })); },
@@ -25,23 +27,34 @@ WXS.add("windy", (K) => {
       c.fillStyle = "rgba(160,190,220,.4)"; for (let i = 0; i < 6; i++) { c.beginPath(); c.ellipse(((i * 211) % W), wgy + 16 * ws, 26 * ws, 4 * ws, 0, 0, TAU); c.fill(); }
       lamp(c, W * 0.84, H * 0.7, s0 * 1.1, 0.6);
       c.fillStyle = "#6a4a2a"; const bx = W * 0.66, by = H * 0.71; c.fillRect(bx, by - 18 * s0, 70 * s0, 5 * s0); c.fillRect(bx, by - 30 * s0, 70 * s0, 4 * s0); c.fillStyle = "#2a2a2a"; c.fillRect(bx + 6 * s0, by - 13 * s0, 3 * s0, 13 * s0); c.fillRect(bx + 60 * s0, by - 13 * s0, 3 * s0, 13 * s0);
-      // light rain, kept off the umbrella
-      rainLines(c, phone ? 110 : 220, t, { speed: 1.4, slant: 0.12, col: "rgba(220,235,255,.45)", len: 14, skip: (rx, ry) => Math.abs(rx - U.x) < U.R && ry > U.y - U.R * 0.95 && ry < wgy });
+      // light rain: it stops where it meets the canopy, and nothing falls in its shelter
+      rainLines(c, phone ? 110 : 220, t, { speed: 1.4, slant: 0.12, col: "rgba(220,235,255,.45)", len: 14, skip: (rx, ry) => Math.abs(rx - U.x) < U.R * 1.04 && ry + 14 > domeY(U, rx) - 2 && ry < wgy + 10 });
       // the walker and the two dogs, on the ends of their leads
       const e = E();
-      e.walker(c, x, wgy, ws, t, 0.12); e.lhasa(c, x + 62 * ws, wgy, ws, t, 0.12); e.cavapoo(c, x + 124 * ws, wgy, ws, t, 0.12);
-      // the umbrella, held over their head
-      c.strokeStyle = "#e8e8f0"; c.lineWidth = 3 * ws; c.lineCap = "round"; c.beginPath(); c.moveTo(U.x, U.y); c.lineTo(U.x - 2 * ws, wgy - 66 * ws); c.arc(U.x + 3 * ws, wgy - 66 * ws, 5 * ws, Math.PI, 0, true); c.stroke();
+      const hold = e.walker(c, x, wgy, ws, t, 0.12, { umb: true }).umb; e.lhasa(c, x + 62 * ws, wgy, ws, t, 0.12); e.cavapoo(c, x + 124 * ws, wgy, ws, t, 0.12);
+      // the umbrella: shaft from the canopy down through her hand to a hooked handle
+      const [hx, hy] = hold || [U.x, wgy - 120 * ws];
+      c.strokeStyle = "#e8e8f0"; c.lineWidth = 3 * ws; c.lineCap = "round"; c.beginPath(); c.moveTo(U.x, U.y); c.lineTo(hx, hy + 12 * ws); c.arc(hx + 5 * ws, hy + 12 * ws, 5 * ws, Math.PI, 0, true); c.stroke();
+      c.fillStyle = "#e8b48a"; c.beginPath(); c.arc(hx, hy, 3.3 * ws, 0, TAU); c.fill(); // her fingers round the shaft
       const g = c.createLinearGradient(U.x - U.R, 0, U.x + U.R, 0); g.addColorStop(0, "#ff4fd8"); g.addColorStop(0.5, "#b44dff"); g.addColorStop(1, "#2ef2ff");
-      c.fillStyle = g; c.beginPath(); c.arc(U.x, U.y, U.R, Math.PI, TAU); for (let i = 5; i >= 0; i--) c.quadraticCurveTo(U.x - U.R + (i + 0.5) * U.R / 3, U.y + 9 * ws, U.x - U.R + (i * U.R) / 3, U.y); c.fill();
-      c.strokeStyle = "rgba(255,255,255,.35)"; c.lineWidth = 1.2; c.beginPath(); for (let i = 1; i < 6; i++) { c.moveTo(U.x, U.y - U.R); c.quadraticCurveTo(U.x - U.R + (i * U.R) / 3, U.y - U.R * 0.6, U.x - U.R + (i * U.R) / 3, U.y); } c.stroke();
-      c.fillStyle = "#e8e8f0"; c.beginPath(); c.arc(U.x, U.y - U.R - 3 * ws, 3 * ws, 0, TAU); c.fill();
-      // drops hitting the canopy splash up and off both sides
-      c.fillStyle = "rgba(225,240,255,.95)";
-      for (let i = 0; i < 34; i++) { const k = (t * 1.3 + (i * 0.618) % 1) % 1, u = ((i * 0.3819) % 1) * 2 - 1, hx = U.x + u * U.R * 0.92, hy = U.y - Math.sqrt(1 - u * u * 0.85) * U.R, dir = u < 0 ? -1 : 1, ox = dir * (20 + (i % 5) * 9) * ws * k, oy = -Math.sin(k * Math.PI) * (16 + (i % 4) * 6) * ws + k * k * 30 * ws; c.globalAlpha = 1 - k; c.beginPath(); c.ellipse(hx + ox, hy + oy, 1.6 * ws, 2.2 * ws, 0, 0, TAU); c.fill(); }
+      const tip = (i) => [U.x - U.R + (i * U.R) / 3, U.y];
+      c.fillStyle = g; c.beginPath(); c.arc(U.x, U.y, U.R, Math.PI, TAU); for (let i = 5; i >= 0; i--) c.quadraticCurveTo(U.x - U.R + (i + 0.5) * U.R / 3, U.y - 7 * ws, ...tip(i)); c.fill();
+      c.fillStyle = "rgba(255,255,255,.14)"; c.beginPath(); c.arc(U.x - U.R * 0.25, U.y - U.R * 0.1, U.R * 0.72, Math.PI * 1.05, Math.PI * 1.55); c.lineTo(U.x - U.R * 0.25, U.y - U.R * 0.1); c.fill(); // wet sheen
+      // ribs, each running out to a pointed tip
+      c.strokeStyle = "rgba(255,255,255,.35)"; c.lineWidth = 1.2; c.beginPath(); for (let i = 1; i < 6; i++) { c.moveTo(U.x, U.y - U.R); c.quadraticCurveTo(U.x - U.R + (i * U.R) / 3, U.y - U.R * 0.6, ...tip(i)); } c.stroke();
+      c.fillStyle = "#e8e8f0"; c.beginPath(); c.arc(U.x, U.y - U.R - 3 * ws, 3 * ws, 0, TAU); c.fill(); for (let i = 0; i <= 6; i++) { c.beginPath(); c.arc(...tip(i), 1.6 * ws, 0, TAU); c.fill(); }
+      // drops landing on the canopy make tiny crowns
+      c.fillStyle = "rgba(235,245,255,.95)";
+      for (let i = 0; i < (phone ? 18 : 30); i++) { const f = t * 2.4 + i * 0.618, k = f % 1, n = Math.floor(f), u = ((Math.sin(n * 12.9 + i * 78.2) * 43758.5) % 1 + 1) % 1 * 1.8 - 0.9, px = U.x + u * U.R, py = domeY(U, px); if (k > 0.22) continue; const kk = k / 0.22, nx = (px - U.x) / U.R, ny = (py - U.y) / U.R; c.globalAlpha = 1 - kk; for (let j = -1; j <= 1; j++) { const a = Math.atan2(ny, nx) + j * 0.7, d = kk * 7 * ws; c.beginPath(); c.arc(px + Math.cos(a) * d, py + Math.sin(a) * d - kk * 3 * ws, 1 * ws, 0, TAU); c.fill(); } }
       c.globalAlpha = 1;
-      // drips off the rim
-      for (let i = 0; i < 6; i++) { const k = (t * 1.8 + i / 6) % 1, rx = U.x - U.R + (i / 5) * U.R * 2; c.fillStyle = `rgba(225,240,255,${1 - k})`; c.beginPath(); c.arc(rx, U.y + 4 + k * 60 * ws, 1.8 * ws, 0, TAU); c.fill(); }
+      // water running down the panels to the tips
+      for (let i = 0; i < 14; i++) { const r = (i % 6) + 0.5, k = (t * 0.9 + i * 0.29) % 1, ex = U.x - U.R + (r * U.R) / 3, px = lerp(U.x, ex, k), py = domeY(U, px) + 1; c.fillStyle = `rgba(230,245,255,${0.55 * Math.sin(k * Math.PI)})`; c.beginPath(); c.ellipse(px, py, 1.3 * ws, 1.8 * ws, 0, 0, TAU); c.fill(); }
+      // then it drips steadily off every tip and splashes on the path
+      for (let i = 0; i <= 6; i++) for (let j = 0; j < 2; j++) {
+        const [tx, ty] = tip(i), k = (t * 1.25 + i * 0.37 + j * 0.5) % 1, gy2 = wgy + 6 * ws - (tx - W * 0.5) * 0.004, y = ty + 2 + k * k * (gy2 - ty);
+        if (k < 0.93) { c.fillStyle = "rgba(225,240,255,.9)"; c.beginPath(); c.ellipse(tx - k * 3 * ws, y, 1.4 * ws, (2 + k * 3) * ws, 0, 0, TAU); c.fill(); }
+        else { const sk = (k - 0.93) / 0.07; c.strokeStyle = `rgba(225,240,255,${1 - sk})`; c.lineWidth = 1; c.beginPath(); c.ellipse(tx - 3 * ws, gy2, sk * 8 * ws, sk * 2 * ws, 0, 0, TAU); c.stroke(); }
+      }
     },
     // each letter falls as a raindrop, hits the umbrella and bounces off into place
     text: {
@@ -52,31 +65,66 @@ WXS.add("windy", (K) => {
     sound(e) { e.rain(0, 8.6, 0.12); e.crackle(0, 8.4, 28, 0.05); e.noise("bandpass", 480, 3, 2.2, 0.15, [[2.2, 0], [2.21, 0.18], [2.32, 0]]); e.noise("bandpass", 620, 3, 5.6, 0.15, [[5.6, 0], [5.61, 0.15], [5.7, 0]]); },
   };
 
-  // ---------------------------------------------------------------- 2. the rainbow, with the words riding it
-  const rb = () => ({ cx: W * 0.5, cy: H * 1.0, R: Math.min(W * (phone ? 0.46 : 0.4), H * 0.7) });
+  // ---------------------------------------------------------------- 2 and 3. one meadow: the rainbow with the words riding it, then the
+  // camera glides down to the pot at its end (no cut), finds it empty, and pans on to the dancing leprechaun
+  const GY = H * 0.86, Zf = phone ? 1.9 : 2.1, PS = s0 * (phone ? 1.2 : 1.5), PW = PS / Zf;
+  const rb = () => ({ cx: W * 0.5, cy: GY, R: Math.min(W * (phone ? 0.42 : 0.37), H * 0.6), bw: phone ? 0.03 : 0.026 });
+  const foot = () => { const B = rb(); return { x: B.cx + B.R * (1 - B.bw * 3), y: GY }; };
+  const potAnchor = () => ({ x: W * 0.42, y: H * 0.82 });
+  const meadowInit = (S) => {
+    S.r1 = ridge(1.3, H * 0.04, H * 0.74); S.r2 = ridge(6.1, H * 0.025, H * 0.81);
+    S.cl = Array.from({ length: 8 }, (_, i) => ({ x: rnd(-0.1, 1.4), y: rnd(0.04, 0.3), r: rnd(30, 60) * s0, sd: i }));
+    S.trees = Array.from({ length: 12 }, () => ({ u: rnd(-0.05, 1.45), s: rnd(0.5, 0.9) }));
+    const F = foot(); S.clov = Array.from({ length: phone ? 60 : 130 }, () => ({ x: F.x + rnd(-0.35, 0.75) * W, y: GY + rnd(-0.01, 0.1) * H, s: rnd(0.6, 1.2) })); S.mush = [-0.18, 0.2, 0.42, 0.55].map((u) => F.x + u * W);
+  };
+  // camera: the world point F is drawn at screen point A, zoomed by Z
+  const cam = (c, A, Z) => { const F = foot(); c.translate(A.x, A.y); c.scale(Z, Z); c.translate(-F.x, -F.y); };
+  function potDraw(c, t, S, tipOn) {
+    const F = foot(), ps = PW, px = F.x, gy = GY;
+    const tip = tipOn ? Math.sin(clamp((t - 0.6) / 1.2) * Math.PI) * 0.35 : 0, wob = tipOn ? Math.sin(t * 9) * 0.04 * (1 - clamp(t / 1)) : 0;
+    c.save(); c.translate(px, gy - 4 * ps); c.rotate(wob);
+    c.fillStyle = "rgba(0,0,0,.25)"; c.beginPath(); c.ellipse(0, 4 * ps, 52 * ps, 9 * ps, 0, 0, TAU); c.fill();
+    const bg = c.createRadialGradient(-14 * ps, -46 * ps, 4 * ps, 0, -34 * ps, 56 * ps); bg.addColorStop(0, "#4a4a5a"); bg.addColorStop(1, "#14141a"); c.fillStyle = bg;
+    c.beginPath(); c.ellipse(0, -36 * ps, 48 * ps, 40 * ps, 0, 0, TAU); c.fill(); [-34, 34].forEach((dx) => c.fillRect(dx * ps - 4 * ps, -4 * ps, 8 * ps, 6 * ps));
+    const rimH = (10 + tip * 40) * ps; c.fillStyle = "#08080c"; c.beginPath(); c.ellipse(0, -70 * ps, 40 * ps, rimH, 0, 0, TAU); c.fill();
+    c.strokeStyle = "#3a3a48"; c.lineWidth = 7 * ps; c.beginPath(); c.ellipse(0, -70 * ps, 43 * ps, rimH + 2 * ps, 0, 0, TAU); c.stroke();
+    if (tip > 0.05) { c.strokeStyle = "rgba(220,220,230,.5)"; c.lineWidth = 1 / Zf; c.beginPath(); c.moveTo(-26 * ps, -70 * ps); c.lineTo(10 * ps, -70 * ps + rimH * 0.6); c.moveTo(-26 * ps, -70 * ps + rimH * 0.5); c.lineTo(20 * ps, -70 * ps - rimH * 0.3); c.stroke(); }
+    c.restore();
+  }
+  function meadow(c, t, S, o = {}) {
+    const B = rb(), F = foot(), k = o.sun ?? 1, mouthY = GY - 74 * PW;
+    if (!o.noSky) { sky(c, [`rgb(${lerp(90, 70, k)},${lerp(130, 160, k)},${lerp(180, 235, k)})`, "#bfe2ff", "#eaf6ff"], -H, GY - H * 0.08); glow(c, W * 0.12, H * 0.12, H * 0.35, `rgba(255,245,200,${0.8 * k})`); c.fillStyle = `rgba(255,250,220,${k})`; c.beginPath(); c.arc(W * 0.12, H * 0.12, Math.min(W, H) * 0.045, 0, TAU); c.fill(); }
+    S.cl.forEach((q, i) => cloud(c, q.x * W + (i % 2 ? 1 : -1) * (o.ct ?? t) * 10, q.y * H, q.r, "rgba(255,255,255,.9)", 5, q.sd));
+    // the bow: it rises out of the left hills and comes down straight into the pot's mouth
+    const arc = o.arc ?? 1;
+    BOW.forEach((col, i) => { const r = B.R - i * B.R * B.bw, end = TAU - Math.asin(clamp((GY - mouthY) / r)); c.strokeStyle = col; c.globalAlpha = 0.75; c.lineWidth = B.R * B.bw * 1.05; c.beginPath(); c.arc(B.cx, B.cy, r, Math.PI, Math.PI + (end - Math.PI) * arc); c.stroke(); });
+    c.globalAlpha = 0.22; c.strokeStyle = "#fff"; c.lineWidth = B.R * 0.26; c.beginPath(); c.arc(B.cx, B.cy, B.R * 0.7, Math.PI, Math.PI + Math.PI * arc); c.stroke(); c.globalAlpha = 1;
+    hill(c, S.r1, "#5aa060", -W, W * 2); hill(c, S.r2, "#3e8a48", -W, W * 2);
+    S.trees.forEach((q) => tree(c, q.u * W, S.r2(q.u * W) + 6, s0 * q.s, { col: "#2f7a3a", dark: "#256a30", sway: Math.sin(t + q.u * 9) * 1.5 }));
+    for (let i = 0; i < 5; i++) { const x = W * (0.1 + i * 0.04), y = S.r1(x) + 4; c.fillStyle = "#f5efe6"; c.fillRect(x, y - 14 * s0, 16 * s0, 14 * s0); c.fillStyle = "#c0503a"; c.beginPath(); c.moveTo(x - 2 * s0, y - 14 * s0); c.lineTo(x + 8 * s0, y - 22 * s0); c.lineTo(x + 18 * s0, y - 14 * s0); c.fill(); }
+    // the near meadow, with clover and red mushrooms around the pot
+    sky(c, ["#4fa65a", "#2f7a3a"], GY - H * 0.05, H * 1.4);
+    S.clov.forEach((q) => { const x = q.x, y = q.y, r = 4 * q.s * PW * 1.6; c.fillStyle = "#2f8a3a"; c.beginPath(); for (let i = 0; i < 3; i++) { const a = (i / 3) * TAU - 1.57; c.moveTo(x + Math.cos(a) * r + r, y + Math.sin(a) * r); c.arc(x + Math.cos(a) * r, y + Math.sin(a) * r, r, 0, TAU); } c.fill(); });
+    S.mush.forEach((x) => { const y = GY + 16 * PW, m = PW * 1.4; c.fillStyle = "#f5efe6"; c.fillRect(x - 4 * m, y - 16 * m, 8 * m, 16 * m); c.fillStyle = "#e0303a"; c.beginPath(); c.arc(x, y - 16 * m, 14 * m, Math.PI, TAU); c.fill(); c.fillStyle = "#fff"; c.beginPath(); c.arc(x - 5 * m, y - 22 * m, 2.5 * m, 0, TAU); c.arc(x + 6 * m, y - 20 * m, 2 * m, 0, TAU); c.fill(); });
+    glow(c, F.x, mouthY, 70 * PW, "rgba(255,255,255,.45)");
+    potDraw(c, o.pt ?? t, S, o.tip);
+  }
   const rainbow = {
-    D: 8.8, facts: ["best"], cy: () => H * 1.0 - Math.min(W * (phone ? 0.46 : 0.4), H * 0.7) - Math.min(W * 0.085, 82) * 0.3,
-    init(S) { S.r1 = ridge(1.3, H * 0.04, H * 0.72); S.r2 = ridge(6.1, H * 0.03, H * 0.8); S.cl = Array.from({ length: 6 }, (_, i) => ({ x: rnd(0, 1), y: rnd(0.04, 0.24), r: rnd(30, 60) * s0, sd: i })); S.trees = Array.from({ length: 9 }, () => ({ u: Math.random(), s: rnd(0.5, 0.9) })); },
+    D: 8.8, facts: ["best"], fadeText: 1.9, cy: () => GY - rb().R - Math.min(W * 0.085, 82) * 0.45,
+    init(S) { meadowInit(S); },
     draw(c, t, S, D) {
-      const B = rb(), pan = easeIO((t - (D - 2)) / 2), k = ease(t / 1.8);
-      c.save(); const fx = B.cx + B.R, fy = B.cy; c.translate(fx, fy); c.scale(1 + pan * 1.6, 1 + pan * 1.6); c.translate(-fx + pan * -W * 0.05, -fy - pan * H * 0.05);
-      sky(c, [`rgb(${lerp(90, 70, k)},${lerp(130, 160, k)},${lerp(180, 235, k)})`, "#bfe2ff", "#eaf6ff"], 0, H * 0.74);
-      glow(c, W * 0.12, H * 0.12, H * 0.35, `rgba(255,245,200,${0.8 * k})`); c.fillStyle = `rgba(255,250,220,${k})`; c.beginPath(); c.arc(W * 0.12, H * 0.12, Math.min(W, H) * 0.045, 0, TAU); c.fill();
-      S.cl.forEach((q, i) => cloud(c, q.x * W + (i % 2 ? 1 : -1) * t * 14 * (1 + k), q.y * H, q.r, `rgba(255,255,255,${0.6 + 0.3 * k})`, 5, q.sd));
-      // the bow itself
-      const arc = ease((t - 0.2) / 1.6) * Math.PI;
-      BOW.forEach((col, i) => { c.strokeStyle = col; c.globalAlpha = 0.72; c.lineWidth = B.R * 0.04; c.beginPath(); c.arc(B.cx, B.cy, B.R - i * B.R * 0.04, Math.PI, Math.PI + arc); c.stroke(); });
-      c.globalAlpha = 0.25; c.strokeStyle = "#fff"; c.lineWidth = B.R * 0.3; c.beginPath(); c.arc(B.cx, B.cy, B.R * 0.62, Math.PI, Math.PI + arc); c.stroke(); c.globalAlpha = 1;
-      hill(c, S.r1, "#5aa060"); hill(c, S.r2, "#3e8a48");
-      S.trees.forEach((q) => tree(c, q.u * W, S.r2(q.u * W) + 6, s0 * q.s, { col: "#2f7a3a", dark: "#256a30" }));
-      // a little village on the far hill
-      for (let i = 0; i < 5; i++) { const x = W * (0.1 + i * 0.04), y = S.r1(x) + 4; c.fillStyle = "#f5efe6"; c.fillRect(x, y - 14 * s0, 16 * s0, 14 * s0); c.fillStyle = "#c0503a"; c.beginPath(); c.moveTo(x - 2 * s0, y - 14 * s0); c.lineTo(x + 8 * s0, y - 22 * s0); c.lineTo(x + 18 * s0, y - 14 * s0); c.fill(); }
+      // the last two seconds: a slow glide down the bow and in to the pot
+      const e = easeIO((t - (D - 2.3)) / 2.3), F = foot(), A = potAnchor(), Z = Math.pow(Zf, e);
+      c.save(); cam(c, { x: lerp(F.x, A.x, e), y: lerp(F.y, A.y, e) }, Z);
+      meadow(c, t, S, { sun: ease(t / 1.8), arc: ease((t - 0.2) / 1.6) });
       c.restore();
     },
-    // the letters slide up the bow from its left foot and settle along the top
+    // the letters ride up the bow one after another like a little train, leaning with the curve, then glide into place
     text: {
-      at: 3.6, spread: 0.7, dur: 0.8, pre: 0.6, preScale: 0.85, spin: 0, ease: (k) => ease(k), glow: "rgba(255,200,255,.9)", ink: ["#ff3b3b", "#ffb13b", "#ffe23b", "#4cd964", "#3bb3ff", "#b44dff"],
-      from(p, S, t) { const B = rb(), a = Math.PI + clamp((t - 0.6) / 2.8) * (Math.PI * (0.32 + p.u * 0.36)); return [B.cx + Math.cos(a) * (B.R + 14), B.cy + Math.sin(a) * (B.R + 14)]; },
+      at: 3.4, spread: 0.9, dur: 1.1, pre: 0.5, preScale: 0.8, preFade: 0.4, ease: (k) => easeIO(k), glow: "rgba(255,200,255,.9)", ink: ["#ff3b3b", "#ffb13b", "#ffe23b", "#4cd964", "#3bb3ff", "#b44dff"],
+      delay: (p) => p.u * 0.9,
+      from(p, S, t) { const B = rb(), a = Math.PI + clamp((t - 0.5 - (1 - p.u) * 0.5) / 3.2) * Math.PI * (0.25 + p.u * 0.5); return [B.cx + Math.cos(a) * (B.R + 16), B.cy + Math.sin(a) * (B.R + 16)]; },
+      rotFrom(p, S, t) { const a = Math.PI + clamp((t - 0.5 - (1 - p.u) * 0.5) / 3.2) * Math.PI * (0.25 + p.u * 0.5); return a + Math.PI / 2; },
     },
     sound(e) { e.birds(0.5, 8, 0.02); [523.25, 659.25, 783.99, 1046.5, 1318.5].forEach((f, i) => e.chime(f, 0.4 + i * 0.3, 0.04)); e.whoosh(6.4, 2, 0.06); },
   };
@@ -122,32 +170,15 @@ WXS.add("windy", (K) => {
   const potPan = (t) => easeIO((t - 2.3) / 1.4);
   const lep = (t) => { const s = s0 * (phone ? 1.25 : 1.6); return { x: W * (phone ? 0.5 : 0.62) + W * 0.45 * (1 - potPan(t)), gy: H * 0.82, s }; };
   const pot = {
-    D: 9, facts: ["worst"], cy: () => H * 0.24,
-    init(S) { S.clov = Array.from({ length: phone ? 50 : 110 }, () => ({ x: rnd(-0.2, 1.6), y: rnd(0.76, 1), s: rnd(0.6, 1.2) })); S.mush = [0.08, 0.86, 1.25, 1.45]; S.cl = Array.from({ length: 5 }, (_, i) => ({ x: rnd(0, 1.5), y: rnd(0.05, 0.3), r: rnd(30, 60) * s0, sd: i })); },
-    draw(c, t, S) {
-      const pan = potPan(t) * W * 0.45, gy = H * 0.82, ps = s0 * (phone ? 1.2 : 1.5), px = W * 0.42;
-      sky(c, ["#6cc0ff", "#bfe6ff", "#e8f7ff"], 0, gy);
-      c.save(); c.translate(-pan, 0);
-      S.cl.forEach((q) => cloud(c, q.x * W, q.y * H, q.r, "rgba(255,255,255,.9)", 5, q.sd));
-      hill(c, ridge(2.2, H * 0.03, H * 0.7), "#6ab86a", -20, W * 1.6); sky(c, ["#4fa65a", "#2f7a3a"], gy - H * 0.06, H + 10);
-      // the bow comes down into the pot
-      BOW.forEach((col, i) => { c.strokeStyle = col; c.globalAlpha = 0.6; c.lineWidth = 9 * ps; c.beginPath(); c.moveTo(px - 10 * ps + i * 9 * ps - 60 * ps, -10); c.quadraticCurveTo(px - 10 * ps + i * 9 * ps - 20 * ps, gy * 0.5, px - 26 * ps + i * 8 * ps, gy - 74 * ps); c.stroke(); });
-      c.globalAlpha = 1; glow(c, px, gy - 70 * ps, 90 * ps, "rgba(255,255,255,.4)");
-      // the pot: rocks, tips towards us, and is empty - a moth flutters out
-      const tip = Math.sin(clamp((t - 0.6) / 1.2) * Math.PI) * 0.35, wob = Math.sin(t * 9) * 0.04 * (1 - clamp(t / 1));
-      c.save(); c.translate(px, gy - 4 * ps); c.rotate(wob);
-      c.fillStyle = "rgba(0,0,0,.25)"; c.beginPath(); c.ellipse(0, 4 * ps, 52 * ps, 9 * ps, 0, 0, TAU); c.fill();
-      const bg = c.createRadialGradient(-14 * ps, -46 * ps, 4 * ps, 0, -34 * ps, 56 * ps); bg.addColorStop(0, "#4a4a5a"); bg.addColorStop(1, "#14141a"); c.fillStyle = bg;
-      c.beginPath(); c.ellipse(0, -36 * ps, 48 * ps, 40 * ps, 0, 0, TAU); c.fill(); [[-34, 1], [34, 1]].forEach(([dx]) => { c.fillRect(dx * ps - 4 * ps, -4 * ps, 8 * ps, 6 * ps); });
-      const rimH = (10 + tip * 40) * ps; c.fillStyle = "#08080c"; c.beginPath(); c.ellipse(0, -70 * ps, 40 * ps, rimH, 0, 0, TAU); c.fill();
-      c.strokeStyle = "#3a3a48"; c.lineWidth = 7 * ps; c.beginPath(); c.ellipse(0, -70 * ps, 43 * ps, rimH + 2 * ps, 0, 0, TAU); c.stroke();
-      if (tip > 0.05) { c.strokeStyle = "rgba(220,220,230,.5)"; c.lineWidth = 1; c.beginPath(); c.moveTo(-26 * ps, -70 * ps); c.lineTo(10 * ps, -70 * ps + rimH * 0.6); c.moveTo(-26 * ps, -70 * ps + rimH * 0.5); c.lineTo(20 * ps, -70 * ps - rimH * 0.3); c.stroke(); }
-      c.restore();
-      if (t > 0.9 && t < 4.5) { const k = (t - 0.9) / 3.6, mx = px + Math.sin(t * 7) * 20 * ps + k * 120 * ps, my = gy - 80 * ps - k * 160 * ps, f = Math.abs(Math.sin(t * 22)); c.fillStyle = "#d8cbb0"; c.beginPath(); c.ellipse(mx - 5 * ps * f, my, 6 * ps * f + 1, 4 * ps, -0.4, 0, TAU); c.ellipse(mx + 5 * ps * f, my, 6 * ps * f + 1, 4 * ps, 0.4, 0, TAU); c.fill(); c.fillStyle = "#6a5a4a"; c.fillRect(mx - 1, my - 3 * ps, 2, 7 * ps); }
-      if (t > 1.1 && t < 3.4) { c.save(); c.globalAlpha = clamp((t - 1.1) / 0.3) * clamp((3.4 - t) / 0.4); c.fillStyle = "#fff"; c.strokeStyle = "#14141a"; c.lineWidth = 2; const bx = px + 70 * ps, by = gy - 150 * ps; c.beginPath(); c.roundRect ? c.roundRect(bx - 52 * ps, by - 18 * ps, 104 * ps, 36 * ps, 12 * ps) : c.rect(bx - 52 * ps, by - 18 * ps, 104 * ps, 36 * ps); c.fill(); c.stroke(); c.beginPath(); c.moveTo(bx - 30 * ps, by + 18 * ps); c.lineTo(bx - 44 * ps, by + 34 * ps); c.lineTo(bx - 18 * ps, by + 18 * ps); c.fill(); c.fillStyle = "#14141a"; c.font = `800 ${15 * ps}px Inter, sans-serif`; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText("…it's empty!", bx, by); c.restore(); }
-      // clover, mushrooms, a few stones
-      S.clov.forEach((q) => { const x = q.x * W, y = q.y * H; c.fillStyle = "#2f8a3a"; for (let i = 0; i < 3; i++) { const a = (i / 3) * TAU - 1.57; c.beginPath(); c.arc(x + Math.cos(a) * 4 * q.s * s0, y + Math.sin(a) * 4 * q.s * s0, 4 * q.s * s0, 0, TAU); c.fill(); } });
-      S.mush.forEach((u) => { const x = u * W, y = gy + 26 * s0; c.fillStyle = "#f5efe6"; c.fillRect(x - 4 * s0, y - 16 * s0, 8 * s0, 16 * s0); c.fillStyle = "#e0303a"; c.beginPath(); c.arc(x, y - 16 * s0, 14 * s0, Math.PI, TAU); c.fill(); c.fillStyle = "#fff"; c.beginPath(); c.arc(x - 5 * s0, y - 22 * s0, 2.5 * s0, 0, TAU); c.arc(x + 6 * s0, y - 20 * s0, 2 * s0, 0, TAU); c.fill(); });
+    D: 9, facts: ["worst"], seamless: true, fadeText: 1.4, cy: () => H * 0.24,
+    init(S) { meadowInit(S); },
+    draw(c, t, S, D) {
+      const pan = potPan(t) * W * 0.45, A = potAnchor(), F = foot(), ps = PW, px = F.x, gy = GY;
+      c.save(); cam(c, { x: A.x - pan, y: A.y }, Zf);
+      meadow(c, t + rainbow.D, S, { tip: true, pt: t, ct: t + 8.8 });
+      // a moth flutters out of the empty pot, and the pot says so
+      if (t > 0.9 && t < 4.5) { const k = (t - 0.9) / 3.6, mx = px + Math.sin(t * 7) * 20 * ps + k * 120 * ps, my = gy - 80 * ps - k * 160 * ps, f = Math.abs(Math.sin(t * 22)); c.fillStyle = "#d8cbb0"; c.beginPath(); c.ellipse(mx - 5 * ps * f, my, 6 * ps * f + 0.5, 4 * ps, -0.4, 0, TAU); c.ellipse(mx + 5 * ps * f, my, 6 * ps * f + 0.5, 4 * ps, 0.4, 0, TAU); c.fill(); c.fillStyle = "#6a5a4a"; c.fillRect(mx - 0.5, my - 3 * ps, 1, 7 * ps); }
+      if (t > 1.1 && t < 3.4) { c.save(); c.globalAlpha = clamp((t - 1.1) / 0.3) * clamp((3.4 - t) / 0.4); c.fillStyle = "#fff"; c.strokeStyle = "#14141a"; c.lineWidth = 2 / Zf; const bx = px + 70 * ps, by = gy - 150 * ps; c.beginPath(); c.roundRect ? c.roundRect(bx - 52 * ps, by - 18 * ps, 104 * ps, 36 * ps, 12 * ps) : c.rect(bx - 52 * ps, by - 18 * ps, 104 * ps, 36 * ps); c.fill(); c.stroke(); c.beginPath(); c.moveTo(bx - 30 * ps, by + 18 * ps); c.lineTo(bx - 44 * ps, by + 34 * ps); c.lineTo(bx - 18 * ps, by + 18 * ps); c.fill(); c.fillStyle = "#14141a"; c.font = `800 ${15 * ps}px Inter, sans-serif`; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText("…it's empty!", bx, by); c.restore(); }
       c.restore();
       const L = lep(t); leprechaun(c, L.x, L.gy, L.s, t);
     },
@@ -161,38 +192,56 @@ WXS.add("windy", (K) => {
       e.melody(jig, 2.4, 0.19, 0.035, "square", 0.6); e.melody(jig.map((f) => (f ? f / 2 : 0)), 2.4, 0.19, 0.02, "triangle", 0.8); e.clop(2.4, 6, 3.15, 0.04); },
   };
 
-  // ---------------------------------------------------------------- 4. into the hair, then the brain
-  const brain = {
-    D: 8.4, facts: ["call"], cy: () => H * 0.5,
-    init(S) {
-      S.curls = Array.from({ length: 140 }, () => ({ x: rnd(-1.2, 1.2), y: rnd(-1.2, 1.2), r: rnd(0.03, 0.08), c: ["#ff7a1a", "#ff9a3b", "#e05a0a", "#ffb35a"][Math.floor(rnd(0, 4))], a: rnd(0, TAU) }));
-      const bw = Math.min(W * 0.42, H * 0.62) * (phone ? 1.6 : 1), cx = W / 2, cy = H * 0.5;
-      S.bw = bw; S.N = []; while (S.N.length < (phone ? 50 : 85)) { const x = rnd(-1, 1), y = rnd(-1, 1); if (x * x / 1 + (y * y) / 0.55 < 0.95) S.N.push({ x: cx + x * bw, y: cy + y * bw * 0.72, ph: rnd(0, 6) }); }
-      S.E = []; S.N.forEach((a, i) => S.N.forEach((b, j) => { if (j > i && Math.hypot(a.x - b.x, a.y - b.y) < bw * 0.33) S.E.push([a, b, rnd(0, 1), rnd(0.6, 1.4)]); }));
-    },
+  // ---------------------------------------------------------------- 4. a UFO beams the leprechaun up and flies off into space
+  function ufo(c, x, y, s, t, inside) {
+    c.save(); c.translate(x, y); c.rotate(Math.sin(t * 1.7) * 0.05);
+    // glass dome (with a small green hat inside once he is aboard)
+    const dg = c.createLinearGradient(0, -40 * s, 0, 0); dg.addColorStop(0, "rgba(190,255,250,.75)"); dg.addColorStop(1, "rgba(80,200,220,.45)");
+    if (inside) { c.save(); c.translate(0, -12 * s); c.rotate(Math.sin(t * 4) * 0.2); c.fillStyle = "#ff7a1a"; c.beginPath(); c.arc(0, 2 * s, 7 * s, 0, TAU); c.fill(); c.fillStyle = "#f2c9a0"; c.beginPath(); c.arc(0, 0, 5 * s, 0, TAU); c.fill(); c.fillStyle = "#1d6b2e"; c.fillRect(-7 * s, -6 * s, 14 * s, 2.5 * s); c.fillRect(-4.5 * s, -14 * s, 9 * s, 9 * s); c.restore(); }
+    c.fillStyle = dg; c.beginPath(); c.ellipse(0, -8 * s, 30 * s, 30 * s, 0, Math.PI, TAU); c.fill();
+    c.fillStyle = "rgba(255,255,255,.55)"; c.beginPath(); c.ellipse(-12 * s, -24 * s, 6 * s, 10 * s, 0.5, 0, TAU); c.fill();
+    // the saucer: a shiny disc with a glowing belly and lights running round the rim
+    const bg = c.createLinearGradient(0, -14 * s, 0, 16 * s); bg.addColorStop(0, "#f2f5fb"); bg.addColorStop(0.45, "#a8b0c4"); bg.addColorStop(1, "#5a6278");
+    c.fillStyle = "#4a5266"; c.beginPath(); c.ellipse(0, 8 * s, 38 * s, 12 * s, 0, 0, TAU); c.fill();
+    glow(c, 0, 16 * s, 30 * s, "rgba(140,255,200,.7)");
+    c.fillStyle = bg; c.beginPath(); c.ellipse(0, 0, 74 * s, 17 * s, 0, 0, TAU); c.fill();
+    c.strokeStyle = "rgba(40,44,60,.5)"; c.lineWidth = 1.5 * s; c.beginPath(); c.ellipse(0, 1 * s, 74 * s, 6 * s, 0, 0, Math.PI); c.stroke();
+    const cols = ["#ff4fd8", "#2ef2ff", "#ffd36b", "#4cd964"];
+    for (let i = 0; i < 12; i++) { const a = (i / 12) * Math.PI + 0.1 * 0, lx = Math.cos(a + 0) * 64 * s * (i % 2 ? 1 : 0.999), ly = 5 * s + Math.sin(a) * 6 * s; const on = Math.floor(t * 8 + i) % 4; c.fillStyle = cols[on]; c.beginPath(); c.arc(lx, ly, 3 * s, 0, TAU); c.fill(); glow(c, lx, ly, 8 * s, cols[on] + "88"); }
+    c.restore();
+  }
+  const UX = (t) => { const k = ease(t / 1.4); return { x: lerp(W * 1.15, W * (phone ? 0.5 : 0.6), k), y: lerp(-H * 0.1, H * 0.34, k) + Math.sin(t * 2) * 6 * s0 }; };
+  const rise = (t) => easeIO((t - 3.6) / 1.9);
+  const ufoPos = (t) => { const a = UX(t), u = rise(t); return { x: lerp(a.x, W * 0.5, u), y: a.y - Math.sin(Math.PI * u) * H * 0.12 - u * H * 0.12 }; };
+  const ufoCh = {
+    D: 9.4, facts: ["call"], seamless: true, cy: () => H * (phone ? 0.5 : 0.55),
+    init(S) { meadowInit(S); S.st = stars(phone ? 160 : 260, 1); S.lines = Array.from({ length: 40 }, () => ({ x: Math.random(), y: Math.random(), l: rnd(40, 140) })); },
     draw(c, t, S) {
-      if (t < 2) { // zooming into bright ginger curls
-        const z = 0.45 * Math.exp(t * 1.35);
-        sky(c, ["#ff8a2a", "#e0600a"], 0, H);
-        S.curls.forEach((q) => { c.strokeStyle = q.c; c.lineWidth = Math.max(1.5, 4 * z * s0); c.beginPath(); const x = W / 2 + q.x * W * z, y = H / 2 + q.y * H * z, r = q.r * Math.min(W, H) * z; for (let a = 0; a < TAU * 1.6; a += 0.2) { const rr = r * (1 - a / (TAU * 2.2)); c.lineTo(x + Math.cos(a + q.a) * rr, y + Math.sin(a + q.a) * rr); } c.stroke(); });
-        c.fillStyle = `rgba(30,8,40,${clamp((t - 1.3) / 0.7)})`; c.fillRect(0, 0, W, H); return;
-      }
-      sky(c, ["#160822", "#240a34", "#12061a"]);
-      // the brain: a soft pink shape with folds
-      const cx = W / 2, cy = H * 0.5, bw = S.bw;
-      c.save(); c.beginPath(); c.ellipse(cx, cy, bw, bw * 0.72, 0, 0, TAU); c.clip();
-      const g = c.createRadialGradient(cx - bw * 0.3, cy - bw * 0.3, 0, cx, cy, bw); g.addColorStop(0, "rgba(255,150,200,.45)"); g.addColorStop(1, "rgba(150,40,110,.25)"); c.fillStyle = g; c.fillRect(cx - bw, cy - bw, bw * 2, bw * 2);
-      c.strokeStyle = "rgba(255,170,220,.25)"; c.lineWidth = 3; for (let i = 0; i < 16; i++) { c.beginPath(); const y = cy - bw * 0.7 + i * bw * 0.1; for (let x = cx - bw; x <= cx + bw; x += 10) c.lineTo(x, y + Math.sin(x * 0.05 + i * 1.7) * 10 + Math.sin(x * 0.013 + i) * 14); c.stroke(); }
-      c.restore();
-      c.strokeStyle = "rgba(255,170,220,.6)"; c.lineWidth = 3; c.beginPath(); c.ellipse(cx, cy, bw, bw * 0.72, 0, 0, TAU); c.stroke();
-      // neurons firing: signals race along the links
-      c.lineWidth = 1.2; S.E.forEach(([a, b, o, v]) => { c.strokeStyle = "rgba(255,120,200,.16)"; c.beginPath(); c.moveTo(a.x, a.y); c.lineTo(b.x, b.y); c.stroke(); const k = (t * 0.9 * v + o) % 1; glow(c, lerp(a.x, b.x, k), lerp(a.y, b.y, k), 7, "rgba(255,220,255,.95)"); });
-      S.N.forEach((n) => { const f = 0.5 + 0.5 * Math.sin(t * 7 + n.ph); glow(c, n.x, n.y, 8 + 10 * f, `rgba(255,${120 + f * 100},230,.85)`); });
-      if (t > 7.3) { const k = clamp((t - 7.3) / 1); glow(c, W / 2, H / 2, k * Math.hypot(W, H), `rgba(255,255,255,${k})`); }
+      const u = rise(t), U = ufoPos(t), L = lep(9), us = s0 * (phone ? 0.85 : 1.1);
+      // looking up as we follow it: the meadow drops away, the sky darkens to space
+      const top = `rgb(${Math.round(lerp(90, 0, u))},${Math.round(lerp(150, 2, u))},${Math.round(lerp(230, 14, u))})`;
+      c.fillStyle = top; c.fillRect(0, 0, W, H);
+      if (u < 0.999) { c.save(); c.translate(0, u * H * 1.5); const A = potAnchor(); cam(c, { x: A.x - W * 0.45, y: A.y }, Zf); meadow(c, 9 + t, S, { ct: 18 + t }); c.restore(); }
+      if (u > 0) { const g = c.createLinearGradient(0, 0, 0, H); g.addColorStop(0, `rgba(2,3,16,${u})`); g.addColorStop(1, `rgba(10,20,60,${u * 0.9})`); c.fillStyle = g; c.fillRect(0, 0, W, H); drawStars(c, S.st, t, clamp((u - 0.4) / 0.6)); }
+      // streaks of speed while it climbs
+      const sp = Math.sin(Math.PI * clamp((t - 3.6) / 1.9)); if (sp > 0.05) { c.strokeStyle = `rgba(255,255,255,${0.35 * sp})`; c.lineWidth = 1.5; c.beginPath(); S.lines.forEach((q) => { const y = ((q.y + t * 2.5) % 1) * H, x = q.x * W; c.moveTo(x, y); c.lineTo(x, y + q.l * sp); }); c.stroke(); }
+      // Earth's curve rising into view below
+      const ek = clamp((u - 0.55) / 0.45); if (ek > 0) { const R = Math.max(W, H) * 1.3, ex = W * 0.5, ey = H + R * 0.72 + (1 - ek) * H * 0.4; glow(c, ex, ey, R * 1.06, "rgba(90,170,255,.35)"); const g = c.createRadialGradient(ex - R * 0.2, ey - R * 0.9, R * 0.1, ex, ey, R); g.addColorStop(0, "#3a9ae8"); g.addColorStop(0.7, "#1a5aa8"); g.addColorStop(1, "#0a2a5a"); c.fillStyle = g; c.beginPath(); c.arc(ex, ey, R, 0, TAU); c.fill(); c.fillStyle = "rgba(255,255,255,.5)"; for (let i = 0; i < 12; i++) { const x = ((i * 0.37 + t * 0.01) % 1) * W * 1.2 - W * 0.1, y = ey - Math.sqrt(Math.max(0, R * R - (x - ex) * (x - ex))) + 14 + (i % 4) * 18; c.beginPath(); c.ellipse(x, y, 60 * s0, 5 * s0, 0, 0, TAU); c.fill(); } c.strokeStyle = "rgba(140,210,255,.8)"; c.lineWidth = 4; c.beginPath(); c.arc(ex, ey, R + 2, Math.PI * 1.1, Math.PI * 1.9); c.stroke(); }
+      // the tractor beam lifts him up, spinning gently, into the saucer
+      const beam = clamp((t - 1.3) / 0.3) * (1 - clamp((t - 3.3) / 0.3)), up = easeIO((t - 1.6) / 1.6);
+      if (beam > 0) { const bg = c.createLinearGradient(0, U.y, 0, L.gy); bg.addColorStop(0, `rgba(150,255,200,${0.55 * beam})`); bg.addColorStop(1, `rgba(150,255,200,${0.12 * beam})`); c.fillStyle = bg; c.beginPath(); c.moveTo(U.x - 22 * us, U.y + 12 * us); c.lineTo(U.x + 22 * us, U.y + 12 * us); c.lineTo(U.x + 80 * us, L.gy + 6); c.lineTo(U.x - 80 * us, L.gy + 6); c.fill(); c.strokeStyle = `rgba(220,255,235,${0.5 * beam})`; c.lineWidth = 1.5; for (let i = 0; i < 5; i++) { const k = (t * 0.8 + i / 5) % 1, y = lerp(L.gy, U.y + 14 * us, k), w = lerp(80, 22, k) * us; c.beginPath(); c.ellipse(U.x, y, w, w * 0.18, 0, 0, TAU); c.stroke(); } }
+      if (t < 3.25) { const lx = lerp(L.x, U.x, up), ly = lerp(L.gy, U.y + 10 * us, up), sc = lerp(1, 0.25, up); c.save(); c.translate(lx, ly - 50 * L.s * sc); c.rotate(up * Math.PI * 2.2); c.scale(sc, sc); c.translate(0, 50 * L.s); leprechaun(c, 0, 0, L.s, up > 0 ? t * 0.3 : t); c.restore(); }
+      ufo(c, U.x, U.y, us, t, t > 3.2);
     },
-    // sparks jump from neuron to neuron and settle into the letters
-    text: { mode: "dots", at: 2.9, spread: 1.4, dur: 0.55, crisp: 0.9, glow: "rgba(255,90,220,1)", color: "#ffd2f4", ink: ["#ff9ae8", "#ff4fd8", "#b44dff"], from(p, S) { const n = S.N[Math.floor(p.r * S.N.length)]; return [n.x, n.y]; } },
-    sound(e) { e.whoosh(0, 2, 0.12); e.tone(110, 2, 6, 0.04); for (let i = 0; i < 16; i++) e.chime(rnd(700, 1600), 2.4 + i * 0.22, 0.02); e.whoosh(7, 1.4, 0.2); },
+    // once in space, the saucer beams the fact down, letter by letter
+    text: {
+      at: 5.7, spread: 1.1, dur: 0.9, startScale: 0.2, spin: 0, ease: (k) => easeIO(k), glow: "rgba(150,255,200,.95)", ink: ["#eaffe8", "#9dffb0", "#2ef2ff"],
+      from: (p, S, t) => { const U = ufoPos(t); return [U.x + (p.r - 0.5) * 30 * s0, U.y + 16 * s0]; },
+    },
+    sound(e) {
+      e.osc("sawtooth", 70, 0, 9.4, [[0, 0], [1, 0.05], [8.8, 0.05], [9.4, 0]], 72, 400); e.osc("sine", 440, 0.2, 9, [[0.2, 0], [1, 0.02], [9, 0]], 460);
+      e.sparkle(1.3, 2, 0.015); e.osc("sine", 300, 1.4, 2, [[1.4, 0], [1.6, 0.05], [3.3, 0]], 1200); e.whoosh(3.6, 1.9, 0.25); e.tone(130.8, 5.5, 3.5, 0.03); for (let i = 0; i < 10; i++) e.beep(5.7 + i * 0.11, 1200 + i * 90, 0.02);
+    },
   };
 
   // ---------------------------------------------------------------- 5. the space station, astronauts looking at Earth
@@ -260,5 +309,5 @@ WXS.add("windy", (K) => {
     sound(e) { e.sparkle(2.8, 2.5, 0.015); [523.25, 659.25, 783.99, 1046.5, 1318.5].forEach((f, i) => e.chime(f, 4.5 + i * 0.25, 0.03)); e.tone(130.8, 0, 8, 0.03); },
   };
 
-  return [umbrella, rainbow, pot, brain, iss, align];
+  return [umbrella, rainbow, pot, ufoCh, iss, align];
 });

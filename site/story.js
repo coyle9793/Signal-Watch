@@ -53,6 +53,13 @@
     if (wl.length) { const avg = wl.reduce((s, x) => s + x.chg_1d, 0) / wl.length; F.watch = { icon: "⭐", k: "Your watchlist", big: `${wl.length} stocks ${pc(avg)}`, sub: "The average move of the stocks you follow today." }; }
     return F;
   }
+  // today's real moves for scenes that show stocks (stadium boards, volcano): your watchlist first, then the biggest movers
+  function movers(n = 8, which = "abs") {
+    const st = G("STOCKS") || [], wl = (window.WATCH?.list() || []).map((t) => st.find((s) => s.ticker === t)).filter(Boolean);
+    let pool = [...st].sort((a, b) => (which === "up" ? b.chg_1d - a.chg_1d : which === "down" ? a.chg_1d - b.chg_1d : Math.abs(b.chg_1d) - Math.abs(a.chg_1d)));
+    pool = [...wl, ...pool.filter((s) => !wl.includes(s))].slice(0, n);
+    return pool.map((s) => ({ t: s.ticker, c: s.chg_1d || 0, label: `${s.ticker} ${pc(s.chg_1d || 0)}` }));
+  }
   function assign(chapters) {
     const F = facts(), used = new Set(), order = ["market", "best", "worst", "shock", "warning", "insider", "call", "busiest", "shelter", "world", "watch"];
     return chapters.map((ch) => {
@@ -116,28 +123,29 @@
     return { at, spread, dur, land: at + spread + dur, subAt: at + spread + dur - 0.25 };
   }
   function glyph(c, p, x, y, rot, sc, a, L, sub, glow) {
-    c.save(); c.globalAlpha = a; c.translate(x, y); if (rot) c.rotate(rot); if (sc !== 1) c.scale(sc, sc);
+    c.save(); c.globalAlpha = a * FA; c.translate(x, y); if (rot) c.rotate(rot); if (sc !== 1) c.scale(sc, sc);
     c.lineWidth = sub ? 4 : L.s1 * 0.13; c.strokeStyle = "rgba(5,4,14,.78)"; c.strokeText(p.g, 0, 0);
     if (glow) { c.shadowColor = glow; c.shadowBlur = sub ? 6 : 16; }
     c.fillStyle = sub ? "#f6f3ff" : p.col; c.fillText(p.g, 0, 0); c.restore();
   }
+  let FA = 1; // fades a whole fact out (chapters that flow straight into the next scene)
   function drawFact(c, t, L, ch, S) {
     const T = ch.text || {}, { at, spread, dur, land, subAt } = timing(T), ink = L.ink;
     const delay = T.delay || ((p) => p.u * spread * 0.7 + p.r * spread * 0.3);
     const from = T.from || ((p) => [p.tx + (p.r - 0.5) * W * 0.6, -40 - p.q * 100]);
-    const spinAt = (p, tt) => (T.spin ?? 1) * p.rot * tt * 2.4;
+    const spinAt = (p, tt) => (T.spin ?? 1) * (T.spinDir ? T.spinDir * (0.5 + Math.abs(p.rot) * 0.5) : p.rot) * tt * 2.4; // spinDir: every letter turns the same way
     // a soft dark glow behind the words so they read on any scene (no box)
     const hk = clamp((t - at - spread * 0.5) / 0.9) * (T.halo ?? 0.6);
     if (hk > 0) {
       const rw = Math.max(L.tw, L.sw) * 0.62 + L.s1, rh = L.s1 * 1.9;
-      c.save(); c.globalAlpha = hk; c.translate(L.cx, L.cy + L.s1 * 0.3); c.scale(1, rh / rw);
+      c.save(); c.globalAlpha = hk * FA; c.translate(L.cx, L.cy + L.s1 * 0.3); c.scale(1, rh / rw);
       const g = c.createRadialGradient(0, 0, 0, 0, 0, rw); g.addColorStop(0, "rgba(5,4,14,.8)"); g.addColorStop(0.55, "rgba(5,4,14,.55)"); g.addColorStop(1, "rgba(5,4,14,0)");
       c.fillStyle = g; c.fillRect(-rw, -rw, rw * 2, rw * 2); c.restore();
     }
     c.save(); c.textAlign = "center"; c.textBaseline = "middle"; c.lineJoin = "round";
     // kicker
     const ka = clamp((t - at - 0.2) / 0.6);
-    if (ka > 0) { c.font = `800 ${Math.max(11, L.s1 * 0.2)}px Inter, sans-serif`; c.globalAlpha = ka; c.lineWidth = 4; c.strokeStyle = "rgba(5,4,14,.7)"; c.strokeText(L.kicker, L.cx, L.ky); c.fillStyle = T.kickCol || "#2ef2ff"; c.fillText(L.kicker, L.cx, L.ky); c.globalAlpha = 1; }
+    if (ka > 0) { c.font = `800 ${Math.max(11, L.s1 * 0.2)}px Inter, sans-serif`; c.globalAlpha = ka * FA; c.lineWidth = 4; c.strokeStyle = "rgba(5,4,14,.7)"; c.strokeText(L.kicker, L.cx, L.ky); c.fillStyle = T.kickCol || "#2ef2ff"; c.fillText(L.kicker, L.cx, L.ky); c.globalAlpha = 1; }
     c.font = L.font;
     if (T.mode === "dots") {
       const fin = clamp((t - land - 0.1) / 0.7), dd = T.delay || ((p) => p.r * spread);
@@ -150,7 +158,7 @@
         if (T.dot) T.dot(c, p, x, y, clamp(k), t, S, 1 - fin * (T.crisp ?? 1) * 0.9); else (k < 1 ? p1 : p2).rect(x - g / 2, y - g / 2, g, g);
       }
       const cr = T.crisp ?? 1;
-      if (!T.dot) { c.save(); c.globalAlpha = 1 - fin * cr * 0.9; c.fillStyle = T.color2 || T.color || "#fff"; c.fill(p1); c.fillStyle = T.color || "#fff"; c.shadowColor = T.glow || "rgba(107,92,255,.9)"; c.shadowBlur = 8; c.fill(p2); c.restore(); }
+      if (!T.dot) { c.save(); c.globalAlpha = (1 - fin * cr * 0.9) * FA; c.fillStyle = T.color2 || T.color || "#fff"; c.fill(p1); c.fillStyle = T.color || "#fff"; c.shadowColor = T.glow || "rgba(107,92,255,.9)"; c.shadowBlur = 8; c.fill(p2); c.restore(); }
       if (fin > 0) L.G.forEach((p) => glyph(c, p, p.tx, p.ty, 0, 1, fin * cr, L, false, T.glow || "rgba(107,92,255,.8)"));
     } else {
       const ez = T.ease || back;
@@ -159,13 +167,13 @@
         let x, y, rot = 0, sc = 1, a = 1, landed = false;
         if (k < 0) {
           if (T.pre == null || t < T.pre) continue;
-          [x, y] = from(p, S, t); rot = spinAt(p, t); sc = T.preScale ?? 0.7;
+          [x, y] = from(p, S, t); rot = T.rotFrom ? T.rotFrom(p, S, t) : spinAt(p, t); sc = T.preScale ?? 0.7;
           if (T.preDraw) { T.preDraw(c, p, x, y, t, S); c.font = L.font; continue; }
           if (T.preFade) a = clamp((t - T.pre) / T.preFade);
         } else if (k < 1) {
           const [fx, fy] = from(p, S, dep), e = ez(k);
           x = lerp(fx, p.tx, e); y = lerp(fy, p.ty, e) - (T.arc ? Math.sin(Math.PI * k) * T.arc * (0.6 + p.q * 0.6) : 0);
-          rot = spinAt(p, dep) * (1 - ease(k)); sc = lerp(T.pre != null ? (T.preScale ?? 0.7) : (T.startScale ?? 0.35), 1, ease(k));
+          rot = (T.rotFrom ? T.rotFrom(p, S, dep) : spinAt(p, dep)) * (1 - ease(k)); sc = lerp(T.pre != null ? (T.preScale ?? 0.7) : (T.startScale ?? 0.35), 1, ease(k));
           if (T.pre == null) a = clamp(k / 0.12);
         } else { x = p.tx; y = p.ty; const pp = clamp((t - dep - dur) / 0.35); sc = 1 + 0.14 * Math.sin(pp * Math.PI); landed = true; }
         glyph(c, p, x, y, rot, sc, a, L, false, landed ? T.glow || "rgba(107,92,255,.8)" : null);
@@ -199,7 +207,13 @@
   function tree(c, x, gy, s, o = {}) { // round broadleaf tree with a bit of sway
     const sw = o.sway || 0, h = 70 * s, col = o.col || "#2f6a35", dk = o.dark || "#22522a";
     c.fillStyle = o.trunk || "#5a3b22"; c.beginPath(); c.moveTo(x - 5 * s, gy); c.lineTo(x - 3 * s + sw * 0.4, gy - h * 0.6); c.lineTo(x + 3 * s + sw * 0.4, gy - h * 0.6); c.lineTo(x + 5 * s, gy); c.fill();
-    [[0, -0.75, 0.36, dk], [-0.24, -0.62, 0.26, dk], [0.24, -0.64, 0.27, col], [0, -0.92, 0.26, col], [-0.1, -0.72, 0.3, col]].forEach(([dx, dy, r, cc]) => { c.fillStyle = cc; c.beginPath(); c.arc(x + dx * h + sw, gy + dy * h, r * h, 0, TAU); c.fill(); });
+    c.strokeStyle = o.trunk || "#5a3b22"; c.lineWidth = 2.6 * s; c.lineCap = "round"; c.beginPath(); c.moveTo(x + sw * 0.3, gy - h * 0.45); c.lineTo(x - h * 0.2 + sw * 0.7, gy - h * 0.66); c.moveTo(x + sw * 0.3, gy - h * 0.5); c.lineTo(x + h * 0.2 + sw * 0.7, gy - h * 0.7); c.stroke();
+    // a crown of leaf clumps: shadowed underneath, lit on top, with a few gaps showing branches
+    const P = [[0, -0.78, 0.3], [-0.26, -0.62, 0.22], [0.27, -0.64, 0.23], [-0.14, -0.94, 0.22], [0.15, -0.95, 0.21], [-0.32, -0.8, 0.17], [0.34, -0.82, 0.17], [0, -1.1, 0.16], [-0.06, -0.55, 0.2], [0.14, -0.58, 0.18]];
+    c.fillStyle = dk; c.beginPath(); P.forEach(([dx, dy, r]) => { const cx = x + dx * h + sw * (0.7 - dy * 0.4), cy = gy + dy * h + r * h * 0.15; c.moveTo(cx + r * h, cy); c.arc(cx, cy, r * h, 0, TAU); }); c.fill();
+    c.fillStyle = col; c.beginPath(); P.forEach(([dx, dy, r]) => { const cx = x + dx * h + sw * (0.7 - dy * 0.4) - r * h * 0.12, cy = gy + dy * h - r * h * 0.12; c.moveTo(cx + r * h * 0.86, cy); c.arc(cx, cy, r * h * 0.86, 0, TAU); }); c.fill();
+    c.fillStyle = "rgba(255,255,220,.13)"; c.beginPath(); P.forEach(([dx, dy, r]) => { const cx = x + dx * h + sw * (0.7 - dy * 0.4) - r * h * 0.3, cy = gy + dy * h - r * h * 0.32; c.moveTo(cx + r * h * 0.45, cy); c.arc(cx, cy, r * h * 0.45, 0, TAU); }); c.fill();
+    c.fillStyle = "rgba(0,0,0,.12)"; for (let i = 0; i < 9; i++) { const a = i * 2.39996, rr = h * 0.3 * ((i * 0.618) % 1); c.beginPath(); c.arc(x + sw * 0.8 + Math.cos(a) * rr, gy - h * 0.8 + Math.sin(a) * rr * 0.8, h * 0.035, 0, TAU); c.fill(); }
   }
   function pine(c, x, gy, s, col = "#1e3a2a") { c.fillStyle = col; c.beginPath(); c.moveTo(x, gy - 70 * s); c.lineTo(x + 18 * s, gy - 20 * s); c.lineTo(x + 8 * s, gy - 22 * s); c.lineTo(x + 24 * s, gy); c.lineTo(x - 24 * s, gy); c.lineTo(x - 8 * s, gy - 22 * s); c.lineTo(x - 18 * s, gy - 20 * s); c.fill(); }
   function palm(c, x, gy, s, t = 0, col = "#1f6a3a", trunk = "#7a5a3a") {
@@ -241,8 +255,32 @@
   }
   function city(hMin, hMax, o = {}) { // a skyline: buildings with window grids
     let x = o.x0 ?? -20; const out = [], x1 = o.x1 ?? W + 20, sc = W < 600 ? 0.6 : 1;
-    while (x < x1) { const w = rnd(o.wMin || 40, o.wMax || 90) * sc, h = rnd(hMin, hMax) * H; out.push({ x, w, h, roof: Math.random(), win: Array.from({ length: Math.ceil(h / 16) * Math.ceil(w / 14) }, () => Math.random()) }); x += w + rnd(2, 10) * sc; }
+    while (x < x1) { const w = rnd(o.wMin || 40, o.wMax || 90) * sc, h = rnd(hMin, hMax) * H; out.push({ x, w, h, roof: Math.random(), type: Math.floor(Math.random() * 4), win: Array.from({ length: Math.ceil(h / 16) * Math.ceil(w / 14) }, () => Math.random()) }); x += w + rnd(2, 10) * sc; }
     return out;
+  }
+
+  // richer buildings (opt.fancy): a shaded side, ledges and cornices, and something on every roof
+  const shade = (col, k) => { if (!col.startsWith("#")) return col; const [r, g, b] = hex(col); return `rgb(${[r, g, b].map((v) => Math.max(0, Math.min(255, Math.round(v * k)))).join(",")})`; };
+  function fancyBody(c, b, bx, base, opt) {
+    const g = c.createLinearGradient(bx, 0, bx + b.w, 0); g.addColorStop(0, shade(base, 1.25)); g.addColorStop(0.75, base); g.addColorStop(1, shade(base, 0.7));
+    c.fillStyle = g; c.fillRect(bx, -b.h, b.w, b.h);
+    c.fillStyle = shade(base, 0.55); c.fillRect(bx + b.w - Math.max(3, b.w * 0.1), -b.h, Math.max(3, b.w * 0.1), b.h); // the side in shadow
+    c.fillStyle = shade(base, 1.45); const fl = b.type === 0 ? 48 : 64; for (let y = -b.h + fl; y < -12; y += fl) c.fillRect(bx, y, b.w, 2); // ledges
+    if (b.type === 2) { c.fillStyle = "rgba(160,190,255,.07)"; c.beginPath(); c.moveTo(bx, -b.h); c.lineTo(bx + b.w * 0.5, -b.h); c.lineTo(bx, -b.h + b.w * 0.9); c.fill(); }
+    if (opt.shopfronts !== false && b.h > 50) { c.fillStyle = shade(base, 0.6); c.fillRect(bx, -12, b.w, 12); }
+  }
+  function fancyTop(c, b, bx, base, opt) {
+    const top = -b.h, dk = shade(base, 0.8);
+    c.fillStyle = shade(base, 1.5); c.fillRect(bx - 2, top - 3, b.w + 4, 4); // cornice
+    c.fillStyle = dk;
+    if (b.type === 0 && b.roof > 0.4) { // a water tower on legs
+      const x = bx + b.w * 0.55, w = Math.min(22, b.w * 0.35); c.fillRect(x, top - 26, 2, 26); c.fillRect(x + w - 2, top - 26, 2, 26); c.fillRect(x - 1, top - 40, w + 2, 15); c.beginPath(); c.moveTo(x - 3, top - 40); c.lineTo(x + w / 2, top - 50); c.lineTo(x + w + 3, top - 40); c.fill();
+    } else if (b.type === 1) { // a set-back crown and a mast with a red light
+      c.fillRect(bx + b.w * 0.15, top - 16, b.w * 0.7, 16); c.fillRect(bx + b.w * 0.3, top - 28, b.w * 0.4, 12); c.fillRect(bx + b.w * 0.49, top - 58, 2, 30);
+      c.fillStyle = "rgba(255,70,70,.9)"; c.beginPath(); c.arc(bx + b.w * 0.5, top - 58, 2.2, 0, TAU); c.fill();
+    } else if (b.type === 3) { // a pitched roof with a dormer
+      c.beginPath(); c.moveTo(bx - 2, top); c.lineTo(bx + b.w / 2, top - Math.min(30, b.w * 0.4)); c.lineTo(bx + b.w + 2, top); c.fill();
+    } else if (b.roof > 0.5) { c.fillRect(bx + b.w * 0.2, top - 8, b.w * 0.3, 8); c.fillRect(bx + b.w * 0.65, top - 5, 6, 5); }
   }
   function drawCity(c, B, gy, col, lit, opt = {}) {
     B.forEach((b, i) => {
@@ -250,9 +288,20 @@
       const tilt = opt.tilt ? opt.tilt(b, i) : 0, drop = opt.drop ? opt.drop(b, i) : 0, sink = opt.sink ? opt.sink(b, i) : 0;
       c.translate(b.x + (tilt > 0 ? b.w : 0), gy + drop + sink); c.rotate(tilt);
       const bx = tilt > 0 ? -b.w : 0;
-      c.fillStyle = typeof col === "function" ? col(b, i) : col; c.fillRect(bx, -b.h, b.w, b.h);
-      if (b.roof > 0.7) c.fillRect(bx + b.w * 0.4, -b.h - 14, 3, 14); else if (b.roof > 0.45) c.fillRect(bx + b.w * 0.2, -b.h - 6, b.w * 0.4, 6);
-      if (lit) {
+      const base = typeof col === "function" ? col(b, i) : col;
+      if (opt.fancy) { fancyBody(c, b, bx, base, opt); }
+      else { c.fillStyle = base; c.fillRect(bx, -b.h, b.w, b.h); if (b.roof > 0.7) c.fillRect(bx + b.w * 0.4, -b.h - 14, 3, 14); else if (b.roof > 0.45) c.fillRect(bx + b.w * 0.2, -b.h - 6, b.w * 0.4, 6); }
+      if (lit && opt.fancy) {
+        const cols = Math.floor(b.w / 14), rows = Math.floor(b.h / 16), ww = b.type === 2 ? 10 : 7;
+        for (let r = 0; r < rows; r++) for (let k = 0; k < cols; k++) {
+          const v = b.win[r * cols + k], on = lit(b, i, k, r, v), wx = bx + 5 + k * 14 - (ww - 7) / 2, wy = -b.h + 8 + r * 16;
+          if (!on) { c.fillStyle = "rgba(4,6,16,.55)"; c.fillRect(wx, wy, ww, 9); continue; }
+          c.fillStyle = on === true ? (v * 13 % 1 > 0.75 ? "rgba(190,215,255,.8)" : v * 17 % 1 > 0.5 ? "rgba(255,200,120,.88)" : "rgba(255,228,160,.9)") : on; c.fillRect(wx, wy, ww, 9);
+          if (v * 29 % 1 > 0.7) { c.fillStyle = "rgba(0,0,0,.25)"; c.fillRect(wx, wy, ww * 0.45, 9); } // a drawn curtain
+          c.fillStyle = "rgba(255,255,255,.08)"; c.fillRect(wx - 1, wy + 9, ww + 2, 1.5); // sill
+        }
+        fancyTop(c, b, bx, base, opt);
+      } else if (lit) {
         const cols = Math.floor(b.w / 14), rows = Math.floor(b.h / 16);
         for (let r = 0; r < rows; r++) for (let k = 0; k < cols; k++) {
           const v = b.win[r * cols + k]; const on = lit(b, i, k, r, v); if (!on) continue;
@@ -353,21 +402,22 @@
     has: (name) => !!FACT[name],
     make(name, w, h) {
       W = w; H = h; VIG = vignette();
-      const K = { W, H, rnd, clamp, ease, easeIO, back, lerp, TAU, sky, glow, stars, drawStars, ridge, hill, cloud, tree, pine, palm, person, city, drawCity, boltPath, bolt, car, lamp, rainLines, mix, E };
+      const K = { W, H, rnd, clamp, ease, easeIO, back, lerp, TAU, sky, glow, stars, drawStars, ridge, hill, cloud, tree, pine, palm, person, city, drawCity, boltPath, bolt, car, lamp, rainLines, mix, E, movers, spy: () => window.SPY?.chg_1d ?? 0 };
       const chs = FACT[name](K), F = assign(chs);
       const Dk = chs.map((c) => { const tm = timing(c.text || {}); return Math.max(c.D, tm.subAt + 1.2 + 2.6); });
       let S = {}, L = null, i = -1;
       return {
         n: chs.length,
         D: (k) => Dk[k],
+        seamless: (k) => !!chs[k]?.seamless,
         start(k) { i = k; S = {}; chs[k].init?.(S); L = layoutFact(F[k], chs[k]); S.y0 = L.y0; S.L = L; snd((e) => chs[k].sound?.(e, S)); },
         sound() { snd((e) => chs[i].sound?.(e, S)); },
         draw(c, t) {
           const ch = chs[i];
           c.save(); ch.draw(c, t, S, Dk[i]); c.restore();
-          drawFact(c, t, L, ch, S);
+          FA = ch.fadeText ? 1 - clamp((t - (Dk[i] - ch.fadeText)) / 0.7) : 1; drawFact(c, t, L, ch, S); FA = 1;
           c.drawImage(VIG, 0, 0, W, H);
-          const dk = 1 - clamp(t / 0.25); if (dk > 0) { c.fillStyle = `rgba(5,4,11,${dk * 0.3})`; c.fillRect(0, 0, W, H); }
+          const dk = ch.seamless ? 0 : 1 - clamp(t / 0.25); if (dk > 0) { c.fillStyle = `rgba(5,4,11,${dk * 0.3})`; c.fillRect(0, 0, W, H); }
         },
       };
     },
