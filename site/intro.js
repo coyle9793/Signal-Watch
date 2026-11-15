@@ -3,7 +3,7 @@
 // Pick any scene from the bar, skip any time, sound is off until you turn it on, and Calm mode turns it all off.
 // Try one directly with ?intro=rain | thunder | hurricane | windy | sunny | eclipse
 (() => {
-  const ORDER = ["hurricane", "thunder", "rain", "windy", "sunny", "eclipse"];
+  const ORDER = ["hurricane", "thunder", "windy", "sunny", "eclipse"]; // the Rain scene was retired: light rain now shows the Breezy story
   const META = {
     hurricane: ["🌀", "Hurricane", "Very bad day"], thunder: ["⛈️", "Thunderstorm", "Bad day"], rain: ["🌧️", "Rain", "Down day"],
     windy: ["🍃", "Breezy", "Mixed day"], sunny: ["🏖️", "Sunny", "Good day"], eclipse: ["🌑", "Eclipse", "Superb day"],
@@ -11,7 +11,7 @@
   const LS = { get: (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} } };
   const SS = { get: (k) => { try { return sessionStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { sessionStorage.setItem(k, v); } catch (e) {} } };
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const forced = new URLSearchParams(location.search).get("intro");
+  const forced = ((f) => (f === "rain" ? "windy" : f))(new URLSearchParams(location.search).get("intro"));
   const calm = () => LS.get("wx-calm") === "1";
   const rnd = (a, b) => a + Math.random() * (b - a);
   const clamp = (x, a = 0, b = 1) => (x < a ? a : x > b ? b : x);
@@ -24,7 +24,6 @@
     const score = spy * 100 + (breadth - 0.5) * 2;
     if (spy <= -0.02) return "hurricane";
     if (spy <= -0.01 || score <= -1.6) return "thunder";
-    if (score <= -0.4) return "rain";
     if (score < 0.5) return "windy";
     if (spy >= 0.012 && breadth >= 0.7) return "eclipse";
     return "sunny";
@@ -531,7 +530,12 @@
   let el, cv, ctx, raf, cur, S, P, t0, auto, manual = false, done = false;
   // the story that follows each intro (story.js): chap -1 is the intro itself
   let story = null, chap = -1, tc0 = 0;
-  window.WXE = { soundOn: () => A.on, noise, env, rumble, crack, tone, walker };
+  window.WXE = { soundOn: () => A.on, ac: () => A.ctx, out: () => A.master, noiseBuf: () => A.noise, track: (n) => A.nodes.push(n), noise, env, rumble, crack, tone, walker, cavapoo, lhasa };
+  // scene changes crossfade: the last frame of the old scene melts into the new one with a gentle push-in
+  let prev = null, prevT = 0;
+  function snapshot() {
+    try { const o = document.createElement("canvas"); o.width = cv.width; o.height = cv.height; o.getContext("2d").drawImage(cv, 0, 0); prev = o; prevT = performance.now(); } catch (e) { prev = null; }
+  }
   function dots() {
     const d = el.querySelector(".wx-dots"); if (!d) return;
     const n = story ? story.n : 0;
@@ -540,7 +544,8 @@
   }
   function chapter(k) {
     stopSound(); cancelAnimationFrame(raf);
-    if (!story || k >= story.n) { chap = -1; return close(); }
+    if (!story || k >= story.n) { chap = -1; prev = null; return close(); }
+    if (window.__wxT == null) snapshot(); else prev = null;
     chap = k; story.start(k); tc0 = performance.now(); dots();
     el.querySelector(".wx-cap").hidden = true;
     raf = requestAnimationFrame(storyLoop);
@@ -549,6 +554,11 @@
     const t = window.__wxT ?? (performance.now() - tc0) / 1000;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     story.draw(ctx, t);
+    if (prev) {
+      const k = (performance.now() - prevT) / 1000 / 0.9;
+      if (k >= 1) prev = null;
+      else { const e = k * k * (3 - 2 * k), z = 1 + e * 0.08; ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1 - e; ctx.drawImage(prev, cv.width * (1 - z) / 2, cv.height * (1 - z) / 2, cv.width * z, cv.height * z); ctx.globalAlpha = 1; }
+    }
     if (window.__wxT == null && t > story.D(chap)) return chapter(chap + 1);
     raf = requestAnimationFrame(storyLoop);
   }
