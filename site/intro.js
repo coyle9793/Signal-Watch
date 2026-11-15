@@ -719,7 +719,7 @@
     if (!el) return; cancelAnimationFrame(raf); stopSound(); chap = -1; el.classList.add("out");
     document.documentElement.classList.remove("wx-lock");
     setTimeout(() => el.classList.remove("on", "out"), 600);
-    reveal();
+    reveal(); dispatchEvent(new Event("wx:closed"));
   }
   async function play(name, keepTime) {
     open(); cancelAnimationFrame(raf); stopSound();

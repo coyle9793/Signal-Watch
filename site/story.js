@@ -49,13 +49,13 @@
     const busy = [...st].sort((a, b) => b.vol_ratio - a.vol_ratio)[0];
     F.busiest = { icon: "🔊", k: "Busiest trading", big: `${busy.ticker} ${busy.vol_ratio.toFixed(1)}×`, sub: `${busy.name} traded ${busy.vol_ratio.toFixed(1)} times its normal volume.` };
     if (SHELTER) F.shelter = { icon: SHELTER.icon, k: "Where money hid in past storms", big: SHELTER.name, sub: `It beat the market in ${SHELTER.w} of ${SHELTER.n} past storms. See Storm plan.` };
-    const wl = (window.WATCH?.list() || []).map((t) => st.find((s) => s.ticker === t)).filter(Boolean);
+    const wl = (G("WATCH")?.list() || []).map((t) => st.find((s) => s.ticker === t)).filter(Boolean);
     if (wl.length) { const avg = wl.reduce((s, x) => s + x.chg_1d, 0) / wl.length; F.watch = { icon: "⭐", k: "Your watchlist", big: `${wl.length} stocks ${pc(avg)}`, sub: "The average move of the stocks you follow today." }; }
     return F;
   }
   // today's real moves for scenes that show stocks (stadium boards, volcano): your watchlist first, then the biggest movers
   function movers(n = 8, which = "abs") {
-    const st = G("STOCKS") || [], wl = (window.WATCH?.list() || []).map((t) => st.find((s) => s.ticker === t)).filter(Boolean);
+    const st = G("STOCKS") || [], wl = (G("WATCH")?.list() || []).map((t) => st.find((s) => s.ticker === t)).filter(Boolean);
     let pool = [...st].sort((a, b) => (which === "up" ? b.chg_1d - a.chg_1d : which === "down" ? a.chg_1d - b.chg_1d : Math.abs(b.chg_1d) - Math.abs(a.chg_1d)));
     pool = [...wl, ...pool.filter((s) => !wl.includes(s))].slice(0, n);
     return pool.map((s) => ({ t: s.ticker, c: s.chg_1d || 0, label: `${s.ticker} ${pc(s.chg_1d || 0)}` }));
