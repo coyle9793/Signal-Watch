@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="snake.css">
 <link rel="stylesheet" href="intro.css">
 <link rel="stylesheet" href="tarot.css">
+<link rel="stylesheet" href="account.css">
 </head>
 <body>
 <canvas id="sky" aria-hidden="true"></canvas>
@@ -160,7 +161,7 @@
   </section>
   <section id="watch" class="tab">
     <h1>My watchlist</h1>
-    <p class="lede">Tap the ☆ next to any stock to follow it. Your list is saved in this browser only, no account needed.</p>
+    <p class="lede">Tap the ☆ next to any stock to follow it. Your list is saved in this browser. Log in (top right) to keep a separate list for each person.</p>
     <div class="controls"><input id="w-add" list="w-opts" placeholder="Add a stock, e.g. AAPL"><datalist id="w-opts"></datalist><button id="w-go" class="btn">Add</button><button id="w-clear" class="btn ghost">Clear list</button></div>
     <div id="exposure"></div>
     <div id="watch-list" class="cards"></div>
@@ -183,6 +184,7 @@
 <footer>Not financial advice. For information and demonstration only.</footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="account.js"></script>
 <script src="skybg.js"></script>
 <script src="weather.js"></script>
 <script src="story.js"></script>
