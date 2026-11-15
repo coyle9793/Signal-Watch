@@ -300,3 +300,6 @@ th.st,td.st{width:28px;padding-right:0}
 .pl-fine{margin-top:14px}
 @media (max-width:900px){.pl-grid{grid-template-columns:1fr}}
 @media (max-width:560px){.pl-shelters{grid-template-columns:1fr}.pl-big{font-size:18px}}
+#tabs{flex-wrap:wrap}.nav-br{flex-basis:100%;width:100%;height:0}
+@media (max-width:600px){#tabs>[data-tab="watch"],#tabs>.tt-link{font-size:10.5px;letter-spacing:0;padding:5px 6px}#tabs{gap:4px}}
+@media (max-width:380px){#tabs>[data-tab="watch"],#tabs>.tt-link{font-size:9.5px;padding:4px 5px}}
