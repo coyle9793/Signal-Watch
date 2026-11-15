@@ -1,9 +1,29 @@
 // Eclipse story: a shooting star over a moonlit lake -> Paris at night, the tower counts down 3-2-1 and
 // sparkles -> sunrise over a canal town of half-timbered houses, people punting -> we follow the punt
-// all the way to a Singapore waterfront office marked "SGX FX" (plain text, no logo).
+// all the way to a Singapore waterfront office marked "SGX FX" (plain text, no logo). Paris shows real landmarks,
+// the water mirrors the buildings, and planes cross the city skies.
 WXS.add("eclipse", (K) => {
   const { W, H, rnd, clamp, ease, easeIO, lerp, TAU, sky, glow, stars, drawStars, ridge, hill, pine, person, palm, cloud } = K;
   const s0 = Math.min(W, H) / 700, phone = W < 600;
+
+
+  // the scene above the waterline mirrored in the water, broken up by ripples (copies the canvas in thin strips)
+  function mirror(c, wl, t, a = 0.5, wob = 1) {
+    const dpr = c.getTransform().a, cv = c.canvas;
+    c.save(); c.setTransform(dpr, 0, 0, dpr, 0, 0); c.globalAlpha = a;
+    for (let y = wl; y < H; y += 3) { const d = y - wl, sy = wl - d * 1.1 - 2; if (sy < 0) break; const off = (Math.sin(y * 0.1 + t * 2.4) * (1.5 + d * 0.04) + Math.sin(y * 0.33 - t * 3.6) * 1.2) * wob; c.drawImage(cv, 0, sy * dpr, cv.width, 3 * dpr, off, y, W, 3); }
+    c.restore();
+  }
+  // a passenger jet, side on, with a contrail and blinking lights
+  function jet(c, x, y, s, t, dir = 1, night = false, trail = true) {
+    if (trail) { const g = c.createLinearGradient(x, y, x - dir * 420 * s, y); g.addColorStop(0, night ? "rgba(200,210,255,.25)" : "rgba(255,255,255,.7)"); g.addColorStop(1, "rgba(255,255,255,0)"); c.strokeStyle = g; c.lineWidth = 3 * s; c.beginPath(); c.moveTo(x - dir * 34 * s, y - 2 * s); c.lineTo(x - dir * 440 * s, y + 4 * s); c.stroke(); }
+    c.save(); c.translate(x, y); c.scale(dir * s, s);
+    c.fillStyle = night ? "#2a2e48" : "#f4f6fb"; c.beginPath(); c.moveTo(40, 0); c.quadraticCurveTo(44, -5, 34, -6); c.lineTo(-30, -6); c.lineTo(-40, -20); c.lineTo(-46, -20); c.lineTo(-42, -4); c.lineTo(-44, 2); c.lineTo(34, 3); c.quadraticCurveTo(42, 3, 40, 0); c.fill();
+    c.fillStyle = night ? "#1e2238" : "#c8cede"; c.beginPath(); c.moveTo(8, -1); c.lineTo(-14, 14); c.lineTo(-20, 14); c.lineTo(-8, -1); c.fill(); c.beginPath(); c.moveTo(-34, -2); c.lineTo(-44, 6); c.lineTo(-48, 6); c.lineTo(-42, -2); c.fill();
+    c.fillStyle = night ? "#8a90b0" : "#6b5cff"; c.fillRect(-26, -2, 56, 1.5); c.fillStyle = night ? "rgba(255,220,150,.9)" : "#3a4a6a"; for (let i = 0; i < 12; i++) c.fillRect(-22 + i * 4.5, -4.5, 2, 1.8);
+    const on = Math.sin(t * 6) > 0.6; if (on) { c.fillStyle = "#ff3a3a"; c.beginPath(); c.arc(-46, -20, 1.8, 0, TAU); c.fill(); } if (Math.sin(t * 6 + 2) > 0.7) { c.fillStyle = "#fff"; c.beginPath(); c.arc(-17, 14, 1.8, 0, TAU); c.fill(); }
+    c.restore();
+  }
 
   // ---------------------------------------------------------------- 1. shooting star over a moonlit lake
   const head = (t) => { const k = (t - 0.6) / 3.2; return [lerp(-0.1, 1.15, k) * W, lerp(H * 0.12, H * 0.4, k)]; };
@@ -60,13 +80,23 @@ WXS.add("eclipse", (K) => {
       const mr = Math.min(W, H) * 0.035; c.fillStyle = "#f2f0ff"; c.beginPath(); c.arc(W * 0.1, H * 0.12, mr, 0, TAU); c.fill(); c.fillStyle = "#0e1442"; c.beginPath(); c.arc(W * 0.1 + mr * 0.4, H * 0.12 - mr * 0.2, mr * 0.9, 0, TAU); c.fill();
       // searchlight from the top
       const ang = t * 0.9, tx = T.x, ty = T.base - T.h * 0.95; c.save(); c.translate(tx, ty); c.rotate(ang); const bg = c.createLinearGradient(0, 0, W, 0); bg.addColorStop(0, "rgba(255,240,200,.28)"); bg.addColorStop(1, "rgba(255,240,200,0)"); c.fillStyle = bg; c.beginPath(); c.moveTo(0, 0); c.lineTo(W, -W * 0.05); c.lineTo(W, W * 0.05); c.fill(); c.restore();
-      // Haussmann rooftops: cream fronts, blue-grey mansard roofs, chimneys, lit windows
-      const by = wl - H * 0.02;
+      // the skyline behind: Montmartre with Sacré-Cœur, Notre-Dame's towers, the gold dome of Les Invalides and the Montparnasse tower
+      const by = wl - H * 0.02, u = Math.min(H / 800, W / 1000) * (phone ? 1.5 : 1.85), sil = "#1c1a3a", far = "#232048";
+      { const mx = W * (phone ? 0.16 : 0.12); c.fillStyle = far; c.beginPath(); c.moveTo(mx - 160 * u, by); c.quadraticCurveTo(mx, by - 110 * u, mx + 170 * u, by); c.fill();
+        const top = by - 82 * u; c.fillStyle = "#e8e2f0"; c.fillRect(mx - 34 * u, top - 22 * u, 68 * u, 24 * u); c.beginPath(); c.ellipse(mx, top - 22 * u, 18 * u, 24 * u, 0, Math.PI, TAU); c.fill(); c.fillRect(mx - 2.5 * u, top - 56 * u, 5 * u, 12 * u); c.beginPath(); c.arc(mx, top - 57 * u, 3.4 * u, 0, TAU); c.fill();
+        [-26, 26].forEach((d) => { c.beginPath(); c.ellipse(mx + d * u, top - 22 * u, 8 * u, 11 * u, 0, Math.PI, TAU); c.fill(); }); c.fillRect(mx + 30 * u, top - 40 * u, 9 * u, 40 * u); c.beginPath(); c.ellipse(mx + 34.5 * u, top - 40 * u, 5 * u, 9 * u, 0, Math.PI, TAU); c.fill();
+        glow(c, mx, top - 20 * u, 70 * u, "rgba(230,220,255,.18)"); }
+      if (!phone || true) { const nx = W * (phone ? 0.83 : 0.32), nb = by - 6 * u; c.fillStyle = sil; c.fillRect(nx - 50 * u, nb - 30 * u, 120 * u, 30 * u); [-40, -8].forEach((d) => { c.fillRect(nx + d * u, nb - 72 * u, 26 * u, 72 * u); c.fillStyle = "rgba(255,210,130,.5)"; c.fillRect(nx + d * u + 9 * u, nb - 62 * u, 3 * u, 12 * u); c.fillRect(nx + d * u + 14 * u, nb - 62 * u, 3 * u, 12 * u); c.fillStyle = sil; });
+        c.beginPath(); c.arc(nx - 14 * u, nb - 40 * u, 8 * u, 0, TAU); c.fillStyle = "rgba(255,210,130,.35)"; c.fill(); c.fillStyle = sil; c.beginPath(); c.moveTo(nx + 36 * u, nb - 30 * u); c.lineTo(nx + 39 * u, nb - 92 * u); c.lineTo(nx + 42 * u, nb - 30 * u); c.fill(); }
+      if (!phone) { const ix = W * 0.48, ib = by - 4 * u; c.fillStyle = sil; c.fillRect(ix - 60 * u, ib - 24 * u, 120 * u, 24 * u); c.fillRect(ix - 20 * u, ib - 46 * u, 40 * u, 24 * u); const dg = c.createLinearGradient(ix - 20 * u, 0, ix + 20 * u, 0); dg.addColorStop(0, "#e8b84a"); dg.addColorStop(0.5, "#ffe08a"); dg.addColorStop(1, "#b8862a"); c.fillStyle = dg; c.beginPath(); c.ellipse(ix, ib - 46 * u, 19 * u, 26 * u, 0, Math.PI, TAU); c.fill(); c.fillRect(ix - 2.5 * u, ib - 84 * u, 5 * u, 14 * u); c.beginPath(); c.moveTo(ix - 2 * u, ib - 84 * u); c.lineTo(ix, ib - 96 * u); c.lineTo(ix + 2 * u, ib - 84 * u); c.fill(); glow(c, ix, ib - 56 * u, 50 * u, "rgba(255,210,120,.25)");
+        const mpx = W * 0.95; c.fillStyle = "#14122c"; c.fillRect(mpx - 16 * u, by - 150 * u, 32 * u, 150 * u); c.fillStyle = "rgba(255,210,130,.35)"; for (let y = by - 145 * u; y < by - 6 * u; y += 7 * u) c.fillRect(mpx - 13 * u, y, 26 * u, 1.2); }
+      // in front: Haussmann blocks with cream stone, grey mansard roofs, chimney pots and wrought-iron balconies
       S.bld.forEach((b) => {
-        c.fillStyle = "#3a3654"; c.fillRect(b.x, by - b.h, b.w - 2, b.h);
-        c.fillStyle = "#26304a"; c.beginPath(); c.moveTo(b.x - 2, by - b.h); c.lineTo(b.x + 6, by - b.h - b.h * 0.35); c.lineTo(b.x + b.w - 8, by - b.h - b.h * 0.35); c.lineTo(b.x + b.w, by - b.h); c.fill();
-        c.fillStyle = "#1a2036"; for (let i = 0; i < b.ch; i++) c.fillRect(b.x + 10 + i * (b.w / 3), by - b.h - b.h * 0.5, 6, b.h * 0.2);
-        for (let i = 0; i < 12; i++) { if (b.win[i] < 0.45) continue; const col = i % 4, row = Math.floor(i / 4); c.fillStyle = "rgba(255,210,130,.8)"; c.fillRect(b.x + 6 + col * (b.w - 12) / 4, by - b.h + 8 + row * b.h * 0.28, (b.w - 12) / 4 - 6, b.h * 0.14); }
+        c.fillStyle = "#4a4462"; c.fillRect(b.x, by - b.h, b.w - 2, b.h);
+        c.fillStyle = "#2c3450"; c.beginPath(); c.moveTo(b.x - 2, by - b.h); c.lineTo(b.x + 6, by - b.h - b.h * 0.35); c.lineTo(b.x + b.w - 8, by - b.h - b.h * 0.35); c.lineTo(b.x + b.w, by - b.h); c.fill();
+        c.fillStyle = "#1a2036"; for (let i = 0; i < b.ch; i++) { c.fillRect(b.x + 10 + i * (b.w / 3), by - b.h - b.h * 0.5, 6, b.h * 0.2); c.fillStyle = "#c06a3a"; c.fillRect(b.x + 10 + i * (b.w / 3), by - b.h - b.h * 0.52, 6, 2); c.fillStyle = "#1a2036"; }
+        for (let i = 0; i < 4; i++) { c.fillStyle = "#2c3450"; c.fillRect(b.x + 8 + i * (b.w - 12) / 4, by - b.h - b.h * 0.24, (b.w - 12) / 4 - 10, b.h * 0.14); }
+        for (let i = 0; i < 12; i++) { const col = i % 4, row = Math.floor(i / 4), wx = b.x + 6 + col * (b.w - 12) / 4, wy = by - b.h + 8 + row * b.h * 0.28, ww = (b.w - 12) / 4 - 6; c.fillStyle = b.win[i] < 0.45 ? "rgba(20,20,40,.7)" : "rgba(255,210,130,.8)"; c.fillRect(wx, wy, ww, b.h * 0.14); if (row === 1) { c.fillStyle = "#14121e"; c.fillRect(wx - 2, wy + b.h * 0.14, ww + 4, 2); } }
       });
       // the tower
       glow(c, T.x, T.base - T.h * 0.3, T.h * 0.7, "rgba(255,170,70,.22)");
@@ -80,10 +110,13 @@ WXS.add("eclipse", (K) => {
       if (n) { const k = (t - 0.9) % 1; c.save(); c.globalAlpha = 1 - k * 0.7; c.font = `italic 900 ${Math.min(W * 0.28, 210) * (1 + k * 0.25)}px 'Playfair Display', serif`; c.textAlign = "center"; c.textBaseline = "middle"; c.lineWidth = 6; c.strokeStyle = "rgba(5,4,14,.6)"; const nx = phone ? W / 2 : W * 0.33, ny = phone ? H * 0.3 : H * 0.42; c.strokeText(n, nx, ny); c.fillStyle = "#fff"; c.shadowColor = "#ffd36b"; c.shadowBlur = 30; c.fillText(n, nx, ny); c.restore(); }
       // ...the sparkle: white lights flicker all over the tower
       if (t > 3.9) { const a = clamp((t - 3.9) / 0.3); S.sp.forEach((p) => { if (Math.sin(t * 17 + p.ph * 10) > 0.35) { const [px, py] = towerPoint(p.u, p.v); c.fillStyle = `rgba(255,255,255,${a})`; c.fillRect(px - 1.5, py - 1.5, 3, 3); glow(c, px, py, 7, `rgba(255,255,255,${0.6 * a})`); } }); if (t < 4.2) { c.fillStyle = `rgba(255,255,255,${0.15 * (1 - (t - 3.9) / 0.3)})`; c.fillRect(0, 0, W, H); } }
-      // the river with the lights reflected
+      jet(c, lerp(-0.1, 1.1, t / 9.4) * W, H * 0.16, s0 * 0.55, t, 1, true, false);
+      // the Seine: everything mirrored in the water, with a stone bridge of arches and lamps across it
       const g2 = c.createLinearGradient(0, wl, 0, H); g2.addColorStop(0, "#141a40"); g2.addColorStop(1, "#06081a"); c.fillStyle = g2; c.fillRect(0, wl, W, H - wl);
-      for (let i = 0; i < 18; i++) { const y = wl + 4 + i * 5, w = 30 - i; c.fillStyle = `rgba(255,190,90,${0.35 - i * 0.015})`; c.fillRect(T.x - w + Math.sin(t * 2 + i) * 6, y, w * 2, 2); }
-      c.fillStyle = "rgba(255,210,130,.25)"; for (let i = 0; i < 30; i++) c.fillRect((i * 53) % W, wl + 10 + (i % 6) * 9, 16, 1.5);
+      mirror(c, wl, t, 0.45);
+      const bx0 = phone ? -W * 0.1 : W * 0.02, bx1 = phone ? W * 0.32 : W * 0.48, dy = wl + 2; c.fillStyle = "#3a3450"; c.fillRect(bx0, dy - 10 * s0, bx1 - bx0, 10 * s0); c.fillStyle = "#06081a"; for (let i = 0; i < 3; i++) { const ax = lerp(bx0, bx1, (i + 0.5) / 3), aw = (bx1 - bx0) / 3 * 0.38; c.beginPath(); c.ellipse(ax, dy + 6 * s0, aw, 12 * s0, 0, Math.PI, TAU); c.fill(); }
+      for (let i = 0; i <= 6; i++) { const lx = lerp(bx0, bx1, i / 6); c.fillStyle = "#2a2440"; c.fillRect(lx - 1, dy - 26 * s0, 2, 16 * s0); glow(c, lx, dy - 27 * s0, 9 * s0, "rgba(255,220,150,.8)"); if (i % 3 === 0) { c.fillStyle = "#e8b84a"; c.beginPath(); c.arc(lx, dy - 34 * s0, 3 * s0, 0, TAU); c.fill(); } }
+      c.fillStyle = "rgba(255,210,130,.18)"; for (let i = 0; i < 30; i++) c.fillRect((i * 53 + t * 8) % W, wl + 10 + (i % 6) * 9, 16, 1.5);
     },
     // after the sparkle, the letters fly off the tower
     text: { at: 4.3, spread: 1.0, dur: 1.0, startScale: 0.2, spin: 0.8, arc: -H * 0.04, glow: "rgba(255,255,255,1)", ink: ["#fff7d6", "#ffd36b", "#ffffff"], from: (p) => towerPoint(p.r, 0.1 + p.q * 0.8) },
@@ -98,8 +131,10 @@ WXS.add("eclipse", (K) => {
   function punt(c, x, y, s, t) {
     c.save(); c.translate(x, y);
     // passengers: one waving, one pointing at the view
-    person(c, -30 * s, -4 * s, s * 0.85, { top: "#ff7ab8", legs: "#2a2350", hair: "#e8c070", long: true, legB: [1.4, -1.4], legF: [1.3, -1.3], armB: [Math.PI - 0.3 + Math.sin(t * 6) * 0.35, 0.3], armF: [0.6, -0.4], lean: -0.05 });
-    person(c, 0, -4 * s, s * 0.85, { top: "#2ec7d9", legs: "#2a2350", hair: "#3a2418", legB: [1.4, -1.4], legF: [1.3, -1.3], armB: [0.4, -0.6], armF: [2.0, -0.1], lean: 0.05 });
+    // passengers standing on the deck, swaying a little with the boat: one waving, one pointing at the view
+    const sway = Math.sin(t * 1.4) * 0.04;
+    person(c, -34 * s, -11 * s, s * 0.85, { top: "#ff7ab8", legs: "#2a2350", hair: "#e8c070", long: true, legB: [0.08, 0], legF: [-0.08, 0], armB: [Math.PI - 0.3 + Math.sin(t * 6) * 0.35, 0.3], armF: [0.3, -0.2], lean: -0.03 + sway });
+    person(c, -4 * s, -11 * s, s * 0.85, { top: "#2ec7d9", legs: "#2a2350", hair: "#3a2418", legB: [0.1, 0], legF: [-0.1, 0], armB: [0.2, -0.3], armF: [1.9, -0.1], lean: 0.03 + sway });
     // the hull
     c.fillStyle = "#6a4422"; c.beginPath(); c.moveTo(-74 * s, -10 * s); c.lineTo(66 * s, -10 * s); c.lineTo(60 * s, 4 * s); c.lineTo(-68 * s, 4 * s); c.fill(); c.fillStyle = "#8a5a2e"; c.fillRect(-74 * s, -12 * s, 140 * s, 4 * s);
     // the punter at the back, both hands on the pole, straw boater
@@ -135,8 +170,8 @@ WXS.add("eclipse", (K) => {
       const bx = W * 0.05, bw = W * 0.2; c.fillStyle = "#b8a890"; c.beginPath(); c.moveTo(bx, wl - 30 * s0); c.lineTo(bx + bw, wl - 30 * s0); c.lineTo(bx + bw, wl + 4); c.lineTo(bx + bw * 0.8, wl + 4); c.arc(bx + bw / 2, wl + 4, bw * 0.3, 0, Math.PI, true); c.lineTo(bx, wl + 4); c.fill();
       // canal with reflections and ripples
       const g = c.createLinearGradient(0, wl, 0, H); g.addColorStop(0, "#6a7ab0"); g.addColorStop(1, "#2a3060"); c.fillStyle = g; c.fillRect(-20, wl, W * 1.7, H - wl);
-      c.save(); c.globalAlpha = 0.3; c.translate(0, wl * 2); c.scale(1, -1); S.h.forEach((b) => { c.fillStyle = b.c; c.fillRect(b.x, wl - b.h, b.w - 2, b.h); }); c.restore();
       c.restore();
+      mirror(c, wl, t, 0.45, 0.6); c.fillStyle = "rgba(40,50,100,.25)"; c.fillRect(0, wl, W, H - wl);
       c.strokeStyle = "rgba(255,230,180,.45)"; c.lineWidth = 2; for (let i = 0; i < 14; i++) { const y = wl + 10 + i * 12, x = sx + Math.sin(t * 2 + i) * 20; c.beginPath(); c.moveTo(x - 30 + i * 2, y); c.lineTo(x + 30 - i * 2, y); c.stroke(); }
       // ducks
       S.ducks.forEach(([u, ph]) => { const x = (u * W - t * 12 - pan) % (W * 1.2), y = wl + H * 0.12 + Math.sin(t * 2 + ph) * 2; c.fillStyle = "#f5f0e0"; c.beginPath(); c.ellipse(x, y, 10 * s0, 6 * s0, 0, 0, TAU); c.arc(x - 8 * s0, y - 6 * s0, 4 * s0, 0, TAU); c.fill(); c.fillStyle = "#ff9a2a"; c.fillRect(x - 15 * s0, y - 6 * s0, 4 * s0, 2 * s0); });
@@ -162,6 +197,9 @@ WXS.add("eclipse", (K) => {
       const wl = H * 0.74, B = SG();
       sky(c, ["#7ab0e8", "#bfe0f8", "#ffe2c0"], 0, wl); glow(c, W * 0.12, H * 0.2, H * 0.3, "rgba(255,240,200,.6)");
       S.cl.forEach((q) => cloud(c, ((q.x * W + t * 8) % (W + 200)) - 100, q.y * H, q.r, "rgba(255,255,255,.85)", 5, q.sd));
+      // planes crossing the sky over the city
+      jet(c, lerp(-0.15, 1.15, t / 9.2) * W, H * 0.09, s0 * (phone ? 0.5 : 0.7), t, 1);
+      jet(c, lerp(1.2, -0.2, (t + 2) / 11) * W, H * 0.2, s0 * (phone ? 0.35 : 0.45), t + 1, -1);
       // the skyline: glass towers with mullions
       S.t.forEach((b) => { if (Math.abs(b.x + b.w / 2 - B.x) < B.w * 0.8) return; const g = c.createLinearGradient(b.x, 0, b.x + b.w, 0); g.addColorStop(0, b.c[0]); g.addColorStop(1, b.c[1]); c.fillStyle = g; c.fillRect(b.x, wl - b.h, b.w, b.h); c.strokeStyle = "rgba(255,255,255,.25)"; c.lineWidth = 1; c.beginPath(); for (let k = 8; k < b.w; k += 8) { c.moveTo(b.x + k, wl - b.h); c.lineTo(b.x + k, wl); } c.stroke(); if (b.cap > 0.6) { c.fillStyle = b.c[0]; c.beginPath(); c.moveTo(b.x, wl - b.h); c.lineTo(b.x + b.w / 2, wl - b.h - 24 * s0); c.lineTo(b.x + b.w, wl - b.h); c.fill(); } });
       // the office tower with SGX FX on it
@@ -176,7 +214,7 @@ WXS.add("eclipse", (K) => {
       for (let i = 0; i < (phone ? 3 : 6); i++) palm(c, W * (0.06 + i * (phone ? 0.36 : 0.17)), wl - 4 * s0, s0 * 0.75, t + i, "#2a7a4a", "#8a6a4a");
       // the river
       const g2 = c.createLinearGradient(0, wl, 0, H); g2.addColorStop(0, "#3a7ab0"); g2.addColorStop(1, "#1a3a60"); c.fillStyle = g2; c.fillRect(0, wl + 2 * s0, W, H - wl);
-      c.save(); c.globalAlpha = 0.25; c.translate(0, wl * 2 + 4); c.scale(1, -1); c.fillStyle = "#4a8ab8"; c.fillRect(x0, wl - h, B.w, h); c.restore();
+      mirror(c, wl + 2 * s0, t, 0.5); c.fillStyle = "rgba(20,60,110,.2)"; c.fillRect(0, wl, W, H - wl);
       c.strokeStyle = "rgba(255,255,255,.3)"; c.lineWidth = 1.5; for (let i = 0; i < 12; i++) { const y = wl + 12 + i * 10, x = (i * 97 + t * 20) % W; c.beginPath(); c.moveTo(x, y); c.lineTo(x + 40, y); c.stroke(); }
       // the punt from the canal town arrives, everyone waving
       const px = lerp(-0.1, phone ? 0.3 : 0.42, ease(t / 4)) * W; c.fillStyle = "rgba(255,255,255,.25)"; c.beginPath(); c.ellipse(px, wl + (H - wl) * 0.45 + 8, 90 * s0, 6 * s0, 0, 0, TAU); c.fill();

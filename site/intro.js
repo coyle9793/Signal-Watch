@@ -359,7 +359,8 @@
       const dist = easeIO((t - 1.8) / 5.6) * R * 2.3, mx = sx + dist, my = sy - dist * 0.22;
       const d = Math.min(Math.hypot(mx - sx, my - sy), 2 * R);
       const over = 2 * R * R * Math.acos(d / (2 * R)) - (d / 2) * Math.sqrt(4 * R * R - d * d), L = clamp(1 - over / (Math.PI * R * R));
-      sky(c, [`rgb(${lerp(6, 70, L)},${lerp(4, 40, L)},${lerp(16, 70, L)})`, `rgb(${lerp(8, 30, L)},${lerp(5, 18, L)},${lerp(18, 40, L)})`]);
+      const day = clamp((L - 0.6) / 0.4); // once the moon has gone, the shadow lifts and it is daytime again
+      sky(c, [`rgb(${lerp(lerp(6, 70, L), 70, day)},${lerp(lerp(4, 40, L), 120, day)},${lerp(lerp(16, 70, L), 200, day)})`, `rgb(${lerp(lerp(8, 30, L), 240, day)},${lerp(lerp(5, 18, L), 170, day)},${lerp(lerp(18, 40, L), 120, day)})`]);
       c.fillStyle = `rgba(255,255,255,${0.9 * (1 - L)})`; c.beginPath(); S.stars.forEach((s) => { c.moveTo(s.x, s.y); c.arc(s.x, s.y, s.r, 0, 7); }); c.fill();
       const warm = c.createRadialGradient(sx, sy, R, sx, sy, Math.hypot(W, H)); warm.addColorStop(0, `rgba(255,190,90,${0.55 * L})`); warm.addColorStop(1, "rgba(255,120,60,0)"); c.fillStyle = warm; c.fillRect(0, 0, W, H);
       c.globalCompositeOperation = "lighter";
@@ -375,7 +376,7 @@
       c.globalCompositeOperation = "source-over";
       const sg = c.createRadialGradient(sx, sy, 0, sx, sy, R); sg.addColorStop(0, "#fffbe6"); sg.addColorStop(0.6, "#ffd451"); sg.addColorStop(1, "#ff9a1f");
       c.fillStyle = sg; c.beginPath(); c.arc(sx, sy, R, 0, 7); c.fill();
-      c.fillStyle = `rgba(6,4,12,${1 - clamp((L - 0.55) / 0.45) * 0.88})`; c.beginPath(); c.arc(mx, my, R * 1.01, 0, 7); c.fill();
+      const moonA = 1 - clamp((L - 0.45) / 0.45); if (moonA > 0) { c.fillStyle = `rgba(6,4,12,${moonA})`; c.beginPath(); c.arc(mx, my, R * 1.01, 0, 7); c.fill(); }
       if (L > 0.003 && L < 0.12) { // diamond ring
         const a = Math.atan2(sy - my, sx - mx), px = sx + Math.cos(a) * R, py = sy + Math.sin(a) * R, k = Math.sin((L / 0.12) * Math.PI);
         const fl = c.createRadialGradient(px, py, 0, px, py, R * 1.6); fl.addColorStop(0, `rgba(255,255,255,${k})`); fl.addColorStop(0.15, `rgba(255,240,200,${0.6 * k})`); fl.addColorStop(1, "rgba(255,255,255,0)");
