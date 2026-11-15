@@ -529,38 +529,71 @@
 
   // ------------------------------------------------------------------ the player
   let el, cv, ctx, raf, cur, S, P, t0, auto, manual = false, done = false;
+  // the story that follows each intro (story.js): chap -1 is the intro itself
+  let story = null, chap = -1, tc0 = 0;
+  window.WXE = { soundOn: () => A.on, noise, env, rumble, crack, tone, walker };
+  function dots() {
+    const d = el.querySelector(".wx-dots"); if (!d) return;
+    const n = story ? story.n : 0;
+    d.innerHTML = n ? Array.from({ length: n + 1 }, (_, i) => `<i class="${i === chap + 1 ? "on" : i < chap + 1 ? "was" : ""}"></i>`).join("") : "";
+    el.querySelector(".wx-next").hidden = !n;
+  }
+  function chapter(k) {
+    stopSound(); cancelAnimationFrame(raf);
+    if (!story || k >= story.n) { chap = -1; return close(); }
+    chap = k; story.start(k); tc0 = performance.now(); dots();
+    el.querySelector(".wx-cap").hidden = true;
+    raf = requestAnimationFrame(storyLoop);
+  }
+  function storyLoop() {
+    const t = window.__wxT ?? (performance.now() - tc0) / 1000;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    story.draw(ctx, t);
+    if (window.__wxT == null && t > story.D(chap)) return chapter(chap + 1);
+    raf = requestAnimationFrame(storyLoop);
+  }
+  function next() { if (!el?.classList.contains("on")) return; if (chap < 0 && !story) return close(); chapter(chap + 1); }
   const scene = () => SC[cur];
   function build() {
     if (el) return el;
     el = document.createElement("div"); el.className = "wx"; el.setAttribute("role", "dialog"); el.setAttribute("aria-label", "Weather intro");
     el.innerHTML = `<canvas></canvas><p class="wx-cap" hidden></p>
       <div class="wx-bar"><div class="wx-chips">${ORDER.map((k) => `<button data-wx="${k}" title="${META[k][2]}"><span>${META[k][0]}</span>${META[k][1]}</button>`).join("")}</div>
-      <div class="wx-ctl"><button class="wx-snd" aria-pressed="false">🔇 Sound off</button><button class="wx-calm">Calm mode</button><button class="wx-skip">Skip ✕</button></div></div>`;
+      <div class="wx-ctl"><button class="wx-snd" aria-pressed="false">🔇 Sound off</button><button class="wx-calm">Calm mode</button><span class="wx-dots" aria-hidden="true"></span><button class="wx-next" hidden>Next ›</button><button class="wx-skip">Skip ✕</button></div></div>`;
     document.body.appendChild(el);
     cv = el.querySelector("canvas"); ctx = cv.getContext("2d");
     el.querySelectorAll("[data-wx]").forEach((b) => b.onclick = () => { manual = true; play(b.dataset.wx); });
     el.querySelector(".wx-skip").onclick = close;
+    el.querySelector(".wx-next").onclick = next;
+    cv.onclick = next;
     el.querySelector(".wx-calm").onclick = () => { LS.set("wx-calm", "1"); document.body.classList.add("wx-calm"); close(); };
     el.querySelector(".wx-snd").onclick = (e) => {
       A.on = !A.on;
       if (A.on && !audioOn()) A.on = false;
       e.currentTarget.textContent = A.on ? "🔊 Sound on" : "🔇 Sound off"; e.currentTarget.setAttribute("aria-pressed", A.on);
-      stopSound(); if (A.on && cur) scene().sound?.((performance.now() - t0) / 1000, S);
+      stopSound(); if (A.on && cur) { if (chap >= 0) story?.sound(); else scene().sound?.((performance.now() - t0) / 1000, S); }
     };
-    addEventListener("keydown", (e) => { if (e.key === "Escape" && el.classList.contains("on")) close(); });
-    addEventListener("resize", () => { if (el.classList.contains("on") && cur) play(cur, true); });
+    addEventListener("keydown", (e) => { if (!el.classList.contains("on")) return; if (e.key === "Escape") close(); if (e.key === "ArrowRight") next(); });
+    let rz; addEventListener("resize", () => {
+      if (!el.classList.contains("on") || !cur) return;
+      clearTimeout(rz); rz = setTimeout(() => {
+        if (chap < 0) return play(cur, true);
+        W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr;
+        story = window.WX_STORY?.make(cur, W, H) || null; chapter(chap);
+      }, 150);
+    });
     return el;
   }
   function open() { build(); el.classList.remove("out"); el.classList.add("on"); document.documentElement.classList.add("wx-lock"); }
   function close() {
-    if (!el) return; cancelAnimationFrame(raf); stopSound(); el.classList.add("out");
+    if (!el) return; cancelAnimationFrame(raf); stopSound(); chap = -1; el.classList.add("out");
     document.documentElement.classList.remove("wx-lock");
     setTimeout(() => el.classList.remove("on", "out"), 600);
     reveal();
   }
   async function play(name, keepTime) {
     open(); cancelAnimationFrame(raf); stopSound();
-    cur = SC[name] ? name : auto; done = false;
+    cur = SC[name] ? name : auto; done = false; chap = -1;
     document.body.dataset.wx = cur;
     el.querySelectorAll("[data-wx]").forEach((b) => b.classList.toggle("on", b.dataset.wx === cur));
     el.querySelector('[data-wx="' + auto + '"]')?.classList.add("auto");
@@ -568,6 +601,8 @@
     W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr;
     try { await document.fonts.load(`italic 900 60px 'Playfair Display'`); await document.fonts.load("800 20px Inter"); } catch (e) {}
     layout(scene().cy()); P = targets(scene().gap()); S = {}; scene().init(S, P);
+    story = window.WX_STORY?.has(cur) ? window.WX_STORY.make(cur, W, H) : null; dots();
+    if (window.__wxCh != null && story) return chapter(window.__wxCh);
     t0 = performance.now(); if (A.on) scene().sound?.(0, S);
     const cap = el.querySelector(".wx-cap");
     const loop = () => {
@@ -577,7 +612,7 @@
       sc.draw(ctx, t, S, P);
       ink(ctx, fin, sc.final);
       const c = (sc.cap || []).find(([a, b]) => t >= a && t < b); cap.hidden = !c; if (c) cap.textContent = c[2];
-      if (t > sc.D + 0.3 && !done) { done = true; if (!manual) return setTimeout(close, 700); }
+      if (t > sc.D + 0.3 && !done && window.__wxT == null) { done = true; if (story) return chapter(0); if (!manual) return setTimeout(close, 700); }
       if (t > sc.D + 1.2) return;
       raf = requestAnimationFrame(loop);
     };
