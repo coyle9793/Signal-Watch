@@ -1,0 +1,3031 @@
+{
+ "meta": {
+  "source": "GDELT 1.0 daily export",
+  "date": "20261126",
+  "news_days": [
+   "20261113",
+   "20261114",
+   "20261115",
+   "20261116",
+   "20261117",
+   "20261118",
+   "20261119",
+   "20261120",
+   "20261121",
+   "20261122",
+   "20261123",
+   "20261124",
+   "20261125",
+   "20261126"
+  ],
+  "total_events": 95311,
+  "international_events": 10360
+ },
+ "events": [
+  {
+   "title": "Iran & KWT: Armed conflict",
+   "actors": "Iran / Kuwait",
+   "kind": "conflict",
+   "sector": "Defence & energy",
+   "countries": [
+    "IRN",
+    "KWT"
+   ],
+   "place": "Tehran, Tehran, Iran",
+   "lat": 35.75,
+   "lon": 51.5148,
+   "articles": 425,
+   "events": 24,
+   "tone": -7.67,
+   "goldstein": -10.0,
+   "risk": 130.7,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "GD",
+    "BA"
+   ],
+   "url": "https://www.trend.az/iran/4250972.html",
+   "date": "20261126"
+  },
+  {
+   "title": "Iran & Italy: Armed conflict",
+   "actors": "Iranian / Italian",
+   "kind": "conflict",
+   "sector": "Defence & energy",
+   "countries": [
+    "IRN",
+    "ITA"
+   ],
+   "place": "Kuwait",
+   "lat": 29.5,
+   "lon": 47.75,
+   "articles": 387,
+   "events": 53,
+   "tone": -7.98,
+   "goldstein": -10.0,
+   "risk": 130.6,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "GD",
+    "BA"
+   ],
+   "url": "https://cyprusnews.eu/cnn-kosmos/iranian-attack-on-kuwait-kills-two-italians-italys-foreign-minister-says/",
+   "date": "20261126"
+  },
+  {
+   "title": "Israel & Palestine: Armed conflict",
+   "actors": "Israeli / Israel",
+   "kind": "conflict",
+   "sector": "Defence & energy",
+   "countries": [
+    "ISR",
+    "PSE"
+   ],
+   "place": "Gaza, Israel (general), Israel",
+   "lat": 31.4167,
+   "lon": 34.3333,
+   "articles": 1727,
+   "events": 53,
+   "tone": -7.33,
+   "goldstein": -9.97,
+   "risk": 129.2,
+   "tickers": [
+    "LMT",
+    "RTX",
+    "XOM",
+    "CVX",
+    "GD",
+    "BA",
+    "COP"
+   ],
+   "url": "https://lasvegassun.com/news/2026/nov/25/libyan-officers-die-after-ukrainian-strike-a-highw/",
+   "date": "20261126"
+  },
+  {
+   "title": "Australia & Russia: Cut ties / sanctions",
+   "actors": "Australian / Russia",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "AUS",
+    "RUS"
+   ],
+   "place": "Australia",
+   "lat": -25.0,
+   "lon": 135.0,
+   "articles": 612,
+   "events": 6,
+   "tone": -9.7,
+   "goldstein": -8.0,
+   "risk": 126.8,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "AAPL",
+    "NVDA",
+    "QCOM"
+   ],
+   "url": "https://www.redlandcitybulletin.com.au/story/9399213/scathing-report-slams-toothless-sanctions-watchdog/",
+   "date": "20261126"
+  },
+  {
+   "title": "Canada & Japan: Attack",
+   "actors": "Japanese / Ontario",
+   "kind": "conflict",
+   "sector": "Defence & energy",
+   "countries": [
+    "CAN",
+    "JPN"
+   ],
+   "place": "Japan",
+   "lat": 36.0,
+   "lon": 138.0,
+   "articles": 330,
+   "events": 1,
+   "tone": -9.57,
+   "goldstein": -9.0,
+   "risk": 125.3,
+   "tickers": [
+    "GM",
+    "F",
+    "CVX",
+    "TSLA",
+    "AAPL",
+    "LMT",
+    "RTX",
+    "GD"
+   ],
+   "url": "https://caledoniacourier.com/2026/11/25/japanese-national-arrested-in-ontario-in-connection-with-b-c-aggravated-assault/",
+   "date": "20261126"
+  },
+  {
+   "title": "Russia & Ukraine: Armed conflict",
+   "actors": "Ukraine / Russia",
+   "kind": "conflict",
+   "sector": "Defence & energy",
+   "countries": [
+    "RUS",
+    "UKR"
+   ],
+   "place": "Kyiv, Kyyiv, Misto, Ukraine",
+   "lat": 50.4333,
+   "lon": 30.5167,
+   "articles": 900,
+   "events": 83,
+   "tone": -5.59,
+   "goldstein": -10.0,
+   "risk": 122.4,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "GD",
+    "BA"
+   ],
+   "url": "https://www.novinite.com/view_news.php?id=241781",
+   "date": "20261126"
+  },
+  {
+   "title": "United Kingdom & United States: Armed conflict",
+   "actors": "British / United Kingdom",
+   "kind": "conflict",
+   "sector": "Defence & energy",
+   "countries": [
+    "GBR",
+    "USA"
+   ],
+   "place": "County Durham, Durham, United Kingdom",
+   "lat": 54.6667,
+   "lon": -1.75,
+   "articles": 1036,
+   "events": 7,
+   "tone": -4.48,
+   "goldstein": -10.0,
+   "risk": 117.9,
+   "tickers": [
+    "LMT",
+    "RTX",
+    "GD",
+    "BA",
+    "XOM",
+    "CVX",
+    "COP"
+   ],
+   "url": "https://www.cityam.com/best-wine-books-christmas/",
+   "date": "20261126"
+  },
+  {
+   "title": "France & United States: Coercion",
+   "actors": "French / French",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "FRA",
+    "USA"
+   ],
+   "place": "Paris, France (general), France",
+   "lat": 48.8667,
+   "lon": 2.33333,
+   "articles": 170,
+   "events": 11,
+   "tone": -7.95,
+   "goldstein": -5.38,
+   "risk": 81.1,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC",
+    "CAT",
+    "BA"
+   ],
+   "url": "https://www.turnto23.com/news/in-your-neighborhood/bakersfield/frances-lopezs-death-ruled-a-homicide-following-july-attack-in-oildale",
+   "date": "20261126"
+  },
+  {
+   "title": "Israel & Palestine: Threat",
+   "actors": "Israel / Palestinian",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "ISR",
+    "PSE"
+   ],
+   "place": "Gaza, Israel (general), Israel",
+   "lat": 31.4167,
+   "lon": 34.3333,
+   "articles": 179,
+   "events": 11,
+   "tone": -7.39,
+   "goldstein": -5.11,
+   "risk": 78.1,
+   "tickers": [
+    "LMT",
+    "RTX",
+    "XOM",
+    "CVX",
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC"
+   ],
+   "url": "https://dominicanrepublicpost.com/winter-rains-threaten-1000-gaza-shelter-sites-councils-warn/",
+   "date": "20261126"
+  },
+  {
+   "title": "Russia & Ukraine: Criticism",
+   "actors": "Russia / Ukraine",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "RUS",
+    "UKR"
+   ],
+   "place": "Kyiv, Kyyiv, Misto, Ukraine",
+   "lat": 50.4333,
+   "lon": 30.5167,
+   "articles": 624,
+   "events": 33,
+   "tone": -6.36,
+   "goldstein": -2.0,
+   "risk": 77.4,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "GD",
+    "AAPL",
+    "NVDA"
+   ],
+   "url": "https://www.hindustantimes.com/world-news/ukraine-reports-first-laser-strike-against-russian-jet-drone-101795679548017.html",
+   "date": "20261126"
+  },
+  {
+   "title": "Iran & KWT: Statement",
+   "actors": "Iran / Kuwait",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "IRN",
+    "KWT"
+   ],
+   "place": "Iran",
+   "lat": 32.0,
+   "lon": 53.0,
+   "articles": 219,
+   "events": 16,
+   "tone": -9.14,
+   "goldstein": -1.62,
+   "risk": 68.2,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "https://www.euronews.com/2026/11/26/civilian-flights-diverted-as-kuwait-army-intercepts-iranian-drone-attack",
+   "date": "20261126"
+  },
+  {
+   "title": "Poland & Russia: Threat",
+   "actors": "Russia / Poland",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "POL",
+    "RUS"
+   ],
+   "place": "Russia",
+   "lat": 60.0,
+   "lon": 100.0,
+   "articles": 367,
+   "events": 2,
+   "tone": -0.77,
+   "goldstein": -4.4,
+   "risk": 66.2,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "AAPL",
+    "NVDA",
+    "QCOM"
+   ],
+   "url": "https://www.leaderlive.co.uk/news/national/26764353.investment-defence-means-less-chance-war-says-streeting/",
+   "date": "20261126"
+  },
+  {
+   "title": "Australia & United States: Rejection",
+   "actors": "Australia / United States",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "AUS",
+    "USA"
+   ],
+   "place": "Canberra, Australian Capital Territory, Australia",
+   "lat": -35.2833,
+   "lon": 149.217,
+   "articles": 700,
+   "events": 4,
+   "tone": 1.24,
+   "goldstein": -4.0,
+   "risk": 64.0,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC",
+    "CAT",
+    "BA"
+   ],
+   "url": "https://www.actionforex.com/contributors/technical-analysis/662137-aud-usd-selloff-leaves-the-pair-exposed-to-further-weakness/",
+   "date": "20261126"
+  },
+  {
+   "title": "Israel & Palestine: Statement",
+   "actors": "Israel / Israel",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "ISR",
+    "PSE"
+   ],
+   "place": "Gaza, Israel (general), Israel",
+   "lat": 31.4167,
+   "lon": 34.3333,
+   "articles": 496,
+   "events": 23,
+   "tone": -4.58,
+   "goldstein": 0.17,
+   "risk": 58.3,
+   "tickers": [
+    "LMT",
+    "RTX",
+    "XOM",
+    "CVX",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "https://truthout.org/articles/federal-judge-permanently-bars-trump-from-penalizing-groups-working-with-the-icc/",
+   "date": "20261126"
+  },
+  {
+   "title": "France & United States: Criticism",
+   "actors": "Charlotte / French",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "FRA",
+    "USA"
+   ],
+   "place": "Paris, France (general), France",
+   "lat": 48.8667,
+   "lon": 2.33333,
+   "articles": 185,
+   "events": 8,
+   "tone": -6.6,
+   "goldstein": -2.0,
+   "risk": 56.9,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC",
+    "CAT",
+    "BA"
+   ],
+   "url": "http://www.chestnuthilllocal.com/stories/chc-middle-schoolers-stage-mock-trial-at-carpenters-hall,43008",
+   "date": "20261126"
+  },
+  {
+   "title": "Europe & Iran: Statement",
+   "actors": "Europe / Iran",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "EUR",
+    "IRN"
+   ],
+   "place": "Tehran, Tehran, Iran",
+   "lat": 35.75,
+   "lon": 51.5148,
+   "articles": 170,
+   "events": 5,
+   "tone": -8.64,
+   "goldstein": 0.4,
+   "risk": 51.5,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "http://www.gazettextra.com/news/nation_world/iranian-activist-and-oscar-nominated-screenwriter-mehdi-mahmoudian-arrested-in-tehran/article_4aaa2563-78ee-5ab0-b0c8-869a3ca0203b.html",
+   "date": "20261126"
+  },
+  {
+   "title": "China & Japan: Criticism",
+   "actors": "China / Japan",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "CHN",
+    "JPN"
+   ],
+   "place": "Diaoyutai, Henan, China",
+   "lat": 33.8072,
+   "lon": 111.925,
+   "articles": 196,
+   "events": 27,
+   "tone": -4.81,
+   "goldstein": -2.0,
+   "risk": 50.8,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "GM",
+    "INTC"
+   ],
+   "url": "https://english.news.cn/20261126/7f9f98fba52048c3b5c48cbb0baf4668/c.html",
+   "date": "20261126"
+  },
+  {
+   "title": "Russia & Ukraine: Diplomacy",
+   "actors": "Ukraine / Ukraine",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "RUS",
+    "UKR"
+   ],
+   "place": "Moscow, Moskva, Russia",
+   "lat": 55.7522,
+   "lon": 37.6156,
+   "articles": 380,
+   "events": 75,
+   "tone": -3.02,
+   "goldstein": 3.28,
+   "risk": 50.1,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "GD",
+    "CAT",
+    "DE"
+   ],
+   "url": "http://en.ce.cn/main/latest/202611/t20261126_3307877.shtml",
+   "date": "20261126"
+  },
+  {
+   "title": "North Korea & United States: Statement",
+   "actors": "North Korea / American",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "PRK",
+    "USA"
+   ],
+   "place": "Seoul, Soul-t'ukpyolsi, South Korea",
+   "lat": 37.5664,
+   "lon": 127.0,
+   "articles": 1080,
+   "events": 13,
+   "tone": -2.15,
+   "goldstein": -0.06,
+   "risk": 49.0,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.winnipegfreepress.com/world/2026/11/25/north-koreas-kim-vows-to-build-more-nuclear-weapons-after-ignoring-trumps-overture",
+   "date": "20261126"
+  },
+  {
+   "title": "China & United States: Appeal",
+   "actors": "China / China",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "USA"
+   ],
+   "place": "China",
+   "lat": 35.0,
+   "lon": 105.0,
+   "articles": 413,
+   "events": 26,
+   "tone": -1.77,
+   "goldstein": 3.0,
+   "risk": 47.1,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://www.knau.org/2026-11-25/the-white-house-is-proposing-new-tariffs-on-more-than-a-dozen-countries",
+   "date": "20261126"
+  },
+  {
+   "title": "Argentina & India: Cooperation",
+   "actors": "Argentine / Mumbai",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "ARG",
+    "IND"
+   ],
+   "place": "Mumbai, Maharashtra, India",
+   "lat": 18.975,
+   "lon": 72.8258,
+   "articles": 159,
+   "events": 4,
+   "tone": -7.73,
+   "goldstein": 3.4,
+   "risk": 46.8,
+   "tickers": [
+    "AAPL",
+    "ACN",
+    "IBM",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://aninews.in/news/world/asia/argentine-envoy-mariano-caucino-expresses-solidarity-with-india-on-2611-mumbai-terror-attack-anniversary-pays-tribute-to-victims20261126093321/",
+   "date": "20261126"
+  },
+  {
+   "title": "Spain & United States: Diplomacy",
+   "actors": "United States / United States",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "ESP",
+    "USA"
+   ],
+   "place": "Madrid, Madrid, Spain",
+   "lat": 40.4,
+   "lon": -3.68333,
+   "articles": 406,
+   "events": 26,
+   "tone": -1.69,
+   "goldstein": 2.35,
+   "risk": 46.7,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://jbstv.org/archives/44608",
+   "date": "20261126"
+  },
+  {
+   "title": "Russia & United States: Pledge to cooperate",
+   "actors": "Russian / American",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "RUS",
+    "USA"
+   ],
+   "place": "Moscow, Moskva, Russia",
+   "lat": 55.7522,
+   "lon": 37.6156,
+   "articles": 404,
+   "events": 11,
+   "tone": -1.54,
+   "goldstein": 4.98,
+   "risk": 46.2,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "CAT",
+    "DE",
+    "FDX"
+   ],
+   "url": "https://www.winnipegfreepress.com/business/2026/11/25/us-led-consortium-agrees-to-acquire-assets-from-russian-oil-company-lukoil",
+   "date": "20261126"
+  },
+  {
+   "title": "China & United States: Investigation",
+   "actors": "Nvidia / China",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "USA"
+   ],
+   "place": "Beijing, Beijing, China",
+   "lat": 39.9289,
+   "lon": 116.388,
+   "articles": 282,
+   "events": 27,
+   "tone": -1.51,
+   "goldstein": -2.0,
+   "risk": 46.2,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://www.wctrib.com/opinion/columns/froma-harrop-does-trump-even-care-about-national-security",
+   "date": "20261126"
+  },
+  {
+   "title": "France & India: Statement",
+   "actors": "France / Mumbai",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "FRA",
+    "IND"
+   ],
+   "place": "Pune, Maharashtra, India",
+   "lat": 18.5333,
+   "lon": 73.8667,
+   "articles": 188,
+   "events": 12,
+   "tone": -6.55,
+   "goldstein": 0.0,
+   "risk": 45.0,
+   "tickers": [
+    "AAPL",
+    "ACN",
+    "IBM",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "http://www.bignewsnetwork.com/news/279454711/indian-embassy-in-france-pays-homage-to-victims-of-2611-mumbai-terror-attacks-expresses-solidarity-with-india-against-terrorism",
+   "date": "20261126"
+  },
+  {
+   "title": "China & United States: Diplomacy",
+   "actors": "China / China",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "USA"
+   ],
+   "place": "China",
+   "lat": 35.0,
+   "lon": 105.0,
+   "articles": 624,
+   "events": 71,
+   "tone": -0.93,
+   "goldstein": 2.92,
+   "risk": 43.7,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://foreignpolicy.com/2026/11/25/democratic-congress-foreign-policy-party-divisions-matt-duss/",
+   "date": "20261126"
+  },
+  {
+   "title": "Europe & India: Diplomacy",
+   "actors": "Europe / Europe",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "EUR",
+    "IND"
+   ],
+   "place": "Limassol, Limassol, Cyprus",
+   "lat": 34.675,
+   "lon": 33.0333,
+   "articles": 576,
+   "events": 4,
+   "tone": 1.9,
+   "goldstein": 7.0,
+   "risk": 40.0,
+   "tickers": [
+    "AAPL",
+    "ACN",
+    "IBM",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://aninews.in/news/world/asia/cyprus-seeks-active-role-in-imec-hopes-to-join-in-next-expansion-minister-hadjimanolis20261126144723/",
+   "date": "20261126"
+  },
+  {
+   "title": "India & SYC: Diplomacy",
+   "actors": "Seychelles / New Delhi",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "IND",
+    "SYC"
+   ],
+   "place": "New Delhi, Delhi, India",
+   "lat": 28.6,
+   "lon": 77.2,
+   "articles": 522,
+   "events": 13,
+   "tone": 2.78,
+   "goldstein": 2.25,
+   "risk": 40.0,
+   "tickers": [
+    "AAPL",
+    "ACN",
+    "IBM",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://aninews.in/news/world/asia/seychelles-fm-barry-faure-arrives-in-new-delhi-for-25th-iora-council-of-ministers-meeting20261126100040/",
+   "date": "20261126"
+  },
+  {
+   "title": "China & Pakistan: Cooperation",
+   "actors": "Pakistan / China",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "PAK"
+   ],
+   "place": "Islamabad, Islamabad, Pakistan",
+   "lat": 33.7,
+   "lon": 73.1667,
+   "articles": 485,
+   "events": 41,
+   "tone": 4.55,
+   "goldstein": 5.21,
+   "risk": 40.0,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "CAT",
+    "DE"
+   ],
+   "url": "http://en.people.cn/n3/2026/1126/c90000-20523315.html",
+   "date": "20261126"
+  },
+  {
+   "title": "Germany & Ukraine: Diplomacy",
+   "actors": "Berlin / Ukraine",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "DEU",
+    "UKR"
+   ],
+   "place": "Ukraine",
+   "lat": 49.0,
+   "lon": 32.0,
+   "articles": 464,
+   "events": 3,
+   "tone": 0.55,
+   "goldstein": 1.5,
+   "risk": 40.0,
+   "tickers": [
+    "LMT",
+    "RTX",
+    "GD",
+    "XOM",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "https://wcti12.com/news/nation-world/pentagon-confirms-preliminary-talks-with-gm-ford-on-drone-component-production-weapon",
+   "date": "20261126"
+  },
+  {
+   "title": "Canada & France: Diplomacy",
+   "actors": "France / France",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CAN",
+    "FRA"
+   ],
+   "place": "Paris, France (general), France",
+   "lat": 48.8667,
+   "lon": 2.33333,
+   "articles": 440,
+   "events": 11,
+   "tone": 0.49,
+   "goldstein": 2.23,
+   "risk": 40.0,
+   "tickers": [
+    "GM",
+    "F",
+    "CVX",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://nypost.com/2026/11/26/us-news/transgender-teacher-who-went-wildly-viral-with-ludicrous-z-cup-fake-boobs-gets-a-huge-lift/",
+   "date": "20261126"
+  },
+  {
+   "title": "Canada & United Kingdom: Cooperation",
+   "actors": "Tesco / Manchester",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CAN",
+    "GBR"
+   ],
+   "place": "",
+   "lat": null,
+   "lon": null,
+   "articles": 400,
+   "events": 1,
+   "tone": 3.42,
+   "goldstein": 3.4,
+   "risk": 40.0,
+   "tickers": [
+    "GM",
+    "F",
+    "CVX",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.wirralglobe.co.uk/news/national/uk-today/26765809.gen-z-black-friday-shoppers-heading-back-high-street/",
+   "date": "20261126"
+  },
+  {
+   "title": "Italy & KWT: Armed conflict",
+   "actors": "Kuwait / Italian",
+   "kind": "conflict",
+   "sector": "Defence & energy",
+   "countries": [
+    "ITA",
+    "KWT"
+   ],
+   "place": "Kuwait",
+   "lat": 29.5,
+   "lon": 47.75,
+   "articles": 220,
+   "events": 43,
+   "tone": -7.68,
+   "goldstein": -10.0,
+   "risk": 39.4,
+   "tickers": [
+    "LMT",
+    "RTX",
+    "GD",
+    "BA",
+    "XOM",
+    "CVX",
+    "COP"
+   ],
+   "url": "https://aa.com.tr/en/middle-east/kuwait-says-4-injured-in-iranian-drone-attack-on-vital-facility/4138869",
+   "date": "20261126"
+  },
+  {
+   "title": "Russia & WST: Appeal",
+   "actors": "Nato / Russia",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "RUS",
+    "WST"
+   ],
+   "place": "Moscow, Moskva, Russia",
+   "lat": 55.7522,
+   "lon": 37.6156,
+   "articles": 292,
+   "events": 22,
+   "tone": -2.36,
+   "goldstein": 0.65,
+   "risk": 38.6,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "CAT",
+    "DE",
+    "FDX"
+   ],
+   "url": "https://www.straitstimes.com/asia/trump-and-nato-chief-urge-russia-to-avoid-actions-that-widen-ukraine-war",
+   "date": "20261126"
+  },
+  {
+   "title": "China & United States: Cooperation",
+   "actors": "China / China",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "USA"
+   ],
+   "place": "China",
+   "lat": 35.0,
+   "lon": 105.0,
+   "articles": 334,
+   "events": 30,
+   "tone": -1.22,
+   "goldstein": 4.08,
+   "risk": 38.3,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://www.ksbw.com/article/vance-trump-jensen-huang-nvidia-no-investigation/74534456",
+   "date": "20261126"
+  },
+  {
+   "title": "Pakistan & United States: Appeal",
+   "actors": "Pakistan / Netflix",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "PAK",
+    "USA"
+   ],
+   "place": "India",
+   "lat": 20.0,
+   "lon": 77.0,
+   "articles": 331,
+   "events": 10,
+   "tone": -1.29,
+   "goldstein": 3.0,
+   "risk": 38.3,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.dailyexcelsior.com/centre-asks-netflix-to-ensure-that-content-originating-in-pakistan-is-not-streamed-in-india-sources/",
+   "date": "20261126"
+  },
+  {
+   "title": "China & Japan: Appeal",
+   "actors": "China / Japan",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "JPN"
+   ],
+   "place": "Beijing, Beijing, China",
+   "lat": 39.9289,
+   "lon": 116.388,
+   "articles": 233,
+   "events": 24,
+   "tone": -3.68,
+   "goldstein": 2.87,
+   "risk": 38.0,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "GM",
+    "CAT"
+   ],
+   "url": "https://foreignpolicy.com/2026/11/25/trump-new-tariffs-section-301-china-eu-india-abrego-garcia-deportation-spain/",
+   "date": "20261126"
+  },
+  {
+   "title": "India & MDV: Diplomacy",
+   "actors": "Male / Male",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "IND",
+    "MDV"
+   ],
+   "place": "Tamil Nadu, Tamil Nadu, India",
+   "lat": 11.0,
+   "lon": 78.0,
+   "articles": 372,
+   "events": 26,
+   "tone": 0.12,
+   "goldstein": 2.71,
+   "risk": 37.2,
+   "tickers": [
+    "AAPL",
+    "ACN",
+    "IBM",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://dailypioneer.com/law-justice/male-employee-can-head-workplace-harassment-icc-calcutta-hc",
+   "date": "20261126"
+  },
+  {
+   "title": "United Kingdom & United States: Statement",
+   "actors": "United Kingdom / American",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "GBR",
+    "USA"
+   ],
+   "place": "Tonyrefail, Rhondda Cynon Taff, United Kingdom",
+   "lat": 51.5836,
+   "lon": -3.42528,
+   "articles": 369,
+   "events": 11,
+   "tone": 0.34,
+   "goldstein": 0.07,
+   "risk": 36.9,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.mirror.co.uk/news/uk-news/robert-pattinson-james-bond-trump-37916129",
+   "date": "20261126"
+  },
+  {
+   "title": "India & United States: Statement",
+   "actors": "New Delhi / American",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "IND",
+    "USA"
+   ],
+   "place": "Mumbai, Maharashtra, India",
+   "lat": 18.975,
+   "lon": 72.8258,
+   "articles": 199,
+   "events": 18,
+   "tone": -4.0,
+   "goldstein": 0.02,
+   "risk": 35.9,
+   "tickers": [
+    "AAPL",
+    "ACN",
+    "IBM",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://en.shafaqna.com/494987/us-set-a-cap-on-india-tariff/",
+   "date": "20261126"
+  },
+  {
+   "title": "Pakistan & Saudi Arabia: Diplomacy",
+   "actors": "Saudi Arabia / Pakistan",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "PAK",
+    "SAU"
+   ],
+   "place": "Islamabad, Islamabad, Pakistan",
+   "lat": 33.7,
+   "lon": 73.1667,
+   "articles": 291,
+   "events": 39,
+   "tone": -1.17,
+   "goldstein": 2.35,
+   "risk": 33.8,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://tribune.com.pk/story/2642364/makkah-pact-trio-to-meet-in-islamabad",
+   "date": "20261126"
+  },
+  {
+   "title": "South Korea & North Korea: Statement",
+   "actors": "South Korea / North Korea",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "KOR",
+    "PRK"
+   ],
+   "place": "Seoul, Soul-t'ukpyolsi, South Korea",
+   "lat": 37.5664,
+   "lon": 127.0,
+   "articles": 286,
+   "events": 5,
+   "tone": -1.3,
+   "goldstein": 0.0,
+   "risk": 33.8,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.union-bulletin.com/news/world/north-koreas-kim-vows-to-build-more-nuclear-weapons-after-ignoring-trumps-overture/article_ad4b11ac-67be-5277-8bc6-4be79debca14.html",
+   "date": "20261126"
+  },
+  {
+   "title": "China & South Korea: Diplomacy",
+   "actors": "South Korea / South Korea",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "KOR"
+   ],
+   "place": "South Korea",
+   "lat": 37.0,
+   "lon": 127.5,
+   "articles": 324,
+   "events": 10,
+   "tone": -0.2,
+   "goldstein": 3.67,
+   "risk": 33.2,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://www.koreaherald.com/article/10949989",
+   "date": "20261126"
+  },
+  {
+   "title": "China & Pakistan: Diplomacy",
+   "actors": "China / Pakistani",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "PAK"
+   ],
+   "place": "Beijing, Beijing, China",
+   "lat": 39.9289,
+   "lon": 116.388,
+   "articles": 318,
+   "events": 31,
+   "tone": 4.12,
+   "goldstein": 2.99,
+   "risk": 31.8,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://www.newvision.co.ug/category/science/china-space-station-receives-pakistani-astron-NV_244823_112026",
+   "date": "20261126"
+  },
+  {
+   "title": "United Kingdom & United States: Diplomacy",
+   "actors": "United Kingdom / United Kingdom",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "GBR",
+    "USA"
+   ],
+   "place": "London, London, City of, United Kingdom",
+   "lat": 51.5,
+   "lon": -0.116667,
+   "articles": 308,
+   "events": 65,
+   "tone": 0.77,
+   "goldstein": 2.32,
+   "risk": 30.8,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.belfastlive.co.uk/news/belfast-news/co-antrim-man-who-played-34965346",
+   "date": "20261126"
+  },
+  {
+   "title": "India & LKA: Diplomacy",
+   "actors": "Sri Lankan / Sri Lankan",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "IND",
+    "LKA"
+   ],
+   "place": "New Delhi, Delhi, India",
+   "lat": 28.6,
+   "lon": 77.2,
+   "articles": 306,
+   "events": 15,
+   "tone": 2.53,
+   "goldstein": 3.1,
+   "risk": 30.6,
+   "tickers": [
+    "AAPL",
+    "ACN",
+    "IBM",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://ianslive.in/sri-lankan-fm-arrives-in-india-for-iora-council-of-ministers-meeting--20261126165849",
+   "date": "20261126"
+  },
+  {
+   "title": "Russia & WST: Diplomacy",
+   "actors": "Nato / Nato",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "RUS",
+    "WST"
+   ],
+   "place": "Ukraine",
+   "lat": 49.0,
+   "lon": 32.0,
+   "articles": 191,
+   "events": 42,
+   "tone": -2.85,
+   "goldstein": 2.76,
+   "risk": 30.5,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "CAT",
+    "DE",
+    "FDX"
+   ],
+   "url": "https://www.newindianexpress.com/world/2026/Nov/26/trump-nato-chief-urge-russia-not-to-expand-ukraine-war",
+   "date": "20261126"
+  },
+  {
+   "title": "United States & WST: Diplomacy",
+   "actors": "Nato / Nato",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "USA",
+    "WST"
+   ],
+   "place": "Florida, United States",
+   "lat": 27.8333,
+   "lon": -81.717,
+   "articles": 210,
+   "events": 34,
+   "tone": -1.8,
+   "goldstein": 2.15,
+   "risk": 28.2,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.arabnews.com/world/trump-nato-chief-urge-russia-not-to-expand-ukraine-war-3014079",
+   "date": "20261126"
+  },
+  {
+   "title": "Russia & United States: Diplomacy",
+   "actors": "Russia / Russia",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "RUS",
+    "USA"
+   ],
+   "place": "Moscow, Moskva, Russia",
+   "lat": 55.7522,
+   "lon": 37.6156,
+   "articles": 198,
+   "events": 45,
+   "tone": -1.98,
+   "goldstein": 3.18,
+   "risk": 27.7,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "LMT",
+    "RTX",
+    "CAT",
+    "DE",
+    "FDX"
+   ],
+   "url": "https://coast1009.com/uncategorized/melania-trump-reunites-seventh-group-of-ukrainian-and-russian-children-with-families/",
+   "date": "20261126"
+  },
+  {
+   "title": "France & United States: Statement",
+   "actors": "France / France",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "FRA",
+    "USA"
+   ],
+   "place": "France",
+   "lat": 46.0,
+   "lon": 2.0,
+   "articles": 160,
+   "events": 15,
+   "tone": -2.26,
+   "goldstein": -0.05,
+   "risk": 25.4,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.mirror.co.uk/3am/celebrity-news/breaking-brad-pitt-angelina-jolie-37916263",
+   "date": "20261126"
+  },
+  {
+   "title": "United Kingdom & Turkey: Coercion",
+   "actors": "Turkey / United Kingdom",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "GBR",
+    "TUR"
+   ],
+   "place": "Turkey",
+   "lat": 39.059012,
+   "lon": 34.911546,
+   "articles": 284,
+   "events": 2,
+   "tone": -1.88,
+   "goldstein": -5.0,
+   "risk": 23.1,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC",
+    "CAT",
+    "BA"
+   ],
+   "url": "https://www.newarkadvertiser.co.uk/national/woman-thought-750-000-payment-to-andrew-would-help-get-uk-residency-court-told-174830/",
+   "date": "20261126"
+  },
+  {
+   "title": "China & Russia: Cooperation",
+   "actors": "China / Russia",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "RUS"
+   ],
+   "place": "Beijing, Beijing, China",
+   "lat": 39.9289,
+   "lon": 116.388,
+   "articles": 228,
+   "events": 14,
+   "tone": 0.48,
+   "goldstein": 4.78,
+   "risk": 22.8,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "XOM",
+    "CVX"
+   ],
+   "url": "https://www.globaltimes.cn/page/202611/1375098.shtml",
+   "date": "20261126"
+  },
+  {
+   "title": "Australia & PNG: Rejection",
+   "actors": "Anthony Albanese / Papua New Guinea",
+   "kind": "sanctions",
+   "sector": "Trade-exposed tech & industrials",
+   "countries": [
+    "AUS",
+    "PNG"
+   ],
+   "place": "Canberra, Australian Capital Territory, Australia",
+   "lat": -35.2833,
+   "lon": 149.217,
+   "articles": 690,
+   "events": 4,
+   "tone": 1.41,
+   "goldstein": -4.0,
+   "risk": 22.4,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "INTC",
+    "CAT",
+    "BA"
+   ],
+   "url": "https://www.sconeadvocate.com.au/story/9399091/important-advance-australia-and-fiji-alliance-begins/",
+   "date": "20261126"
+  },
+  {
+   "title": "China & NLD: Diplomacy",
+   "actors": "Asml Holding / The Netherland",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "NLD"
+   ],
+   "place": "Beijing, Beijing, China",
+   "lat": 39.9289,
+   "lon": 116.388,
+   "articles": 216,
+   "events": 12,
+   "tone": 0.07,
+   "goldstein": 1.82,
+   "risk": 21.6,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "CAT",
+    "DE"
+   ],
+   "url": "http://www.shanghaisun.com/news/279454600/the-netherlands-the-hague-china-japan-chemical-weapons",
+   "date": "20261126"
+  },
+  {
+   "title": "China & KHM: Material cooperation",
+   "actors": "Chinese / Chinese",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "KHM"
+   ],
+   "place": "Phnom Penh, (CB11), Cambodia",
+   "lat": 11.55,
+   "lon": 104.917,
+   "articles": 208,
+   "events": 19,
+   "tone": 3.49,
+   "goldstein": 7.4,
+   "risk": 20.8,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://dailypioneer.com/world/cambodia-hosts-chinese-military-for-largest-golden-dragon-joint-exercise",
+   "date": "20261126"
+  },
+  {
+   "title": "China & United States: Aid",
+   "actors": "China / China",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "USA"
+   ],
+   "place": "Texas, United States",
+   "lat": 31.106,
+   "lon": -97.6475,
+   "articles": 159,
+   "events": 9,
+   "tone": -0.95,
+   "goldstein": 7.19,
+   "risk": 19.7,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://uk.finance.yahoo.com/news/analysis-trumps-tariffs-aim-prise-070305129.html",
+   "date": "20261126"
+  },
+  {
+   "title": "India & MDV: Pledge to cooperate",
+   "actors": "Male / Male",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "IND",
+    "MDV"
+   ],
+   "place": "Tamil Nadu, Tamil Nadu, India",
+   "lat": 11.0,
+   "lon": 78.0,
+   "articles": 190,
+   "events": 14,
+   "tone": 0.85,
+   "goldstein": 4.0,
+   "risk": 19.0,
+   "tickers": [
+    "AAPL",
+    "ACN",
+    "IBM",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://economictimes.indiatimes.com/news/india/tamil-nadu-government-announces-15-days-paternity-leave-for-male-employees-under-cm-vijay/articleshow/136185372.cms",
+   "date": "20261126"
+  },
+  {
+   "title": "Saudi Arabia & Turkey: Diplomacy",
+   "actors": "Saudi Arabia / Saudi Arabia",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "SAU",
+    "TUR"
+   ],
+   "place": "Islamabad, Islamabad, Pakistan",
+   "lat": 33.7,
+   "lon": 73.1667,
+   "articles": 180,
+   "events": 28,
+   "tone": 0.56,
+   "goldstein": 3.49,
+   "risk": 18.0,
+   "tickers": [
+    "XOM",
+    "CVX",
+    "COP",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://pakobserver.net/islamabad-to-host-key-talks-between-pakistan-saudi-arabia-and-turkiye-under-makkah-pact/",
+   "date": "20261126"
+  },
+  {
+   "title": "Brazil & China: Diplomacy",
+   "actors": "Brazil / China",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "BRA",
+    "CHN"
+   ],
+   "place": "China",
+   "lat": 35.0,
+   "lon": 105.0,
+   "articles": 176,
+   "events": 10,
+   "tone": 2.1,
+   "goldstein": 2.74,
+   "risk": 17.6,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "CAT",
+    "DE"
+   ],
+   "url": "https://www.newstalkzb.co.nz/news/national/new-zealand-man-arrested-in-brazil-over-suspected-baby-trafficking-scheme/",
+   "date": "20261126"
+  },
+  {
+   "title": "Japan & South Korea: Diplomacy",
+   "actors": "South Korean / Japanese",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "JPN",
+    "KOR"
+   ],
+   "place": "Tokyo, Tokyo, Japan",
+   "lat": 35.685,
+   "lon": 139.751,
+   "articles": 171,
+   "events": 23,
+   "tone": 0.19,
+   "goldstein": 2.71,
+   "risk": 17.1,
+   "tickers": [
+    "TSLA",
+    "GM",
+    "AAPL",
+    "NVDA",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS"
+   ],
+   "url": "https://english.hani.co.kr/arti/english_edition/e_international/914625.html",
+   "date": "20261126"
+  },
+  {
+   "title": "Canada & Ireland: Diplomacy",
+   "actors": "Canada / Canada",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CAN",
+    "IRL"
+   ],
+   "place": "Toronto, Ontario, Canada",
+   "lat": 43.6667,
+   "lon": -79.4167,
+   "articles": 164,
+   "events": 7,
+   "tone": 1.18,
+   "goldstein": 3.57,
+   "risk": 16.4,
+   "tickers": [
+    "GM",
+    "F",
+    "CVX",
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.winnipegfreepress.com/arts-and-life/life/2026/11/26/low-income-black-and-latin-american-people-less-likely-to-have-a-family-doctor-report",
+   "date": "20261126"
+  },
+  {
+   "title": "China & Japan: Diplomacy",
+   "actors": "China / China",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "CHN",
+    "JPN"
+   ],
+   "place": "South Korea",
+   "lat": 37.0,
+   "lon": 127.5,
+   "articles": 163,
+   "events": 9,
+   "tone": 1.22,
+   "goldstein": 4.43,
+   "risk": 16.3,
+   "tickers": [
+    "AAPL",
+    "NVDA",
+    "QCOM",
+    "TSLA",
+    "NKE",
+    "SBUX",
+    "GM",
+    "CAT"
+   ],
+   "url": "https://www.aol.com/articles/china-japan-south-korea-asean-050137000.html",
+   "date": "20261126"
+  },
+  {
+   "title": "NLD & WST: Diplomacy",
+   "actors": "Nato / Nato",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "NLD",
+    "WST"
+   ],
+   "place": "Florida, United States",
+   "lat": 27.8333,
+   "lon": -81.717,
+   "articles": 602,
+   "events": 28,
+   "tone": -0.61,
+   "goldstein": 1.43,
+   "risk": 14.8,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://aa.com.tr/en/world/trump-nato-chief-discuss-ukraine-iran-defense-spending/4138144",
+   "date": "20261126"
+  },
+  {
+   "title": "LKA & MDV: Diplomacy",
+   "actors": "Colombo / Maldive",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "LKA",
+    "MDV"
+   ],
+   "place": "Maldives",
+   "lat": 3.2,
+   "lon": 73.0,
+   "articles": 306,
+   "events": 5,
+   "tone": 0.05,
+   "goldstein": 2.6,
+   "risk": 10.7,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://aninews.in/news/world/asia/colombo-security-conclave-adopts-202682112027-cooperation-roadmap-at-8th-nsa-level-meet-in-maldives20261126133115/",
+   "date": "20261126"
+  },
+  {
+   "title": "Argentina & Australia: Pledge to cooperate",
+   "actors": "Argentina / Argentina",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "ARG",
+    "AUS"
+   ],
+   "place": "Sydney, New South Wales, Australia",
+   "lat": -33.8833,
+   "lon": 151.217,
+   "articles": 258,
+   "events": 4,
+   "tone": -0.78,
+   "goldstein": 4.0,
+   "risk": 10.1,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.bendigoadvertiser.com.au/story/9398744/dinosaur-blockbuster-show-features-fresh-sauropod-find/",
+   "date": "20261126"
+  },
+  {
+   "title": "Spain & SLV: Diplomacy",
+   "actors": "Spain / Spain",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "ESP",
+    "SLV"
+   ],
+   "place": "Madrid, Madrid, Spain",
+   "lat": 40.4,
+   "lon": -3.68333,
+   "articles": 168,
+   "events": 18,
+   "tone": -2.85,
+   "goldstein": 2.4,
+   "risk": 9.9,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.krgv.com/news/kilmar-brego-garc-a-a-salvadoran-national-mistakenly-deported-from-the-us-arrives-in-spain/",
+   "date": "20261126"
+  },
+  {
+   "title": "ARM & AZE: Diplomacy",
+   "actors": "Armenia / Armenia",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "ARM",
+    "AZE"
+   ],
+   "place": "Armenia",
+   "lat": 40.0,
+   "lon": 45.0,
+   "articles": 247,
+   "events": 58,
+   "tone": 3.22,
+   "goldstein": 2.56,
+   "risk": 8.6,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.trend.az/azerbaijan/4250816.html",
+   "date": "20261126"
+  },
+  {
+   "title": "France & United Kingdom: Pledge to cooperate",
+   "actors": "France / Wales",
+   "kind": "cooperation",
+   "sector": "Global trade & industrials",
+   "countries": [
+    "FRA",
+    "GBR"
+   ],
+   "place": "Paris, France (general), France",
+   "lat": 48.8667,
+   "lon": 2.33333,
+   "articles": 180,
+   "events": 1,
+   "tone": 4.98,
+   "goldstein": 4.0,
+   "risk": 6.3,
+   "tickers": [
+    "CAT",
+    "DE",
+    "FDX",
+    "UPS",
+    "HON"
+   ],
+   "url": "https://www.wiltsglosstandard.co.uk/news/national/26765452.william-expresses-sadness-diana-award-charity-goes-administration/",
+   "date": "20261126"
+  }
+ ],
+ "mentions": {
+  "AAPL": {
+   "20261113": 27,
+   "20261114": 11,
+   "20261115": 4,
+   "20261116": 16,
+   "20261117": 30,
+   "20261118": 43,
+   "20261119": 21,
+   "20261120": 22,
+   "20261121": 7,
+   "20261122": 5,
+   "20261123": 12,
+   "20261124": 18,
+   "20261125": 15,
+   "20261126": 32
+  },
+  "ABBV": {
+   "20261114": 1,
+   "20261119": 1,
+   "20261123": 1
+  },
+  "ABT": {
+   "20261113": 1,
+   "20261114": 4,
+   "20261116": 3,
+   "20261117": 1,
+   "20261118": 7,
+   "20261119": 8,
+   "20261120": 5,
+   "20261121": 1,
+   "20261122": 1,
+   "20261124": 1,
+   "20261125": 1,
+   "20261126": 2
+  },
+  "ACN": {
+   "20261119": 1,
+   "20261124": 1
+  },
+  "ADBE": {
+   "20261113": 2,
+   "20261114": 1,
+   "20261116": 1,
+   "20261117": 2,
+   "20261118": 1,
+   "20261119": 1,
+   "20261120": 1,
+   "20261121": 4,
+   "20261124": 1,
+   "20261125": 3,
+   "20261126": 2
+  },
+  "AIG": {
+   "20261113": 1,
+   "20261114": 1,
+   "20261118": 2,
+   "20261119": 1,
+   "20261121": 2,
+   "20261123": 2,
+   "20261124": 1,
+   "20261126": 5
+  },
+  "AMD": {
+   "20261113": 8,
+   "20261114": 1,
+   "20261115": 2,
+   "20261116": 1,
+   "20261117": 7,
+   "20261118": 4,
+   "20261119": 14,
+   "20261120": 14,
+   "20261121": 2,
+   "20261122": 3,
+   "20261125": 1,
+   "20261126": 1
+  },
+  "AMGN": {
+   "20261123": 2,
+   "20261124": 1,
+   "20261125": 1
+  },
+  "AMT": {
+   "20261120": 1,
+   "20261124": 1
+  },
+  "AMZN": {
+   "20261113": 18,
+   "20261114": 13,
+   "20261115": 15,
+   "20261116": 43,
+   "20261117": 39,
+   "20261118": 39,
+   "20261119": 38,
+   "20261120": 34,
+   "20261121": 20,
+   "20261122": 11,
+   "20261123": 26,
+   "20261124": 48,
+   "20261125": 43,
+   "20261126": 20
+  },
+  "AVGO": {
+   "20261113": 4,
+   "20261115": 2,
+   "20261116": 1,
+   "20261119": 1
+  },
+  "AXP": {
+   "20261114": 1,
+   "20261122": 1,
+   "20261126": 1
+  },
+  "BA": {
+   "20261113": 5,
+   "20261114": 3,
+   "20261115": 8,
+   "20261116": 8,
+   "20261117": 17,
+   "20261118": 48,
+   "20261119": 11,
+   "20261120": 15,
+   "20261121": 10,
+   "20261122": 1,
+   "20261123": 13,
+   "20261124": 20,
+   "20261125": 30,
+   "20261126": 16
+  },
+  "BAC": {
+   "20261113": 6,
+   "20261114": 6,
+   "20261115": 2,
+   "20261116": 13,
+   "20261117": 19,
+   "20261118": 5,
+   "20261119": 7,
+   "20261120": 10,
+   "20261121": 3,
+   "20261122": 1,
+   "20261123": 5,
+   "20261124": 2,
+   "20261125": 4,
+   "20261126": 1
+  },
+  "BK": {
+   "20261117": 1,
+   "20261118": 1
+  },
+  "BKNG": {
+   "20261113": 2,
+   "20261114": 2,
+   "20261115": 3,
+   "20261116": 1,
+   "20261117": 3,
+   "20261118": 5,
+   "20261119": 5,
+   "20261120": 7,
+   "20261121": 2,
+   "20261122": 2,
+   "20261123": 6,
+   "20261124": 8,
+   "20261125": 3,
+   "20261126": 14
+  },
+  "BLK": {
+   "20261113": 6,
+   "20261114": 3,
+   "20261115": 3,
+   "20261116": 8,
+   "20261117": 5,
+   "20261118": 6,
+   "20261119": 7,
+   "20261120": 1,
+   "20261121": 3,
+   "20261122": 1,
+   "20261123": 6,
+   "20261124": 8,
+   "20261125": 7,
+   "20261126": 1
+  },
+  "BMY": {
+   "20261113": 3,
+   "20261114": 1,
+   "20261117": 1,
+   "20261118": 2,
+   "20261119": 1,
+   "20261120": 2,
+   "20261121": 1,
+   "20261123": 1,
+   "20261124": 3,
+   "20261125": 1,
+   "20261126": 1
+  },
+  "BRK-B": {
+   "20261113": 1,
+   "20261114": 2,
+   "20261115": 1,
+   "20261116": 8,
+   "20261117": 5,
+   "20261118": 2,
+   "20261120": 7,
+   "20261121": 4,
+   "20261123": 4,
+   "20261124": 4,
+   "20261125": 1,
+   "20261126": 2
+  },
+  "C": {
+   "20261113": 3,
+   "20261114": 2,
+   "20261116": 2,
+   "20261117": 4,
+   "20261118": 5,
+   "20261120": 2,
+   "20261121": 1,
+   "20261123": 5,
+   "20261125": 1,
+   "20261126": 1
+  },
+  "CAT": {
+   "20261114": 1,
+   "20261116": 1,
+   "20261119": 1,
+   "20261120": 1
+  },
+  "CHTR": {
+   "20261113": 8,
+   "20261114": 4,
+   "20261115": 5,
+   "20261116": 8,
+   "20261117": 8,
+   "20261118": 7,
+   "20261119": 9,
+   "20261120": 14,
+   "20261121": 4,
+   "20261122": 4,
+   "20261123": 5,
+   "20261124": 12,
+   "20261125": 11,
+   "20261126": 8
+  },
+  "CL": {
+   "20261116": 2
+  },
+  "CMCSA": {
+   "20261113": 2,
+   "20261114": 1,
+   "20261116": 1,
+   "20261120": 1,
+   "20261124": 1,
+   "20261126": 2
+  },
+  "COF": {
+   "20261117": 1,
+   "20261119": 1,
+   "20261123": 2,
+   "20261124": 1
+  },
+  "COP": {
+   "20261114": 1,
+   "20261119": 2,
+   "20261120": 1,
+   "20261121": 2,
+   "20261122": 1,
+   "20261123": 5,
+   "20261124": 1,
+   "20261125": 1,
+   "20261126": 1
+  },
+  "COST": {
+   "20261113": 15,
+   "20261114": 4,
+   "20261115": 6,
+   "20261116": 6,
+   "20261117": 6,
+   "20261118": 13,
+   "20261119": 10,
+   "20261120": 5,
+   "20261121": 3,
+   "20261122": 3,
+   "20261123": 4,
+   "20261124": 6,
+   "20261125": 10,
+   "20261126": 4
+  },
+  "CRM": {
+   "20261113": 1,
+   "20261116": 2,
+   "20261117": 3,
+   "20261118": 1,
+   "20261119": 1,
+   "20261120": 1,
+   "20261125": 2,
+   "20261126": 2
+  },
+  "CSCO": {
+   "20261113": 2,
+   "20261116": 4,
+   "20261117": 1,
+   "20261118": 6,
+   "20261119": 3,
+   "20261120": 3,
+   "20261122": 1,
+   "20261123": 5,
+   "20261124": 4,
+   "20261125": 2
+  },
+  "CVS": {
+   "20261117": 1,
+   "20261124": 1
+  },
+  "CVX": {
+   "20261113": 4,
+   "20261114": 2,
+   "20261115": 1,
+   "20261116": 2,
+   "20261117": 8,
+   "20261118": 2,
+   "20261119": 2,
+   "20261120": 3,
+   "20261121": 1,
+   "20261122": 2,
+   "20261123": 6,
+   "20261124": 1,
+   "20261125": 1,
+   "20261126": 3
+  },
+  "DE": {
+   "20261113": 2,
+   "20261114": 1,
+   "20261115": 1,
+   "20261116": 1,
+   "20261119": 1,
+   "20261120": 3,
+   "20261123": 1,
+   "20261124": 1
+  },
+  "DHR": {
+   "20261120": 1,
+   "20261122": 1
+  },
+  "DIS": {
+   "20261113": 35,
+   "20261114": 21,
+   "20261115": 13,
+   "20261116": 25,
+   "20261117": 29,
+   "20261118": 27,
+   "20261119": 28,
+   "20261120": 28,
+   "20261121": 16,
+   "20261122": 16,
+   "20261123": 41,
+   "20261124": 40,
+   "20261125": 38,
+   "20261126": 49
+  },
+  "DUK": {
+   "20261113": 2,
+   "20261116": 1,
+   "20261117": 2,
+   "20261118": 4,
+   "20261119": 5,
+   "20261120": 4,
+   "20261123": 1,
+   "20261124": 2,
+   "20261125": 1
+  },
+  "EMR": {
+   "20261114": 1,
+   "20261117": 3,
+   "20261119": 3,
+   "20261120": 2,
+   "20261125": 2,
+   "20261126": 1
+  },
+  "F": {
+   "20261119": 1,
+   "20261120": 5,
+   "20261123": 1,
+   "20261124": 2
+  },
+  "FDX": {
+   "20261113": 1,
+   "20261114": 3,
+   "20261116": 1,
+   "20261117": 2,
+   "20261119": 1,
+   "20261120": 2,
+   "20261121": 2,
+   "20261122": 1,
+   "20261123": 2,
+   "20261125": 1,
+   "20261126": 24
+  },
+  "GE": {
+   "20261118": 1,
+   "20261123": 2,
+   "20261124": 2
+  },
+  "GILD": {
+   "20261114": 1
+  },
+  "GM": {
+   "20261117": 1,
+   "20261119": 1,
+   "20261120": 2,
+   "20261124": 1,
+   "20261125": 1,
+   "20261126": 1
+  },
+  "GOOGL": {
+   "20261113": 180,
+   "20261114": 126,
+   "20261115": 90,
+   "20261116": 155,
+   "20261117": 182,
+   "20261118": 193,
+   "20261119": 210,
+   "20261120": 173,
+   "20261121": 125,
+   "20261122": 101,
+   "20261123": 147,
+   "20261124": 162,
+   "20261125": 145,
+   "20261126": 126
+  },
+  "GOOG": {
+   "20261113": 180,
+   "20261114": 126,
+   "20261115": 90,
+   "20261116": 155,
+   "20261117": 182,
+   "20261118": 193,
+   "20261119": 210,
+   "20261120": 173,
+   "20261121": 125,
+   "20261122": 101,
+   "20261123": 147,
+   "20261124": 162,
+   "20261125": 145,
+   "20261126": 126
+  },
+  "GS": {
+   "20261113": 6,
+   "20261114": 6,
+   "20261115": 1,
+   "20261116": 8,
+   "20261117": 10,
+   "20261118": 8,
+   "20261119": 6,
+   "20261120": 4,
+   "20261122": 2,
+   "20261123": 8,
+   "20261124": 9,
+   "20261125": 4,
+   "20261126": 3
+  },
+  "HD": {
+   "20261113": 1,
+   "20261116": 2,
+   "20261117": 9,
+   "20261118": 1,
+   "20261119": 1,
+   "20261120": 1,
+   "20261125": 3,
+   "20261126": 1
+  },
+  "HON": {
+   "20261113": 1,
+   "20261116": 1,
+   "20261117": 2,
+   "20261118": 1
+  },
+  "IBM": {
+   "20261113": 4,
+   "20261115": 1,
+   "20261116": 10,
+   "20261117": 9,
+   "20261118": 3,
+   "20261119": 3,
+   "20261120": 1,
+   "20261123": 3,
+   "20261124": 5,
+   "20261125": 5,
+   "20261126": 4
+  },
+  "INTC": {
+   "20261113": 5,
+   "20261114": 3,
+   "20261115": 3,
+   "20261116": 13,
+   "20261117": 23,
+   "20261118": 2,
+   "20261119": 9,
+   "20261120": 7,
+   "20261121": 4,
+   "20261122": 6,
+   "20261123": 7,
+   "20261124": 8,
+   "20261125": 9,
+   "20261126": 3
+  },
+  "INTU": {
+   "20261119": 2,
+   "20261120": 3,
+   "20261123": 1,
+   "20261124": 1
+  },
+  "JNJ": {
+   "20261118": 1,
+   "20261124": 1
+  },
+  "JPM": {
+   "20261113": 3,
+   "20261114": 1,
+   "20261116": 2,
+   "20261117": 23,
+   "20261118": 7,
+   "20261119": 12,
+   "20261120": 17,
+   "20261121": 3,
+   "20261123": 2,
+   "20261124": 2,
+   "20261125": 1
+  },
+  "KO": {
+   "20261113": 5,
+   "20261114": 2,
+   "20261115": 2,
+   "20261116": 6,
+   "20261117": 7,
+   "20261118": 6,
+   "20261119": 4,
+   "20261120": 3,
+   "20261122": 1,
+   "20261123": 8,
+   "20261124": 8,
+   "20261125": 7,
+   "20261126": 5
+  },
+  "LLY": {
+   "20261113": 10,
+   "20261114": 3,
+   "20261115": 3,
+   "20261116": 6,
+   "20261117": 4,
+   "20261118": 3,
+   "20261119": 1,
+   "20261121": 2,
+   "20261122": 2,
+   "20261123": 4,
+   "20261124": 11,
+   "20261125": 2,
+   "20261126": 3
+  },
+  "LMT": {
+   "20261115": 2,
+   "20261116": 10,
+   "20261117": 4,
+   "20261118": 7,
+   "20261119": 5,
+   "20261120": 4,
+   "20261121": 5,
+   "20261122": 1,
+   "20261123": 3,
+   "20261124": 5,
+   "20261125": 5,
+   "20261126": 5
+  },
+  "MA": {
+   "20261113": 10,
+   "20261114": 5,
+   "20261115": 1,
+   "20261116": 8,
+   "20261117": 5,
+   "20261118": 5,
+   "20261119": 21,
+   "20261120": 17,
+   "20261121": 6,
+   "20261122": 3,
+   "20261123": 13,
+   "20261124": 7,
+   "20261125": 4,
+   "20261126": 4
+  },
+  "MCD": {
+   "20261113": 4,
+   "20261114": 1,
+   "20261115": 3,
+   "20261116": 4,
+   "20261117": 5,
+   "20261118": 3,
+   "20261119": 1,
+   "20261120": 4,
+   "20261121": 2,
+   "20261122": 1,
+   "20261123": 1,
+   "20261124": 3,
+   "20261125": 1,
+   "20261126": 4
+  },
+  "MDLZ": {
+   "20261117": 2,
+   "20261118": 1,
+   "20261124": 2,
+   "20261125": 1,
+   "20261126": 1
+  },
+  "MDT": {
+   "20261116": 1,
+   "20261124": 1
+  },
+  "MET": {
+   "20261116": 3,
+   "20261117": 1,
+   "20261123": 1,
+   "20261124": 1,
+   "20261125": 1
+  },
+  "META": {
+   "20261113": 7,
+   "20261114": 6,
+   "20261115": 13,
+   "20261116": 13,
+   "20261117": 5,
+   "20261118": 9,
+   "20261119": 9,
+   "20261120": 4,
+   "20261121": 9,
+   "20261122": 3,
+   "20261123": 4,
+   "20261124": 11,
+   "20261125": 7,
+   "20261126": 9
+  },
+  "MMM": {
+   "20261113": 8,
+   "20261114": 2,
+   "20261115": 1,
+   "20261116": 7,
+   "20261117": 6,
+   "20261118": 9,
+   "20261119": 2,
+   "20261120": 5,
+   "20261121": 5,
+   "20261122": 3,
+   "20261123": 4,
+   "20261124": 8,
+   "20261125": 6,
+   "20261126": 2
+  },
+  "MO": {
+   "20261126": 5
+  },
+  "MRK": {
+   "20261113": 2,
+   "20261114": 2,
+   "20261117": 1,
+   "20261119": 1,
+   "20261123": 1,
+   "20261124": 3,
+   "20261125": 2
+  },
+  "MS": {
+   "20261113": 5,
+   "20261114": 3,
+   "20261115": 2,
+   "20261116": 5,
+   "20261117": 6,
+   "20261118": 4,
+   "20261119": 5,
+   "20261120": 5,
+   "20261121": 1,
+   "20261123": 6,
+   "20261124": 4,
+   "20261125": 4,
+   "20261126": 1
+  },
+  "MSFT": {
+   "20261113": 516,
+   "20261114": 181,
+   "20261115": 56,
+   "20261116": 109,
+   "20261117": 127,
+   "20261118": 135,
+   "20261119": 89,
+   "20261120": 62,
+   "20261121": 28,
+   "20261122": 33,
+   "20261123": 48,
+   "20261124": 50,
+   "20261125": 59,
+   "20261126": 27
+  },
+  "NFLX": {
+   "20261113": 61,
+   "20261114": 35,
+   "20261115": 25,
+   "20261116": 42,
+   "20261117": 54,
+   "20261118": 49,
+   "20261119": 75,
+   "20261120": 66,
+   "20261121": 36,
+   "20261122": 21,
+   "20261123": 48,
+   "20261124": 62,
+   "20261125": 63,
+   "20261126": 61
+  },
+  "NKE": {
+   "20261115": 1,
+   "20261116": 1,
+   "20261117": 3,
+   "20261118": 11,
+   "20261119": 10,
+   "20261120": 10,
+   "20261121": 4,
+   "20261123": 1,
+   "20261124": 1,
+   "20261126": 2
+  },
+  "NOW": {
+   "20261113": 2,
+   "20261116": 2
+  },
+  "NVDA": {
+   "20261113": 743,
+   "20261114": 296,
+   "20261115": 246,
+   "20261116": 505,
+   "20261117": 570,
+   "20261118": 427,
+   "20261119": 233,
+   "20261120": 226,
+   "20261121": 119,
+   "20261122": 97,
+   "20261123": 776,
+   "20261124": 790,
+   "20261125": 441,
+   "20261126": 258
+  },
+  "ORCL": {
+   "20261113": 3,
+   "20261114": 2,
+   "20261115": 1,
+   "20261116": 1,
+   "20261117": 3,
+   "20261118": 5,
+   "20261119": 4,
+   "20261120": 5,
+   "20261121": 2,
+   "20261123": 1,
+   "20261124": 2,
+   "20261125": 1,
+   "20261126": 1
+  },
+  "PEP": {
+   "20261113": 1,
+   "20261114": 2,
+   "20261117": 8,
+   "20261118": 3,
+   "20261119": 1,
+   "20261120": 1,
+   "20261122": 1,
+   "20261123": 4,
+   "20261124": 1,
+   "20261125": 8,
+   "20261126": 3
+  },
+  "PFE": {
+   "20261113": 11,
+   "20261114": 5,
+   "20261115": 1,
+   "20261116": 3,
+   "20261117": 10,
+   "20261118": 2,
+   "20261119": 7,
+   "20261120": 1,
+   "20261123": 3,
+   "20261124": 2,
+   "20261125": 3
+  },
+  "PG": {
+   "20261113": 1,
+   "20261122": 1
+  },
+  "PLTR": {
+   "20261113": 3,
+   "20261114": 1,
+   "20261115": 1,
+   "20261116": 11,
+   "20261117": 3,
+   "20261118": 2,
+   "20261119": 16,
+   "20261120": 1,
+   "20261125": 1,
+   "20261126": 2
+  },
+  "PM": {
+   "20261114": 1,
+   "20261115": 1,
+   "20261124": 2,
+   "20261125": 1,
+   "20261126": 3
+  },
+  "PYPL": {
+   "20261113": 1,
+   "20261115": 1,
+   "20261118": 1,
+   "20261120": 1,
+   "20261123": 1,
+   "20261125": 1
+  },
+  "QCOM": {
+   "20261113": 6,
+   "20261115": 6,
+   "20261116": 2,
+   "20261117": 4,
+   "20261118": 7,
+   "20261119": 7,
+   "20261120": 6,
+   "20261121": 1,
+   "20261122": 1,
+   "20261123": 3,
+   "20261124": 1,
+   "20261125": 2,
+   "20261126": 2
+  },
+  "RTX": {
+   "20261113": 3,
+   "20261114": 2,
+   "20261117": 1,
+   "20261118": 2,
+   "20261119": 3,
+   "20261120": 2,
+   "20261121": 4,
+   "20261122": 2,
+   "20261123": 4,
+   "20261125": 2
+  },
+  "SBUX": {
+   "20261113": 10,
+   "20261114": 5,
+   "20261115": 3,
+   "20261116": 8,
+   "20261117": 5,
+   "20261118": 6,
+   "20261119": 6,
+   "20261120": 4,
+   "20261121": 2,
+   "20261122": 3,
+   "20261123": 4,
+   "20261124": 4,
+   "20261125": 8,
+   "20261126": 1
+  },
+  "SCHW": {
+   "20261116": 1,
+   "20261117": 1,
+   "20261119": 1,
+   "20261121": 1,
+   "20261124": 2
+  },
+  "SO": {
+   "20261116": 1
+  },
+  "T": {
+   "20261114": 1,
+   "20261116": 1,
+   "20261118": 2,
+   "20261119": 1,
+   "20261124": 1
+  },
+  "TGT": {
+   "20261115": 1,
+   "20261123": 1
+  },
+  "TMO": {
+   "20261113": 1,
+   "20261119": 1,
+   "20261120": 1
+  },
+  "TMUS": {
+   "20261113": 1,
+   "20261123": 1
+  },
+  "TSLA": {
+   "20261113": 20,
+   "20261114": 45,
+   "20261115": 13,
+   "20261116": 40,
+   "20261117": 39,
+   "20261118": 25,
+   "20261119": 94,
+   "20261120": 40,
+   "20261121": 10,
+   "20261122": 16,
+   "20261123": 31,
+   "20261124": 26,
+   "20261125": 27,
+   "20261126": 27
+  },
+  "TXN": {
+   "20261113": 3,
+   "20261114": 1,
+   "20261119": 1,
+   "20261123": 1,
+   "20261124": 1,
+   "20261125": 1
+  },
+  "UNH": {
+   "20261117": 2,
+   "20261118": 1,
+   "20261121": 1,
+   "20261124": 1
+  },
+  "UNP": {
+   "20261113": 3,
+   "20261114": 1,
+   "20261115": 1,
+   "20261116": 1,
+   "20261117": 2,
+   "20261118": 2,
+   "20261119": 3,
+   "20261120": 3,
+   "20261121": 2,
+   "20261122": 1,
+   "20261123": 2,
+   "20261124": 4,
+   "20261126": 3
+  },
+  "UPS": {
+   "20261113": 8,
+   "20261114": 9,
+   "20261115": 25,
+   "20261116": 10,
+   "20261117": 14,
+   "20261118": 4,
+   "20261119": 8,
+   "20261120": 8,
+   "20261121": 6,
+   "20261122": 7,
+   "20261123": 15,
+   "20261124": 12,
+   "20261125": 12,
+   "20261126": 5
+  },
+  "USB": {
+   "20261113": 1
+  },
+  "V": {
+   "20261113": 1,
+   "20261118": 1,
+   "20261119": 1,
+   "20261120": 1,
+   "20261124": 2
+  },
+  "VZ": {
+   "20261113": 6,
+   "20261114": 1,
+   "20261115": 3,
+   "20261116": 5,
+   "20261117": 8,
+   "20261118": 5,
+   "20261119": 3,
+   "20261120": 8,
+   "20261121": 1,
+   "20261122": 2,
+   "20261123": 5,
+   "20261124": 5,
+   "20261125": 3,
+   "20261126": 1
+  },
+  "WFC": {
+   "20261113": 3,
+   "20261114": 1,
+   "20261116": 14,
+   "20261117": 22,
+   "20261118": 1,
+   "20261119": 2,
+   "20261120": 1,
+   "20261121": 1,
+   "20261124": 4,
+   "20261126": 1
+  },
+  "WMT": {
+   "20261113": 8,
+   "20261114": 6,
+   "20261115": 1,
+   "20261116": 8,
+   "20261117": 3,
+   "20261118": 5,
+   "20261119": 8,
+   "20261120": 6,
+   "20261121": 10,
+   "20261122": 6,
+   "20261123": 6,
+   "20261124": 5,
+   "20261125": 12,
+   "20261126": 6
+  },
+  "XOM": {
+   "20261113": 3,
+   "20261114": 1,
+   "20261115": 4,
+   "20261116": 2,
+   "20261117": 6,
+   "20261118": 5,
+   "20261119": 4,
+   "20261120": 9,
+   "20261121": 5,
+   "20261122": 6,
+   "20261123": 6,
+   "20261124": 7,
+   "20261125": 4,
+   "20261126": 6
+  }
+ }
+}

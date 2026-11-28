@@ -1,0 +1,512 @@
+[
+{
+"ticker": "AAPL",
+"name": "Apple",
+"sector": "Technology"
+},
+{
+"ticker": "ABBV",
+"name": "AbbVie",
+"sector": "Health Care"
+},
+{
+"ticker": "ABT",
+"name": "Abbott",
+"sector": "Health Care"
+},
+{
+"ticker": "ACN",
+"name": "Accenture",
+"sector": "Technology"
+},
+{
+"ticker": "ADBE",
+"name": "Adobe",
+"sector": "Technology"
+},
+{
+"ticker": "AIG",
+"name": "AIG",
+"sector": "Financials"
+},
+{
+"ticker": "AMD",
+"name": "AMD",
+"sector": "Technology"
+},
+{
+"ticker": "AMGN",
+"name": "Amgen",
+"sector": "Health Care"
+},
+{
+"ticker": "AMT",
+"name": "American Tower",
+"sector": "Real Estate"
+},
+{
+"ticker": "AMZN",
+"name": "Amazon",
+"sector": "Consumer Discretionary"
+},
+{
+"ticker": "AVGO",
+"name": "Broadcom",
+"sector": "Technology"
+},
+{
+"ticker": "AXP",
+"name": "American Express",
+"sector": "Financials"
+},
+{
+"ticker": "BA",
+"name": "Boeing",
+"sector": "Industrials"
+},
+{
+"ticker": "BAC",
+"name": "Bank of America",
+"sector": "Financials"
+},
+{
+"ticker": "BK",
+"name": "BNY Mellon",
+"sector": "Financials"
+},
+{
+"ticker": "BKNG",
+"name": "Booking",
+"sector": "Consumer Discretionary"
+},
+{
+"ticker": "BLK",
+"name": "BlackRock",
+"sector": "Financials"
+},
+{
+"ticker": "BMY",
+"name": "Bristol Myers Squibb",
+"sector": "Health Care"
+},
+{
+"ticker": "BRK-B",
+"name": "Berkshire Hathaway",
+"sector": "Financials"
+},
+{
+"ticker": "C",
+"name": "Citigroup",
+"sector": "Financials"
+},
+{
+"ticker": "CAT",
+"name": "Caterpillar",
+"sector": "Industrials"
+},
+{
+"ticker": "CHTR",
+"name": "Charter",
+"sector": "Communication"
+},
+{
+"ticker": "CL",
+"name": "Colgate-Palmolive",
+"sector": "Consumer Staples"
+},
+{
+"ticker": "CMCSA",
+"name": "Comcast",
+"sector": "Communication"
+},
+{
+"ticker": "COF",
+"name": "Capital One",
+"sector": "Financials"
+},
+{
+"ticker": "COP",
+"name": "ConocoPhillips",
+"sector": "Energy"
+},
+{
+"ticker": "COST",
+"name": "Costco",
+"sector": "Consumer Staples"
+},
+{
+"ticker": "CRM",
+"name": "Salesforce",
+"sector": "Technology"
+},
+{
+"ticker": "CSCO",
+"name": "Cisco",
+"sector": "Technology"
+},
+{
+"ticker": "CVS",
+"name": "CVS Health",
+"sector": "Health Care"
+},
+{
+"ticker": "CVX",
+"name": "Chevron",
+"sector": "Energy"
+},
+{
+"ticker": "DE",
+"name": "Deere",
+"sector": "Industrials"
+},
+{
+"ticker": "DHR",
+"name": "Danaher",
+"sector": "Health Care"
+},
+{
+"ticker": "DIS",
+"name": "Disney",
+"sector": "Communication"
+},
+{
+"ticker": "DUK",
+"name": "Duke Energy",
+"sector": "Utilities"
+},
+{
+"ticker": "EMR",
+"name": "Emerson",
+"sector": "Industrials"
+},
+{
+"ticker": "F",
+"name": "Ford",
+"sector": "Consumer Discretionary"
+},
+{
+"ticker": "FDX",
+"name": "FedEx",
+"sector": "Industrials"
+},
+{
+"ticker": "GD",
+"name": "General Dynamics",
+"sector": "Industrials"
+},
+{
+"ticker": "GE",
+"name": "GE Aerospace",
+"sector": "Industrials"
+},
+{
+"ticker": "GILD",
+"name": "Gilead",
+"sector": "Health Care"
+},
+{
+"ticker": "GM",
+"name": "General Motors",
+"sector": "Consumer Discretionary"
+},
+{
+"ticker": "GOOGL",
+"name": "Alphabet A",
+"sector": "Communication"
+},
+{
+"ticker": "GOOG",
+"name": "Alphabet C",
+"sector": "Communication"
+},
+{
+"ticker": "GS",
+"name": "Goldman Sachs",
+"sector": "Financials"
+},
+{
+"ticker": "HD",
+"name": "Home Depot",
+"sector": "Consumer Discretionary"
+},
+{
+"ticker": "HON",
+"name": "Honeywell",
+"sector": "Industrials"
+},
+{
+"ticker": "IBM",
+"name": "IBM",
+"sector": "Technology"
+},
+{
+"ticker": "INTC",
+"name": "Intel",
+"sector": "Technology"
+},
+{
+"ticker": "INTU",
+"name": "Intuit",
+"sector": "Technology"
+},
+{
+"ticker": "ISRG",
+"name": "Intuitive Surgical",
+"sector": "Health Care"
+},
+{
+"ticker": "JNJ",
+"name": "Johnson & Johnson",
+"sector": "Health Care"
+},
+{
+"ticker": "JPM",
+"name": "JPMorgan Chase",
+"sector": "Financials"
+},
+{
+"ticker": "KO",
+"name": "Coca-Cola",
+"sector": "Consumer Staples"
+},
+{
+"ticker": "LIN",
+"name": "Linde",
+"sector": "Materials"
+},
+{
+"ticker": "LLY",
+"name": "Eli Lilly",
+"sector": "Health Care"
+},
+{
+"ticker": "LMT",
+"name": "Lockheed Martin",
+"sector": "Industrials"
+},
+{
+"ticker": "LOW",
+"name": "Lowe's",
+"sector": "Consumer Discretionary"
+},
+{
+"ticker": "MA",
+"name": "Mastercard",
+"sector": "Financials"
+},
+{
+"ticker": "MCD",
+"name": "McDonald's",
+"sector": "Consumer Discretionary"
+},
+{
+"ticker": "MDLZ",
+"name": "Mondelez",
+"sector": "Consumer Staples"
+},
+{
+"ticker": "MDT",
+"name": "Medtronic",
+"sector": "Health Care"
+},
+{
+"ticker": "MET",
+"name": "MetLife",
+"sector": "Financials"
+},
+{
+"ticker": "META",
+"name": "Meta",
+"sector": "Communication"
+},
+{
+"ticker": "MMM",
+"name": "3M",
+"sector": "Industrials"
+},
+{
+"ticker": "MO",
+"name": "Altria",
+"sector": "Consumer Staples"
+},
+{
+"ticker": "MRK",
+"name": "Merck",
+"sector": "Health Care"
+},
+{
+"ticker": "MS",
+"name": "Morgan Stanley",
+"sector": "Financials"
+},
+{
+"ticker": "MSFT",
+"name": "Microsoft",
+"sector": "Technology"
+},
+{
+"ticker": "NEE",
+"name": "NextEra Energy",
+"sector": "Utilities"
+},
+{
+"ticker": "NFLX",
+"name": "Netflix",
+"sector": "Communication"
+},
+{
+"ticker": "NKE",
+"name": "Nike",
+"sector": "Consumer Discretionary"
+},
+{
+"ticker": "NOW",
+"name": "ServiceNow",
+"sector": "Technology"
+},
+{
+"ticker": "NVDA",
+"name": "Nvidia",
+"sector": "Technology"
+},
+{
+"ticker": "ORCL",
+"name": "Oracle",
+"sector": "Technology"
+},
+{
+"ticker": "PEP",
+"name": "PepsiCo",
+"sector": "Consumer Staples"
+},
+{
+"ticker": "PFE",
+"name": "Pfizer",
+"sector": "Health Care"
+},
+{
+"ticker": "PG",
+"name": "Procter & Gamble",
+"sector": "Consumer Staples"
+},
+{
+"ticker": "PLTR",
+"name": "Palantir",
+"sector": "Technology"
+},
+{
+"ticker": "PM",
+"name": "Philip Morris",
+"sector": "Consumer Staples"
+},
+{
+"ticker": "PYPL",
+"name": "PayPal",
+"sector": "Financials"
+},
+{
+"ticker": "QCOM",
+"name": "Qualcomm",
+"sector": "Technology"
+},
+{
+"ticker": "RTX",
+"name": "RTX",
+"sector": "Industrials"
+},
+{
+"ticker": "SBUX",
+"name": "Starbucks",
+"sector": "Consumer Discretionary"
+},
+{
+"ticker": "SCHW",
+"name": "Charles Schwab",
+"sector": "Financials"
+},
+{
+"ticker": "SO",
+"name": "Southern Company",
+"sector": "Utilities"
+},
+{
+"ticker": "SPG",
+"name": "Simon Property",
+"sector": "Real Estate"
+},
+{
+"ticker": "T",
+"name": "AT&T",
+"sector": "Communication"
+},
+{
+"ticker": "TGT",
+"name": "Target",
+"sector": "Consumer Staples"
+},
+{
+"ticker": "TMO",
+"name": "Thermo Fisher",
+"sector": "Health Care"
+},
+{
+"ticker": "TMUS",
+"name": "T-Mobile",
+"sector": "Communication"
+},
+{
+"ticker": "TSLA",
+"name": "Tesla",
+"sector": "Consumer Discretionary"
+},
+{
+"ticker": "TXN",
+"name": "Texas Instruments",
+"sector": "Technology"
+},
+{
+"ticker": "UNH",
+"name": "UnitedHealth",
+"sector": "Health Care"
+},
+{
+"ticker": "UNP",
+"name": "Union Pacific",
+"sector": "Industrials"
+},
+{
+"ticker": "UPS",
+"name": "UPS",
+"sector": "Industrials"
+},
+{
+"ticker": "USB",
+"name": "U.S. Bancorp",
+"sector": "Financials"
+},
+{
+"ticker": "V",
+"name": "Visa",
+"sector": "Financials"
+},
+{
+"ticker": "VZ",
+"name": "Verizon",
+"sector": "Communication"
+},
+{
+"ticker": "WFC",
+"name": "Wells Fargo",
+"sector": "Financials"
+},
+{
+"ticker": "WMT",
+"name": "Walmart",
+"sector": "Consumer Staples"
+},
+{
+"ticker": "XOM",
+"name": "ExxonMobil",
+"sector": "Energy"
+}
+]
